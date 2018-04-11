@@ -1,6 +1,9 @@
 package com.szqj.weborg.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -39,14 +42,15 @@ public class OOSpiderService implements PageProcessor {
     .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3").setDomain("news.baidu.com");
 	
-	@Scheduled(cron = "0 */60 *  * * * ")
+	@Scheduled(cron = "0 */5 *  * * * ")
     public void startSearch() {
     	Spider spider = Spider.create(this);
     	List<String> urlList=getUrlList();
+    	
     	int size=urlList.size();  
         String[] array = (String[])urlList.toArray(new String[size]);  
     	spider.addUrl(array).run();
-    	//spider.addUrl("http://news.baidu.com/ns?word=管道泄漏 燃气爆炸&tn=news&from=news&cl=2&rn=20&ct=1&clk=sortbytime").run();
+    	//spider.addUrl("http://news.baidu.com/ns?q1=管道泄漏 燃气爆炸&tn=news&from=news&cl=2&rn=20&ct=1&clk=sortbytime").run();
     	
 	}
 
@@ -56,7 +60,8 @@ public class OOSpiderService implements PageProcessor {
     	List<String> l=new ArrayList<String>();
     	for(OutKeyInfo key:list){
     		String k=key.getKeyStr();
-    	    l.add("http://news.baidu.com/ns?word="+k+"&tn=news&from=news&cl=2&rn=20&ct=1&clk=sortbytime");
+    		String str="http://news.baidu.com/ns?q1="+k+"&tn=news&from=news&cl=0&rn=20&ct=0&clk=sortbytime"+getBaiduSearchStr();
+    		l.add(str);
     	}
 		return l;
 	}
@@ -65,7 +70,7 @@ public class OOSpiderService implements PageProcessor {
 	public void process(Page page) {
     	//System.out.println( page.getHtml());
 		 String path=page.getUrl().toString();
-		 int s = path.indexOf("word=")+5;
+		 int s = path.indexOf("q1=")+3;
 		 int e = path.indexOf("&tn");
 		 String keyword = path.substring(s, e);
 		 
@@ -111,6 +116,36 @@ public class OOSpiderService implements PageProcessor {
     public Site getSite() {
         return site;
 
+    }
+    
+    
+    private String getBaiduSearchStr(){
+    	long bt=0;
+    	long et=0;
+    	try {
+			 bt = new SimpleDateFormat("yyyy-MM-dd").parse(getCurDay()).getTime()/1000;
+			 et = new SimpleDateFormat("yyyy-MM-dd").parse(getCurDay()).getTime()/1000;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return "&begin_date="+getCurDay()+"&end_date="+getCurDay()+"&bt="+bt+"&et="+et;
+    }
+    
+    private String getStartDay(){
+    	Calendar ca = Calendar.getInstance();
+    	int year = ca.get(Calendar.YEAR);
+    	int month = ca.get(Calendar.MONTH)+1;
+    	return year+"-"+month+"-"+1;
+    	
+    }
+    
+    private String getCurDay(){
+    	Calendar ca = Calendar.getInstance();
+    	int year = ca.get(Calendar.YEAR);
+    	int month = ca.get(Calendar.MONTH);
+    	int date = ca.get(Calendar.DATE);
+    	return year+"-"+month+"-"+date;
     }
     
     
