@@ -18,4 +18,10 @@ public interface OutNewsInfoRepository extends JpaRepository< OutNewsInfo, Strin
 	@Query("select m from OutNewsInfo m where m.url=?1")
 	public List<OutNewsInfo> findByUrl(String url);
 	
+	@Query("select m from OutNewsInfo m where m.keyword=?1 and m.State=?2 order by level desc")
+	public List<OutNewsInfo> findByKeywordAndState(String keyword,Integer State);
+	
+	@Query("select m from OutNewsInfo m where  m.State=0 order by level desc")
+	public List<OutNewsInfo> findByState();
+	
 }

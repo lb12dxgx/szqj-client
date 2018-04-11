@@ -42,7 +42,7 @@ public class OOSpiderService implements PageProcessor {
     .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3").setDomain("news.baidu.com");
 	
-	@Scheduled(cron = "0 */5 *  * * * ")
+	@Scheduled(cron = "0 */1 *  * * * ")
     public void startSearch() { 
     	Spider spider = Spider.create(this);
     	List<String> urlList=getUrlList();
@@ -123,27 +123,29 @@ public class OOSpiderService implements PageProcessor {
     	long bt=0;
     	long et=0;
     	try {
-			 bt = new SimpleDateFormat("yyyy-MM-dd").parse(getCurDay()).getTime()/1000;
-			 et = new SimpleDateFormat("yyyy-MM-dd").parse(getCurDay()).getTime()/1000;
+			 bt = new SimpleDateFormat("yyyy-MM-dd").parse(getStartDay()).getTime()/1000;
+			 et = new SimpleDateFormat("yyyy-MM-dd").parse(getEndDay()).getTime()/1000;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return "&begin_date="+getCurDay()+"&end_date="+getCurDay()+"&bt="+bt+"&et="+et;
+    	return "&begin_date="+getStartDay()+"&end_date="+getEndDay()+"&bt="+bt+"&et="+et;
     }
     
     private String getStartDay(){
     	Calendar ca = Calendar.getInstance();
     	int year = ca.get(Calendar.YEAR);
     	int month = ca.get(Calendar.MONTH)+1;
-    	return year+"-"+month+"-"+1;
+    	int date = ca.get(Calendar.DATE);
+    	return year+"-"+month+"-"+date;
     	
     }
     
-    private String getCurDay(){
+    private String getEndDay(){
     	Calendar ca = Calendar.getInstance();
+    	ca.add(Calendar.DATE, 1);
     	int year = ca.get(Calendar.YEAR);
-    	int month = ca.get(Calendar.MONTH);
+    	int month = ca.get(Calendar.MONTH)+1;
     	int date = ca.get(Calendar.DATE);
     	return year+"-"+month+"-"+date;
     }
