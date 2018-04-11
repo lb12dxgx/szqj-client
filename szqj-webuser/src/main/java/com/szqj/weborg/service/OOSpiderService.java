@@ -43,7 +43,7 @@ public class OOSpiderService implements PageProcessor {
     .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3").setDomain("news.baidu.com");
 	
 	@Scheduled(cron = "0 */5 *  * * * ")
-    public void startSearch() {
+    public void startSearch() { 
     	Spider spider = Spider.create(this);
     	List<String> urlList=getUrlList();
     	
