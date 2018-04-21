@@ -40,6 +40,12 @@ public class ConstantUtils {
 		public static Integer ACCOUNT_STATE_START=0;
 		public static Integer ACCOUNT_STATE_STOP=1;
 		public static Integer ACCOUNT_STATE_DEL=2;
+		
+		public static Integer ACCOUNT_ADMIN=0;
+		public static Integer ACCOUNT_BUSINESS=0;
+		public static Integer ACCOUNT_COMPANY=0;
+		public static Integer ACCOUNT_PERSON=0;
+		
 		//账号类型
 		public static Integer ACCOUNT_PLAT_ADMIN=0;
 		public static Integer ACCOUNT_COMP_ADMIN=10;
@@ -47,6 +53,9 @@ public class ConstantUtils {
 		public static Integer ACCOUNT_DEPA_COM=21;
 		public static Integer ACCOUNT_CUST_ADMIN=30;
 		public static Integer ACCOUNT_CUST_COM=31;
+		
+		
+		
 		
 		 public static Map accountTypeMap=new HashMap();
 		 
@@ -74,4 +83,18 @@ public class ConstantUtils {
 			 roleTypeMap.put(ROLE_TYPE_ADMIN+"", "管理角色");
 			 
 		}
+		 
+		 //注册账号类型
+		 
+		 public static Integer REG_PERSON=0;
+		 public static Integer REG_COMPANY=1;
+		 
+		 public static Map regTypeMap=new HashMap();
+		 
+		 static{
+			 regTypeMap.put(REG_PERSON+"", "个人用户");
+			 regTypeMap.put(REG_COMPANY+"", "企业用户");
+			 
+		}
+		 
 }

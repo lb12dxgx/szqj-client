@@ -6,13 +6,17 @@
   <parent>  
 	    <groupId>org.springframework.boot</groupId>
 	    <artifactId>spring-boot-starter-parent</artifactId>
-	    <version>1.4.0.RELEASE</version>
+	    <version>2.0.0.RELEASE</version>
 	</parent>
 	<dependencies>
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-starter-web</artifactId>
 	    </dependency>
+	     <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
 	     <dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-starter-aop</artifactId>
@@ -21,10 +25,10 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-jpa</artifactId>
   		</dependency>
-	    <dependency>  
+	    <!-- <dependency>  
 	       <groupId>org.springframework.boot</groupId>  
 	       <artifactId>spring-boot-starter-freemarker</artifactId>   
-   		</dependency>
+   		</dependency> -->
 	     <dependency>  
 	       <groupId>org.springframework.boot</groupId>  
 	       <artifactId>spring-boot-devtools</artifactId>   
@@ -94,24 +98,24 @@
 	      <groupId>org.springframework.session</groupId>
 	      <artifactId>spring-session-data-redis</artifactId>
 	   </dependency>  -->
-	   <dependency>
+	   <!-- <dependency>
 	        <groupId>org.springframework.cloud</groupId>
 	    	<artifactId>spring-cloud-starter-eureka-server</artifactId>
 	    </dependency>
 	    <dependency>
 	        <groupId>org.springframework.cloud</groupId>
 	        <artifactId>spring-cloud-starter-feign</artifactId>
-   		 </dependency>
+   		 </dependency> -->
    		 <!-- <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
 		</dependency> -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-		</dependency>
+		</dependency> -->
 	</dependencies>
-	<dependencyManagement>
+	<!-- <dependencyManagement>
 	    <dependencies>
 	        <dependency>
 		        <groupId>org.springframework.cloud</groupId>
@@ -122,7 +126,7 @@
 	        </dependency>
 	    </dependencies>
    </dependencyManagement>
-	
+	 -->
 	<properties>
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <start-class>com.szqj.WebUserApplication</start-class>
@@ -133,8 +137,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+               		 <fork>true</fork><!-- fork:如果没有该配置，这个devtools不会起作用，即应用不会restart -->
+           		</configuration>
             </plugin>
-             <plugin>
+             <!-- <plugin>
                	<groupId>com.spotify</groupId>
 	            <artifactId>docker-maven-plugin</artifactId>
 	            <version>0.4.11</version>
@@ -149,7 +156,7 @@
                         </resource>
                     </resources>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
   

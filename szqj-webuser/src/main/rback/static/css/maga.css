@@ -1,0 +1,51 @@
+.maga-main{
+  margin-top: 100px;
+  min-height:800px;
+}
+
+.maga-main ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.maga-main ul li{
+  line-height: 40px;
+
+}
+
+.maga-main ul li a {
+  display: block;
+  line-height: 40px;
+  padding: 0 15px;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+}
+
+.maga-main .on{
+  color: #fff;
+  background: #B10B00;
+}
+
+.maga-main .maga-title {
+    padding: 0px 0 5px;
+    border-bottom: 1px solid #e1e1e1;
+    font-size: 18px;
+    font-weight: bold;
+    color: #B10B00;
+}
+
+.dzqk-list  li{
+  margin:10px 0; 
+  margin-left: 20px;
+  float: left;
+  list-style:none;
+  text-align: center;
+  transition: all 0.5s  0s;
+}
+
+.dzqk-list li:hover{
+  transform:  translateY(-10px) ;  
+}
+

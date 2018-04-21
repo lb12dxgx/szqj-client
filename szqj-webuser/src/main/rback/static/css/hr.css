@@ -1,0 +1,114 @@
+.hr-content{
+  background-color: #F5F5F5;
+}
+
+.hr-main{
+  margin-top: 100px;
+  min-height:800px;
+}
+
+.hr-emp{
+    min-height: 430px;
+ }
+ .hr-emp-title{
+  border-bottom: 1px solid #e9e9e9; 
+ }
+
+ .hr-emp-title div{
+  font-size: 20px;
+  padding: 10px; 
+  border-bottom: 2px solid #1875f0;
+  width:120px; 
+ }
+
+ .hr-emp li{
+  list-style: none;
+  float: left;
+  padding: 0 40px;
+ } 
+
+ .hr-emp li .emp-box:hover{
+   transform: translateY(-5px) ;
+ }
+
+ .emp-box{
+  height:170px;
+  padding:10px; 
+ }
+
+ .emp-box .emp-box-img{
+  width:140px;
+  height:150px; 
+ }
+
+ .emp-box .emp-box-img img{
+  width:140px;
+  height:150px; 
+ }
+
+ .emp-box .emp-box-name{
+  text-align: center;
+  color:#333;
+ }
+ .hr-job{
+    min-height: 400px;
+    margin-top:20px; 
+ }
+ .hr-job-title{
+  border-bottom: 1px solid #e9e9e9; 
+ }
+
+ .hr-job-title .title-right{
+  font-size: 20px;
+  padding: 5px; 
+  border-bottom: 2px solid #1875f0;
+  width:120px; 
+  display:inline-block;
+ }
+
+ .hr-job-title .title-left{
+  font-size: 16px;
+  padding: 10px 20px; 
+  float: right;
+ }
+
+ .job-line{
+  line-height:25px;
+  font-size: 16px;
+  padding: 5px;
+ }
+
+.hr-job li{
+  list-style: none;
+  float: left;
+  width: 500px;
+  padding: 10px;
+  border-bottom: 1px solid #e9e9e9; 
+  margin-left: 20px; 
+  margin-right: 20px;
+}
+
+.job-name{
+  font-size: 16px;
+  color: #333;
+}
+
+.job-age{
+  margin-left: 10px;
+  font-size: 14px;
+  color:#666666;
+}
+
+.job-money{
+  font-size: 14px;
+  color: #e83838;
+}
+.job-emp{
+  font-size: 14px;
+  color: #666666;
+}
+
+.job-date{
+  font-size: 14px;
+  color: #666666;
+}

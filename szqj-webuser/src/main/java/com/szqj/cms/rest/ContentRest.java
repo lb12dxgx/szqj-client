@@ -3,7 +3,7 @@ package com.szqj.cms.rest;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
@@ -27,8 +27,7 @@ import com.szqj.weborg.service.AccountService;
 @RequestMapping("/system/content/")
 @EnableAutoConfiguration
 public class ContentRest {
-	
-	private final Logger logger = Logger.getLogger(getClass());
+
 
 	@Autowired
 	private  ContentInfoRepository  contentInfoRepository;
@@ -66,7 +65,7 @@ public class ContentRest {
 	//删除
 	@RequestMapping(value = "delete.do"  )
 	public RestJson delete( String contentId){
-		contentInfoRepository.delete(contentId);
+		contentInfoRepository.deleteById(contentId);
 		return RestJson.createSucces();
 	}
 	

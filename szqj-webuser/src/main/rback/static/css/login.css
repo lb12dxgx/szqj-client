@@ -1,0 +1,46 @@
+.div-login{
+  background: url(../images/login-bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 600px;
+}
+
+.div-login-form{
+	margin-top:100px; 
+	min-height:400px;
+	text-align:center;
+	line-height: 40px;
+
+}
+
+.div-login-form div{
+	padding: 10px;
+}
+
+.reg-form-input{
+  height: 40px;
+  
+}
+
+.reg-form-lable{
+  font-size: 14px
+}
+
+.reg-hidden{
+  display:none; 
+}
+
+.reg-show{
+  display:block; 
+}
+
+.success-img{
+  color: #1875f0;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(0, 138, 255, 1)), to(rgba(2, 101, 194, 1)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 6px 6px rgba(0,113,209,.3);
+  margin-right: 40px; 
+}

@@ -1,13 +1,16 @@
 package com.szqj.weborg.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -29,7 +32,7 @@ import us.codecraft.webmagic.selector.Selectable;
 public class OOSpiderService implements PageProcessor {
 	
 	
-	private final Logger logger = Logger.getLogger(getClass());
+
 
 	@Autowired
 	private OutNewsInfoRepository outNewsInfoRepository;
@@ -38,11 +41,11 @@ public class OOSpiderService implements PageProcessor {
 	private OutKeyInfoRepository outKeyInfoRepository;
 	
 	private Site site = Site.me().setSleepTime(500).setTimeOut(3 * 60 * 1000)
-    .setUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0")
+    .setUserAgent("Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52")
     .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3").setDomain("news.baidu.com");
 	
-	@Scheduled(cron = "0 */1 *  * * * ")
+	@Scheduled(cron = "0 */60 *  * * * ")
     public void startSearch() { 
     	Spider spider = Spider.create(this);
     	List<String> urlList=getUrlList();
@@ -75,6 +78,14 @@ public class OOSpiderService implements PageProcessor {
 		 String keyword = path.substring(s, e);
 		 
     	 Selectable list = page.getHtml().xpath("//h3[@class='c-title']/");
+    	 System.out.println(page.getUrl().toString()+"==="+list.nodes().size());
+    	 try {
+			FileUtils.writeStringToFile(new File("/usr/local/website/file/"+(UUID.randomUUID().toString())), page.getRawText());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	 
     	 Selectable listdesc = page.getHtml().xpath("//div[@class='c-summary']");
     	
     	for(int i=0;i<list.nodes().size();i++){

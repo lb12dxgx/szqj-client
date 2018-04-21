@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+<link  th:href="@{/css/cyfw.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+   <header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+	   <li><a href="#">118服务</a></li>
+       <li class="active">挖掘申请提交</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row">
+    <!--左侧菜单开始-->
+     <div th:include="118/leftmenu"/> 
+     <!--左侧菜单结束-->
+    
+     <!--右侧内容开始-->
+     <div class="col-md-9">
+       <div class="row">
+		   <div class="col-md-12 text-center">
+			   <ul class="list-unstyled list-inline">
+				   <li><img src="/images/duihao.png"></li>
+				   <li><h4 class="gray">申请提交成功</h4></li>
+			   </ul>
+		   </div>
+	   </div>
+		 <div class="row">
+		   <div class="col-md-12 text-center"><h3>挖掘申请单号：01020180411 </h3></div>
+	   </div>
+		 <div class="row">
+		   <div class="col-md-2"></div>
+		   <div class="col-md-8 sq-xx-list">
+			   <ul class="list-unstyled">
+					<li>挖据单位：自来水一公司</li>
+					<li>受理状态：已受理</li>
+					<li>受理时间：2018-10-12</li>
+					<li>标注时间：2018-10-14</li>
+					<li>现场标注单位：燃气公司,通讯公司</li>
+			   </ul>
+		   </div>
+		   <div class="col-md-2"></div>
+	   </div>
+	   <div class="row">
+		   <div class="col-md-2"></div>
+		   <div class="col-md-8 sq-xx-list">
+			   <ul class="list-unstyled">
+				   <li>联系电话：010-3244444</li>
+				    <li>联系地址:北京市城市管理委员会 </li>
+				    <li>工作时间:周一到周五 上午9:00 下午5:00 </li>
+			   </ul>
+		   </div>
+		   <div class="col-md-2"></div>
+	   </div>
+	 
+     </div>
+     <!--右侧内容结束-->
+   </div>
+ </div>
+ 
+ <!--footer开始-->
+	   <div th:include="footer"></div>
+  <!--footer结束-->
+<script type="text/javascript">
+		$(function(){
+			$('#118').removeClass("manulinknone");
+			$('#118').addClass("manulink");
+			$('#l_submit').removeClass("fw-manu2-none");
+			$('#l_submit').addClass("fw-manu2-on");
+		})
+</script>
+
+</body>
+</html>

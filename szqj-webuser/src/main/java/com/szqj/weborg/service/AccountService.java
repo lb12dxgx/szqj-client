@@ -81,7 +81,7 @@ public class AccountService {
 	
 	
 	public Account getAccount(String accountId) {
-		return accountRepository.findOne(accountId);
+		return accountRepository.findById(accountId).get();
 	}
 
 	

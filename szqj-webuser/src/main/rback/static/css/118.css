@@ -1,0 +1,39 @@
+.service-main{
+  margin-top: 100px;
+  min-height:800px;
+}
+
+.service-main ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.service-main ul li{
+  line-height: 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.service-main ul li a {
+  display: block;
+  line-height: 40px;
+  padding: 0 15px;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+}
+
+.service-main .on{
+  color: #fff;
+  background: #B10B00;
+}
+
+.service-main .service-title {
+    padding: 0px 0 5px;
+    border-bottom: 1px solid #e1e1e1;
+    font-size: 18px;
+    font-weight: bold;
+    color: #B10B00;
+}
+
+

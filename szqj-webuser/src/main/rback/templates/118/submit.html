@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0020)http://www.ysemm.cn/ -->
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+	<link rel="stylesheet" th:href="@{/css/118.css}" >
+</head>
+<body class="pace-done bg-color">
+      <header th:include="header"/>
+
+    <div class="content bg">
+      <div class="container">
+        <div class="service-main">
+          <div class="row">
+            <div class="col-md-2">
+              <ul>
+                <li><a href="index.html" >118中国行</a></li>
+                <li><a href="submit.html" class="on">施工申请</a></li>
+                <li><a href="search.html">申请查询</a></li>
+                <li><a href="about.html">关于118</a></li>
+              </ul>
+            </div>
+            <div class="col-md-10">
+                   <div class="service-title">淄博地下开挖申请</div>
+            <div class="col-md-offset-1 col-md-11">
+              <div style="text-align:center;margin-top: 20px">
+              
+              <form class="form-horizontal" id="regForm" action="submitTwo.html" method="post">
+                 <div class="form-group">
+                  <label class="col-md-3 control-label reg-form-lable">
+                    <span style="color:red">*</span>单位名称</label>
+                  <div class="col-md-6">
+                   <input type="text" class="form-control reg-form-input" id="userName" name="userName" placeholder="请输入联系人姓名" >
+                  </div>
+                  <label id="userName-error" class="col-md-3 errorlabel  error " for="userName">
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label reg-form-lable">
+                    <span style="color:red">*</span>密码</label>
+                  <div class="col-md-6">
+                   <input type="text" class="form-control reg-form-input" id="telphone" name="telphone" placeholder="请输入手机号" >
+                  </div>
+                  <label id="telphone-error" class="col-md-3 errorlabel  error  " for="telphone">
+                  </label>
+                </div>
+                  <div class="form-group">
+                  <div class="col-md-offset-3 col-md-6 top-20">
+                   <a href="submitOne.html" id="reg" class="btn btn-success" style="font-size: 18px" >登录</a>
+                    <a href="submitOne.html" id="reg" class="btn btn-success" style="font-size: 18px" >注册</a>
+                  </div>
+                </div>
+              </form>
+              
+                </div>
+           </div>
+
+            </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>  
+    </div>          
+  
+
+   <div th:include="footer"></div>      
+   
+    
+</body>
+
+
+
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.min.js"></script>
+<script src="../js/constant.js"></script>
+<script type="text/javascript">
+
+
+</script>
+
+
+
+
+
+</html>

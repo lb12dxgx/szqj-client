@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+	<link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body class="pace-done bg-color">
+    <header th:include="header"/>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+          <div class="swiper-slide swiper-font" style="background-color:#0033FF;">
+            <a href="#" >118推广信息</a>
+          </div>
+          <div class="swiper-slide swiper-font" style="background-color:#CC3399;">
+            <a href="#" >地下安全微信推广信息</a>
+          </div>
+          <div class="swiper-slide swiper-font" style="background-color:#33CC33;">
+            <a href="#" >展会推广信息</a>
+          </div>
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+    </div>
+    
+  <div class="content">
+        <div class="container">
+            <div class="row head-div top-10">
+              <div class="col-md-10">
+                <div class="div-shandow right-20">
+                  <div class="row left-20 ">
+                    <div class="col-md-3">注册企业:<a href="#">100</a>家</div>
+                    <div class="col-md-3">专业人员:<a href="#">1000</a>名</div>
+                    <div class="col-md-3">需求信息:<a href="#">1000</a>条</div>
+                    <div class="col-md-3">商品信息:<a href="#">1000</a>条</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="div-shandow div-login" >
+                  <a href="login/index.html" class="btn btn-success" style="font-size: 16px">平台登录</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="row top-10">
+              <div class="col-md-12 ">
+                <div class="server118-box div-shandow">
+                  <ul class="module-title">
+                    <li> <h3>118服务：</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <div>
+                    <ul class="server118-list">
+                       <li>
+                        <a href="#">
+                          <i class="fa fa-car server118-img"></i>
+                          <p class="server118-name">118中国行</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-linode server118-img"></i>
+                          <p class="server118-name">地下施工申请</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-gavel server118-img"></i>
+                          <p class="server118-name">地下设施回复</p>
+                        </a>
+                      <li>
+                        <a href="#">
+                         <i class="fa fa-users server118-img"></i>
+                         <p class="server118-name">加入我们</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                         <i class="fa fa-tasks server118-img"></i>
+                         <p class="server118-name">系统登录</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row news-div top-20">
+              <div class="col-md-6 content-height ">
+                <div class="div-shandow right-20">
+                  <ul class="module-title">
+                    <li> <h3>行业资讯</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <ul class="module-nav">
+                            <li class="active"><a href="#">要闻</a></li>
+                            <li><a href="#">企业新闻</a></li>
+                            <li><a href="train.html">市场</a></li>
+                            <li><a href="#">国际</a></li>
+                            <li><a href="#">综合</a></li>
+                      </ul>
+                      <div class="row">
+                        <div class="module-content active">
+                          <ul>
+                            <li style="border-bottom: 1px solid #ddd;"> 
+                              <a href="#">
+                                <div class="detailed-img">
+                                  <img src="images/114151_3.jpg">
+                                </div>
+                                <div class="detailed-desc">
+                                   我国大数据产业发展的五大新突破
+                                </div>
+                              </a>
+                            </li>
+                            <li> 
+                              <a href="#">生物识别技术加持 智能门锁将迎新时代</a>
+                            </li>
+                          </ul>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-md-3 ">
+                      <div class="line-bottom">
+                        <a href="#" class="font-18">视频新闻</a>
+                      </div>
+                      <div class="content-video">
+                        <a href="#">
+                          <div class="detailed-video">
+                               <img src="images/114151_3.jpg">
+                          </div>
+                          <h5>我国大数据产业发展的五大新突破</h5>
+                        </a>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
+
+              <div class="col-md-6 content-height ">
+                <div class="div-shandow">
+                  <ul class="module-title">
+                    <li> <h3>招标信息</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <table style="margin: 20px 20px">
+                    <tr>
+                      <td class="left-td">
+                        <a href="#">生物识别技术加持 智能门锁将迎新时代</a>
+                      </td>
+                      <td class="right-td">2017-01-01</td>
+                    </tr>
+                     
+                  </table>
+                  <ul class="module-title">
+                    <li> <h4>供求信息</h4></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <table style="margin: 20px 20px">
+                    <tr>
+                      <td class="left-td">
+                        <a href="#">生物识别技术加持 智能门锁将迎新时代</a>
+                      </td>
+                      <td class="right-td">2017-01-01</td>
+                    </tr>
+                  </table>
+              </div>
+            </div>
+           </div>
+
+
+            <div class="row top-10">
+              <div class="col-md-12 ">
+                  <div class="row">
+                    <div class="col-md-3 ">
+                      <div class="kn-box div-shandow" style="background-color:blue">
+                        <a href="#">政策文件:<br>1000名</a>
+                      </div>
+                    </div>
+                    <div class="col-md-3 ">
+                       <div class="kn-box div-shandow" style="background-color:green">
+                          <a href="#">法律法规:<br><a href="#">1000条</a>
+                       </div>
+                    </div>
+                    <div class="col-md-3 ">
+                      <div class="kn-box div-shandow" style="background-color:#9966CC">
+                        <a href="#">标准规范:<br>1000条</a>
+                      </div>
+                    </div>
+                    <div class="col-md-3 ">
+                      <div class="kn-box div-shandow" style="background-color:red">
+                       <a href="#"> 行业论文:<br>1000条</a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+            
+
+            <div class="row top-10">
+              <div class="col-md-6">
+                <div class="emp-box div-shandow">
+                  <ul class="module-title">
+                    <li> <h3>知名商家：</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <div>
+                    <ul class="emp-list">
+                        <li>
+                          <a href="#">
+                            <div class="emp-img"><img src="images/emp_1.png"></div>
+                            <div class="emp-name">test</div>
+                          </a>
+                        </li>
+                     </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="emp-box div-shandow">
+                  <ul class="module-title">
+                    <li> <h3>知名产品：</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <div>
+                    <ul class="emp-list">
+                        <li>
+                          <a href="#">
+                            <div class="emp-img"><img src="images/emp_1.png"></div>
+                            <div class="emp-name">test</div>
+                          </a>
+                        </li>
+                     </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row top-10">
+              <div class="col-md-6">
+                <div class="hr-box div-shandow">
+                  <ul class="module-title">
+                    <li> <h3>名企职位：</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <div>
+                     <table style="margin: 20px 20px">
+                      <tr>
+                        <td class="left-hr-td">
+                          <a href="#">测试职位测试职位测试职位测试职位</a>
+                        </td>
+                        <td class="mid-hr-td">测试企业</td>
+                        <td class="right-hr-td">2017-01-01</td>
+                      </tr>
+                       
+                    </table>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="hr-box div-shandow">
+                  <ul class="module-title">
+                    <li> <h3 >行业培训：</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <div>
+                     <a href="#">
+                            <div class="train-box">
+                              <h4 style="color:#000000">行业工程师培训</h4>
+                                <div class="train-detail">
+                                  <div >
+                                    培训时间：2018-10-10 2018-10-12
+                                  </div>
+                                  <div >
+                                    培训地点：某某大学教研室
+                                  </div>
+                                  <div >
+                                    讲师：某某高级工程师，某某大学教授
+                                  </div>
+                                  <div>
+                                     培训费用：2500/人
+                                  </div>
+                                </div>
+                              </div>
+                          </a>
+
+                          <table style="margin: 20px 20px">
+                            <tr>
+                                <td class="left-train-td">
+                                  <a href="#">测试职位测试职位测试职位测试职位</a>
+                                </td>
+                                <td class="right-train-td">2017-01-01</td>
+                            </tr>
+                         </table>
+                      
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row top-10">
+              <div class="col-md-12 ">
+                <div class="server-box div-shandow">
+                  <ul class="module-title">
+                    <li> <h3>产业服务：</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <div>
+                    <ul class="server-list">
+                      <li>
+                        <a href="#">
+                         <i class="fa fa-bell server-img"></i>
+                         <p class="server-name">地下安全服务</p>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-book server-img"></i>
+                          <p class="server-name">电子证书认证</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-search server-img"></i>
+                          <p class="server-name">电子证书查询</p>
+                        </a>
+                      </li>
+                    </ul>
+
+                    <ul class="server-list">
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-meetup server-img"></i>
+                          <p class="server-name">会议展览</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-cubes server-img"></i>
+                          <p class="server-name">技术推广</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                         <i class="fa fa-btc server-img"></i>
+                         <p class="server-name">金融服务</p>
+                        </a>
+                      </li>
+                    </ul>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row top-10">
+              <div class="col-md-12 ">
+                <div class="dzqk-box div-shandow">
+                  <ul class="module-title">
+                    <li> <h3>电子期刊：</h3></li>
+                    <li class="more"><a href="#">更多></a></li>
+                  </ul>
+                  <div>
+                    <ul class="dzqk-list">
+                      <li>
+                        <a href="#">
+                          <img src="images/dzqk1.jpg">
+                          
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="images/dzqk2.jpg">
+                         
+                        </a>
+                      <li>
+                        <a href="#">
+                         <img src="images/dzqk3.jpg">
+                       
+                        </a>
+                      </li>
+                       <li>
+                        <a href="#">
+                         <img src="images/dzqk4.jpg">
+                        
+                        </a>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+             </br>
+            </br>
+   </div>
+  </div>          
+  
+  <div th:include="footer"></div>          
+   
+    
+</body>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
+<script type="text/javascript">
+  var mySwiper = new Swiper ('.swiper-container', {
+    loop: true,
+    autoplay:true,
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })  
+  
+  $(function(){
+	  $("header #index").addClass("active");
+  })
+</script>
+
+</html>

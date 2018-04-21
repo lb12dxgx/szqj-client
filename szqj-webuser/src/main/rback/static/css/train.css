@@ -1,0 +1,271 @@
+.train-content{
+  background-color: #F5F5F5;
+}
+
+.train-main{
+  margin-top: 100px;
+  min-height:800px;
+}
+ 
+.train-online{
+    min-height: 430px;
+ }
+ .train-online-title{
+  border-bottom: 1px solid #e9e9e9; 
+ }
+
+.train-online-title .title-left{
+  font-size: 20px;
+  padding: 5px; 
+  border-bottom: 2px solid #1875f0;
+  width:120px; 
+  display:inline-block;
+ }
+
+ .train-online-title .title-right{
+  font-size: 16px;
+  padding: 10px 20px; 
+  float: right;
+ }
+
+
+.train-online .train-online-class{
+    text-align:center;
+    margin: 20px 10px;
+    background-color:#333;
+    color: #FFF;
+    height: 430px;
+}
+
+.train-online-class .class-main{
+  height: 380px;
+}
+
+.train-online-class .class-main .class-title{
+  padding: 20px 0;
+}
+
+.train-online-class .class-main .class-btn{
+  padding: 40px 0 0 0 ;
+}
+
+.train-online-class .class-footer{
+  border-top: 1px solid #1875f0;
+  height: 30px;
+  font-size:16px; 
+  padding: 15px;
+}
+
+.train-online-list{
+  text-align:center; 
+  min-height: 430px;
+}
+
+.train-online-list ul li {
+  line-height: 40px;
+  font-size: 16px;
+  padding: 2px 10px 2px 10px;
+  border-bottom: 1px solid #e9e9e9; 
+} 
+
+.train-online-list div {
+  margin-top:20px;
+}
+
+.train-online-list  .title{
+  font-size: 20px;
+}
+
+.train-online-list .more{
+   font-size: 16px;
+   margin-right:10px;
+}
+ 
+
+.train-class{
+    margin-top:20px; 
+    overflow:hidden;   
+    min-height: 430px;
+ }
+ .train-class-title{
+  height: 40px;
+  border-bottom: 1px solid #e9e9e9; 
+ }
+
+.train-class-title .title-right{
+    font-size: 16px;
+    padding: 10px 20px; 
+    float: right;
+    
+ }
+
+ .train-class-title .title-left{
+  font-size: 20px;
+  padding: 5px; 
+  border-bottom: 2px solid #1875f0;
+  width:120px; 
+  float: left;
+ }
+
+ .train-class-title .title-nav{
+   float: left;
+   margin-left: 120px;
+ }
+
+ .train-class-title .title-nav ul li{
+  font-size: 16px;
+  float: left;
+  padding: 10px;
+  list-style: none;
+  margin-left: 10px;
+ }
+
+.train-class-title .title-nav ul .active{
+    background: #127de1;
+    border-radius: 2px
+}
+
+.train-class-title .title-nav ul  .active a{
+  color: #fff;
+}
+
+.train-class-list ul{
+  margin-left:40px; 
+}
+
+.train-class-list li{
+  float: left;
+  list-style: none;
+  width: 320px;
+  padding: 10px
+}
+
+.train-class-list .train-class-head{
+    background-color: rgba(0,0,0,.65);
+    height: 120px;
+    width: 300px;
+    text-align:center;
+    padding-top: 10px; 
+    color: #FFF;
+}
+
+.train-class-list .train-class-content{
+  border: 1px solid #e9e9e9;
+  padding: 10px;
+}
+
+.train-class-list .train-class-content h5{
+  font-size: 15px;
+  color: #777;
+}
+
+.train-class-list .train-class-content p{
+  font-size: 16px;
+  color: #333;
+}
+
+.train-class-content:hover{
+   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.teacher-class{
+    margin-top:20px; 
+    overflow:hidden;   
+    min-height: 330px;
+ }
+ .teacher-class-title{
+  height: 40px;
+  border-bottom: 1px solid #e9e9e9; 
+ }
+
+.teacher-class-title .title-right{
+    font-size: 16px;
+    padding: 10px 20px; 
+    float: right;
+    
+ }
+
+ .teacher-class-title .title-left{
+  font-size: 20px;
+  padding: 5px; 
+  border-bottom: 2px solid #1875f0;
+  width:120px; 
+  float: left;
+ }
+
+ .teacherlist{
+  margin-top: 20px;
+}
+
+.teacher-list li{
+  float: left;
+  list-style:none;
+  padding: 10px;
+  transition: all 0.5s  0s; 
+}
+
+.teacher-list li:hover{
+  transform:  translateX(10px) translateY(-10px) ;  
+}
+
+
+.teacher-list .teacher-name{
+  text-align: center;
+  padding-top:5px; 
+}
+
+
+.train-card{
+    margin-top:20px; 
+    overflow:hidden;   
+    min-height: 330px;
+ }
+ .train-card-title{
+  height: 40px;
+  border-bottom: 1px solid #e9e9e9; 
+ }
+
+.train-card-title .title-right{
+    font-size: 16px;
+    padding: 10px 20px; 
+    float: right;
+    
+ }
+
+ .train-card-title .title-left{
+  font-size: 20px;
+  padding: 5px; 
+  border-bottom: 2px solid #1875f0;
+  width:120px; 
+  float: left;
+ }
+
+ .train-card-content{
+   margin: 20px 20px;
+  
+ } 
+
+ .train-card-content table th{
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #e9e9e9;
+ }
+
+ .train-card-content table td{
+  line-height: 30px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #e9e9e9;
+ }
+
+  .train-card-content table tr:nth-child(even){
+    background:#F4F4F4;
+  }
+
+
+
+
+
+
+ 

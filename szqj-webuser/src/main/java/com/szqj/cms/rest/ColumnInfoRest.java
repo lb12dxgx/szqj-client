@@ -2,7 +2,7 @@ package com.szqj.cms.rest;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ import com.szqj.util.RestJson;
 @EnableAutoConfiguration
 public class ColumnInfoRest {
 	
-	private final Logger logger = Logger.getLogger(getClass());
+	
 
 	@Autowired
 	private ColumnInfoRepository columnInfoRepository;
@@ -44,14 +44,14 @@ public class ColumnInfoRest {
 	
 	@RequestMapping(value = "/get.do"  )
 	public RestJson get(String  columnId){
-		ColumnInfo colunm = columnInfoRepository.findOne(columnId);
+		ColumnInfo colunm = columnInfoRepository.findById(columnId).get();
 		return RestJson.createSucces(colunm);
 	}
 	
 	
 	@RequestMapping(value = "/delete.do"  )
 	public RestJson delete(String  columnId){
-		columnInfoRepository.delete(columnId);
+		columnInfoRepository.deleteById(columnId);
 		return RestJson.createSucces();
 	}
 	 

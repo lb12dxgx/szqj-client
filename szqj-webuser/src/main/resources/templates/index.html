@@ -1,0 +1,622 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+<link  th:href="@{/css/index.css}" rel="stylesheet" type="text/css">
+</head>
+
+  
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+  <div class="gb-main"> 
+ <!--轮播开始-->
+  <div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner carpic">
+       <div class="item active"><img src="images/lunbo1.jpg" alt="图片1"></div>
+       <div class="item"><img src="images/lunbo2.jpg" alt="图片2"></div>
+    </div>
+  </div>
+<!--轮播结束-->
+  <div class=" container">
+  <!-- 注册企业开始-->
+   <!-- <div class="row zcqybox">
+       <div class="col-md-3" style=" padding-left:0px;">
+        <div class="row boxblue">
+           <div class="col-md-2"></div>
+           <div class="col-md-3"><img src="images/zcqy.png"></div>
+          <div class="col-md-5"><h5>注册企业</h5><h5>100家</h5></div>
+          <div class="col-md-2"></div>
+        </div>
+       </div>
+     
+       <div class="col-md-3">
+        <div class="row boxblue">
+           <div class="col-md-2"></div>
+           <div class="col-md-3"><img src="images/zyry.png"></div>
+          <div class="col-md-5"><h5>专业人员</h5><h5>100名</h5></div>
+          <div class="col-md-2"></div>
+        </div>
+       </div>
+       <div class="col-md-3">
+        <div class="row boxblue">
+           <div class="col-md-2"></div>
+           <div class="col-md-3"><img src="images/xqxx.png"></div>
+          <div class="col-md-5"><h5>需求信息</h5><h5>100条</h5></div>
+          <div class="col-md-2"></div>
+        </div>
+       </div>
+       <div class="col-md-3" style="padding-right:0px;">
+        <div class="row boxblue">
+           <div class="col-md-2"></div>
+           <div class="col-md-3" ><img src="images/soxx.png"></div>
+          <div class="col-md-5"><h5>商品信息</h5><h5>100条</h5></div>
+          <div class="col-md-2"></div>
+        </div>
+       </div>
+      
+    </div>-->
+    <!--注册企业结束-->
+    <!--118服务开始-->
+    <div class="maintop">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>118服务</h5></li>
+          <li class="pull-right morebt"><a href="#">more</a></li>
+       </ul>
+    </div>
+    <div class="fuwu118">
+       <div class="fuwubox text-center">
+          <a href="#">
+             <div class="fuwubox-bg img-shadow-1">
+               <p><img src="images/118.png"></p>
+             </div>
+             <h5>118中国行</h5>
+          </a>
+          
+       </div>
+      <div class="fuwubox text-center">
+          <a href="#">
+             <div class="fuwubox-bg img-shadow-1">
+               <p><img src="images/shenq.png"></p>
+             </div>
+             <h5>地下施工申请</h5>
+          </a>
+          
+       </div>
+       <div class="fuwubox text-center">
+          <a href="#">
+             <div class="fuwubox-bg img-shadow-1">
+               <p><img src="images/huifu.png"></p>
+             </div>
+             <h5>地下施工回复</h5>
+          </a>
+          
+       </div>
+       <div class="fuwubox text-center">
+          <a href="#">
+             <div class="fuwubox-bg img-shadow-1">
+               <p><img src="images/urs.png"></p>
+             </div>
+             <h5>加入我们</h5>
+          </a>
+          
+       </div>
+       <div class="text-center fuwubox fuwubox-last">
+          <a href="#">
+             <div class="fuwubox-bg img-shadow-1">
+               <p><img src="images/login.png"></p>
+             </div>
+             <h5>系统登录</h5>
+          </a>
+          
+       </div>
+    </div>
+    <!--118服务结束-->
+    <!--资讯新闻开始-->
+    <div class="row">
+     <!-- 资讯开始-->
+
+       <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>行业资讯</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        
+        <div class="box-bgcl">
+          <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+              <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#portlet_comments_1" data-toggle="tab"> 要闻 </a>
+                </li>
+                <li>
+                    <a href="#portlet_comments_2" data-toggle="tab"> 企业新闻 </a>
+                </li>
+                <li>
+                    <a href="#portlet_comments_3" data-toggle="tab"> 市场 </a>
+                </li>
+                <li>
+                    <a href="#portlet_comments_4" data-toggle="tab"> 国际 </a>
+                </li>
+                <li>
+                    <a href="#portlet_comments_5" data-toggle="tab"> 综合 </a>
+                </li>
+            </ul>
+            
+            </div>
+            <div class="portlet-body">
+              <div class="tab-content">
+              <div class="tab-pane active" id="portlet_comments_1">
+                  <div class="mt-comments">
+                     <div class="media news-box">
+                       <div class="media-left">
+                         <a href="#"><img src="images/xwpic.jpg"></a>
+                       </div>
+                       <div class="media-body">
+                         <h5><a href="#" class="bt-link">习近平讲故事：天下艰难际，时势造英雄</a></h5>
+                         <p><a href="#" class="gray-link">天下艰难际，时势造英雄。在14年反抗日本军国主义侵略特别是8年全面抗战的艰苦岁月中，全体中华儿女万众一心、众志成城，凝聚起抵御外侮、救亡图存的共同意志，谱写山五壮士”、新四军“刘老庄连”</a></p>
+                       </div>
+                     </div>
+                     <div class="gb-line clearfix"></div>
+                     <div class="media news-box">
+                       <div class="media-left">
+                         <a href="#"><img src="images/xwpic.jpg"></a>
+                       </div>
+                       <div class="media-body">
+                         <h5><a href="#" class="bt-link">习近平讲故事：天下艰难际，时势造英雄</a></h5>
+                         <p><a href="#" class="gray-link">天下艰难际，时势造英雄。在14年反抗日本军国主义侵略特别是8年全面抗战的艰苦岁月中，全体中华儿女万众一心、众志成城，凝聚起抵御外侮、救亡图存的共同意志，谱写山五壮士”、新四军“刘老庄连”</a></p>
+                       </div>
+                     </div>
+                     
+                  </div>
+                
+              </div>
+              <div class="tab-pane" id="portlet_comments_2">
+                  <div class="mt-comments">
+                    <ul class="gb-news">
+                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+                    <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+                    </ul>
+                    <div class="gb-line clearfix"></div>
+                    <ul class="gb-news">
+                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+                    <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+                    </ul>
+                    <div class="gb-line clearfix"></div>
+                    <ul class="gb-news">
+                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+                    <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+                    </ul>
+                    <div class="gb-line clearfix"></div>
+                    <ul class="gb-news">
+                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+                    <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+                    </ul>
+                    <div class="gb-line clearfix"></div>
+                    <ul class="gb-news">
+                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+                    <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+                    </ul>
+                  </div>
+              </div>
+              <div class="tab-pane" id="portlet_comments_3">
+                  <div class="mt-comments">
+                  333
+                  </div>
+              </div>
+              <div class="tab-pane" id="portlet_comments_4">
+                  <div class="mt-comments">
+                  444
+                  </div>
+              </div>
+              <div class="tab-pane" id="portlet_comments_5">
+                  <div class="mt-comments">
+                  555
+                  </div>
+              </div>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--资讯结束-->
+      <!--视频开始-->
+     <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>视频新闻</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+          
+          <div class="row text-center sp-box">  
+            <div class="col-md-6">
+               <a href="#"><img src="images/sppic1.jpg"></a>
+               <h5><a href="#" class="bt-link">习近平讲故事：天下艰难际，时势造英雄</a></h5>
+            </div>
+            <div class="col-md-6">
+               <a href="#"><img src="images/sppic1.jpg"></a>
+               <h5><a href="#" class="bt-link">习近平讲故事：天下艰难际，时势造英雄</a></h5>
+            </div>
+            <div class="col-md-6">
+               <a href="#"><img src="images/sppic1.jpg"></a>
+               <h5><a href="#" class="bt-link">习近平讲故事：天下艰难际，时势造英雄</a></h5>
+            </div>
+            <div class="col-md-6">
+               <a href="#"><img src="images/sppic1.jpg"></a>
+               <h5><a href="#" class="bt-link">习近平讲故事：天下艰难际，时势造英雄</a></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--视频结束-->
+    </div>
+    <!--资讯新闻结束-->
+    <!--招标供求开始-->
+    <div class="row">
+    
+      <!--供求信息开始-->
+     <!--<div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>供求信息</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+        </div>
+      </div>-->
+      <!--供求信息结束-->
+    </div>
+    <!--招标供求结束-->
+     <!-- 政策规范开始-->
+     <div class="row zcqybox">
+       <div class="col-md-3" style=" padding-left:0px;">
+	       <a href="#">
+		        <div class="row boxblue">
+		           <div class="col-md-2"></div>
+		           <div class="col-md-3"><img src="images/wenjian.png"></div>
+		          <div class="col-md-5"><h5>政策文件</h5><h5>100条</h5></div>
+		          <div class="col-md-2"></div>
+		        </div>
+	        </a>
+       </div>
+     
+       <div class="col-md-3">
+	        <a href="#">
+		        <div class="row boxblue">
+		           <div class="col-md-2"></div>
+		           <div class="col-md-3"><img src="images/falv.png"></div>
+		          <div class="col-md-5"><h5>法律法规</h5><h5>100条</h5></div>
+		          <div class="col-md-2"></div>
+		        </div>
+	        </a>
+       </div>
+       <div class="col-md-3">
+	       <a href="#">
+		        <div class="row boxblue">
+		           <div class="col-md-2"></div>
+		           <div class="col-md-3"><img src="images/guifan.png"></div>
+		          <div class="col-md-5"><h5>标准规范</h5><h5>100篇</h5></div>
+		          <div class="col-md-2"></div>
+		        </div>
+	        </a>
+       </div>
+       <div class="col-md-3" style="padding-right:0px;">
+	        <a href="#">
+		        <div class="row boxblue">
+		           <div class="col-md-2"></div>
+		           <div class="col-md-3" ><img src="images/lunwen.png"></div>
+		          <div class="col-md-5"><h5>行业论文</h5><h5>100条</h5></div>
+		          <div class="col-md-2"></div>
+		        </div>
+	        </a>
+       </div>
+      
+    </div>
+    <!--政策规范结束-->
+    <!--产品商家开始-->
+    <div class="row">
+      <!--知名产品开始-->
+      <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>知名产品</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+          <div class="row logopic">
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+          </div>
+          <div class="row logopic">
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+          </div>
+        </div>
+      </div>
+      <!--知名产品结束-->
+       <!--知名商家开始-->
+      <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>知名商家</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+          <div class="row logopic">
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+          </div>
+          <div class="row logopic">
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+            <div class="col-md-3"><a href="#"><img src="images/pplogo.jpg" class=" img-shadow-1"></a></div>
+          </div>
+        </div>
+      </div>
+      <!--知名商家结束-->
+    </div>
+    <!--产品商家结束-->
+    <!--招聘培训开始-->
+     <div class="row">
+      <!-- 招标信息开始-->
+      <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>招标信息</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+          <ul class="gb-news">
+          <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+          <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+        </div>
+      </div>
+      <!--招标信息结束-->
+     <!-- 招聘信息开始-->
+      <!--<div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>名企职位</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+          <ul class="gb-news">
+            <li class="xwlist pull-left gb-zhaopin1"><a href="#">网页美工</a></li>
+            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
+            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+           <ul class="gb-news">
+            <li class="xwlist pull-left gb-zhaopin1"><a href="#">网站编辑</a></li>
+            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会地下管线协</a></li>
+            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+           <ul class="gb-news">
+            <li class="xwlist pull-left gb-zhaopin1"><a href="#">总经理助理</a></li>
+            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
+            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+           <ul class="gb-news">
+            <li class="xwlist pull-left gb-zhaopin1"><a href="#">网页美工</a></li>
+            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
+            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+          <div class="gb-line clearfix"></div>
+           <ul class="gb-news">
+            <li class="xwlist pull-left gb-zhaopin1"><a href="#">网页美工</a></li>
+            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
+            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
+          </ul>
+
+          
+        </div>
+      </div>-->
+      <!--招聘信息结束-->
+      <!--培训信息开始-->
+     <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>行业培训</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+          <div class="row peixun">
+            <div class="col-md-12"><a href="#" class="bt-link"><h5>行业工程师培训</h5></a></div>
+          </div>
+          <div class="row pxtime">
+            <div class="col-md-6">培训时间：2018.01.22-2018.01.30</div>
+            <div class="col-md-6">培训地点：国家会议中心</div>
+            <div class="col-md-6">培训讲师：北京大学某某教授</div>
+            <div class="col-md-6">培训费用：200/人</div>
+          </div>
+          <div class="gb-line clearfix"></div>
+          <div class="row peixun">
+            <div class="col-md-12"><a href="#" class="bt-link"><h5>行业工程师培训</h5></a></div>
+          </div>
+          <div class="row pxtime">
+            <div class="col-md-6">培训时间：2018.01.22-2018.01.30</div>
+            <div class="col-md-6">培训地点：国家会议中心</div>
+            <div class="col-md-6">培训讲师：北京大学某某教授</div>
+            <div class="col-md-6">培训费用：200/人</div>
+          </div>
+
+
+        </div>
+      </div>
+      <!--培训信息结束-->
+    </div>
+    <!--招聘培训结束-->
+    <!--产业服务开始-->
+    <div class="maintop">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>产业服务</h5></li>
+          <li class="pull-right morebt"><a href="#">more</a></li>
+       </ul>
+    </div>
+    <div class="row cyfuwu">
+      <div class="col-md-2 text-center">
+        <a href="#">
+          <div><img src="images/anquan.png" class="img-shadow-1-gb"></div>
+          <h5>管线事故</h5>
+        </a>
+      </div>
+      <div class="col-md-2 text-center">
+        <a href="#">
+          <div><img src="images/renzheng.png" class="img-shadow-1-gb"></div>
+          <h5>电子证书认证</h5>
+        </a>
+      </div>
+      <div class="col-md-2 text-center">
+        <a href="#">
+          <div><img src="images/chaxun.png" class="img-shadow-1-gb"></div>
+          <h5>电子证书查询</h5>
+        </a>
+      </div>
+      <div class="col-md-2 text-center">
+        <a href="#">
+          <div><img src="images/zhanlan.png" class="img-shadow-1-gb"></div>
+          <h5>会议展览</h5>
+        </a>
+      </div>
+      <div class="col-md-2 text-center">
+        <a href="#">
+          <div><img src="images/tuiguang.png" class="img-shadow-1-gb"></div>
+          <h5>技术推广</h5>
+        </a>
+      </div>
+      <div class="col-md-2 text-center">
+        <a href="#">
+          <div><img src="images/jinrong.png" class="img-shadow-1-gb"></div>
+          <h5>金融服务</h5>
+        </a>
+      </div>
+    </div>
+    <!--产业服务结束-->
+      <!--电子杂志开始-->
+    <div class="maintop">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>电子期刊</h5></li>
+          <li class="pull-right morebt"><a href="#">more</a></li>
+       </ul>
+    </div>
+    <div class="row text-center dzqk">
+      <div class="col-md-3"><a href="#"><img src="images/zazhi.jpg" class="img-shadow-1"></a></div>
+      <div class="col-md-3"><a href="#"><img src="images/zazhi.jpg" class="img-shadow-1"></a></div>
+      <div class="col-md-3"><a href="#"><img src="images/zazhi.jpg" class="img-shadow-1"></a></div>
+      <div class="col-md-3"><a href="#"><img src="images/zazhi.jpg" class="img-shadow-1"></a></div>
+    </div>
+    
+    <!--电子杂志结束-->
+     <!--电子杂志开始-->
+    <div class="maintop">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>友情链接</h5></li>
+          <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
+       </ul>
+    </div>
+    <div class="yqlink">
+      <ul class="list-inline">
+        <li><a href="#">地下管线协会1</a></li>
+        <li><a href="#">地下管线协会1</a></li>
+        <li><a href="#">地下管线协会1</a></li>
+        <li><a href="#">地下管线协会1</a></li>
+        <li><a href="#">地下管线协会1</a></li>
+        <li><a href="#">地下管线协会1</a></li>
+        <li><a href="#">地下管线协会1</a></li>
+        <li><a href="#">地下管线协会1</a></li>
+      </ul>
+    </div>
+   
+    
+    <!--电子杂志结束-->
+  </div>
+  </div>
+   <div th:include="footer"></div>
+</body>
+
+<script type="text/javascript">
+$(function(){
+	$('#myCarousel').carousel('cycle');
+	$('#index').removeClass("manulinknone");
+	$('#index').addClass("manulink");
+})
+</script>
+</html>

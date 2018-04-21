@@ -1,0 +1,80 @@
+@charset "utf-8";
+/* CSS Document */
+.left-manu{
+	width:207px;
+	height:39px;
+	display:block;
+	font-size:14px;
+	line-height:39px;
+}
+
+.qk-manu-on:link,
+.qk-manu-on:visited{
+	background:url(../images/dz2.jpg);
+	color:#fff;
+}
+.qk-manu-on:hover,
+.qk-manu-on:active{
+	background:url(../images/dz2.jpg);
+	color:#fff;
+}
+.qk-manu-none:link,
+.qk-manu-none:visited{
+	background:url(../images/dz1.jpg);
+	color:#0f57a1;
+}
+.qk-manu-none:hover,
+.qk-manu-none:active{
+	background:url(../images/dz2.jpg);
+	color:#fff;
+}
+/*** effect - shadow 1 ***/
+
+
+.img-shadow-1
+{
+-webkit-box-shadow: 0 28px 16px -26px black;
+-moz-box-shadow: 0 28px 16px -26px black;
+box-shadow: 0 28px 16px -26px black;
+}
+
+.img-shadow-1:hover
+{
+transform:scale(1.1);
+-webkit-transform:scale(1.1);
+-moz-transform:scale(1.1);
+-ms-transform:scale(1.1);
+-o-transform:scale(1.1);
+
+-webkit-box-shadow: 0 58px 36px -56px black;
+-moz-box-shadow: 0 58px 36px -56px black;
+box-shadow: 0 58px 36px -56px black;
+}
+
+.img-shadow-1
+{
+transition:all .6s ease-in-out;
+-webkit-transition:all .6s ease-in-out;
+-moz-transition:all .6s ease-in-out;
+-ms-transition:all .6s ease-in-out;
+-o-transition:all .6s ease-in-out;
+}
+
+.img-shadow-1:hover
+{
+transition:all .6s ease-in-out;
+-webkit-transition:all .6s ease-in-out;
+-moz-transition:all .6s ease-in-out;
+-ms-transition:all .6s ease-in-out;
+-o-transition:all .6s ease-in-out;
+}
+
+.dzqk{
+	padding-bottom:50px;
+}
+
+
+
+
+
+

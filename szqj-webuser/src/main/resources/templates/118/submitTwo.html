@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+<link  th:href="@{/css/cyfw.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+   <header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+	   <li><a href="#">118服务</a></li>
+       <li class="active">挖掘申请提交</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row">
+    <!--左侧菜单开始-->
+     <div th:include="118/leftmenu"/> 
+     <!--左侧菜单结束-->
+    
+     <!--右侧内容开始-->
+     <div class="col-md-9">
+      <form method="post" action="submitThree.html">
+       <div class="row">
+		   <div class="col-md-2"></div>
+		   <div class="col-md-8 kwsq-list">
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">单位名称</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入单位名称" type="text"></div>
+				   <div class="col-md-1"></div>
+			   </div>
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">单位地址</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入单位地址" type="text"></div>
+				   <div class="col-md-1"></div>
+			   </div>
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">单位电话</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入单位电话" type="text"></div>
+					   <div class="col-md-1"></div>
+			   </div>
+			    <div class="row">
+					<div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">单位负责人</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入单位负责人名称" type="text"></div>
+						<div class="col-md-1"></div>
+			   </div>
+		   </div>
+	   </div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 kwsq-list">
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">挖掘街道</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入挖掘街道名称" type="text"></div>
+				   <div class="col-md-1"></div>
+			   </div>
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">最近十字路口</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入最近十字路口名称" type="text"></div>
+				   <div class="col-md-1"></div>
+			   </div>
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">挖掘地点标识情况</label></div>
+				   <div class="col-md-7 text-left">
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">无</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">粉笔</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">绳</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">旗帜</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">油漆</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">其他</label>
+				   </div>
+					   <div class="col-md-1"></div>
+			   </div>
+			    <div class="row">
+					<div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">挖掘工具</label></div>
+				   <div class="col-md-7 text-left">
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">探钻机</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">挖掘机</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">手工</label>
+					</div>
+						<div class="col-md-1"></div>
+			   </div>
+		   </div>
+		   <div class="col-md-2"></div>
+		 </div>
+		 <div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 kwsq-list">
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">许可证编号</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入许可证编号" type="text"></div>
+				   <div class="col-md-1"></div>
+			   </div>
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">工程甲方</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入工程甲方名称" type="text"></div>
+				   <div class="col-md-1"></div>
+			   </div>
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text">工程开始时间</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="工程开始时间" type="text"></div>
+					   <div class="col-md-1"></div>
+			   </div>
+			   
+		   </div>
+		   <div class="col-md-2"></div>
+		 </div>
+		 <div>
+	      <div>
+			<div class="col-md-2 text-right"></div>
+			<div class="col-md-8 text-center">
+				<button class="btn btn-primary" style="width:40%;">下一步</button>
+		   </div>
+			<div class="col-md-2 text-left">
+			  
+			</div>
+	      </div>
+	   </div>
+	   </form>
+	  
+     </div>
+     <!--右侧内容结束-->
+   </div>
+ </div>
+ 
+ <!--footer开始-->
+<div th:include="footer"></div>
+  <!--footer结束-->
+<script type="text/javascript">
+		$(function(){
+			$('#118').removeClass("manulinknone");
+			$('#118').addClass("manulink");
+			$('#l_submit').removeClass("fw-manu2-none");
+			$('#l_submit').addClass("fw-manu2-on");
+		})
+</script>
+</body>
+</html>

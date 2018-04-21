@@ -76,7 +76,7 @@ public class FileInfoRest {
 	@RequestMapping(value = "/delete.do"  )
 	@ResponseBody
 	public RestJson delete(String fileInfoId,String ss_accountId){
-		FileInfo f=fileInfoRepository.findOne(fileInfoId);
+		FileInfo f=fileInfoRepository.findById(fileInfoId).get();
 	    f.setDelDate(new Date());
 	    f.setDelUserId(ss_accountId);
 	    f.setDelFlag(ConstantUtils.DEL_FLAG);
@@ -95,7 +95,7 @@ public class FileInfoRest {
 	
 	@RequestMapping(value = "/download.do"  )
 	public void download(String fileInfoId,HttpServletResponse response){
-		FileInfo f = fileInfoRepository.findOne(fileInfoId);
+		FileInfo f = fileInfoRepository.findById(fileInfoId).get();
 		FileInputStream fis = null;  
         OutputStream os = null;  
         try {  

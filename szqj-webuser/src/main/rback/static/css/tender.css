@@ -1,0 +1,241 @@
+/**头部内容**/
+
+.tender-title{
+ margin-top: 80px;
+ background-color:#f9f9f9; 
+ font-size: 18px;
+ padding: 0;
+ text-align:center;
+}
+
+.tender-title li{
+  list-style: none;
+  float: left;
+  padding: 5px 15px;
+}
+
+.tender-title .tender-type{
+  color: #fff;
+}
+
+.tender-title .tender-subtype{
+  font-size: 16px;
+}
+
+.tender-type-bg{
+  background-color:#999; 
+}
+
+.padding-0{
+  padding: 0px;
+}
+
+
+.tender-head{
+ background-color:#484848; 
+ font-size: 18px;
+ padding: 5px 0px;
+ color: #ff4c4c;
+}
+
+.tender-head ul{
+  height: 380px;
+  margin-left:-15px; 
+}
+.tender-head li{
+  padding-top:10px; 
+  list-style: none;
+  font-size: 14px;
+}
+
+.type-title{
+  margin-bottom: 5px; 
+}
+
+.type-list{
+  font-size: 15px;
+  line-height:20px; 
+}
+
+.type-list a{
+  color: #fff;
+  white-space:nowrap
+}
+
+/*轮播图样式*/
+.swiper-container{
+    width: 100%;
+    height:400px;
+} 
+.swiper-container .swiper-font{
+  font-size:25px;
+  text-align:center;
+  line-height:300px;
+}
+.swiper-container .swiper-font a{
+  text-decoration:none;
+  color:#ffffff
+}
+
+/**详细内容**/
+
+.tender-content{
+  background-color: #F5F5F5;
+}
+
+.tender-main{
+   min-height:800px;
+}
+
+.tender-main .tender-zb{
+  min-height: 300px;
+  margin-top: 20px;
+}
+
+.tender-main .tender-cg{
+  min-height: 300px;
+  margin-top: 20px;
+}
+
+
+/**招标采购**/
+
+.module-title > li{
+  display: inline-block;
+}
+
+.module-title > li.title {
+    font-size: 18px;
+    color: #3B5673;
+}
+.module-title > li.more {
+    padding-left: 20px;
+    border-left: 1px solid #e9e9e9;
+    height: 30px;
+    font-size: 16px;
+    overflow: hidden;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+
+.left-td{
+  width:300px;
+  padding:10px;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+}
+.mid-td{
+   width:100px;
+   border-bottom: 1px solid #ddd;
+}
+.right-td{
+   border-bottom: 1px solid #ddd;
+}
+
+/**知名商家**/
+
+.emp-top-left{
+  min-height:180px;
+  border-right: 1px solid #ddd;
+ }
+
+ .emp-top-right{
+  min-height:180px;
+  border-left: 1px solid #ddd;
+ }
+ .emp-top-img{
+  text-align:center;
+ }
+
+.emp-top-desc{
+  font-size:15px;
+  color: #333333;
+  padding: 15px;
+}
+
+.emp-list{
+  min-height:180px;
+  margin: 0px;
+}
+
+
+.emp-list li{
+  float: left; 
+  list-style:none;
+  padding:10px;
+  transition: all 0.5s  0s; 
+}
+
+.emp-list li:hover{
+  transform:  translateY(-20px) ;  
+}
+
+
+.emp-list .emp-img{
+  width: 110px;
+}
+
+
+.pru-title{
+  text-align:center;
+}
+
+.pru-title a{
+  line-height: 20px;
+  font-size: 18px;
+  padding-left: 10px;
+  border-left: 1px solid #333;
+}
+
+.pru-list{
+  text-align: center;
+}
+
+.pru-list ul{
+  padding:0;
+}
+
+.pru-list li{
+  
+  list-style:none;
+  float: left;
+  width: 220px;
+  height: 305px;
+  margin-bottom:10px; 
+  margin-right:13px;
+  transition: all 0.5s  0s; 
+}
+
+.pru-list li:hover{
+  transform:  translateY(-10px) ;  
+}
+.pru-img{
+    float: left;
+    width: 170px;
+    height: 170px;
+    margin: 30px 30px 10px;
+}
+
+.pru-info{
+  clear: both;
+  padding: 10px 16px 0;
+  height: 65px;
+  line-height: 24px;
+  font-size: 16px;
+}
+
+.lazyimg-img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.pru-price{
+  color: red;
+}
+
+
+
+
+
+

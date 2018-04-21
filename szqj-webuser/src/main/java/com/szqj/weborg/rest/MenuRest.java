@@ -1,6 +1,6 @@
 package com.szqj.weborg.rest;
 
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ import java.util.List;
 @EnableAutoConfiguration
 public class MenuRest {
 	
-	private final Logger logger = Logger.getLogger(getClass());
+	
 
 	@Autowired
 	private MenuRepository menuRepository;
@@ -44,14 +44,14 @@ public class MenuRest {
 	
 	@RequestMapping(value = "/get.do"  )
 	public RestJson get(String  menuId){
-		Menu menu = menuRepository.findOne(menuId);
+		Menu menu = menuRepository.findById(menuId).get();
 		return RestJson.createSucces(menu);
 	}
 	
 	
 	@RequestMapping(value = "/delete.do"  )
 	public RestJson delete(String  menuId){
-	     menuRepository.delete(menuId);
+	     menuRepository.deleteById(menuId);
 		return RestJson.createSucces(menuId);
 	}
 	 

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+<link  th:href="@{/css/cyfw.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+	   <li><a href="#">118服务</a></li>
+       <li class="active">申请查询</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row">
+       <!--左侧菜单开始-->
+     <div th:include="118/leftmenu"/> 
+     <!--左侧菜单结束-->
+    
+     <!--右侧内容开始-->
+     <div class="col-md-9">
+	 <div class="row">
+		   <div class="col-md-12 text-center">
+			   <ul class="list-unstyled list-inline">
+				   <li><img src="/images/cuohao.png"></li>
+				   <li><h4 class="gray">申请受理失败</h4></li>
+			   </ul>
+		   </div>
+	   </div>
+		 <div class="row">
+		   <div class="col-md-12 text-center"><h3>挖掘申请单号：01020180411 </h3></div>
+	   </div>
+	   <div class="row">
+		   <div class="col-md-2"></div>
+		   <div class="col-md-8 sq-xx-list">
+			   <ul class="list-unstyled">
+					<li>挖据单位：自来水一公司</li>
+					<li>受理状态：未受理</li>
+					<li>受理时间：2018-10-12</li>
+				    <li>未受理原因：不符合开挖规定</li>
+			   </ul>
+		   </div>
+		   <div class="col-md-2"></div>
+	   </div>
+     </div>
+     <!--右侧内容结束-->
+   </div>
+ </div>
+ 
+  <!--footer开始-->
+	   <div th:include="footer"></div>
+  <!--footer结束-->
+ <script type="text/javascript">
+$(function(){
+	$('#118').removeClass("manulinknone");
+	$('#118').addClass("manulink");
+	$('#l_search').removeClass("fw-manu3-none");
+	$('#l_search').addClass("fw-manu3-on");
+})
+</script>
+
+</body>
+</html>

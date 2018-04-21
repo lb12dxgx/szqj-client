@@ -70,7 +70,7 @@ public class RoleRest {
 	//删除
 	@RequestMapping(value = "delete.do"  )
 	public RestJson delete( String roleId){
-		roleRepository.delete(roleId);
+		roleRepository.deleteById(roleId);
 		return RestJson.createSucces();
 	}
 	

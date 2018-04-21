@@ -1,0 +1,144 @@
+@charset "utf-8";
+/* CSS Document */
+.left-manu{
+	width:207px;
+	height:39px;
+	display:block;
+	font-size:14px;
+	line-height:39px;
+}
+
+.left-manu1-on:link,
+.left-manu1-on:visited{
+	background:url(../images/shigu2.jpg);
+	color:#fff;
+}
+.left-manu1-on:hover,
+.left-manu1-on:active{
+	background:url(../images/shigu2.jpg);
+	color:#fff;
+}
+.left-manu1-none:link,
+.left-manu1-none:visited{
+	background:url(../images/shigu1.jpg);
+	color:#0f57a1;
+}
+.left-manu1-none:hover,
+.left-manu1-none:active{
+	background:url(../images/shigu2.jpg);
+	color:#fff;
+}
+.left-manu2-on:link,
+.left-manu2-on:visited{
+	background:url(../images/yiyuan2.jpg);
+	color:#fff;
+}
+.left-manu2-on:hover,
+.left-manu2-on:active{
+	background:url(../images/yiyuan2.jpg);
+	color:#fff;
+}
+.left-manu2-none:link,
+.left-manu2-none:visited{
+	background:url(../images/yiyuan1.jpg);
+	color:#0f57a1;
+}
+.left-manu2-none:hover,
+.left-manu2-none:active{
+	background:url(../images/yiyuan2.jpg);
+	color:#fff;
+}
+.gb-sgnews{
+	padding-left:15px;
+}
+.sg-text{
+	margin-bottom:20px;
+}
+.list-unstyled .pull-left{
+	padding-right:10px;
+}
+.gxsg-line{
+	margin:30px 0;
+}
+.xwlist{
+	color:#0e57a1;
+	margin-left:-25px;
+}
+
+.gb-news{
+	padding-top:15px;
+	padding-bottom:10px;
+}
+.box-bgcl{
+	padding-bottom:10px;
+}
+.gb-sg-middle{
+	margin-left:-40px; 
+	padding-right:15px;
+}
+/*行业资讯样式开始*/
+.right-box{
+	margin-bottom:20px;
+}
+.right-box img{
+	margin-left:-5px;
+}
+.tabbable-line{
+	background:#f8f8f8;
+	margin-top:-12px;
+}
+.mt-comments10{
+	padding-top:20px;
+}
+.gbzx-news{
+	clear:both;
+	height:60px;
+	line-height: 60px;
+	margin-bottom:0px;
+}
+/*行业资讯样式结束*/
+/*商品详情样式开始*/
+.spxq-list{
+	padding: 10px 0 5px;
+	font-size: 14px;
+}
+.spxq-box{
+	line-height: 1.7em;
+	padding: 15px 25px;
+}
+.spxq-box img{
+	display: block;
+	margin: 25px auto;
+}
+/*公司详情页开始*/
+.gs-box{
+	background: url(../images/gsbg.jpg) no-repeat;
+	height: 140px;
+}
+.gs-logo{
+	width: 150px;
+	height: 150px;
+	background: #fff;
+	border: 1px #707070 solid;
+	margin: 30px 40px 0px 40px;
+	padding: 2px;
+}
+.gs-logo img{
+	display: block;
+	width: 144px;
+	height: 144px;
+	margin: 0 auto;
+}
+.gs-name{
+	 padding:30px 0 0 60px;
+}
+.new-bt{
+	padding: 30px 0 15px;
+}
+.gxsg-ewm {
+	padding-top: 35px;
+}
+.gxsg-ewm img{
+	display: block;
+	margin: 0 auto;
+}

@@ -1,0 +1,251 @@
+@charset "UTF-8";
+/* CSS Document */
+.left-manu{
+	width:207px;
+	height:39px;
+	display:block;
+	font-size:14px;
+	line-height:39px;
+}
+.cyfw-manu1-on:link,
+.cyfw-manu1-on:visited{
+ background: url( ../images/zsrz2.jpg);
+	color: #fff;
+}
+.cyfw-manu1-on:hover,
+.cyfw-manu1-on:active{
+ background: url( ../images/zsrz2.jpg);
+	color: #fff;
+}
+.cyfw-manu1-none:link,
+.cyfw-manu1-none:visited{
+ background: url( ../images/zsrz1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu1-none:hover,
+.cyfw-manu1-none:active{
+ background: url( ../images/zsrz2.jpg);
+	color: #fff;
+}
+.cyfw-manu2-on:link,
+.cyfw-manu2-on:visited{
+ background: url( ../images/zscx2.jpg);
+	color: #fff;
+}
+.cyfw-manu2-on:hover,
+.cyfw-manu2-on:active{
+ background: url( ../images/zscx2.jpg);
+	color: #fff;
+}
+.cyfw-manu2-none:link,
+.cyfw-manu2-none:visited{
+ background: url( ../images/zscx1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu2-none:hover,
+.cyfw-manu2-none:active{
+ background: url( ../images/zscx2.jpg);
+	color: #fff;
+}
+.cyfw-manu3-on:link,
+.cyfw-manu3-on:visited{
+ background: url( ../images/hyzl2.jpg);
+	color: #fff;
+}
+.cyfw-manu3-on:hover,
+.cyfw-manu3-on:active{
+ background: url( ../images/hyzl2.jpg);
+	color: #fff;
+}
+.cyfw-manu3-none:link,
+.cyfw-manu3-none:visited{
+ background: url( ../images/hyzl1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu3-none:hover,
+.cyfw-manu3-none:active{
+ background: url( ../images/hyzl2.jpg);
+	color: #fff;
+}
+.cyfw-manu4-on:link,
+.cyfw-manu4-on:visited{
+ background: url( ../images/jstg2.jpg);
+	color: #fff;
+}
+.cyfw-manu4-on:hover,
+.cyfw-manu4-on:active{
+ background: url( ../images/jstg2.jpg);
+	color: #fff;
+}
+.cyfw-manu4-none:link,
+.cyfw-manu4-none:visited{
+ background: url( ../images/jstg1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu4-none:hover,
+.cyfw-manu4-none:active{
+ background: url( ../images/jstg2.jpg);
+	color: #fff;
+}
+.cyfw-manu5-on:link,
+.cyfw-manu5-on:visited{
+ background: url( ../images/jrfw2.jpg);
+	color: #fff;
+}
+.cyfw-manu5-on:hover,
+.cyfw-manu5-on:active{
+ background: url( ../images/jrfw2.jpg);
+	color: #fff;
+}
+.cyfw-manu5-none:link,
+.cyfw-manu5-none:visited{
+ background: url( ../images/jrfw1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu5-none:hover,
+.cyfw-manu5-none:active{
+ background: url( ../images/jrfw2.jpg);
+	color: #fff;
+}
+
+.zscx-text{
+	height: 34px;
+	line-height: 34px;
+	font-size: 14px;
+}
+.zcsx-list{
+	padding-bottom: 20px;
+}
+.col-md-9 .col-md-9 .btn-success
+{ margin-top: 30px;
+}
+.tg-list{
+	margin: 40px 0;
+}
+/*118服务样式开始*/
+.fw-manu1-on:link,
+.fw-manu1-on:visited{
+ background: url( ../images/zgx2.jpg);
+	color: #fff;
+}
+.fw-manu1-on:hover,
+.fw-manu1-on:active{
+ background: url( ../images/zgx2.jpg);
+	color: #fff;
+}
+.fw-manu1-none:link,
+.fw-manu1-none:visited{
+ background: url( ../images/zgx1.jpg);
+	color: #0f57a1;
+}
+.fw-manu1-none:hover,
+.fw-manu1-none:active{
+ background: url( ../images/zgx2.jpg);
+	color: #fff;
+}
+.fw-manu2-on:link,
+.fw-manu2-on:visited{
+ background: url( ../images/sgsq2.jpg);
+	color: #fff;
+}
+.fw-manu2-on:hover,
+.fw-manu2-on:active{
+ background: url( ../images/sgsq2.jpg);
+	color: #fff;
+}
+.fw-manu2-none:link,
+.fw-manu2-none:visited{
+ background: url( ../images/sgsq1.jpg);
+	color: #0f57a1;
+}
+.fw-manu2-none:hover,
+.fw-manu2-none:active{
+ background: url( ../images/sgsq2.jpg);
+	color: #fff;
+}
+.fw-manu3-on:link,
+.fw-manu3-on:visited{
+ background: url( ../images/zscx2.jpg);
+	color: #fff;
+}
+.fw-manu3-on:hover,
+.fw-manu3-on:active{
+ background: url( ../images/zscx2.jpg);
+	color: #fff;
+}
+.fw-manu3-none:link,
+.fw-manu3-none:visited{
+ background: url( ../images/zscx1.jpg);
+	color: #0f57a1;
+}
+.fw-manu3-none:hover,
+.fw-manu3-none:active{
+ background: url( ../images/zscx2.jpg);
+	color: #fff;
+}
+.fw-manu4-on:link,
+.fw-manu4-on:visited{
+ background: url( ../images/gy1182.jpg);
+	color: #fff;
+}
+.fw-manu4-on:hover,
+.fw-manu4-on:active{
+ background: url( ../images/gy1182.jpg);
+	color: #fff;
+}
+.fw-manu4-none:link,
+.fw-manu4-none:visited{
+ background: url( ../images/gy1181.jpg);
+	color: #0f57a1;
+}
+.fw-manu4-none:hover,
+.fw-manu4-none:active{
+ background: url( ../images/gy1182.jpg);
+	color: #fff;
+}
+.fw-text-gb{
+ padding-top: 15px;
+}
+.red-link{
+	font-size: 16px;
+	color:#d9342f;
+}
+.red-link:link,
+.red-link:visited{
+	color:#d9342f;
+	font-weight: normal;
+}
+.red-link:hover,
+.red-link:active{
+	color:#d9342f;
+	font-weight: bold;
+	text-decoration: underline;
+}
+/*submint新增样式开始*/
+.btn-width{
+	width:100%; 
+}
+.sq-xx-list{
+	background:#F8F8F8;
+	padding: 30px;
+	line-height: 2.4em;
+	border-radius: 6px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+	margin-top: 30px;
+	font-size: 14px;
+}
+.kwsq-list{
+	background:#F8F8F8;
+	padding: 20px 0;
+	margin-bottom: 15px;
+}
+.kwsq-list .row{
+   margin-bottom: 10px;
+}
+.gb-sq-input{
+	padding-top: 6px;
+}
+
+
+

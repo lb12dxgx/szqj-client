@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0020)http://www.ysemm.cn/ -->
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+	<link rel="stylesheet" th:href="@{/css/118.css}" >
+</head>
+<body class="pace-done bg-color">
+      <header th:include="header"/>
+
+    <div class="content bg">
+      <div class="container">
+        <div class="service-main">
+          <div class="row">
+            <div class="col-md-2">
+              <ul>
+                <li><a href="index.html" >118中国行</a></li>
+                <li><a href="submit.html" class="on">施工申请</a></li>
+                <li><a href="search.html">申请查询</a></li>
+                <li><a href="about.html">关于118</a></li>
+              </ul>
+            </div>
+            <div class="col-md-10">
+                   <div class="service-title">淄博地下开挖申请</div>
+            <div class="col-md-offset-1 col-md-11">
+              <div style="text-align:center;margin-top: 20px">
+              
+              <form class="form-horizontal" id="regForm" action="submitTwo.html" method="post">
+                 <div class="form-group">
+                  <label class="col-md-3 control-label reg-form-lable">
+                    <span style="color:red">*</span>姓名</label>
+                  <div class="col-md-6">
+                   <input type="text" class="form-control reg-form-input" id="userName" name="userName" placeholder="请输入联系人姓名" >
+                  </div>
+                  <label id="userName-error" class="col-md-3 errorlabel  error " for="userName">
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label reg-form-lable">
+                    <span style="color:red">*</span>手机</label>
+                  <div class="col-md-6">
+                   <input type="text" class="form-control reg-form-input" id="telphone" name="telphone" placeholder="请输入手机号" >
+                  </div>
+                  <label id="telphone-error" class="col-md-3 errorlabel  error  " for="telphone">
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label reg-form-lable">
+                    <span style="color:red">*</span>密码</label>
+                  <div class="col-md-6">
+                   <input type="password" class="form-control reg-form-input" id="password" name="password" placeholder="请输入至少6位密码" >
+                  </div>
+                   <label id="password-error" class="col-md-3 errorlabel error  " for="password">
+                  </label>
+                </div>
+                 <div class="form-group">
+                  <label class="col-md-3 control-label reg-form-lable">
+                    <span style="color:red">*</span>确认密码</label>
+                  <div class="col-md-6">
+                   <input type="password" class="form-control reg-form-input" id="repassword" name="repassword" placeholder="请再次输入至少6位密码" >
+                  </div>
+                  <label id="repassword-error" class="col-md-3 errorlabel
+                   error  " for="repassword">
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label">
+                    <span style="color:red">*</span>短信验证码
+                  </label>
+                  <div class="col-md-4">
+                   <input type="text" class="form-control reg-form-input" id="invitecode" name="invitecode" placeholder="请输入4位短信验证码">
+                  </div>
+                   
+                  <div class="col-md-2">
+                   <a href="#" class="btn btn-default" id="sendsms">
+                  		 发送验证码
+                 </a>
+                 </div>
+                 <label id="invitecode-error" class="col-md-3 errorlabel error" >
+                </div>
+          
+                <div class="form-group">
+                  <div class="col-md-offset-3 col-md-6 top-20">
+                    <a href="submitTwo.html" id="reg" class="btn btn-success" style="font-size: 18px" >注册</a>
+                  </div>
+                </div>
+              </form>
+              
+                </div>
+           </div>
+
+            </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>  
+    </div>          
+  
+
+   <div th:include="footer"></div>      
+   
+    
+</body>
+
+
+
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.min.js"></script>
+<script src="../js/constant.js"></script>
+<script type="text/javascript">
+
+ $.validator.addMethod("isMobile", function(value, element) {
+     var length = value.length;
+     var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+     return this.optional(element) || (length == 11 && mobile.test(value));
+ }, "请正确填写您的手机号码");
+
+  $(function(){
+	  
+	  $("header #118").addClass("active");
+
+     function getInviteCode(m,_this){
+        $.post(getPersonInviteCodeUrl,function(data,status){
+          console.log(data.retData);
+          var interval=setInterval(function(){
+              m=m-1;
+              _this.html(m+"秒后再次发送");
+              if(m<=0){
+                 clearInterval(interval);
+                 $("#sendsms").removeClass("disabled");
+                  _this.html("再次发送验证码");
+                 return; 
+              }
+             },1000);
+
+          });
+     }
+
+    $("#sendsms").click(function(){
+       if($("#regForm").valid()){
+          $("#sendsms").addClass("disabled");
+          getInviteCode(60,$(this));
+        }       
+     })
+
+   /*  $("#reg").click(function(){
+    	
+    	 
+    	if($("#regForm").valid()){
+	      var invitecode= $("#invitecode").val();
+	      if(invitecode.length!=4){
+	      	
+	      }else{
+	    	  $("#regForm").submit();
+	      }
+    	}
+
+    }) */
+
+    /*  $("#regForm").validate({
+          rules: {
+            userName:{
+               required:true,
+            },
+            telphone:{
+              required:true,
+              isMobile:true,
+            },
+            password: {
+              required: true,
+              minlength: 6
+            },
+            repassword:{
+              required: true,
+              equalTo:"#password"
+            }
+          },
+          messages: {
+            userName:{
+              required:'请输入姓名'
+            },
+            telphone:{
+              required:'请输入常用手机号',
+              mobile:'手机格式不正确,请重新输入',
+              remote:'此手机号已被绑定,请选择其他手机号'
+            },
+            password:{
+              required:'请输入密码',
+              minlength:'密码要多于6位'
+            },
+            repassword:{
+              required:'请输入密码',
+              equalTo:"密码不一致，请再次输入"
+            },
+           
+          }
+     }) */
+
+
+
+  })
+
+</script>
+
+
+
+
+
+</html>
