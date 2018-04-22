@@ -614,7 +614,10 @@
 
 <script type="text/javascript">
 $(function(){
-	$('#myCarousel').carousel('cycle');
+	$('#myCarousel').carousel({
+	    interval: 3000
+	})
+	//$('#myCarousel').carousel('cycle');
 	$('#index').removeClass("manulinknone");
 	$('#index').addClass("manulink");
 })

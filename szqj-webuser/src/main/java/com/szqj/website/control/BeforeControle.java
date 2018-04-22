@@ -14,17 +14,28 @@ import com.szqj.util.RestJson;
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
-public class PersonRegControle {
+public class BeforeControle {
 	
 	
 	@Autowired
 	private RegService regService;
 	
 	
-	@RequestMapping(value = "/118/submit.html"  )
+	@RequestMapping(value = "/118/login.html"  )
 	public String submit(ModelMap modelMap){
-		return "118/submit";
+		return "118/login";
 	}
+	
+	@RequestMapping(value = "/118/reg.html"  )
+	public String reg(ModelMap modelMap){
+		return "118/reg";
+	}
+	
+	@RequestMapping(value = "/118/regTwo.html"  )
+	public String regTwo(ModelMap modelMap){
+		return "118/regTwo";
+	}
+	
 	
 	@RequestMapping(value = "/118/submitOne.html"  )
 	public String submitOne(ModelMap modelMap){
