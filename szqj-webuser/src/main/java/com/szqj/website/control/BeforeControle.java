@@ -1,5 +1,7 @@
 package com.szqj.website.control;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -30,12 +32,6 @@ public class BeforeControle {
 	public String reg(ModelMap modelMap){
 		return "118/reg";
 	}
-	
-	@RequestMapping(value = "/118/regTwo.html"  )
-	public String regTwo(ModelMap modelMap){
-		return "118/regTwo";
-	}
-	
 	
 	@RequestMapping(value = "/118/submitOne.html"  )
 	public String submitOne(ModelMap modelMap){
@@ -76,18 +72,34 @@ public class BeforeControle {
 	}
 	
 	
-	@RequestMapping(value = "/118/reg.do"  )
-	public String reg(RegInfo regInfo,ModelMap modelMap){
-		regService.regPerson(regInfo);
-		modelMap.put("regInfo", regInfo);
-		return "";
+	@RequestMapping(value = "/118/regSubmit.do"  )
+	public String regSubmit(RegInfo regInfo,ModelMap modelMap){
+		RegInfo reg=regService.regBeforeUser(regInfo);
+		modelMap.put("regInfo", reg);
+		return "118/regTwo";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "getInviteCode.do"  )
-	public RestJson getInviteCode(){
-		String inviteCode = regService.genInviteCode(4);
-		return RestJson.createSucces(inviteCode);
+	@RequestMapping(value = "/118/getSmsCode.do"  )
+	public RestJson getSmsCode(RegInfo regInfo){
+		RegInfo regInfoRet = regService.genSmsCode(regInfo,4);
+		return RestJson.createSucces(regInfoRet.getSmscode());
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/118/validateSmsCode.do"  )
+	public RestJson validateSmsCode(RegInfo regInfo){
+		boolean flag = regService.validateSmsCode(regInfo);
+		return RestJson.createSucces(!flag);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/118/isExitByTelphone.do"  )
+	public boolean isExitByTelphone(RegInfo regInfo){
+		boolean flag = regService.isExitByTelphone(regInfo);
+		return !flag;
 	}
 	
 

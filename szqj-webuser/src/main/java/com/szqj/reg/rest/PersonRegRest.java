@@ -21,18 +21,18 @@ public class PersonRegRest {
 	private RegService regService;
 	
 	
-	@RequestMapping(value = "reg.do"  )
+	/*@RequestMapping(value = "reg.do"  )
 	public RestJson reg(RegInfo regInfo){
 		regService.regPerson(regInfo);
 		return RestJson.createSucces(regInfo);
-	}
+	}*/
 	
 
-	@RequestMapping(value = "getInviteCode.do"  )
+	/*@RequestMapping(value = "getInviteCode.do"  )
 	public RestJson getInviteCode(){
 		String inviteCode = regService.genInviteCode(4);
 		return RestJson.createSucces(inviteCode);
-	}
+	}*/
 	
 
 }

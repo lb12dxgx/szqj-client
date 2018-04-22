@@ -34,45 +34,51 @@
     
      <!--右侧内容开始-->
      <div class="col-md-9">
-      <form method="post" action="login.html">
-       <div class="row">
+      <form method="post" action="regComapnySubmit.do" name="regForm">
+      	<input  type="hidden" name="reginfoId" th:value="${regInfo.reginfoId}">
+        <div class="row">
 		   <div class="col-md-2"></div>
 		   <div class="col-md-8 kwsq-list">
 			   <div class="row">
 				   <div class="col-md-1"></div>
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
 								style="color: red">*</span>单位名称</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入单位名称" type="text"></div>
+				   <div class="col-md-7 text-left">
+				   		<input class="form-control" placeholder="请输入单位名称" name="companyName" type="text" readonly th:value="${regInfo.userName}"  >
+				   	</div>
 				   <div class="col-md-1"></div>
 			   </div>
-			   <div class="row">
-				   <div class="col-md-1"></div>
-				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
-								style="color: red">*</span>单位地址</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入单位地址" type="text"></div>
-				   <div class="col-md-1"></div>
-			   </div>
-			   <div class="row">
+			   
+			    <div class="row">
 				   <div class="col-md-1"></div>
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
 								style="color: red">*</span>单位电话</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入单位电话" type="text"></div>
+				   <div class="col-md-7 text-left"><input class="form-control" name="companyTel" placeholder="请输入单位电话" type="text"></div>
 					   <div class="col-md-1"></div>
 			   </div>
 			    <div class="row">
 					<div class="col-md-1"></div>
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
 								style="color: red">*</span>单位负责人</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入单位负责人名称" type="text"></div>
+				   <div class="col-md-7 text-left"><input class="form-control" name="companyUser" placeholder="请输入单位负责人名称" type="text"></div>
 						<div class="col-md-1"></div>
 			   </div>
+			   
+			   <div class="row">
+				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
+								style="color: red">*</span>单位地址</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" name="companyAddr"  placeholder="请输入单位地址" type="text"></div>
+				   <div class="col-md-1"></div>
+			   </div>
+			  
 		   </div>
 	   </div>
 		<div>
 	      <div>
 			<div class="col-md-2 text-right"></div>
 			<div class="col-md-8 text-center">
-				<button class="btn btn-primary" style="width:40%;">完成</button>
+				<button class="btn btn-primary" style="width:40%;" id="regSubmit">完成</button>
 		   </div>
 			<div class="col-md-2 text-left">
 			  
@@ -89,12 +95,50 @@
  <!--footer开始-->
 <div th:include="footer"></div>
   <!--footer结束-->
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="/js/constant.js"></script>  
+  
+  
 <script type="text/javascript">
 		$(function(){
 			$('#118').removeClass("manulinknone");
 			$('#118').addClass("manulink");
 			$('#l_login').removeClass("fw-manu2-none");
 			$('#l_login').addClass("fw-manu2-on");
+			
+			 $("#regSubmit").click(function(){
+			       if($("#regForm").valid()){
+			    	   $("#regForm").submit();
+			        }       
+		    });
+			 
+			 
+			 $("#regForm").validate({
+		          rules: {
+		        	 companyUser:{
+		               required:true,
+		            },
+		            companyTel:{
+		              required:true, 
+		            },
+		            companyAddr: {
+		              required: true,
+		            }
+		          },
+		          messages: {
+		        	 companyUser:{
+		              required:'请输入单位负责人名称'
+		            },
+		            companyTel:{
+		              required:'请输入单位电话'
+		            },
+		            companyAddr:{
+		              required:'请输入单位地址'
+		            }
+		           
+		          }
+		     });
+			
 		})
 </script>
 </body>

@@ -1,5 +1,6 @@
 package com.szqj.reg.service;
 
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.domain.RegInfoRepository;
 import com.szqj.util.ConstantUtils;
+import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.service.AccountService;
 
@@ -19,9 +21,33 @@ public class RegService {
 	@Autowired 
 	private RegInfoRepository regInfoRepository;
 	
+	@Autowired 
 	private AccountService accountService;
 	
-	public String genInviteCode(int count ){
+	public RegInfo genSmsCode(RegInfo regInfo,int count ){
+		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
+		if(regInfoRet==null){
+			regInfoRet=new RegInfo();
+		}
+		Tools.copyBeanForUpdate(regInfo, regInfoRet);
+	    String smscode = getRandomCode(count);
+	    regInfoRet.setSmscode(smscode);
+		regInfoRepository.save(regInfoRet);
+		
+		return regInfoRet;
+	}
+	
+	
+	public boolean isExitByTelphone(RegInfo regInfo){
+		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
+		if(regInfoRet!=null&&regInfoRet.getAccountId()!=null){
+			return true;
+		}
+		  return false;
+	}
+
+
+	private String getRandomCode(int count) {
 		String invitecode="";
 		String str="0123456789";
 	    Random r = new Random(System.currentTimeMillis());
@@ -29,21 +55,33 @@ public class RegService {
 	        int d =r.nextInt(10);
 	        invitecode=  invitecode+str.charAt(d);
 	    }
-		
-		return invitecode;
+	    return invitecode;
+	}
+	
+	
+	public boolean validateSmsCode(RegInfo regInfo) {
+		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
+		if(regInfoRet.getSmscode().equals(regInfo.getSmscode())){
+			return true;
+		}
+		return false;
 	}
 
-	public void regPerson(RegInfo regInfo) {
-		regInfo.setType(ConstantUtils.REG_PERSON);
-		Account account=saveAccount(regInfo);
-		regInfo.setAccountId(account.getAccountId());
-		regInfoRepository.save(regInfo);
+
+	public RegInfo regBeforeUser(RegInfo regInfo) {
+		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
+		Tools.copyBeanForUpdate(regInfo, regInfoRet);
+		regInfoRet.setType(ConstantUtils.REG_COMPANY);
+		Account account=saveAccount(regInfoRet);
+		regInfoRet.setAccountId(account.getAccountId());
+		regInfoRepository.save(regInfoRet);
+		return regInfoRet;
 		
 	}
 	
 	private Account saveAccount(RegInfo regInfo){
 		Account account=new Account();
-		account.setAccountName(regInfo.getTelphone());
+		account.setAccountName(regInfo.getUserName());
 		account.setAccountPassword(regInfo.getPassword());
 		account.setState(ConstantUtils.ACCOUNT_STATE_START);
 		if(regInfo.getType()==ConstantUtils.REG_PERSON){
@@ -56,4 +94,5 @@ public class RegService {
 		return account;
 	}
 
+	
 }

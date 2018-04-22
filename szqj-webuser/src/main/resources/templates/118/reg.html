@@ -4,6 +4,7 @@
 </head>
 <head>
 <link th:href="@{/css/cyfw.css}" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -34,17 +35,20 @@
 
 			<!--右侧内容开始-->
 			<div class="col-md-9">
-				<form method="post" action="regTwo.html">
+				<form method="post" action="regSubmit.do" id="regForm">
 					
 				  <div class="row zcsx-list">
 						<div class="col-md-3 text-right">
 							<label class="control-label zscx-text"><span
-								style="color: red">*</span>联系人姓名 </label>
+								style="color: red">*</span>公司名称 </label>
 						</div>
 						<div class="col-md-5 text-center">
-							<input class="form-control" placeholder="请输入联系人姓名" type="text">
+							<input class="form-control" placeholder="请输入公司名称 " type="text" name="userName">
 						</div>
-						<div class="col-md-4 text-left"></div>
+						<div class="col-md-4 text-left">
+						 <label id="userName-error" class="errorlabel  error " for="userName"/>
+                  		 </label>
+						</div>
 					</div>
 					
 					<div class="row zcsx-list">
@@ -53,9 +57,11 @@
 								style="color: red">*</span>手机号码 </label>
 						</div>
 						<div class="col-md-5 text-center">
-							<input class="form-control" placeholder="请输入手机号码" type="text">
+							<input class="form-control" placeholder="请输入手机号码" type="text" name="telphone" id="telphone">
 						</div>
-						<div class="col-md-4 text-left"></div>
+						<div class="col-md-4 text-left">
+							<label id="telphone-error" class="errorlabel  error  " for="telphone"/>
+						</div>
 					</div>
 					
 					<div class="row zcsx-list">
@@ -64,9 +70,11 @@
 								style="color: red">*</span>密码 </label>
 						</div>
 						<div class="col-md-5 text-center">
-							<input class="form-control" placeholder="请输入密码" type="text">
+							<input type="password" class="form-control reg-form-input"  name="password" id="password" placeholder="请输入至少6位密码"  >
 						</div>
-						<div class="col-md-4 text-left"></div>
+						<div class="col-md-4 text-left">
+							<label id="repassword-error" class="errorlabel error"  for="password"/>
+						</div>
 					</div>
 					
 					<div class="row zcsx-list">
@@ -75,9 +83,11 @@
 								style="color: red">*</span>确认密码 </label>
 						</div>
 						<div class="col-md-5 text-center">
-							<input class="form-control" placeholder="请输入密码" type="text">
+							<input class="form-control" placeholder="请输入确认密码" type="password" name="repassword">
 						</div>
-						<div class="col-md-4 text-left"></div>
+						<div class="col-md-4 text-left">
+							<label id="repassword-error" class="errorlabel error"  for="repassword"/>
+						</div>
 					</div>
 					
 					<div class="row zcsx-list">
@@ -86,18 +96,20 @@
 								style="color: red">*</span>短信验证码 </label>
 						</div>
 						<div class="col-md-5 text-center">
-							<input class="form-control" placeholder="请输入短信验证码" type="text">
+							<input class="form-control" type="text" name="smscode" id="smscode" placeholder="请输入4位短信验证码">
 						</div>
 						<div class="col-md-2">
-		                   <a href="#" class="btn btn-default" id="sendsms"> 发送验证码</a>
+		                   <a href="#" class="btn btn-default" id="sendsms">发送验证码</a>
                 		</div>
-						<div class="col-md-2 text-left"></div>
+						<div class="col-md-2 text-left">
+							<label id="smscode-error" class="errorlabel  error " for="smscode" style="margin-left:3px;margin-top:10px">
+						</div>
 					</div>
 					<div>
 						<div class="row">
 							<div class="col-md-3 text-right"></div>
 							<div class="col-md-5 text-center">
-								<button type="submit" class="btn btn-primary"
+								<button id="reg" type="button" class="btn btn-primary"
 									style="width: 100%;">下一步</button>
 							</div>
 							<div class="col-md-4 text-left"></div>
@@ -115,12 +127,128 @@
 	<!--footer开始-->
 	<div th:include="footer"></div>
 	<!--footer结束-->
+	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script src="/js/constant.js"></script>
+	
 	<script type="text/javascript">
+		 $.validator.addMethod("isMobile", function(value, element) {
+		     var length = value.length;
+		     var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+		     return this.optional(element) || (length == 11 && mobile.test(value));
+		 }, "请正确填写您的手机号码");
+		 
+		 
+		 function getInviteCode(m,_this){
+			  	var parm=$("#regForm").serialize();
+		        $.post(getSmsCodeUrl,parm,function(data,status){
+		          console.log(data.retData);
+		          var interval=setInterval(function(){
+		              m=m-1;
+		              _this.html(m+"秒后再次发送");
+		              if(m<=0){
+		                 clearInterval(interval);
+		                 $("#sendsms").removeClass("disabled");
+		                  _this.html("再次发送验证码");
+		                 return; 
+		              }
+		             },1000);
+
+		          });
+		     }
+		 
+		 
+		 function validateSmsCode(){
+			  	var parm=$("#regForm").serialize();
+			  	console.log(parm);
+		        $.post(validateSmsCodeUrl,parm,function(data,status){
+		           if(data.retData){
+		        	   $("#smscode-error").html("验证码不正确");
+				       $("#smscode-error").show();
+		           }else{
+		        	   $("#regForm").submit();
+		           }
+		          
+		       });
+		  }
+	
 		$(function() {
 			$('#118').removeClass("manulinknone");
 			$('#118').addClass("manulink");
 			$('#l_submit').removeClass("fw-manu2-none");
 			$('#l_submit').addClass("fw-manu2-on");
+			
+			 $("#sendsms").click(function(){
+			       if($("#regForm").valid()){
+			          $("#sendsms").addClass("disabled");
+			          getInviteCode(60,$(this));
+			        }       
+		    });
+			 
+			 $("#reg").click(function(){
+			    	if($("#regForm").valid()){
+			    		
+				      var smscode= $("#smscode").val();
+				      console.log(smscode);
+				      if(smscode.length!=4){
+				    	  $("#smscode-error").html("验证码不正确");
+				    	  $("#smscode-error").show();
+				      }else{
+				    	  validateSmsCode();
+				      }
+			    	}
+
+			    })
+			 
+			 
+			 $("#regForm").validate({
+		          rules: {
+		            userName:{
+		               required:true,
+		            },
+		            telphone:{
+		              required:true,
+		              isMobile:true,
+		              remote:{  
+		                    type:"POST",  
+		                    url:"/118/isExitByTelphone.do",
+		                    data:{  
+		                    	telphone:function(){ return $("#telphone").val(); }  
+		                    }  
+		                } 
+		            },
+		            password: {
+		              required: true,
+		              minlength: 6
+		            },
+		            repassword:{
+		              required: true,
+		              equalTo:"#password"
+		            }
+		          },
+		          messages: {
+		            userName:{
+		              required:'请输入姓名'
+		            },
+		            telphone:{
+		              required:'请输入常用手机号',
+		              mobile:'手机格式不正确,请重新输入',
+		              remote:'此手机号已被绑定,请选择其他手机号'
+		            },
+		            password:{
+		              required:'请输入密码',
+		              minlength:'密码要多于6位'
+		            },
+		            repassword:{
+		              required:'请输入密码',
+		              equalTo:"密码不一致，请再次输入"
+		            },
+		           
+		          }
+		     });
+			
+			
+			
 		})
 	</script>
 </body>
