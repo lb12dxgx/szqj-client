@@ -42,9 +42,9 @@ public class ConstantUtils {
 		public static Integer ACCOUNT_STATE_DEL=2;
 		
 		public static Integer ACCOUNT_ADMIN=0;
-		public static Integer ACCOUNT_BUSINESS=0;
-		public static Integer ACCOUNT_COMPANY=0;
-		public static Integer ACCOUNT_PERSON=0;
+		public static Integer ACCOUNT_BUSINESS=10;
+		public static Integer ACCOUNT_COMPANY=20;
+		public static Integer ACCOUNT_PERSON=30;
 		
 		//账号类型
 		public static Integer ACCOUNT_PLAT_ADMIN=0;
