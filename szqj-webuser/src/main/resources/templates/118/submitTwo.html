@@ -35,25 +35,32 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
       <form method="post" action="submitThree.html">
-      
+      <div class="row">
+		 <div class="col-md-2"></div>
+		 <div class="col-md-8 text-center" >
+		     <h4 th:text="${account.accountName+'挖掘申请单'}"></h4>
+         </div>
+       </div>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8 kwsq-list">
+			  
 			   <div class="row">
 				   <div class="col-md-1"></div>
-				   <div class="col-md-3 text-right"><label class="control-label zscx-text">挖掘街道</label></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>挖掘街道</label></div>
 				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入挖掘街道名称" type="text"></div>
 				   <div class="col-md-1"></div>
 			   </div>
+			  
 			   <div class="row">
 				   <div class="col-md-1"></div>
-				   <div class="col-md-3 text-right"><label class="control-label zscx-text">最近十字路口</label></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>最近十字路口</label></div>
 				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入最近十字路口名称" type="text"></div>
 				   <div class="col-md-1"></div>
 			   </div>
 			   <div class="row">
 				   <div class="col-md-1"></div>
-				   <div class="col-md-3 text-right"><label class="control-label zscx-text">挖掘地点标识情况</label></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>挖掘地点标识情况</label></div>
 				   <div class="col-md-7 text-left">
 					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">无</label>
 					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">粉笔</label>
@@ -66,7 +73,7 @@
 			   </div>
 			    <div class="row">
 					<div class="col-md-1"></div>
-				   <div class="col-md-3 text-right"><label class="control-label zscx-text">挖掘工具</label></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>挖掘工具</label></div>
 				   <div class="col-md-7 text-left">
 					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">探钻机</label>
 					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">挖掘机</label>
@@ -82,6 +89,13 @@
 			<div class="col-md-8 kwsq-list">
 			   <div class="row">
 				   <div class="col-md-1"></div>
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>工程开始时间</label></div>
+				   <div class="col-md-7 text-left"><input class="form-control" placeholder="工程开始时间" type="text"></div>
+					   <div class="col-md-1"></div>
+			   </div>
+			   
+			   <div class="row">
+				   <div class="col-md-1"></div>
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text">许可证编号</label></div>
 				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入许可证编号" type="text"></div>
 				   <div class="col-md-1"></div>
@@ -92,12 +106,7 @@
 				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入工程甲方名称" type="text"></div>
 				   <div class="col-md-1"></div>
 			   </div>
-			   <div class="row">
-				   <div class="col-md-1"></div>
-				   <div class="col-md-3 text-right"><label class="control-label zscx-text">工程开始时间</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="工程开始时间" type="text"></div>
-					   <div class="col-md-1"></div>
-			   </div>
+			  
 			   
 		   </div>
 		   <div class="col-md-2"></div>

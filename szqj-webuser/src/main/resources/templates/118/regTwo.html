@@ -7,15 +7,7 @@
 </head>
 
 <body>
-<!--[if lte IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
-
-">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
-
-">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-  <!--菜单开始-->
-   <header th:include="header"/>
+  <header th:include="header"/>
   <!--菜单结束-->
  <div class="gb-main container">
    <!--面包屑开始-->
@@ -35,7 +27,7 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
       <form method="post" action="regComapnySubmit.do" name="regForm">
-      	<input  type="hidden" name="reginfoId" th:value="${regInfo.reginfoId}">
+      	<input  type="hidden" name="reginfoId" th:value="${regInfo.reginfoId}"/>
         <div class="row">
 		   <div class="col-md-2"></div>
 		   <div class="col-md-8 kwsq-list">
@@ -44,7 +36,7 @@
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
 								style="color: red">*</span>单位名称</label></div>
 				   <div class="col-md-7 text-left">
-				   		<input class="form-control" placeholder="请输入单位名称" name="companyName" type="text" readonly th:value="${regInfo.userName}"  >
+				   		<input class="form-control" placeholder="请输入单位名称" name="name" type="text" readonly th:value="${regInfo.userName}"  />
 				   	</div>
 				   <div class="col-md-1"></div>
 			   </div>
@@ -53,14 +45,14 @@
 				   <div class="col-md-1"></div>
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
 								style="color: red">*</span>单位电话</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" name="companyTel" placeholder="请输入单位电话" type="text"></div>
+				   <div class="col-md-7 text-left"><input class="form-control" name="lxrdh" placeholder="请输入单位电话" type="text" /></div>
 					   <div class="col-md-1"></div>
 			   </div>
 			    <div class="row">
 					<div class="col-md-1"></div>
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
 								style="color: red">*</span>单位负责人</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" name="companyUser" placeholder="请输入单位负责人名称" type="text"></div>
+				   <div class="col-md-7 text-left"><input class="form-control" name="lxr" placeholder="请输入单位负责人名称" type="text" /></div>
 						<div class="col-md-1"></div>
 			   </div>
 			   
@@ -68,7 +60,11 @@
 				   <div class="col-md-1"></div>
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span
 								style="color: red">*</span>单位地址</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" name="companyAddr"  placeholder="请输入单位地址" type="text"></div>
+				   <div class="col-md-7 text-left">
+				     <textarea class="form-control" name="xxdz"  placeholder="请输入单位地址"></textarea>
+				  	 
+				   
+				   </div>
 				   <div class="col-md-1"></div>
 			   </div>
 			  

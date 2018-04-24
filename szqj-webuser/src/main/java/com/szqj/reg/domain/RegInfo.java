@@ -16,7 +16,7 @@ public class RegInfo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
-	private String reginfoId;//逐渐
+	private String reginfoId;
 	@Column
 	private String telphone;//电话
 	@Column
