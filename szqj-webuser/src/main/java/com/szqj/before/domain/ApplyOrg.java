@@ -1,4 +1,4 @@
-package com.szqj.before;
+package com.szqj.before.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.szqj.before.ApplyOrg;
-import com.szqj.before.ApplyOrgRepository;
+import com.szqj.before.domain.ApplyOrg;
+import com.szqj.before.domain.ApplyOrgRepository;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.util.ConstantUtils;
 import com.szqj.weborg.domain.Account;

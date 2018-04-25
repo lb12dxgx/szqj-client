@@ -1,4 +1,4 @@
-package com.szqj.before;
+package com.szqj.before.domain;
 
 import java.util.Date;
 
