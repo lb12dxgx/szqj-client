@@ -1,5 +1,6 @@
 package com.szqj.website.control;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,6 +11,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.szqj.before.domain.ApplyOrg;
+import com.szqj.before.domain.ApplyOrgRepository;
+import com.szqj.before.domain.BeforeApply;
+import com.szqj.before.domain.BeforeApplyRepository;
 import com.szqj.company.domain.Company;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.service.RegService;
@@ -28,6 +33,12 @@ public class BeforeControle {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private BeforeApplyRepository beforeApplyRepository;
+	
+	@Autowired
+	private ApplyOrgRepository applyOrgRepository;
 	
 	
 	@RequestMapping(value = "/118/login.html"  )
@@ -74,6 +85,13 @@ public class BeforeControle {
 		return "118/about";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/118/getOrgList.do"  )
+	public RestJson getOrgList(){
+		List<ApplyOrg> l = applyOrgRepository.findAll();
+		return RestJson.createSucces(l);
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/118/getSmsCode.do"  )
@@ -84,14 +102,16 @@ public class BeforeControle {
 	
 	
 	@RequestMapping(value = "/118/login.do"  )
-	public String login(String userName ,String password,ModelMap modelMap){
+	public String login(String userName ,String password,String applyOrgId,ModelMap modelMap){
 		Account account = accountService.login(userName, password);
 		account.setToken(account.getAccountId());
 		if(StringUtils.isBlank(account.getLoginStr())){
 			 modelMap.put("account", account);
+			 modelMap.put("applyOrgId", applyOrgId);
 			 return "118/submitTwo";
 		}else{
 			 modelMap.put("loginStr", account.getLoginStr());
+			 modelMap.put("applyOrgId", applyOrgId);
 			 return "118/login";
 		}
 		
@@ -127,6 +147,14 @@ public class BeforeControle {
 		modelMap.put("regInfo", reg);
 		return "118/login";
 	}
+	
+	@RequestMapping(value = "/118/applySubmit.do"  )
+	public String applySubmit(BeforeApply beforeApply,ModelMap modelMap){
+		beforeApplyRepository.save(beforeApply);
+		modelMap.put("beforeApply", beforeApply);
+		return "118/login";
+	}
+	
 	
 	
 	

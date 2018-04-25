@@ -21,6 +21,10 @@ public class ApplyOrg {
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
 	private String applyOrgId;//申请管理机构ID
 	@Column
+	private String formCode;//申请单编号
+	@Column
+	private String orgCode;//机构编码
+	@Column
 	private String orgName;//机构名称
 	@Column
 	private String city;//管理城市 
@@ -116,6 +120,18 @@ public class ApplyOrg {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getFormCode() {
+		return formCode;
+	}
+	public void setFormCode(String formCode) {
+		this.formCode = formCode;
+	}
+	public String getOrgCode() {
+		return orgCode;
+	}
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
 	}
 	
 	
