@@ -48,24 +48,12 @@
 			       <tr>
 					   <td><a href="http://service.bjmac.gov.cn/zhxtgl/">北京</a></td>
 			       </tr>
-			       <tr>
-					   <td><a href="/118/login.html">淄博</a></td>
+			       
+			       
+			       <tr th:each="org : ${orgList}">
+					   <td><a th:href="@{'/118/login.html?applyOrgId='+${org.applyOrgId}}" th:text="${org.city}"></a></td>
 			       </tr>
-			       <tr>
-					   <td><a href="/118/login.html">南京</a></td>
-			       </tr>
-			       <tr>
-					   <td><a href="/118/login.html">武汉</a></td>
-			       </tr>
-			       <tr>
-					   <td><a href="/118/login.html">厦门</a></td>
-			       </tr>
-			       <tr>
-					   <td><a href="/118/login.html">中山</a></td>
-			       </tr>
-			       <tr>
-					   <td><a href="/118/login.html">佛山</a></td>
-			       </tr>
+			       
 			   </table>
 		   </div>
 	   </div>       
@@ -90,7 +78,7 @@
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
 <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
 
->
+
 
 
 <script type="text/javascript">
@@ -353,7 +341,7 @@ $(function(){
 	    myChart.setOption(option, true);
 	}
 })
-</script
+</script>
 
 <script type="text/javascript">
 

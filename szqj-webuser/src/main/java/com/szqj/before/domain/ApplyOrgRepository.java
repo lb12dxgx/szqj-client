@@ -16,14 +16,14 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface ApplyOrgRepository extends JpaRepository<ApplyOrg, String> {
 	
-	@Query("select m from ApplyOrg m where  m.orgName like %?1% and m.state!=2")
+	@Query("select m from ApplyOrg m where  m.orgName like %?1% and m.state!=2 order by m.orderNum")
 	public Page<ApplyOrg> findPageByOrgName(String orgName,Pageable pageable);
 	
 	
-	@Query("select m from ApplyOrg m where  m.state!=2")
+	@Query("select m from ApplyOrg m where  m.state!=2 order by m.orderNum")
 	public List<ApplyOrg> findAllList();
 
-	@Query("select m from ApplyOrg m where m.state!=2")
+	@Query("select m from ApplyOrg m where m.state!=2 order by m.orderNum")
 	public Page<ApplyOrg> findPage(Pageable pageable);
 	
 	

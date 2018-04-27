@@ -33,7 +33,7 @@ public class ApplyOrgService {
 		account.setAccountName(applyOrg.getOrgName());
 		account.setAccountPassword(applyOrg.getPassword());
 		account.setState(ConstantUtils.ACCOUNT_STATE_START);
-		account.setAccountType(ConstantUtils.ACCOUNT_COMPANY);
+		account.setAccountType(ConstantUtils.ACCOUNT_COMPANYADMIN);
 		accountService.save(account);
 		return account;
 	}

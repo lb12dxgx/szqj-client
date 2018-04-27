@@ -1,15 +1,24 @@
 package com.szqj.website.control;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.szqj.before.domain.ApplyOrg;
+import com.szqj.before.domain.ApplyOrgRepository;
 
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
 public class IndexControle {
 	
+	
+	@Autowired
+	private ApplyOrgRepository applyOrgRepository;
 	
 	/**
 	 * 首页
@@ -43,6 +52,8 @@ public class IndexControle {
 	 */
 	@RequestMapping(value = "/118/index.html"  )
 	public String index_118(ModelMap modelMap){
+		List<ApplyOrg> l = applyOrgRepository.findAllList();
+		modelMap.put("orgList", l);
 		return "118/index"; 
 	}
 	

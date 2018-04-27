@@ -42,7 +42,10 @@ public class BeforeControle {
 	
 	
 	@RequestMapping(value = "/118/login.html"  )
-	public String submit(ModelMap modelMap){
+	public String login(String applyOrgId,ModelMap modelMap){
+		List<ApplyOrg> l = applyOrgRepository.findAllList();
+		modelMap.put("orgList", l);
+		modelMap.put("applyOrgId",applyOrgId);
 		return "118/login";
 	}
 	
@@ -52,15 +55,6 @@ public class BeforeControle {
 	}
 	
 	
-	@RequestMapping(value = "/118/submitTwo.html"  )
-	public String submitTwo(ModelMap modelMap){
-		return "118/submitTwo";
-	}
-	
-	@RequestMapping(value = "/118/submitThree.html"  )
-	public String submitThree(ModelMap modelMap){
-		return "118/submitThree";
-	}
 	
 	@RequestMapping(value = "/118/search.html"  )
 	public String search(ModelMap modelMap){
@@ -88,7 +82,7 @@ public class BeforeControle {
 	@ResponseBody
 	@RequestMapping(value = "/118/getOrgList.do"  )
 	public RestJson getOrgList(){
-		List<ApplyOrg> l = applyOrgRepository.findAll();
+		List<ApplyOrg> l = applyOrgRepository.findAllList();
 		return RestJson.createSucces(l);
 	}
 	
@@ -108,7 +102,12 @@ public class BeforeControle {
 		if(StringUtils.isBlank(account.getLoginStr())){
 			 modelMap.put("account", account);
 			 modelMap.put("applyOrgId", applyOrgId);
-			 return "118/submitTwo";
+			 ApplyOrg applyOrg = applyOrgRepository.findById(applyOrgId).get();
+			 if(("com").equals(applyOrg.getFormCode())) {
+				 return "118/submitTwo";
+			 }else {
+				 return "118/submitTwo"+applyOrg.getFormCode();
+			 }
 		}else{
 			 modelMap.put("loginStr", account.getLoginStr());
 			 modelMap.put("applyOrgId", applyOrgId);
@@ -150,9 +149,9 @@ public class BeforeControle {
 	
 	@RequestMapping(value = "/118/applySubmit.do"  )
 	public String applySubmit(BeforeApply beforeApply,ModelMap modelMap){
-		beforeApplyRepository.save(beforeApply);
+		beforeApplyRepository.create(beforeApply);
 		modelMap.put("beforeApply", beforeApply);
-		return "118/login";
+		return "118/submitThree";
 	}
 	
 	

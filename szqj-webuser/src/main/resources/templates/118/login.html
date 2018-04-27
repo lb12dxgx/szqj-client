@@ -51,6 +51,15 @@
 		  <div class="col-md-5 text-center"><input name="password" class="form-control" placeholder="请输入密码" type="password"></div>
 		 
 	   </div>
+	   <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>地区</label></div>
+		  <div class="col-md-5 text-center">
+		    <select name="applyOrgId" class="form-control" id="applyOrgId">
+		     <option th:each="org : ${orgList}" th:value="${org.applyOrgId}" th:text="${org.city}"></option>
+		    </select>
+		  </div>
+		 
+	   </div>
        <div>
 	      <div class="row">
 			<div class="col-md-3 text-right"></div>
@@ -81,12 +90,13 @@
  <!--footer开始-->
 	   <div th:include="footer"></div>
   <!--footer结束-->
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
 		$(function(){
 			$('#118').removeClass("manulinknone");
 			$('#118').addClass("manulink");
 			$('#l_login').removeClass("fw-manu2-none");
 			$('#l_login').addClass("fw-manu2-on");
+			$('#applyOrgId').val([[${applyOrgId}]])
 		})
 </script>
 </body>

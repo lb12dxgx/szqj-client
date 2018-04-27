@@ -30,7 +30,7 @@ public class Account {
 	@Column
 	private String userName;//用户名
 	@Column
-	private Integer accountType;//账号类型(0:管理员,10:业务人员;20:企业;30:个人�)
+	private Integer accountType;//账号类型(0:管理员,10:业务人员;15:管理部门;20:企业;30:个人�)
 	@Column
 	private Integer state;//(0:启用,1:禁用,2:删除)
 	@Column

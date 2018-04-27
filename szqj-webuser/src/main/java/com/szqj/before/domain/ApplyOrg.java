@@ -45,6 +45,9 @@ public class ApplyOrg {
 	@Column
 	private String accountId;//账号
 	
+	@Column
+	private Integer orderNum;//顺序号
+	
 	@Transient
 	private String password;//密码
 	
@@ -132,6 +135,12 @@ public class ApplyOrg {
 	}
 	public void setOrgCode(String orgCode) {
 		this.orgCode = orgCode;
+	}
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
 	}
 	
 	

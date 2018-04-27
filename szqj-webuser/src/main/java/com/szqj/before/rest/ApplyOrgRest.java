@@ -44,6 +44,8 @@ public class ApplyOrgRest {
 	
 	
 	
+	
+	
 	@RequestMapping(value = "save.do"  )
 	public RestJson save( ApplyOrg applyOrg){
 		applyOrg.setPassword(ConstantUtils.ACCOUNT_DEFAULT_PASSWORD);

@@ -43,6 +43,7 @@ public class ConstantUtils {
 		
 		public static Integer ACCOUNT_ADMIN=0;
 		public static Integer ACCOUNT_BUSINESS=10;
+		public static Integer ACCOUNT_COMPANYADMIN=15;
 		public static Integer ACCOUNT_COMPANY=20;
 		public static Integer ACCOUNT_PERSON=30;
 		
