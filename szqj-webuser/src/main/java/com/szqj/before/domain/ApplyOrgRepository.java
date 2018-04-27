@@ -22,6 +22,9 @@ public interface ApplyOrgRepository extends JpaRepository<ApplyOrg, String> {
 	
 	@Query("select m from ApplyOrg m where  m.state!=2")
 	public List<ApplyOrg> findAllList();
+
+	@Query("select m from ApplyOrg m where m.state!=2")
+	public Page<ApplyOrg> findPage(Pageable pageable);
 	
 	
 	

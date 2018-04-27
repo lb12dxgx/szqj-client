@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -35,6 +36,6 @@ public interface BeforeApplyRepository extends JpaRepository<BeforeApply, String
 	public Page<BeforeApply> findRefusePageByOrgIdAndCode(String applyOrgId,String applyCode,Pageable pageable);
 	
 	@Query("select m from BeforeApply m where m.applyCode =?1 and m.companyId=?2   and m.state=3")
-	public BeforeApply findByCompanyIdAndCode(String applyCode,String companyId,Pageable pageable);
+	public List<BeforeApply> getByCompanyIdAndCode(String applyCode,String companyId,Pageable pageable);
 	
 }
