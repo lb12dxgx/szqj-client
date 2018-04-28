@@ -35,7 +35,13 @@ public interface BeforeApplyRepository extends JpaRepository<BeforeApply, String
 	@Query("select m from BeforeApply m where  m.applyOrgId=?1 and applyCode like %?2%  and m.state=3")
 	public Page<BeforeApply> findRefusePageByOrgIdAndCode(String applyOrgId,String applyCode,Pageable pageable);
 	
-	@Query("select m from BeforeApply m where m.applyCode =?1 and m.companyId=?2   and m.state=3")
-	public List<BeforeApply> getByCompanyIdAndCode(String applyCode,String companyId,Pageable pageable);
+	@Query("select m from BeforeApply m where m.applyCode =?1 and m.companyId=?2 ")
+	public List<BeforeApply> getByCompanyIdAndCode(String applyCode,String companyId);
+	
+	
+	@Query("select m from BeforeApply m where m.applyCode  like ?1%  order by applyCode desc")
+	public List<BeforeApply> findByApplyCode(String applyCode);
+
+	
 	
 }

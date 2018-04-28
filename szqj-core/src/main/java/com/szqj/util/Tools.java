@@ -3,13 +3,11 @@ package com.szqj.util;
 
 
 
-import java.lang.reflect.InvocationTargetException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

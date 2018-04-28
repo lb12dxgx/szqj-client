@@ -4,12 +4,15 @@
 </head>
 <head>
 <link  th:href="@{/css/cyfw.css}" rel="stylesheet" type="text/css">
+<link  href="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 </head>
 
 <body>
 <!--[if lte IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
-
+ 
 ">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
 
 ">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -34,7 +37,7 @@
     
      <!--右侧内容开始-->
      <div class="col-md-9">
-      <form method="post" action="submitThree.html">
+      <form method="post" action="applySubmit.do" id="applyForm" >
       <input  type="hidden" name="applyOrgId" th:value="${applyOrgId}"/>
       <div class="row">
 		 <div class="col-md-2"></div>
@@ -44,79 +47,79 @@
        </div>
 		<div class="row">
 			<div class="col-md-2"></div>
-			<div class="col-md-8 kwsq-list">
+			<div class="col-md-9 kwsq-list">
 			  
 			   <div class="row">
-				   <div class="col-md-1"></div>
+				  
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>挖掘街道</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入挖掘街道名称" type="text"></div>
-				   <div class="col-md-1"></div>
+				   <div class="col-md-7 text-left"><input name="street" id="street" class="form-control" placeholder="请输入挖掘街道名称" type="text"></div>
+				   <div class="col-md-2"><label id="street-error" class="errorlabel error"  for="street"/></div> 
 			   </div>
 			  
 			   <div class="row">
-				   <div class="col-md-1"></div>
+				   
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>最近十字路口</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入最近十字路口名称" type="text"></div>
-				   <div class="col-md-1"></div>
+				   <div class="col-md-7 text-left"><input name="crossroads" class="form-control" placeholder="请输入最近十字路口名称" type="text"></div>
+				   <div class="col-md-2"><label id="crossroads-error" class="errorlabel error"  for="crossroads"/></div>
 			   </div>
 			   <div class="row">
-				   <div class="col-md-1"></div>
-				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>挖掘地点标识情况</label></div>
-				   <div class="col-md-7 text-left">
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">无</label>
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">粉笔</label>
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">绳</label>
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">旗帜</label>
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">油漆</label>
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">其他</label>
+				 
+				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>挖掘地点标识</label></div>
+				   <div class="col-md-7 ">
+					   <label class="radio-inline gb-sq-input"><input type="radio" value="无" name="identification">无</label>
+					   <label class="radio-inline gb-sq-input"><input type="radio" value="粉笔" name="identification">粉笔</label>
+					   <label class="radio-inline gb-sq-input"><input type="radio" value="绳" name="identification">绳</label>
+					   <label class="radio-inline gb-sq-input"><input type="radio" value="旗帜" name="identification">旗帜</label>
+					   <label class="radio-inline gb-sq-input"><input type="radio" value="油漆" name="identification">油漆</label>
+					   <label class="radio-inline gb-sq-input"><input type="radio" value="其他" name="identification">其他</label>
 				   </div>
-					   <div class="col-md-1"></div>
+					   <div class="col-md-2"><label id="identification-error" class="errorlabel error"  for="identification"/></div>
 			   </div>
 			    <div class="row">
-					<div class="col-md-1"></div>
+				
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>挖掘工具</label></div>
 				   <div class="col-md-7 text-left">
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">探钻机</label>
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">挖掘机</label>
-					   <label class="checkbox-inline gb-sq-input"><input type="checkbox" value="">手工</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="radio" value="探钻机" name="tools">探钻机</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="radio" value="挖掘机" name="tools">挖掘机</label>
+					   <label class="checkbox-inline gb-sq-input"><input type="radio" value="手工" name="tools">手工</label>
 					</div>
-						<div class="col-md-1"></div>
+						<div class="col-md-2"><label id="tools-error" class="errorlabel error"  for="tools"/></div>
 			   </div>
 		   </div>
-		   <div class="col-md-2"></div>
+		   <div class="col-md-1"></div>
 		 </div>
 		 <div class="row">
 			<div class="col-md-2"></div>
-			<div class="col-md-8 kwsq-list">
+			<div class="col-md-9 kwsq-list">
 			   <div class="row">
-				   <div class="col-md-1"></div>
+				  
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text"><span style="color: red">*</span>工程开始时间</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="工程开始时间" type="text"></div>
-					   <div class="col-md-1"></div>
+				   <div class="col-md-7 text-left"><input name="startDate" id="startDate" class="form-control" placeholder="工程开始时间" type="text"></div>
+					<div class="col-md-2"><label id="startDate-error" class="errorlabel error"  for="startDate"/></div>
 			   </div>
 			   
 			   <div class="row">
-				   <div class="col-md-1"></div>
+				  
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text">许可证编号</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入许可证编号" type="text"></div>
-				   <div class="col-md-1"></div>
+				   <div class="col-md-7 text-left"><input name="code" class="form-control" placeholder="请输入许可证编号" type="text"></div>
+				   <div class="col-md-2"></div>
 			   </div>
 			   <div class="row">
-				   <div class="col-md-1"></div>
+				   
 				   <div class="col-md-3 text-right"><label class="control-label zscx-text">工程甲方</label></div>
-				   <div class="col-md-7 text-left"><input class="form-control" placeholder="请输入工程甲方名称" type="text"></div>
-				   <div class="col-md-1"></div>
+				   <div class="col-md-7 text-left"><input name="party" class="form-control" placeholder="请输入工程甲方名称" type="text"></div>
+				   <div class="col-md-2"></div>
 			   </div>
 			  
 			   
 		   </div>
-		   <div class="col-md-2"></div>
+		   <div class="col-md-1"></div>
 		 </div>
 		 <div>
 	      <div>
 			<div class="col-md-2 text-right"></div>
 			<div class="col-md-8 text-center">
-				<button class="btn btn-primary" style="width:40%;">下一步</button>
+				<button type="submit" class="btn btn-primary" style="width:40%;">下一步</button>
 		   </div>
 			<div class="col-md-2 text-left">
 			  
@@ -133,12 +136,63 @@
  <!--footer开始-->
 <div th:include="footer"></div>
   <!--footer结束-->
+<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
 		$(function(){
 			$('#118').removeClass("manulinknone");
 			$('#118').addClass("manulink");
 			$('#l_login').removeClass("fw-manu2-none");
 			$('#l_login').addClass("fw-manu2-on");
+			
+			$('#startDate').datepicker({
+		         language:"zh-CN",
+		         format:'yyyy-mm-dd',
+		         autoclose:true 
+		       });
+			
+			 $("#applyForm").validate({
+		          rules: {
+		        	  street:{
+		               required:true,
+		            },
+		            crossroads:{
+		              required:true,
+		              
+		            },
+		            identification: {
+		              required: true,
+		             
+		            },
+		            tools:{
+		              required: true,
+		              
+		            },
+		            startDate:{
+			              required: true,
+			              
+			            }
+		          },
+		          messages: {
+		        	 street:{
+		              required:'请输入街道'
+		            }, 
+		            crossroads:{
+		              required:'请输入十字路口'
+		            }, 
+		            identification:{
+			              required:'请输入挖掘地点标识'
+			          }, 
+			        tools:{
+				              required:'请输入挖掘工具'
+				     },
+				     startDate:{
+			              required:'请输入开始时间'
+			     	}
+		         
+		           
+		          }
+		     });
 		})
 </script>
 </body>

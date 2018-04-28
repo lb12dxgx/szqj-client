@@ -40,7 +40,7 @@ public class BeforeApply {
 	@Column
 	private Date startDate;//工程开始时间
 	@Column
-	private Date applyCode;//申请单号
+	private String applyCode;//申请单号
 	@Column
 	private Integer state;//状态  0:未受理  1:以受理  2:已回复  3:拒绝
 	
@@ -111,10 +111,11 @@ public class BeforeApply {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public Date getApplyCode() {
+	
+	public String getApplyCode() {
 		return applyCode;
 	}
-	public void setApplyCode(Date applyCode) {
+	public void setApplyCode(String applyCode) {
 		this.applyCode = applyCode;
 	}
 	public Integer getState() {

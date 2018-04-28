@@ -2,6 +2,7 @@ package com.szqj.website.control;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import com.szqj.before.domain.ApplyOrg;
 import com.szqj.before.domain.ApplyOrgRepository;
 import com.szqj.before.domain.BeforeApply;
 import com.szqj.before.domain.BeforeApplyRepository;
+import com.szqj.before.service.BeforeApplyService;
 import com.szqj.company.domain.Company;
+import com.szqj.company.domain.CompanyRepository;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.service.RegService;
 import com.szqj.util.RestJson;
@@ -38,7 +41,13 @@ public class BeforeControle {
 	private BeforeApplyRepository beforeApplyRepository;
 	
 	@Autowired
+	private BeforeApplyService beforeApplyService;
+	
+	@Autowired
 	private ApplyOrgRepository applyOrgRepository;
+	
+	@Autowired 
+	private CompanyRepository companyRepository;
 	
 	
 	@RequestMapping(value = "/118/login.html"  )
@@ -149,8 +158,14 @@ public class BeforeControle {
 	
 	@RequestMapping(value = "/118/applySubmit.do"  )
 	public String applySubmit(BeforeApply beforeApply,ModelMap modelMap){
-		beforeApplyRepository.create(beforeApply);
+		beforeApplyService.create(beforeApply);
+		ApplyOrg applyOrg = applyOrgRepository.findById(beforeApply.getApplyOrgId()).get();
+		String companyId = beforeApply.getCompanyId();
+		Company company = companyRepository.findById(companyId).get();
 		modelMap.put("beforeApply", beforeApply);
+		modelMap.put("applyOrg", applyOrg);
+		modelMap.put("company", company);
+		
 		return "118/submitThree";
 	}
 	

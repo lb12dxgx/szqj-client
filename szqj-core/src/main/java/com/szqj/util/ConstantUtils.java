@@ -98,4 +98,24 @@ public class ConstantUtils {
 			 
 		}
 		 
+		//118申请状态
+		
+		 
+		 public static Integer APPLY_UN=0;
+		 public static Integer APPLY_ACCEPT=1;
+		 public static Integer APPLY_REPLY=2;
+		 public static Integer APPLY_REFUSE=3;
+		 
+		 public static Map applyTypeMap=new HashMap();
+		 
+		 static{
+			 applyTypeMap.put(APPLY_UN, "未受理");
+			 applyTypeMap.put(APPLY_ACCEPT, "已受理");
+			 applyTypeMap.put(APPLY_REPLY, "已回复");
+			 applyTypeMap.put(APPLY_REFUSE, "拒绝");
+			 
+		}
+		 
+		 
+		 
 }

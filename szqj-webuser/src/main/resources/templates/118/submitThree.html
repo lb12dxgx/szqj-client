@@ -43,17 +43,20 @@
 		   </div>
 	   </div>
 		 <div class="row">
-		   <div class="col-md-12 text-center"><h3>挖掘申请单号：01020180411 </h3></div>
+		   <div class="col-md-12 text-center"><h3 th:text="@{'挖掘申请单号：'+${beforeApply.applyCode}}"></h3></div>
 	   </div>
 		 <div class="row">
 		   <div class="col-md-2"></div>
 		   <div class="col-md-8 sq-xx-list">
 			   <ul class="list-unstyled">
-					<li>挖据单位：自来水一公司</li>
-					<li>受理状态：已受理</li>
-					<li>受理时间：2018-10-12</li>
-					<li>标注时间：2018-10-14</li>
-					<li>现场标注单位：燃气公司,通讯公司</li>
+					<li th:text="@{'挖据单位：'+${company.name}}">挖据单位：自来水一公司</li>
+					<li th:text="@{'挖掘街道：'+${beforeApply.street}}">挖掘街道：挖掘街道</li>
+					<li th:text="@{'最近十字路口：'+${beforeApply.crossroads}}">最近十字路口：2018-10-12</li>
+					<li th:text="@{'挖掘地点标识：'+${beforeApply.identification}}">标注时间：2018-10-14</li>
+					<li th:text="@{'挖掘工具：'+${beforeApply.tools}}">现场标注单位：燃气公司,通讯公司</li>
+					<li th:text="@{'工程开始时间：'+${#dates.format(beforeApply.startDate, 'yyyy-MM-dd')}}">现场标注单位：燃气公司,通讯公司</li>
+					<li th:text="@{'许可证编号：'+${beforeApply.code}}">现场标注单位：燃气公司,通讯公司</li>
+					<li th:text="@{'工程甲方：'+${beforeApply.party}}">现场标注单位：燃气公司,通讯公司</li>
 			   </ul>
 		   </div>
 		   <div class="col-md-2"></div>
@@ -62,9 +65,10 @@
 		   <div class="col-md-2"></div>
 		   <div class="col-md-8 sq-xx-list">
 			   <ul class="list-unstyled">
-				   <li>联系电话：010-3244444</li>
-				    <li>联系地址:北京市城市管理委员会 </li>
-				    <li>工作时间:周一到周五 上午9:00 下午5:00 </li>
+			   		 <li  th:text="@{'管理单位：'+${applyOrg.orgName}}">联系电话：010-3244444</li>
+				   <li  th:text="@{'联系电话：'+${applyOrg.telphone}}">联系电话：010-3244444</li>
+				    <li  th:text="@{'联系地址:'+${applyOrg.address}}">联系地址:北京市城市管理委员会 </li>
+				    <li  th:text="@{'工作时间:'+${applyOrg.workDate}}">工作时间:周一到周五 上午9:00 下午5:00 </li>
 			   </ul>
 		   </div>
 		   <div class="col-md-2"></div>
