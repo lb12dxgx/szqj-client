@@ -17,7 +17,7 @@ public interface CompanyRepository extends PagingAndSortingRepository<Company, S
 
 	Page<Company> findPageByName(String name, Pageable pageable);
 	
-	
+	Company findByAccountId(String accountId);
 	
 	
 	

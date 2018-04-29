@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.szqj.before.domain.ApplyOrg;
 import com.szqj.before.domain.ApplyOrgRepository;
@@ -21,6 +22,7 @@ import com.szqj.company.domain.Company;
 import com.szqj.company.domain.CompanyRepository;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.service.RegService;
+import com.szqj.springmvc.Token;
 import com.szqj.util.RestJson;
 import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.service.AccountService;
@@ -55,9 +57,11 @@ public class BeforeControle {
 		List<ApplyOrg> l = applyOrgRepository.findAllList();
 		modelMap.put("orgList", l);
 		modelMap.put("applyOrgId",applyOrgId);
+		
 		return "118/login";
 	}
 	
+	@Token(save = true)
 	@RequestMapping(value = "/118/reg.html"  )
 	public String reg(ModelMap modelMap){
 		return "118/reg";
@@ -103,15 +107,19 @@ public class BeforeControle {
 		return RestJson.createSucces(regInfoRet.getSmscode());
 	}
 	
-	
+	@Token(save = true)
 	@RequestMapping(value = "/118/login.do"  )
-	public String login(String userName ,String password,String applyOrgId,ModelMap modelMap){
+	public String login(String userName ,String password,String applyOrgId,ModelMap modelMap,RedirectAttributes attributes){
 		Account account = accountService.login(userName, password);
 		account.setToken(account.getAccountId());
 		if(StringUtils.isBlank(account.getLoginStr())){
+			
+			 ApplyOrg applyOrg = applyOrgRepository.findById(applyOrgId).get();
+			 Company company = companyRepository.findByAccountId(account.getAccountId());
+			 
 			 modelMap.put("account", account);
 			 modelMap.put("applyOrgId", applyOrgId);
-			 ApplyOrg applyOrg = applyOrgRepository.findById(applyOrgId).get();
+			 modelMap.put("companyId",company.getCompanyId());
 			 if(("com").equals(applyOrg.getFormCode())) {
 				 return "118/submitTwo";
 			 }else {
@@ -141,7 +149,7 @@ public class BeforeControle {
 		return !flag;
 	}
 	
-	
+	@Token(remove =true,save = true)
 	@RequestMapping(value = "/118/regSubmit.do"  )
 	public String regSubmit(RegInfo regInfo,ModelMap modelMap){
 		RegInfo reg=regService.regBeforeUser(regInfo);
@@ -149,6 +157,7 @@ public class BeforeControle {
 		return "118/regTwo";
 	}
 	
+	@Token(remove =true)
 	@RequestMapping(value = "/118/regComapnySubmit.do"  )
 	public String regComapnySubmit(String reginfoId,Company company,ModelMap modelMap){
 		RegInfo reg=regService.regComapnySubmit(reginfoId,company);
@@ -156,6 +165,7 @@ public class BeforeControle {
 		return "118/login";
 	}
 	
+	@Token(remove =true)
 	@RequestMapping(value = "/118/applySubmit.do"  )
 	public String applySubmit(BeforeApply beforeApply,ModelMap modelMap){
 		beforeApplyService.create(beforeApply);

@@ -27,6 +27,7 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
       <form method="post" action="regComapnySubmit.do" name="regForm">
+        <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
       	<input  type="hidden" name="reginfoId" th:value="${regInfo.reginfoId}"/>
         <div class="row">
 		   <div class="col-md-2"></div>

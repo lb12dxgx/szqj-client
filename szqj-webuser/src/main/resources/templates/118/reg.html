@@ -36,7 +36,7 @@
 			<!--右侧内容开始-->
 			<div class="col-md-9">
 				<form method="post" action="regSubmit.do" id="regForm">
-					
+					<input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
 				  <div class="row zcsx-list">
 						<div class="col-md-3 text-right">
 							<label class="control-label zscx-text"><span

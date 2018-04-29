@@ -38,7 +38,10 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
       <form method="post" action="applySubmit.do" id="applyForm" >
+      <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
       <input  type="hidden" name="applyOrgId" th:value="${applyOrgId}"/>
+       <input  type="hidden" name="companyId" th:value="${companyId}"/>
+      
       <div class="row">
 		 <div class="col-md-2"></div>
 		 <div class="col-md-8 text-center" >
