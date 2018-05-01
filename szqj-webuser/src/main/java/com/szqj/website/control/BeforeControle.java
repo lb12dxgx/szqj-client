@@ -1,11 +1,15 @@
 package com.szqj.website.control;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -185,29 +189,20 @@ public class BeforeControle {
 	}
 	
 	@RequestMapping(value = "/downloadpdf")
-    public void pdfStreamHandler(String fileName,HttpServletRequest request,HttpServletResponse response) {
-		
-		File file = ResourceUtils.getFile("classpath:pdf/811申请单.pdf");
-        if (file.exists()){
-            byte[] data = null;
-            try {
+    public void pdfStreamHandler(String beforeApplyId,HttpServletResponse response) {
+		try {
                 FileInputStream input = new FileInputStream(file);
-                data = new byte[input.available()];
+                byte[] data = new byte[input.available()];
                 input.read(data);
                 response.getOutputStream().write(data);
                 input.close();
             } catch (Exception e) {
                 logger.error("pdf文件处理异常：" + e.getMessage());
             }
-
-        }else{
-            return;
-        }
-	
 	}
 	
 	
-	private File genApplyPdf(BeforeApply beforeApply) {
+	private File genApplyPdf(BeforeApply beforeApply) throws FileNotFoundException {
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd"); 
 		String startDateStr = simpleDateFormat.format(beforeApply.getStartDate());
 		
@@ -230,11 +225,11 @@ public class BeforeControle {
 		hashMap.put("workDate", applyOrg.getWorkDate());
 		
 		File file = ResourceUtils.getFile("classpath:file/"+fileName+".pdf");
-		
 		File pdfForm = ResourceUtils.getFile("classpath:pdf/811申请单.pdf");
 		
 		PdfTools.genPdf(file, pdfForm, hashMap);
 		
+		return file;
 		
 	}
 	
