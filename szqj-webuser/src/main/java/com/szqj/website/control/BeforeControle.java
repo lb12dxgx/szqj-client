@@ -1,5 +1,8 @@
 package com.szqj.website.control;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.szqj.PdfTools;
 import com.szqj.before.domain.ApplyOrg;
 import com.szqj.before.domain.ApplyOrgRepository;
 import com.szqj.before.domain.BeforeApply;
@@ -179,7 +184,59 @@ public class BeforeControle {
 		return "118/submitThree";
 	}
 	
+	@RequestMapping(value = "/downloadpdf")
+    public void pdfStreamHandler(String fileName,HttpServletRequest request,HttpServletResponse response) {
+		
+		File file = ResourceUtils.getFile("classpath:pdf/811申请单.pdf");
+        if (file.exists()){
+            byte[] data = null;
+            try {
+                FileInputStream input = new FileInputStream(file);
+                data = new byte[input.available()];
+                input.read(data);
+                response.getOutputStream().write(data);
+                input.close();
+            } catch (Exception e) {
+                logger.error("pdf文件处理异常：" + e.getMessage());
+            }
+
+        }else{
+            return;
+        }
 	
+	}
+	
+	
+	private File genApplyPdf(BeforeApply beforeApply) {
+		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd"); 
+		String startDateStr = simpleDateFormat.format(beforeApply.getStartDate());
+		
+		String fileName=beforeApply.getApplyCode();
+		HashMap<String,String> hashMap=new HashMap<String,String>();
+		
+		hashMap.put("street", beforeApply.getStreet());
+		hashMap.put("crossroads", beforeApply.getCrossroads());
+		hashMap.put("identification", beforeApply.getIdentification());
+		hashMap.put("tools", beforeApply.getTools());
+		hashMap.put("startDate", startDateStr);
+		hashMap.put("code", beforeApply.getCode());
+		hashMap.put("party", beforeApply.getParty());
+		
+		ApplyOrg applyOrg = applyOrgRepository.findById(beforeApply.getApplyOrgId()).get();
+		
+		hashMap.put("orgName", applyOrg.getOrgName());
+		hashMap.put("telphone", applyOrg.getTelphone());
+		hashMap.put("address", applyOrg.getAddress());
+		hashMap.put("workDate", applyOrg.getWorkDate());
+		
+		File file = ResourceUtils.getFile("classpath:file/"+fileName+".pdf");
+		
+		File pdfForm = ResourceUtils.getFile("classpath:pdf/811申请单.pdf");
+		
+		PdfTools.genPdf(file, pdfForm, hashMap);
+		
+		
+	}
 	
 	
 
