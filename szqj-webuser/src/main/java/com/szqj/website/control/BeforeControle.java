@@ -188,7 +188,7 @@ public class BeforeControle {
 		return "118/submitThree";
 	}
 	
-	@RequestMapping(value = "/downloadpdf")
+	/*	@RequestMapping(value = "/downloadpdf")
     public void pdfStreamHandler(String beforeApplyId,HttpServletResponse response) {
 		try {
                 FileInputStream input = new FileInputStream(file);
@@ -199,7 +199,7 @@ public class BeforeControle {
             } catch (Exception e) {
                 logger.error("pdf文件处理异常：" + e.getMessage());
             }
-	}
+	}*/
 	
 	
 	private File genApplyPdf(BeforeApply beforeApply) throws FileNotFoundException {

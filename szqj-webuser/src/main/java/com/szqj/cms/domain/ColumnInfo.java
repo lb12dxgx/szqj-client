@@ -1,13 +1,18 @@
 package com.szqj.cms.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.domain.PageRequest;
 
 /**
  * 栏目信息
@@ -43,6 +48,10 @@ public class ColumnInfo {
 	
 	@Column
 	private String parentId;//父id
+	
+	@Transient
+	private PageRequest pageable;
+	
 
 	public String getColumnId() {
 		return columnId;
@@ -109,6 +118,16 @@ public class ColumnInfo {
 	public void setLogin(Integer login) {
 		this.login = login;
 	}
+
+	public PageRequest getPageable() {
+		return pageable;
+	}
+
+	public void setPageable(PageRequest pageable) {
+		this.pageable = pageable;
+	}
+
+	
 	
 	
 

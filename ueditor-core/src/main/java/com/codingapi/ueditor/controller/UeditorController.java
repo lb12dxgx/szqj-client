@@ -45,8 +45,8 @@ public class UeditorController {
         }else{
             rootPath = new File(path).getParentFile().getParent()+"/";
             rootPath = rootPath.replace("file:","");
-        }*/
-    	
+        }
+    	*/
     	 logger.info("path->"+rootPath);
     }
 

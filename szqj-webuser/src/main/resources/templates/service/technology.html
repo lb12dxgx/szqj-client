@@ -34,30 +34,16 @@
     
      <!--右侧内容开始-->
      <div class="col-md-9">
-       <div class="row">
-		   <div class="col-md-12">
-			   <div><img src="/images/pic.jpg" class="img-responsive"></div>
-			   <div>
-				   <a href="#"><h4>厦门采用车载雷达进行地陷灾害普查探测</h4></a>
-				   <a href="#">近日，福建省厦门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生</a>
-			   </div>
-			   <div class="gb-line tg-list"></div>
-			   <div><img src="/images/pic.jpg" class="img-responsive"></div>
-			   <div>
-				   <a href="#"><h4>厦门采用车载雷达进行地陷灾害普查探测</h4></a>
-				   <a href="#">近日，福建省厦门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生</a>
-			   </div>
-			   <div class="gb-line tg-list"></div>
-			   <div><img src="/images/pic.jpg" class="img-responsive"></div>
-			   <div>
-				   <a href="#"><h4>厦门采用车载雷达进行地陷灾害普查探测</h4></a>
-				   <a href="#">近日，福建省厦门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生</a>
-			   </div>
-			   
-		   </div>
-	   </div>
+       <div class="row" th:each="content,iterStat:${list}">
+		 <div> <a th:href="@{'/service/detail.html?contentId='+${content.contentId}}" target="_blank" > <img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="img-responsive"></img></a></div>
+		  <div>
+			<a th:href="@{'/service/detail.html?contentId='+${content.contentId}}" target="_blank" ><h4 th:text="${content.contentTitle}">第十九届地下管线布置会议在京召开</h4></a>
+		    <a th:href="@{'/service/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentJsonMap['desc']}" >近日，福建省厦门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生</a>
+		  </div>
+		  <div class="gb-line tg-list"  th:if="not ${iterStat.last}"></div>
+		</div>
 
-     </div>
+	</div>
      <!--右侧内容结束-->
    </div>
  </div>

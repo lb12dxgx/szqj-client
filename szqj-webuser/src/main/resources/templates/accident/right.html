@@ -1,0 +1,18 @@
+<div class="col-md-3">
+	<div class="box-bgcl">
+		<div class="gxsg-ewm"><img src="/images/weixin.jpg" style="width: 100%;height: 100%;"></div>
+	</div>
+	<div class="maintop">
+	    <ul class="list-inline">
+	       <li class="pull-left menubt text-center"><h5>安全方案</h5></li>
+	    </ul>
+	</div>
+	<div class="box-bgcl">
+	    <div th:each="content,iterStat:${rList}">
+		    <ul class="gb-news">
+		        <li class="xwRightlist"><a th:href="@{'/accident/detail.html?contentId='+${content.contentId}}"  target="_blank"  th:text="${content.contentTitle}">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+		    </ul>
+		 	<div class="gb-line" th:if="not ${iterStat.last}"></div>
+		</div>
+	</div>
+</div>
