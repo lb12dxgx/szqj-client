@@ -19,8 +19,7 @@ public class PdfTools {
 	public static void genPdf(File file,File pdfForm,Map<String, String> hashMap) {
 		 try {
 		 PdfReader pdfReader=new PdfReader(pdfForm); 
-		 PdfWriter pdfWriter=new PdfWriter(file);
-		 PdfDocument pdfDoc = new PdfDocument(pdfReader, pdfWriter);
+		 PdfDocument pdfDoc = new PdfDocument(pdfReader, new PdfWriter(file));
          PdfAcroForm pdfAcroForm = PdfAcroForm.getAcroForm(pdfDoc, true);
          PdfFont font = PdfFontFactory.createFont("STSong-Light", "UniGB-UCS2-H", false);
 	     for(String key:hashMap.keySet()) {

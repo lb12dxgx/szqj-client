@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -59,6 +60,9 @@ public class BeforeControle {
 	
 	@Autowired 
 	private CompanyRepository companyRepository;
+	
+	@Value("${web.upload-pdf}")
+	private String pdfPath;
 	
 	
 	@RequestMapping(value = "/118/login.html"  )
@@ -188,16 +192,21 @@ public class BeforeControle {
 		return "118/submitThree";
 	}
 	
-	@RequestMapping(value = "/downloadpdf")
-    public void pdfStreamHandler(String beforeApplyId,HttpServletResponse response) {
+	@RequestMapping(value = "/118/downloadpdf.do")
+    public void pdfStreamHandler(String beforeApplyId,HttpServletResponse response) throws FileNotFoundException {
+		
+		BeforeApply beforeApply = beforeApplyRepository.findById(beforeApplyId).get();
+		File file=genApplyPdf( beforeApply);
+		
 		try {
+			   
                 FileInputStream input = new FileInputStream(file);
                 byte[] data = new byte[input.available()];
                 input.read(data);
                 response.getOutputStream().write(data);
                 input.close();
             } catch (Exception e) {
-                logger.error("pdf文件处理异常：" + e.getMessage());
+            	System.out.println(e.getMessage());
             }
 	}
 	
@@ -224,7 +233,11 @@ public class BeforeControle {
 		hashMap.put("address", applyOrg.getAddress());
 		hashMap.put("workDate", applyOrg.getWorkDate());
 		
-		File file = ResourceUtils.getFile("classpath:file/"+fileName+".pdf");
+		File file = new File("d://temp"+ fileName+".pdf");
+	        // 检测是否存在目录
+	        if (!file.getParentFile().exists()) {
+	        	file.getParentFile().mkdirs();
+	        }
 		File pdfForm = ResourceUtils.getFile("classpath:pdf/811申请单.pdf");
 		
 		PdfTools.genPdf(file, pdfForm, hashMap);

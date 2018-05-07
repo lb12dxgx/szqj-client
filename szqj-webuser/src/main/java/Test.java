@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -18,7 +19,11 @@ public class Test {
 		String endDate="2007-12-31";
 		 long d = new SimpleDateFormat("yyyy-MM-dd").parse(startDate).getTime();
 		System.out.println(d/1000);
-		
+		  
+		File f=new File("d://temp/pdf");
+		//d:\temp\pdf	
+	
+		f.exists();
 		
 		  PdfDocument pdfDoc = new PdfDocument(new PdfReader("e://811申请单.pdf"), new PdfWriter("e://form1.pdf"));
           PdfAcroForm pdfAcroForm = PdfAcroForm.getAcroForm(pdfDoc, true);
