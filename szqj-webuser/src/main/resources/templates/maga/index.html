@@ -23,17 +23,20 @@
    <div class="row">
      <ul class="breadcrumb col-md-12">
        <li><a href="#">首页</a></li>
-       <li class="active">电子期刊</li>
+       <li class="active">电子资料</li>
      </ul>
    </div>
    <!--面包屑结束-->
    <div class="row">
      <!--左侧菜单开始-->
      <div class="col-md-3">
-       <ul class="list-unstyled">
-         <li><a href="#" class="left-manu qk-manu-on text-center">2018年</a></li>
-         <li><a href="#" class="left-manu qk-manu-none text-center">2017年</a></li>
-         <li><a href="#" class="left-manu qk-manu-none text-center">2016年</a></li>
+       <ul class="list-unstyled" th:if="${columnCode}=='1_dz_zl_qk'" >
+         <li><a href="/maga/index.html" class="left-manu qk-manu-on text-center">电子期刊</a></li>
+         <li><a href="/maga/index.html?columnCode=2_dz_zl_hy" class="left-manu qk-manu-none text-center">会议资料</a></li>
+       </ul>
+       <ul class="list-unstyled" th:if="${columnCode}=='2_dz_zl_hy'" >
+         <li><a href="/maga/index.html" class="left-manu qk-manu-none text-center">电子期刊</a></li>
+         <li><a href="/maga/index.html?columnCode=2_dz_zl_hy" class="left-manu qk-manu-on text-center">会议资料</a></li>
        </ul>
      </div>
      <!--左侧菜单结束-->
@@ -41,25 +44,22 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
        <div class="row text-center dzqk">
-          <div class="col-md-3"><a href="#"><img src="/images/zazhi.jpg" class="img-shadow-1"></a></div>
-          <div class="col-md-3"><a href="#"><img src="/images/zazhi.jpg" class="img-shadow-1"></a></div>
-          <div class="col-md-3"><a href="#"><img src="/images/zazhi.jpg" class="img-shadow-1"></a></div>
-          <div class="col-md-3"><a href="#"><img src="/images/zazhi.jpg" class="img-shadow-1"></a></div>
-       </div>
-       <div class="row text-center dzqk">
-          <div class="col-md-3"><a href="#"><img src="/images/zazhi.jpg" class="img-shadow-1"></a></div>
-          <div class="col-md-3"><a href="#"><img src="/images/zazhi.jpg" class="img-shadow-1"></a></div>
-          <div class="col-md-3"><a href="#"><img src="/images/zazhi.jpg" class="img-shadow-1"></a></div>
-          <div class="col-md-3"><a href="#"><img src="/images/zazhi.jpg" class="img-shadow-1"></a></div>
+       
+          <div class="col-md-3 dzqk" th:each="content:${list}">
+          	<a th:href="@{'/maga/detail.html?contentId='+${content.contentId}}">
+          		<img  th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}"  style="width:182px; height:258px" class="img-shadow-1 media-object">
+          	</a>
+          </div>
+         
        </div>
      </div>
      <!--右侧内容结束-->
    </div>
  </div>
  
-  <!--footer��ʼ-->
-	 <div th:include="footer"></div>
-  	<!--footer����-->
+   <!--footer开始-->
+	   <div th:include="footer"></div>
+  	<!--footer结束-->
   	<script type="text/javascript">
 	$(function(){
 		$('#maga').removeClass("manulinknone");

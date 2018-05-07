@@ -92,6 +92,16 @@ public class FileInfoRest {
 		return RestJson.createSucces(list);
 	}
 	
+	@RequestMapping(value = "/downloadByBusi.do"  )
+	public void downloadByBusi(String bussinessId,HttpServletResponse response){
+		List<FileInfo> l = fileInfoRepository.findByBussinessId(bussinessId);
+		if(l==null||l.size()==0) {
+			return;
+		}
+		FileInfo fileInfo = fileInfoRepository.findByBussinessId(bussinessId).get(0);
+		download(fileInfo.getFileInfoId(),response);
+	}
+	
 	
 	@RequestMapping(value = "/download.do"  )
 	public void download(String fileInfoId,HttpServletResponse response){

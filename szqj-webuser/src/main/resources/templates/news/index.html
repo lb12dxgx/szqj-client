@@ -6,7 +6,7 @@
 	<link href="/css/gxsg.css" rel="stylesheet" type="text/css">
 </head>
 <head>
-<link href="css/gxsg.css" rel="stylesheet" type="text/css">
+ <link href="css/gxsg.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
    <div class="row">
      <ul class="breadcrumb col-md-12">
        <li><a href="#">首页</a></li>
-       <li class="active">行业资讯</li>
+       <li class="active">产业资讯</li>
      </ul>
    </div>
    <!--面包屑结束-->
@@ -34,118 +34,65 @@
      <div class="col-md-8">
        <div class="portlet light bordered zx-box">
             <div class="portlet-title tabbable-line">
-              <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#portlet_comments_1" data-toggle="tab"> 要闻 </a>
+              <ul class="nav nav-tabs" >
+                <li th:each="columnInfo : ${columnInfoList}"  th:class="${columnInfo.columnCode==columnCode}? 'active' : ''">
+                    <a th:href="@{'/news/index.html?columnCode='+${columnInfo.columnCode}}"  th:text="${columnInfo.columnName}" th:id="${columnInfo.columnCode}"> </a>
                 </li>
-                <li>
-                    <a href="#portlet_comments_2" data-toggle="tab"> 企业新闻 </a>
-                </li>
-                <li>
-                    <a href="#portlet_comments_3" data-toggle="tab"> 市场 </a>
-                </li>
-                <li>
-                    <a href="#portlet_comments_4" data-toggle="tab"> 国际 </a>
-                </li>
-                <li>
-                    <a href="#portlet_comments_5" data-toggle="tab"> 综合 </a>
-                </li>
+                
             </ul>
             
             </div>
             <div class="portlet-body">
               <div class="tab-content">
-              <div class="tab-pane active" id="portlet_comments_1">
+              
+              <div class="tab-pane active"  th:if="${columnCode}=='1_hy_xw_yw' or ${columnCode}=='6_hy_xw_sp'">
                   <div class="mt-comments mt-comments10">
-                     <div class="media">
-                       <a href="#" class="pull-left"><img src="/images/shigupic.jpg" class="media-object"></a>
-                       <div class="media-body gb-sgnews">
-                         <h4 class="media-heading"><a href="#">青岛化工厂爆炸事故</a></h4>
-                         <p class="sg-text"><a href="#">青岛化工厂爆炸事故是指青岛海怡精细化工有限公司发生爆炸引发火灾的事故，发生于2010年3月26日14点40左右，经全力扑救，7时30分，火灾被扑的事故，发生于2010年3月26日14点40左右，经全力扑救，7时30分.. </a></p>
-                         <ul class="list-unstyled">
-                           <li class="pull-left"><a href="#" class="blue-link">山东</a></li>
-                           <li class="pull-left"><a href="#" class="blue-link">输油管道</a></li>
-                           <li class="pull-left"><a href="#" class="blue-link">重大</a></li>
-                           <li class="pull-right gray"><time datetime=2013-11-22"">2013-11-22</time></li>
-                         </ul>
-                       </div>
+                  	<div th:each="content,iterStat:${page.content}" >
+	                     <div class="media" >
+	                       <a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" target="_blank" class="pull-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="media-object" style="width:174px; height:127px"></a>
+	                       <div class="media-body gb-sgnews">
+	                         <h4 class="media-heading"><a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></h4>
+	                         <p class="sg-text"><a href="#" th:text="${content.contentJsonMap['desc']}"> </a></p>
+	                         <ul class="list-unstyled">
+	                           <li class="pull-left"  th:each="tagname:${#strings.listSplit(content.contentJsonMap['tag'],',')}"><a href="#" class="blue-link" th:text="${tagname}"></a></li>
+	                     
+	                           <li class="pull-right gray" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2013-11-22</li>
+	                         </ul>
+	                       </div>
+	                   </div>
+	                   <div class="gb-line gxsg-line" th:if="not ${iterStat.last}"></div>
                    </div>
-                   <div class="gb-line gxsg-line"></div>
-                    <div class="media">
-                       <a href="#" class="pull-left"><img src="/images/shigupic.jpg" class="media-object"></a>
-                       <div class="media-body gb-sgnews">
-                         <h4 class="media-heading"><a href="#">青岛化工厂爆炸事故</a></h4>
-                         <p class="sg-text"><a href="#">青岛化工厂爆炸事故是指青岛海怡精细化工有限公司发生爆炸引发火灾的事故，发生于2010年3月26日14点40左右，经全力扑救，7时30分，火灾被扑的事故，发生于2010年3月26日14点40左右，经全力扑救，7时30分.. </a></p>
-                         <ul class="list-unstyled">
-                           <li class="pull-left"><a href="#" class="blue-link">山东</a></li>
-                           <li class="pull-left"><a href="#" class="blue-link">输油管道</a></li>
-                           <li class="pull-left"><a href="#" class="blue-link">重大</a></li>
-                           <li class="pull-right gray"><time datetime=2013-11-22"">2013-11-22</time></li>
-                         </ul>
-                       </div>
-                   </div>
-                   <div class="gb-line gxsg-line"></div>
                    
                    <!--分页开始-->  
                     <div class="row">
                      <div class="col-md-12 text-center">
-                       <ul class="pagination">
-                         <li><a href="#">上一页</a></li>
-                         <li><a href="#">1</a></li>
-                         <li><a href="#">2</a></li>
-                         <li><a href="#">3</a></li>
-                         <li><a href="#">4</a></li>
-                         <li><a href="#">下一页</a></li>
-                       </ul>
+					   <div th:include="pagination"/> 
                      </div>
                    </div> 
                    <!--分页结束-->
                   </div>
                 
               </div>
-              <div class="tab-pane" id="portlet_comments_2">
+              <div class="tab-pane active"  th:if="${columnCode}!='1_hy_xw_yw' and ${columnCode}!='6_hy_xw_sp'">
                   <div class="mt-comments">
-                    <ul class="gbzx-news">
-                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-                    <li class="list-unstyled pull-right gray"><time datetime="2018-1-22">2018-1-22</time></li>
-                    </ul>
-                    <div class="gb-line clearfix"></div>
-                    <ul class="gbzx-news">
-                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-                    <li class="list-unstyled pull-right gray"><time datetime="2018-1-22">2018-1-22</time></li>
-                    </ul>
-                    <div class="gb-line clearfix"></div>
-                    <ul class="gbzx-news">
-                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-                    <li class="list-unstyled pull-right gray"><time datetime="2018-1-22">2018-1-22</time></li>
-                    </ul>
-                    <div class="gb-line clearfix"></div>
-                    <ul class="gbzx-news">
-                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-                    <li class="list-unstyled pull-right gray"><time datetime="2018-1-22">2018-1-22</time></li>
-                    </ul>
-                    <div class="gb-line clearfix"></div>
-                    <ul class="gbzx-news">
-                    <li class="xwlist pull-left"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-                    <li class="list-unstyled pull-right gray"><time datetime="2018-1-22">2018-1-22</time></li>
-                    </ul>
+                    	<div th:each="content,iterStat:${page.content}" >
+	                    <ul class="gbzx-news">
+	                    <li class="xwlist pull-left"><a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></li>
+	                    <li class="list-unstyled pull-right gray"><time datetime="2018-1-22" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2018-1-22</time></li>
+	                    </ul>
+	                    <div class="gb-line gxsg-line" th:if="not ${iterStat.last}"></div>
+                    </div>
                   </div>
+                   <!--分页开始-->  
+                    <div class="row">
+                     <div class="col-md-12 text-center">
+					   <div th:include="pagination"/> 
+                     </div>
+                   </div> 
+                   <!--分页结束-->
+                  
               </div>
-              <div class="tab-pane" id="portlet_comments_3">
-                  <div class="mt-comments">
-                  333
-                  </div>
-              </div>
-              <div class="tab-pane" id="portlet_comments_4">
-                  <div class="mt-comments">
-                  444
-                  </div>
-              </div>
-              <div class="tab-pane" id="portlet_comments_5">
-                  <div class="mt-comments">
-                  555
-                  </div>
-              </div>
+             
           </div>
             </div>
           </div>
@@ -153,60 +100,7 @@
      <!--左侧内容结束-->
      <div class="col-md-1"></div>
       <!--右侧边栏开始-->
-     <div class="col-md-3">
-       <div class="right-box"><img src="/images/zxpicgg.jpg"></div>
-        <div class="right-box">
-           <div class="maintop">
-              <ul class="list-inline">
-               <li class="pull-left menubt text-center"><h5>推荐新闻</h5></li>
-               <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
-              </ul>
-            </div>
-            <div class="box-bgcl">
-              <ul class="gb-news">
-                <li class="xwlist"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-              </ul> 
-              <div class="gb-line"></div>
-               <ul class="gb-news">
-                <li class="xwlist"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-              </ul>
-              <div class="gb-line"></div>
-               <ul class="gb-news">
-                <li class="xwlist"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-              </ul>
-              <div class="gb-line"></div>
-              <ul class="gb-news">
-                <li class="xwlist"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-              </ul>
-            </div>
-        </div>
-        <div class="right-box"><img src="/images/zxpicgg.jpg"></div>
-        <div class="right-box">
-           <div class="maintop">
-              <ul class="list-inline">
-               <li class="pull-left menubt text-center"><h5>推荐阅读</h5></li>
-               <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
-              </ul>
-            </div>
-            <div class="box-bgcl">
-              <ul class="gb-news">
-                <li class="xwlist"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-              </ul>
-              <div class="gb-line"></div>
-               <ul class="gb-news">
-                <li class="xwlist"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-              </ul>
-              <div class="gb-line"></div>
-               <ul class="gb-news">
-                <li class="xwlist"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-              </ul>
-              <div class="gb-line"></div>
-              <ul class="gb-news">
-                <li class="xwlist"><a href="#">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
-              </ul>
-            </div>
-        </div>
-     </div>
+       <div th:include="news/right" />
      <!--右侧边栏结束-->
    </div>
  </div>
@@ -214,10 +108,17 @@
   <!--footer开始-->
 	 <div th:include="footer"></div>
   	<!--footer结束-->
-  	<script type="text/javascript">
+  	<script type="text/javascript" th:inline="javascript">
 	$(function(){
 		$('#news').removeClass("manulinknone");
 		$('#news').addClass("manulink");
+		
+		$('.page-link').click(function(){
+			  if(!$(this).parent().hasClass("disabled")){
+				  var pageNum=$(this).attr("pageIndex");
+				  $(window).attr('location', '/news/index.html?pageNum='+pageNum+"&columnCode="+[[${columnCode}]]);
+			  }
+		});
 	})
 </script>
   <!--footer结束-->

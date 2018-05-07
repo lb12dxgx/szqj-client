@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+<link href="/css/gxsg.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+  <header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+       <li class="active">知识库</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row">
+     <!--左侧菜单开始-->
+     <div class="col-md-3">
+       <ul class="list-unstyled" th:if="${columnCode}=='1_hy_zs_zc'" >
+         <li><a href="/knowledge/index.html" class="left-manu qk-manu-on text-center" >政策法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-none text-center">法律法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-none text-center">标准规范</a></li>
+         <li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-none text-center">行业论文</a></li>
+       </ul>
+       
+       <ul class="list-unstyled" th:if="${columnCode}=='2_hy_zs_fl'" >
+         <li><a href="/knowledge/index.html" class="left-manu qk-manu-none text-center" >政策法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-on text-center">法律法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-none text-center">标准规范</a></li>
+         <li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-none text-center">行业论文</a></li>
+       </ul>
+       
+       <ul class="list-unstyled" th:if="${columnCode}=='3_hy_zs_bj'" >
+       	<li><a href="/knowledge/index.html" class="left-manu qk-manu-none text-center" >政策法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-none text-center">法律法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-on text-center">标准规范</a></li>
+         <li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-none text-center">行业论文</a></li>
+       </ul>
+       
+       <ul class="list-unstyled" th:if="${columnCode}=='4_hy_zs_lw'" >
+         <li><a href="/knowledge/index.html" class="left-manu qk-manu-none text-center" >政策法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-none text-center">法律法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-none text-center">标准规范</a></li>
+         <li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-on text-center">行业论文</a></li>
+       </ul>
+       
+       
+       
+     </div>
+     <!--左侧菜单结束-->
+     <!--中间内容开始-->
+     <div class="col-md-8  text-left">
+     <div class="gb-sg-middle">
+        <div th:each="content,iterStat:${page.content}" >
+	       <div class="mt-comments">
+                 <ul class="gbzx-news">
+	                 <li class="xwlist pull-left"><a th:href="@{'/knowledge/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></li>
+	                 <li class="list-unstyled pull-right gray"><time datetime="2018-1-22" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2018-1-22</time></li>
+	             </ul>
+	           <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
+            </div>
+	        
+        </div>
+       
+       <div class="row">
+          <div class="col-md-12 text-center">
+			 <div th:include="pagination"/> 
+         </div>
+       </div>
+       </div>
+     </div>
+     <!--中间内容结束-->
+   
+   </div>
+ </div>
+ 
+ 	<!--footer开始-->
+	 <div th:include="footer"></div>
+  	<!--footer结束-->
+  	<script type="text/javascript">
+	$(function(){
+		$('#knowledge').removeClass("manulinknone");
+		$('#knowledge').addClass("manulink");
+	})
+</script>
+</body>
+</html>

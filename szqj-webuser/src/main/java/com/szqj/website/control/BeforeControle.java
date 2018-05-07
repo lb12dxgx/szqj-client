@@ -192,15 +192,13 @@ public class BeforeControle {
 		return "118/submitThree";
 	}
 	
-	@RequestMapping(value = "/118/downloadpdf.do")
-    public void pdfStreamHandler(String beforeApplyId,HttpServletResponse response) throws FileNotFoundException {
-		
-		BeforeApply beforeApply = beforeApplyRepository.findById(beforeApplyId).get();
-		File file=genApplyPdf( beforeApply);
-		
+
+	@RequestMapping(value = "/downloadpdf")
+    public void pdfStreamHandler(String beforeApplyId,HttpServletResponse response) {
+
 		try {
-			   
-                FileInputStream input = new FileInputStream(file);
+				BeforeApply beforeApply=beforeApplyRepository.findById(beforeApplyId).get();
+				FileInputStream input = new FileInputStream(genApplyPdf( beforeApply));
                 byte[] data = new byte[input.available()];
                 input.read(data);
                 response.getOutputStream().write(data);

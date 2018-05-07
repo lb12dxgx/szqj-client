@@ -58,26 +58,9 @@ public class IndexControle {
 	}
 	
 	
-	/**
-	 * 管线安全
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/accident/index.html"  )
-	public String index_accident(ModelMap modelMap){
-		return "accident/index"; 
-	}
 	
 	
-	/**
-	 * 产业资讯
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/news/index.html"  )
-	public String index_news(ModelMap modelMap){
-		return "news/index"; 
-	}
+
 	
 	
 
@@ -101,19 +84,6 @@ public class IndexControle {
 	public String index_service(ModelMap modelMap){
 		return "service/index"; 
 	}
-	
-	/**
-	 * 电子期刊
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/maga/index.html"  )
-	public String index_maga(ModelMap modelMap){
-		return "maga/index"; 
-	}
-	
-	
-
 	
 
 }

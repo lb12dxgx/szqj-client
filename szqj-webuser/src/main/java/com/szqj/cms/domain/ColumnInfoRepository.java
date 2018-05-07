@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.szqj.reg.domain.RegInfo;
+
 
 /**
  * 
@@ -21,5 +23,9 @@ public interface ColumnInfoRepository extends JpaRepository<ColumnInfo, String> 
 	public List<ColumnInfo> getTreeNoes();
 	
 	
+	public ColumnInfo findByColumnCode(String columnCode);
+	
+	@Query("select m from ColumnInfo m where m.parentId =?1 order by columnCode")
+	public List<ColumnInfo> findByParentId(String parentId);
 	
 }

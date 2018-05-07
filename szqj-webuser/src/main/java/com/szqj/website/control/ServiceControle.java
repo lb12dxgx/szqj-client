@@ -1,9 +1,18 @@
 package com.szqj.website.control;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.szqj.cms.domain.ColumnInfo;
+import com.szqj.cms.domain.ColumnInfoRepository;
+import com.szqj.cms.domain.ContentInfo;
+import com.szqj.cms.domain.ContentInfoRepository;
 
 @Controller
 @RequestMapping("/")
@@ -11,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ServiceControle {
 	
 
+	@Autowired
+	private ColumnInfoRepository columnInfoRepository;
+	@Autowired
+	private ContentInfoRepository contentInfoRepository;
 	
 	
 	/**
@@ -62,7 +75,11 @@ public class ServiceControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/service/meet.html"  )
-	public String index_118(ModelMap modelMap){
+	public String index_meet(ModelMap modelMap){
+		String columnCode="1_cy_fw_hy";
+		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode(columnCode);
+		List<ContentInfo> list=contentInfoRepository.findListByColumnId(columnInfo.getColumnId());
+		modelMap.put("list", list);
 		return "service/meet"; 
 	}
 	
@@ -73,22 +90,36 @@ public class ServiceControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/service/technology.html"  )
-	public String index_accident(ModelMap modelMap){
+	public String index_technology(ModelMap modelMap){
+		String columnCode="2_cy_fw_js";
+		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode(columnCode);
+		List<ContentInfo> list=contentInfoRepository.findListByColumnId(columnInfo.getColumnId());
+		modelMap.put("list", list);
 		return "service/technology"; 
 	}
 	
 	
 	/**
-	 * 产业资讯
+	 * 产业金融
 	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/service/finace.html"  )
-	public String index_news(ModelMap modelMap){
+	public String index_finace(ModelMap modelMap){
 		return "service/finace"; 
 	}
 	
-	
+	/**
+	 * 会议和新技术详情
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/service/detail.html"  )
+	public String detail_news(String contentId, ModelMap modelMap){
+		ContentInfo content = contentInfoRepository.findById(contentId).get();
+		modelMap.put("content", content);
+		return "service/detail"; 
+	}
 
 	
 
