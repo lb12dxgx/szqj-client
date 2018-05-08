@@ -14,7 +14,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.szqj.before.domain.BeforeApply;
 
 public class PdfTools {
-	
+	  
 	
 	public static void genPdf(File file,File pdfForm,Map<String, String> hashMap) {
 		 try {
