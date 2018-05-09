@@ -28,6 +28,8 @@ public class TrainTeacher {
     private String teacherSumary;//老师说明
      
     private String teacherPicId;//老师照片
+    
+    private Date createDate;//创建时间
 
 	public String getTrainTeacherId() {
 		return trainTeacherId;
@@ -67,6 +69,22 @@ public class TrainTeacher {
 
 	public void setTeacherSumary(String teacherSumary) {
 		this.teacherSumary = teacherSumary;
+	}
+
+	public String getTeacherPicId() {
+		return teacherPicId;
+	}
+
+	public void setTeacherPicId(String teacherPicId) {
+		this.teacherPicId = teacherPicId;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	

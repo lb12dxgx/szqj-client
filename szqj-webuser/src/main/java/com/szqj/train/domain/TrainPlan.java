@@ -32,6 +32,8 @@ public class TrainPlan {
     private Integer trainMoney;//培训费
     
     private String trainSumary;//培训说明
+    
+    private Date createDate;//创建时间
 
 	public String getTrainPlanId() {
 		return trainPlanId;
@@ -95,6 +97,14 @@ public class TrainPlan {
 
 	public void setTrainSumary(String trainSumary) {
 		this.trainSumary = trainSumary;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
     
     

@@ -31,9 +31,8 @@ public class EnterpriseRest {
 	private EnterpriseRepository enterpriseRepository;
 	
 	
-	//根据账号类型返回账号列表
+
 	@RequestMapping(value = "list.do"  )
-	
 	public RestJson list( String enterpriseName,   Integer pageNum, Integer size){
 		PageRequest pageable=Tools.getPage(pageNum-1, size);
 		Page<Enterprise> page = enterpriseRepository.findPageByEnterpriseName(enterpriseName, pageable);
@@ -41,7 +40,7 @@ public class EnterpriseRest {
 	}
 	
 	
-	//保存账号信息
+	
 	@RequestMapping(value = "save.do"  )
 	public RestJson save( Enterprise enterprise){
 		enterprise.setCreateDate(new Date());
@@ -49,14 +48,14 @@ public class EnterpriseRest {
 		return RestJson.createSucces(enterprise);
 	}
 	
-	//更新
+	
 	@RequestMapping(value = "update.do"  )
 	public RestJson update( Enterprise enterprise){
 		enterpriseRepository.save(enterprise);
 		return RestJson.createSucces(enterprise);
 	}
 	
-	//删除
+	
 	@RequestMapping(value = "delete.do"  )
 	public RestJson delete( String enterpriseId){
 		enterpriseRepository.deleteById(enterpriseId);

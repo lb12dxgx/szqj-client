@@ -17,24 +17,50 @@ public class TrainClass {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
-	private String trainTeacherId;
+	private String trainClassId;
 	
-	private String teacherName;//老师名称
+	private String trainClassName;//课程名称
 	
-    private String teacherTitle;//老师职称
+    private Integer num;//课时
     
-    private Date teacherPosition;//老师职位
+    private Date startDate;//开始时间
    
-    private String teacherSumary;//老师说明
+    private String teacherName;//教师名称
     
-    private String teacherPicId;//老师照片
+    private String classSumary;//课程说明
+    
+    private Date createDate;//创建时间
 
-	public String getTrainTeacherId() {
-		return trainTeacherId;
+	public String getTrainClassId() {
+		return trainClassId;
 	}
 
-	public void setTrainTeacherId(String trainTeacherId) {
-		this.trainTeacherId = trainTeacherId;
+	public void setTrainClassId(String trainClassId) {
+		this.trainClassId = trainClassId;
+	}
+
+	public String getTrainClassName() {
+		return trainClassName;
+	}
+
+	public void setTrainClassName(String trainClassName) {
+		this.trainClassName = trainClassName;
+	}
+
+	public Integer getNum() {
+		return num;
+	}
+
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	public String getTeacherName() {
@@ -45,30 +71,23 @@ public class TrainClass {
 		this.teacherName = teacherName;
 	}
 
-	public String getTeacherTitle() {
-		return teacherTitle;
+	public String getClassSumary() {
+		return classSumary;
 	}
 
-	public void setTeacherTitle(String teacherTitle) {
-		this.teacherTitle = teacherTitle;
+	public void setClassSumary(String classSumary) {
+		this.classSumary = classSumary;
 	}
 
-	public Date getTeacherPosition() {
-		return teacherPosition;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setTeacherPosition(Date teacherPosition) {
-		this.teacherPosition = teacherPosition;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
-	public String getTeacherSumary() {
-		return teacherSumary;
-	}
-
-	public void setTeacherSumary(String teacherSumary) {
-		this.teacherSumary = teacherSumary;
-	}
-
+	
 	
     
 

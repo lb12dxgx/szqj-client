@@ -1,4 +1,4 @@
-package com.szqj.service.domain;
+package com.szqj.train.domain;
 
 import java.util.List;
 
@@ -16,8 +16,10 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author lb12
  *
  */
-public interface ZbInfoRepository extends PagingAndSortingRepository<ZbInfo, String> {
+public interface TrainPlanRepository extends PagingAndSortingRepository<TrainPlan, String> {
 
-	Page<ZbInfo> findPageByZbXmName(String zbXmName, PageRequest pageable);
+	Page<TrainPlan> findPageByTrainPlanName(String trainPlanName, PageRequest pageable);
+
+	
 	
 }

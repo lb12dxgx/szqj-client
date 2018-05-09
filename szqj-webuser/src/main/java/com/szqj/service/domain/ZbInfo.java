@@ -29,6 +29,8 @@ public class ZbInfo {
 	
 	private String zbContent;//招标文件内容
 	
+	private Date createDate;//创建时间
+	
 	
 
 	public String getZbXmName() {
@@ -77,6 +79,14 @@ public class ZbInfo {
 
 	public void setZbInfoId(String zbInfoId) {
 		this.zbInfoId = zbInfoId;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 	
 	

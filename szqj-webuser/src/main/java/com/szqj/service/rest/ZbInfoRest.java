@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.cms.domain.ColumnInfoRepository;
-import com.szqj.service.domain.Product;
-import com.szqj.service.domain.ProductRepository;
+import com.szqj.service.domain.ZbInfo;
+import com.szqj.service.domain.ZbInfoRepository;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
@@ -23,42 +23,42 @@ import com.szqj.weborg.service.AccountService;
 
 
 @RestController
-@RequestMapping("/system/product/")
+@RequestMapping("/system/zbInfo/")
 @EnableAutoConfiguration
-public class  ProductRest {
+public class  ZbInfoRest {
 	
 	@Autowired
-	private ProductRepository productRepository;
+	private ZbInfoRepository zbInfoRepository;
 	
 	
-
+	
 	@RequestMapping(value = "list.do"  )
-	public RestJson list( String productName,   Integer pageNum, Integer size){
+	public RestJson list( String zbXmName,   Integer pageNum, Integer size){
 		PageRequest pageable=Tools.getPage(pageNum-1, size);
-		Page<Product> page = productRepository.findPageByProductName(productName, pageable);
+		Page<ZbInfo> page = zbInfoRepository.findPageByZbXmName(zbXmName, pageable);
 		return RestJson.createSucces(page);
 	}
 	
 	
 	
 	@RequestMapping(value = "save.do"  )
-	public RestJson save( Product product){
-		product.setCreateDate(new Date());
-		productRepository.save(product);
-		return RestJson.createSucces(product);
+	public RestJson save( ZbInfo zbInfo){
+		zbInfo.setCreateDate(new Date());
+		zbInfoRepository.save(zbInfo);
+		return RestJson.createSucces(zbInfo);
 	}
 	
 	
 	@RequestMapping(value = "update.do"  )
-	public RestJson update( Product product){
-		productRepository.save(product);
-		return RestJson.createSucces(product);
+	public RestJson update( ZbInfo zbInfo){
+		zbInfoRepository.save(zbInfo);
+		return RestJson.createSucces(zbInfo);
 	}
 	
 	
 	@RequestMapping(value = "delete.do"  )
-	public RestJson delete( String productId){
-		productRepository.deleteById(productId);
+	public RestJson delete( String zbInfoId){
+		zbInfoRepository.deleteById(zbInfoId);
 		return RestJson.createSucces();
 	}
 	
