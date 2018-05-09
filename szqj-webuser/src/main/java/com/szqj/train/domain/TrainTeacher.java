@@ -26,7 +26,7 @@ public class TrainTeacher {
     private Date teacherPosition;//老师职位
    
     private String teacherSumary;//老师说明
-    
+     
     private String teacherPicId;//老师照片
 
 	public String getTrainTeacherId() {
