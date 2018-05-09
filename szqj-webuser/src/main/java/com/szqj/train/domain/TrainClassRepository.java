@@ -1,7 +1,7 @@
 package com.szqj.train.domain;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 
@@ -14,7 +14,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface TrainClassRepository extends PagingAndSortingRepository<TrainClass, String> {
 
-	Page<TrainClass> findPageByTrainClassName(String trainClassName, PageRequest pageable);
+	Page<TrainClass> findPageByTrainClassName(String trainClassName, Pageable pageable);
 
 	
 	

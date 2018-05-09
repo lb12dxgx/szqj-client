@@ -28,9 +28,9 @@ public class TrainPlanRest {
 	
 	@RequestMapping(value = "list.do"  )
 	
-	public RestJson list( String trainPlanName,   Integer pageNum, Integer size){
+	public RestJson list( String trainName,   Integer pageNum, Integer size){
 		PageRequest pageable=Tools.getPage(pageNum-1, size);
-		Page<TrainPlan> page = trainPlanRepository.findPageByTrainPlanName(trainPlanName, pageable);
+		Page<TrainPlan> page = trainPlanRepository.findPageByTrainName(trainName, pageable);
 		return RestJson.createSucces(page);
 	}
 	
