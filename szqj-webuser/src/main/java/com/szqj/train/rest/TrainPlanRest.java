@@ -2,6 +2,7 @@ package com.szqj.train.rest;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
@@ -29,12 +30,21 @@ public class TrainPlanRest {
 	@RequestMapping(value = "list.do"  )
 	
 	public RestJson list( String trainName,   Integer pageNum, Integer size){
+		Page<TrainPlan> page=null;
 		PageRequest pageable=Tools.getPage(pageNum-1, size);
-		Page<TrainPlan> page = trainPlanRepository.findPageByTrainName(trainName, pageable);
+		if(StringUtils.isNotBlank(trainName)) {
+			page = trainPlanRepository.findPageByTrainName(trainName, pageable);
+		}else {
+			page = trainPlanRepository.findPage(pageable);
+		}
 		return RestJson.createSucces(page);
 	}
 	
-	
+	@RequestMapping(value = "get.do"  )
+	public RestJson get(String trainPlanId){
+		TrainPlan trainPlan = trainPlanRepository.findById(trainPlanId).get();
+		return RestJson.createSucces(trainPlan);
+	}
 	
 	@RequestMapping(value = "save.do"  )
 	public RestJson save( TrainPlan trainPlan){
