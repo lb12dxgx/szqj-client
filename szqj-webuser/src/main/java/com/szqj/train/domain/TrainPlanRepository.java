@@ -15,7 +15,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface TrainPlanRepository extends PagingAndSortingRepository<TrainPlan, String> {
 	
-	@Query("select m from TrainPlan m where m.trainName=?1 order by m.createDate  ")
+	@Query("select m from TrainPlan m where m.trainName like %?1% order by m.createDate  ")
 	Page<TrainPlan> findPageByTrainName(String trainName, Pageable pageable);
 
 	@Query("select m from TrainPlan m   order by m.createDate  ")

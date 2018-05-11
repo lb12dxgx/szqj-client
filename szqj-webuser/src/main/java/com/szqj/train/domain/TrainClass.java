@@ -30,6 +30,8 @@ public class TrainClass {
     private String classSumary;//课程说明
     
     private Date createDate;//创建时间
+    
+    private String trainPlanId;//计划ID
 
 	public String getTrainClassId() {
 		return trainClassId;
@@ -85,6 +87,14 @@ public class TrainClass {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getTrainPlanId() {
+		return trainPlanId;
+	}
+
+	public void setTrainPlanId(String trainPlanId) {
+		this.trainPlanId = trainPlanId;
 	}
 
 	
