@@ -25,7 +25,7 @@ public class TrainTeacher {
 	
     private String teacherTitle;//老师职称
     
-    private Date teacherPosition;//老师职位
+    private String teacherPosition;//老师职位
    
     private String teacherSumary;//老师说明
      
@@ -63,11 +63,12 @@ public class TrainTeacher {
 		this.teacherTitle = teacherTitle;
 	}
 
-	public Date getTeacherPosition() {
+	
+	public String getTeacherPosition() {
 		return teacherPosition;
 	}
 
-	public void setTeacherPosition(Date teacherPosition) {
+	public void setTeacherPosition(String teacherPosition) {
 		this.teacherPosition = teacherPosition;
 	}
 

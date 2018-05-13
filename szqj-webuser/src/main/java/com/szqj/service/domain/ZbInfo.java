@@ -25,7 +25,7 @@ public class ZbInfo {
 	
 	private Date endDate;//截止日期
 	
-	private String area;//地址
+	private String area;//项目地址
 	
 	private String zbContent;//招标文件内容
 	
