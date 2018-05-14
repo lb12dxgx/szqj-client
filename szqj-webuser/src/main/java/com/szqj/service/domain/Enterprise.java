@@ -38,6 +38,8 @@ public class Enterprise {
 	private Date createDate;//创建时间
 	
 	private Integer level;//级别  10:普通级别  20:vip级别  30:超级级别
+	
+	private Integer orderNum;//顺序
 
 	public String getEnterpriseId() {
 		return enterpriseId;
@@ -125,6 +127,14 @@ public class Enterprise {
 
 	public void setLevel(Integer level) {
 		this.level = level;
+	}
+
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
 	}
 	
 	
