@@ -1,24 +1,20 @@
 package com.szqj.service.rest;
 
 import java.util.Date;
-import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
+import com.szqj.service.domain.Product;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
-import com.szqj.weborg.domain.Account;
-import com.szqj.weborg.service.AccountService;
 
 
 
@@ -34,11 +30,23 @@ public class EnterpriseRest {
 
 	@RequestMapping(value = "list.do"  )
 	public RestJson list( String enterpriseName,   Integer pageNum, Integer size){
+		
+		Page<Enterprise> page=null;
 		PageRequest pageable=Tools.getPage(pageNum-1, size);
-		Page<Enterprise> page = enterpriseRepository.findPageByEnterpriseName(enterpriseName, pageable);
+		if(StringUtils.isNotBlank(enterpriseName)) {
+			page =  enterpriseRepository.findPageByEnterpriseName(enterpriseName, pageable);
+		}else {
+			page = enterpriseRepository.findPage(pageable);
+		}
+		
 		return RestJson.createSucces(page);
 	}
 	
+	@RequestMapping(value = "get.do"  )
+	public RestJson get(String enterpriseId){
+		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
+		return RestJson.createSucces(enterprise);
+	}
 	
 	
 	@RequestMapping(value = "save.do"  )

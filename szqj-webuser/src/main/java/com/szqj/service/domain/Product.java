@@ -41,7 +41,7 @@ public class Product {
 	
 	private Date createDate;//创建时间
 	
-	
+	private Integer level;//级别  10:普通级别  20:vip级别  30:超级级别
 
 	public String getProductId() {
 		return productId;
@@ -137,6 +137,14 @@ public class Product {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
 	}
 	
 	

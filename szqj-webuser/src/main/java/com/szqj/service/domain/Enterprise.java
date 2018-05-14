@@ -36,6 +36,8 @@ public class Enterprise {
 	private String accountId;//账号
 	
 	private Date createDate;//创建时间
+	
+	private Integer level;//级别  10:普通级别  20:vip级别  30:超级级别
 
 	public String getEnterpriseId() {
 		return enterpriseId;
@@ -115,6 +117,14 @@ public class Enterprise {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
 	}
 	
 	
