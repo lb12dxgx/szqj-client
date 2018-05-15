@@ -37,7 +37,7 @@ public class Enterprise {
 	
 	private Date createDate;//创建时间
 	
-	private Integer level;//级别  10:普通级别  20:vip级别  30:超级级别
+	private Integer level;//级别  10:普通级别  20:vip  30:超级VIP
 	
 	private Integer orderNum;//顺序
 
