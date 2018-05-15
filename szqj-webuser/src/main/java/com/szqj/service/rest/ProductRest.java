@@ -1,6 +1,7 @@
 package com.szqj.service.rest;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.szqj.service.domain.Product;
 import com.szqj.service.domain.ProductRepository;
 import com.szqj.service.domain.ZbInfo;
+import com.szqj.train.domain.TrainClass;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
 
@@ -29,15 +31,10 @@ public class  ProductRest {
 	
 
 	@RequestMapping(value = "list.do"  )
-	public RestJson list( String productName,   Integer pageNum, Integer size){
-		Page<Product> page=null;
-		PageRequest pageable=Tools.getPage(pageNum-1, size);
-		if(StringUtils.isNotBlank(productName)) {
-			page = productRepository.findPageByProductName(productName, pageable);
-		}else {
-			page = productRepository.findPage(pageable);
-		}
-		return RestJson.createSucces(page);
+	public RestJson list( String enterpriseId){
+		List<Product> list = productRepository.findByEnterpriseId(enterpriseId);
+		return RestJson.createSucces(list);
+		
 	}
 	
 	

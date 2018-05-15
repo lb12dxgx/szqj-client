@@ -41,7 +41,9 @@ public class Product {
 	
 	private Date createDate;//创建时间
 	
-	private Integer level;//级别  10:普通级别  20:vip级别  30:超级级别
+	private Integer level;//级别  10:普通级别  20:vip级别  30:超级VIP
+	
+	private Integer orderNum;//顺序
 
 	public String getProductId() {
 		return productId;
@@ -145,6 +147,14 @@ public class Product {
 
 	public void setLevel(Integer level) {
 		this.level = level;
+	}
+
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
 	}
 	
 	
