@@ -26,6 +26,8 @@ public class TrainCert {
     private String  userCode;//身份证号
     
     private String certCode;//证书编码
+    
+    private String certPicPath;//照片
    
     private Date startDate;//开始时间
     
@@ -107,6 +109,15 @@ public class TrainCert {
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
 	}
+
+	public String getCertPicPath() {
+		return certPicPath;
+	}
+
+	public void setCertPicPath(String certPicPath) {
+		this.certPicPath = certPicPath;
+	}
+
 
 	
 	
