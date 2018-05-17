@@ -73,6 +73,50 @@ public class FileInfoRest {
 		
 	}
 	
+	@RequestMapping(value = "/uploadone.do"  )
+	@ResponseBody
+	public RestJson uploadone(@RequestParam("file") MultipartFile file,String ss_accountId,String dirName ,String bussinessId){
+		if(StringUtils.isBlank(bussinessId)){
+			bussinessId= UUID.randomUUID().toString();
+		}
+		String fileName = file.getOriginalFilename();
+		//获取文件的后缀名
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        fileName = UUID.randomUUID() + suffixName;
+        File dest = new File(uploadPath +dirName+File.separator+ fileName);
+        // 检测是否存在目录
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
+        try {
+            file.transferTo(dest);
+            List<FileInfo> l = fileInfoRepository.findByBussinessId(bussinessId);
+            FileInfo f=null;
+            if(l==null||l.size()==0){
+            	f=new FileInfo();
+            }else{
+            	f=l.get(0);
+            }
+            f.setCreateDate(new Date());
+    		f.setCreateUserId(ss_accountId);
+    		f.setDelFlag(ConstantUtils.NEW_FLAG);
+    		f.setFilePath(uploadPath +dirName+File.separator+ fileName);
+    		f.setFileWebPath(dirName+"/"+fileName);
+    		f.setFileName(file.getOriginalFilename());
+    		f.setFileType(suffixName);
+    		f.setBussinessId(bussinessId);
+    		fileInfoRepository.save(f);
+            return RestJson.createSucces(f);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return RestJson.createError();
+		
+		
+	}
+	
 	@RequestMapping(value = "/delete.do"  )
 	@ResponseBody
 	public RestJson delete(String fileInfoId,String ss_accountId){
