@@ -1,4 +1,4 @@
-package com.szqj.service.domain;
+package com.szqj.train.domain;
 
 import java.util.Date;
 
@@ -13,13 +13,13 @@ import org.hibernate.annotations.GenericGenerator;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 
 @Entity
-@Table(name = "service_meet_signup")
-public class MeetSignUp {
+@Table(name = "train_signup")
+public class TrainSignUp {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
-	private String meetSignUpId;
+	private String trainSignUpId;
 	
 	@Excel(name = "姓名", height = 20.0, width = 30, isImportField = "true_st", orderNum = "0")
 	private String userName;//姓名
@@ -32,25 +32,17 @@ public class MeetSignUp {
 	@Excel(name = "职位",isImportField = "true_st" , orderNum = "3")
 	private String post;//职位
 	
-	private String addree;//地址
-	
+	@Excel(name = "邮件",isImportField = "true_st" , orderNum = "4")
 	private String email;//邮件
 	
-	@Excel(name = "住宿要求",isImportField = "true_st", orderNum = "4")
-	private String  singleRoom;//单住  ,合住 ,不住
+
 
 	@Excel(name = "申请时间", width = 30, isImportField = "true_st",databaseFormat = "yyyyMMddHHmmss", format = "yyyy-MM-dd", orderNum = "5")
 	private Date createDate;//创建时间
 	
-	private String meetId;//会议id
+	private String trainPlanId;//培训计划ID
 
-	public String getMeetSignUpId() {
-		return meetSignUpId;
-	}
-
-	public void setMeetSignUpId(String meetSignUpId) {
-		this.meetSignUpId = meetSignUpId;
-	}
+	
 
 	public String getUserName() {
 		return userName;
@@ -85,16 +77,6 @@ public class MeetSignUp {
 	}
 
 	
-
-	
-	public String getSingleRoom() {
-		return singleRoom;
-	}
-
-	public void setSingleRoom(String singleRoom) {
-		this.singleRoom = singleRoom;
-	}
-
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -103,28 +85,29 @@ public class MeetSignUp {
 		this.createDate = createDate;
 	}
 
-	public String getMeetId() {
-		return meetId;
-	}
-
-	public void setMeetId(String meetId) {
-		this.meetId = meetId;
-	}
-
-	public String getAddree() {
-		return addree;
-	}
-
-	public void setAddree(String addree) {
-		this.addree = addree;
-	}
-
+	
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getTrainSignUpId() {
+		return trainSignUpId;
+	}
+
+	public void setTrainSignUpId(String trainSignUpId) {
+		this.trainSignUpId = trainSignUpId;
+	}
+
+	public String getTrainPlanId() {
+		return trainPlanId;
+	}
+
+	public void setTrainPlanId(String trainPlanId) {
+		this.trainPlanId = trainPlanId;
 	}
 
 	

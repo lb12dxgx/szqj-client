@@ -21,10 +21,6 @@ public class Meet {
 	
 	private String meetName;//会议名称
 	
-	private String meetSummary;//会议摘要
-	 
-	private String meetContent;//会议内容
-	
 	private String meetPlace;//会议地点
 	
 	private Integer meetPrice;//会议价格
@@ -33,7 +29,13 @@ public class Meet {
 	
 	private Date startDate;//开始时间
 	
-	private Date endtDate;//结束时间
+	private Date endDate;//结束时间
+	
+	private String meetSummary;//会议摘要
+	 
+	private String meetContent;//会议内容
+	
+	private String meetPicId;//会议宣传图片
 	
 	private Date createDate;//创建时间
 	
@@ -102,12 +104,14 @@ public class Meet {
 		this.startDate = startDate;
 	}
 
-	public Date getEndtDate() {
-		return endtDate;
+	
+
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setEndtDate(Date endtDate) {
-		this.endtDate = endtDate;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Date getCreateDate() {
@@ -116,6 +120,14 @@ public class Meet {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getMeetPicId() {
+		return meetPicId;
+	}
+
+	public void setMeetPicId(String meetPicId) {
+		this.meetPicId = meetPicId;
 	}
 	
 	
