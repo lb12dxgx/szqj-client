@@ -35,18 +35,30 @@
     
      <!--右侧内容开始-->
      <div class="col-md-9">
-     <form method="post" action="/service/cardResult.html">
+     <form method="post" action="/service/cardResult.html" id="searchForm">
+     	  <div class="row " th:if="${flag==1}">
+	     	  <div class="col-md-3 text-right"></div>
+	     	  <div class="col-md-5 text-center">
+	     	  	<label class="errorlabel error"><h5>请核对信息重新查询!</h5></label>
+	     	  </div>
+     	  </div>
+     	  <div class="row zcsx-list">
+			  <div class="col-md-3 text-right"><label class="control-label zscx-text">姓名</label></div>
+			  <div class="col-md-5 text-center"><input class="form-control" placeholder="请输入姓名" type="text" name="userName" th:value="${userName}"></div>
+			  <div class="col-md-4 text-left"><label id="userName-error" class="errorlabel error"  for="userName" /></div>
+		   </div>
+     		
 	       <div class="row zcsx-list">
-			  <div class="col-md-3 text-right"><label class="control-label zscx-text">证书号</label></div>
-			  <div class="col-md-5 text-center"><input class="form-control" placeholder="请输入证书号" type="text"></div>
-			  <div class="col-md-4 text-left"></div>
+			  <div class="col-md-3 text-right"><label class="control-label zscx-text">证书编号</label></div>
+			  <div class="col-md-5 text-center"><input class="form-control" placeholder="请输入证书编号" type="text" name="certCode" th:value="${certCode}"></div>
+			  <div class="col-md-4 text-left"><label id="certCode-error" class="errorlabel error"  for="certCode"/></div>
 		   </div>
 		
 		   <div>
 		   <div>
 				<div class="col-md-3 text-right"></div>
 				<div class="col-md-5 text-center">
-				<button href="#" class="btn btn-primary" type="submit">开始查询</button>
+				<button class="btn btn-primary" id="search">开始查询</button>
 					
 			   </div>
 				<div class="col-md-4 text-left">
@@ -63,12 +75,40 @@
  <!--footer开始-->
 	<div th:include="footer"></div>
 	 <!--footer结束-->
+	 <link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+	 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 	 <script type="text/javascript">
 		$(function(){
 			$('#service').removeClass("manulinknone");
 			$('#service').addClass("manulink");
 			$('#l_search').removeClass("cyfw-manu2-none");
 			$('#l_search').addClass("cyfw-manu2-on");
+			
+			$('#search').click(function(){
+				if($("#searchForm").valid()){
+					$("#searchForm").submit();
+				}
+			})
+			
+			 $("#searchForm").validate({
+		          rules: {
+		            userName:{
+		               required:true,
+		            },
+		            certCode: {
+		              required: true,
+		            }
+		          },
+		          
+		          messages: {
+		            userName:{
+		              required:'请输入姓名'
+		            },
+		            certCode:{
+			             required:'请输入证书编号'
+			        },
+		         }
+		     });
 		})
 	 </script>
  <!--footer结束-->

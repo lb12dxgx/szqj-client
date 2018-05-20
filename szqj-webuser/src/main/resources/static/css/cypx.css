@@ -137,3 +137,28 @@ transition:all .6s ease-in-out;
   width: 210px;
 	margin: 0 auto;
 }
+
+/*新增讲师列表开始*/
+.jslb-text{
+	font-size: 14px;
+}
+.jslb-text li{
+	padding-bottom: 13px;
+}
+.jslb-text li:last-child{
+ padding-bottom: 0;
+}
+.pxjs_list{
+	background: #ECECEC;
+	padding: 10px;
+	margin-bottom: 40px;
+}
+.js-left{
+	width: 42%;
+
+}
+.js-right{
+	width: 58%;
+
+}
+/*讲师列表结束*/

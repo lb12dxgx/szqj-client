@@ -1,10 +1,12 @@
 package com.szqj.website.control;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,12 @@ import com.szqj.cms.domain.ColumnInfo;
 import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
+import com.szqj.service.domain.Meet;
+import com.szqj.service.domain.MeetRepository;
+import com.szqj.train.domain.TrainCert;
+import com.szqj.train.domain.TrainCertRepository;
+import com.szqj.train.domain.TrainTeacher;
+import com.szqj.util.Tools;
 
 @Controller
 @RequestMapping("/")
@@ -24,7 +32,11 @@ public class ServiceControle {
 	private ColumnInfoRepository columnInfoRepository;
 	@Autowired
 	private ContentInfoRepository contentInfoRepository;
+	@Autowired
+	private MeetRepository meetRepository;
 	
+	@Autowired
+	private TrainCertRepository trainCertRepository;
 	
 	/**
 	 * 电子证书认证
@@ -64,8 +76,17 @@ public class ServiceControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/service/cardResult.html"  )
-	public String cardResult(ModelMap modelMap){
-		return "service/cardResult"; 
+	public String cardResult(String userName, String certCode, ModelMap modelMap){
+		List<TrainCert> l = trainCertRepository.findByUserNameAndCertCode(userName, certCode);
+		if(l!=null&&l.size()>0) {
+			modelMap.put("trainCert", l.get(0));
+			return "service/cardResult"; 
+		}else {
+			modelMap.put("flag", 1);
+			modelMap.put("userName", userName);
+			modelMap.put("certCode", certCode);
+			return "service/cardSearch"; 
+		}
 	}
 	
 	
@@ -75,14 +96,27 @@ public class ServiceControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/service/meet.html"  )
-	public String index_meet(ModelMap modelMap){
-		String columnCode="1_cy_fw_hy";
-		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode(columnCode);
-		List<ContentInfo> list=contentInfoRepository.findListByColumnId(columnInfo.getColumnId());
-		modelMap.put("list", list);
+	public String index_meet(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Meet> page=meetRepository.findPage(pageable);
+		modelMap.put("page", page);
 		return "service/meet"; 
 	}
 	
+	
+	@RequestMapping(value = "/service/meet/detail.html"  )
+	public String meet_detail(String meetId, ModelMap modelMap){
+		Meet meet = meetRepository.findById(meetId).get();
+		modelMap.put("meet", meet);
+		return "service/meetdetail"; 
+	}
+	
+	@RequestMapping(value = "/service/meet/signup.html"  )
+	public String meet_signup(String meetId, ModelMap modelMap){
+		Meet meet = meetRepository.findById(meetId).get();
+		modelMap.put("meet", meet);
+		return "service/meetsignup"; 
+	}
 	
 	/**
 	 * 技术推广

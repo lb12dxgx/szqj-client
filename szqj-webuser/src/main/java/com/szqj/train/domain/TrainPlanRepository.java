@@ -1,5 +1,7 @@
 package com.szqj.train.domain;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +22,11 @@ public interface TrainPlanRepository extends PagingAndSortingRepository<TrainPla
 
 	@Query("select m from TrainPlan m   order by m.createDate  ")
 	Page<TrainPlan> findPage(Pageable pageable);
+	
+	@Query("select m from TrainPlan m where m.showMain=1  order by m.createDate  ")
+	List<TrainPlan> findMainTrain();
+	
+	@Query("select m from TrainPlan m where m.showMain=0  order by m.createDate  ")
+	List<TrainPlan> findListTrain();
 	
 }

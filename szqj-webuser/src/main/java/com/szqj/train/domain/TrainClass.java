@@ -27,6 +27,8 @@ public class TrainClass {
    
     private String teacherName;//教师名称
     
+    private String classDesc;//课程介绍
+    
     private String classSumary;//课程说明
     
     private Date createDate;//创建时间
@@ -95,6 +97,14 @@ public class TrainClass {
 
 	public void setTrainPlanId(String trainPlanId) {
 		this.trainPlanId = trainPlanId;
+	}
+
+	public String getClassDesc() {
+		return classDesc;
+	}
+
+	public void setClassDesc(String classDesc) {
+		this.classDesc = classDesc;
 	}
 
 	

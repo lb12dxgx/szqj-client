@@ -29,6 +29,8 @@ public class TrainPlan {
     
     private Integer personNum;//培训人数
     
+    private Integer showMain;//1:单独显示,0:列表显示
+    
     private Integer trainMoney;//培训费
     
     private String trainSumary;//培训说明
@@ -105,6 +107,14 @@ public class TrainPlan {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public Integer getShowMain() {
+		return showMain;
+	}
+
+	public void setShowMain(Integer showMain) {
+		this.showMain = showMain;
 	}
     
     

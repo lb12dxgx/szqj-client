@@ -60,21 +60,6 @@ public class IndexControle {
 	
 	
 	
-
-	
-	
-
-	/**
-	 * 产业培训
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/train/index.html"  )
-	public String index_train(ModelMap modelMap){
-		return "train/index"; 
-	}
-	
-	
 	/**
 	 * 产业服务
 	 * @param modelMap

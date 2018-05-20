@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+<link  th:href="@{/css/index.css}" rel="stylesheet" type="text/css">
+<link href="/css/cypx.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+
+  <div class="gb-main"> 
+
+  <div class=" container">
+  <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+       <li class="active">培训课程</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+	  <!--培训课程列表开始-->
+       <div class="row text-center px_list">
+       
+		<div class="col-md-4">
+		  	<a href="#">
+				<div class="img-shadow-1 pxkc-box" th:each="class,iterStat:${page.content}">
+				  <div class="px-kcbt shenhui"><span th:text="${class.trainClassName}">基础知识理论课程</span><br>学时：<span th:text="${class.num}">2</span>小时</div>
+				  <div>
+				   <p class="gray text-left px-zw" th:text="${class.classDesc}" >课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍</p>
+				  </div>
+				</div>
+			</a>
+		</div>
+	
+	  </div>
+     <!--培训课程列表结束-->
+    <!--分页开始-->  
+        <div class="row">
+            <div class="col-md-12 text-center">
+				<div th:include="pagination"/> 
+           </div>
+        </div> 
+      <!--分页结束-->
+                  
+   
+  </div>
+  </div>
+  <!--footer开始-->
+	 <div th:include="footer"></div>
+  	<!--footer结束-->
+  	<script type="text/javascript">
+	$(function(){
+		$('#train').removeClass("manulinknone");
+		$('#train').addClass("manulink");
+		
+		$('.page-link').click(function(){
+			  if(!$(this).parent().hasClass("disabled")){
+				  var pageNum=$(this).attr("pageIndex");
+				  $(window).attr('location', '/train/classList.html?pageNum='+pageNum);
+			  }
+		});
+	})
+</script>
+</body>
+</html>

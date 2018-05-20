@@ -247,5 +247,88 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 	padding-top: 6px;
 }
 
+/*产业服务新增菜单开始*/
+.cyfw-manu6-on:link,
+.cyfw-manu6-on:visited{
+ background: url( ../images/zbxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu6-on:hover,
+.cyfw-manu6-on:active{
+ background: url( ../images/zbxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu6-none:link,
+.cyfw-manu6-none:visited{
+ background: url( ../images/zbxx1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu6-none:hover,
+.cyfw-manu6-none:active{
+ background: url( ../images/zbxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu7-on:link,
+.cyfw-manu7-on:visited{
+ background: url( ../images/cpxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu7-on:hover,
+.cyfw-manu7-on:active{
+ background: url( ../images/cpxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu7-none:link,
+.cyfw-manu7-none:visited{
+ background: url( ../images/cpxx1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu7-none:hover,
+.cyfw-manu7-none:active{
+ background: url( ../images/cpxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu8-on:link,
+.cyfw-manu8-on:visited{
+ background: url( ../images/sjxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu8-on:hover,
+.cyfw-manu8-on:active{
+ background: url( ../images/sjxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu8-none:link,
+.cyfw-manu8-none:visited{
+ background: url( ../images/sjxx1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu8-none:hover,
+.cyfw-manu8-none:active{
+ background: url( ../images/sjxx2.jpg);
+	color: #fff;
+}
+.cyfw-manu9-on:link,
+.cyfw-manu9-on:visited{
+ background: url( ../images/ryzscx2.jpg);
+	color: #ffff;
+}
+.cyfw-manu9-on:hover,
+.cyfw-manu9-on:active{
+ background: url( ../images/ryzscx2.jpg);
+	color: #fff;
+}
+.cyfw-manu9-none:link,
+.cyfw-manu9-none:visited{
+ background: url( ../images/ryzscx1.jpg);
+	color: #0f57a1;
+}
+.cyfw-manu9-none:hover,
+.cyfw-manu9-none:active{
+ background: url( ../images/ryzscx2.jpg);
+	color: #fff;
+}
+/*产业服务新增菜单结束*/
+
 
 

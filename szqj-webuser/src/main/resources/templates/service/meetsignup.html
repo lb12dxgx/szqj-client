@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	<link href="/css/gxsg.css" rel="stylesheet" type="text/css">
+</head>
+<head>
+ <link href="css/gxsg.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+       <li class="active">会议信息</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row">
+     <!--左侧内容开始-->
+     <div class="col-md-12">
+
+	   <div class="row">
+		   <div class="col-md-10 text-center"><h3 th:text="${meet.meetName}"></h3></div>
+		   <div class="col-md-2 "><button id="reg" type="button" class="btn btn-success btn-sm">在线报名</button></div>
+	   </div> 
+	    <div class="row">
+	      <div class="pull-left"  >开会时间: <span th:text="${#dates.format(meet.startDate, 'yyyy-MM-dd')}"></span></div>
+		   <div class="pull-right" >开会地点:<span th:text="${meet.meetPlace}"></span></div>
+	   </div> 
+		
+		 <div class="box-bgcl spxq-box"  th:utext="${meet.meetContent}">
+			 
+		 </div>
+      </div>
+     
+   </div>
+ </div>
+ 
+  	<!--footer开始-->
+	 <div th:include="footer"></div>
+  	<!--footer结束-->
+  	  	<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		$('#service').removeClass("manulinknone");
+		$('#service').addClass("manulink");
+		
+	})
+</script>
+
+</body>
+</html>
