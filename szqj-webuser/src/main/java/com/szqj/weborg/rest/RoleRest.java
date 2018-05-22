@@ -75,26 +75,26 @@ public class RoleRest {
 	}
 	
 	//根据角色ID返回账户集合
-	@RequestMapping(value = "accountByRole")
+	@RequestMapping(value = "accountByRole.do")
 	public RestJson accountByRole( String roleId){
 		List<RoleUser> l = roleUserRepository.findByRoleId(roleId);
 		return RestJson.createSucces(l);
 	}
 	//根据角色返回账号
-	@RequestMapping(value = "saveRoleAccount")
+	@RequestMapping(value = "saveRoleAccount.do")
 	public RestJson saveRoleAccount( String roleId,String[] userList,HttpServletRequest request){
 	   roleService.saveRoleAccount(roleId,userList); 
 	   return RestJson.createSucces();
 	}
 	//根据角色返回账号
-	@RequestMapping(value = "saveRoleMenu")
+	@RequestMapping(value = "saveRoleMenu.do")
 	public RestJson saveRoleMenu( String roleId,String[] menuList,HttpServletRequest request){
 			Map<String, String[]> map = request.getParameterMap();
 			roleService.saveRoleMenu(roleId,menuList);
 			return RestJson.createSucces();
 	}
 	//根据角色返回账号
-	@RequestMapping(value = "getRoleMenu")
+	@RequestMapping(value = "getRoleMenu.do")
 	public RestJson getRoleMenu( String roleId){
 		List<RoleMenu> l=roleService.getRoleMenu(roleId);
 		return RestJson.createSucces(l);
