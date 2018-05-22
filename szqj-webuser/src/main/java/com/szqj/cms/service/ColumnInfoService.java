@@ -57,7 +57,7 @@ public class ColumnInfoService {
 				if(map.get(pid)==null){
 					System.out.print(pid);
 				}else{
-				map.get(pid).addNode(n);
+					map.get(pid).addNode(n);
 				}
 			}
 		}
@@ -66,6 +66,44 @@ public class ColumnInfoService {
 		return l;
 	}
 	
+	
+	public List<ColumnInfoNode> getTreeByRoleId(String[] columnIdList){
+		Iterable<String> ids=java.util.Arrays.asList(columnIdList);
+		List<ColumnInfo> exitList = columnInfoRepository.findAllById(ids);
+		ColumnInfo root = columnInfoRepository.getRoot();
+		List<ColumnInfo> ColumnInfos = columnInfoRepository.getTreeNoes();
+		Map<String,ColumnInfoNode> map=new HashMap<String,ColumnInfoNode>();
+		ColumnInfoNode rootNode=change(root);
+		map.put(root.getColumnId(), rootNode);
+		
+		for(ColumnInfo m:ColumnInfos){
+			map.put(m.getColumnId(),change(m));
+		}
+		
+		for(ColumnInfo m:exitList){
+			String pid = m.getParentId();
+			ColumnInfoNode parent = map.get(pid);
+			if(parent.getColumnId().equals(root.getColumnId())) {
+				List<ColumnInfoNode> l = rootNode.getChildren();
+				l.contains(parent)
+			}
+			parent.addNode(change(m));
+			addParent(parent,map);
+		}
+	}
+	
+	
+
+	private void addParent(ColumnInfoNode node, Map<String, ColumnInfoNode> map) {
+		if(node.getParentId()!='-1') {
+			
+		}else {S
+			return ;
+		}
+		
+	}
+
+
 	private ColumnInfoNode change(ColumnInfo columnInfo){
 		ColumnInfoNode m=new ColumnInfoNode();
 		m.setColumnId(columnInfo.getColumnId());

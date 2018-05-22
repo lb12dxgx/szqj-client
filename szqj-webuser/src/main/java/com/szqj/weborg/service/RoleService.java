@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.szqj.weborg.domain.Role;
+import com.szqj.weborg.domain.RoleColumn;
+import com.szqj.weborg.domain.RoleColumnRepository;
 import com.szqj.weborg.domain.RoleMenu;
 import com.szqj.weborg.domain.RoleMenuRepository;
 import com.szqj.weborg.domain.RoleRepository;
@@ -28,6 +30,9 @@ public class RoleService {
 	
 	@Autowired
 	private RoleMenuRepository roleMenuRepository;
+	
+	@Autowired
+	private RoleColumnRepository roleColumnRepository;
 	
 	
 	public Page<Role> findByRoleName(String roleName, PageRequest pageable) {
@@ -63,6 +68,22 @@ public class RoleService {
 			roleMenu.setRoleId(roleId);
 			roleMenu.setMenuId(menuId);
 			roleMenuRepository.save(roleMenu);
+		}
+		
+	}
+	
+	public List<RoleColumn> getRoleColumn(String roleId) {
+		List<RoleColumn> l = roleColumnRepository.findByRoleId(roleId);
+		return l;
+	}
+
+	public void saveRoleColumn(String roleId, String[] columnList) {
+		roleMenuRepository.deleteByRoleId(roleId);
+		for(String columnId:columnList){
+			RoleColumn roleColum=new RoleColumn();
+			roleColum.setRoleId(roleId);
+			roleColum.setColumnId(columnId);
+			roleColumnRepository.save(roleColum);
 		}
 		
 	}

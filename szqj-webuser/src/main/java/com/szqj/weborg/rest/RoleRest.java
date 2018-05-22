@@ -9,20 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
-import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.domain.Role;
+import com.szqj.weborg.domain.RoleColumn;
 import com.szqj.weborg.domain.RoleMenu;
 import com.szqj.weborg.domain.RoleRepository;
 import com.szqj.weborg.domain.RoleUser;
 import com.szqj.weborg.domain.RoleUserRepository;
-import com.szqj.weborg.service.AccountService;
 import com.szqj.weborg.service.RoleService;
 
 
@@ -99,6 +96,21 @@ public class RoleRest {
 		List<RoleMenu> l=roleService.getRoleMenu(roleId);
 		return RestJson.createSucces(l);
 	}
+	
+	//根据角色返回账号
+		@RequestMapping(value = "saveRoleColumn.do")
+		public RestJson saveRoleColumn( String roleId,String[] columnList,HttpServletRequest request){
+				Map<String, String[]> map = request.getParameterMap();
+				roleService.saveRoleColumn(roleId,columnList);
+				return RestJson.createSucces();
+		}
+		//根据角色返回账号
+		@RequestMapping(value = "getRoleColumn.do")
+		public RestJson getRoleColumn( String roleId){
+			List<RoleColumn> l=roleService.getRoleColumn(roleId);
+			return RestJson.createSucces(l);
+		}
+		
 	
 	
 	
