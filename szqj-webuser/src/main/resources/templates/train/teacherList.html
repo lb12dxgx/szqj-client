@@ -26,7 +26,7 @@
    <div class="row">
      <ul class="breadcrumb col-md-12">
        <li><a href="#">首页</a></li>
-       <li class="active">讲师信息</li>
+       <li class="active">专家信息</li>
      </ul>
    </div>
    <!--面包屑结束-->
@@ -34,6 +34,7 @@
    <!--讲师信息开始-->
    <div class="row">
 	   <div class="col-md-4" th:each="teacher,iterStat:${page.content}">
+	   	 <a href="#">
 		   <div class="img-shadow-1 pxjs_list clearfix">
 			   <dl>
 				   <dt class="pull-left js-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${teacher.teacherPicPath}}" style="width:128px;height:160px"></img></dt>
@@ -45,7 +46,8 @@
 						</ul>
 				   </dd>
 			   </dl>
-		   </div>
+		   	</div>
+		   </a>	
 	   </div>
 	 
    </div>
@@ -61,7 +63,7 @@
    
   </div>
   </div>
-  <!--footer开始-->
+  	<!--footer开始-->
 	 <div th:include="footer"></div>
   	<!--footer结束-->
   	<script type="text/javascript">

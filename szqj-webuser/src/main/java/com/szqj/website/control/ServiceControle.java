@@ -1,5 +1,6 @@
 package com.szqj.website.control;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
 import com.szqj.service.domain.Meet;
 import com.szqj.service.domain.MeetRepository;
+import com.szqj.service.domain.MeetSignUp;
+import com.szqj.service.domain.MeetSignUpRepository;
 import com.szqj.train.domain.TrainCert;
 import com.szqj.train.domain.TrainCertRepository;
 import com.szqj.train.domain.TrainTeacher;
@@ -34,6 +37,9 @@ public class ServiceControle {
 	private ContentInfoRepository contentInfoRepository;
 	@Autowired
 	private MeetRepository meetRepository;
+	
+	@Autowired
+	private MeetSignUpRepository meetSignUpRepository;
 	
 	@Autowired
 	private TrainCertRepository trainCertRepository;
@@ -114,6 +120,15 @@ public class ServiceControle {
 	@RequestMapping(value = "/service/meet/signup.html"  )
 	public String meet_signup(String meetId, ModelMap modelMap){
 		Meet meet = meetRepository.findById(meetId).get();
+		modelMap.put("meet", meet);
+		return "service/meetsignup"; 
+	}
+	
+	@RequestMapping(value = "/service/meet/saveSignup.do"  )
+	public String saveSignup(MeetSignUp meetSignUp, ModelMap modelMap){
+		meetSignUp.setCreateDate(new Date());
+		meetSignUpRepository.save(meetSignUp);
+		Meet meet = meetRepository.findById(meetSignUp.getMeetId()).get();
 		modelMap.put("meet", meet);
 		return "service/meetsignup"; 
 	}

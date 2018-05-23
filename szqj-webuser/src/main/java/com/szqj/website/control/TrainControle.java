@@ -1,5 +1,6 @@
 package com.szqj.website.control;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -17,10 +18,13 @@ import com.szqj.cms.domain.ColumnInfo;
 import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
+import com.szqj.service.domain.Meet;
 import com.szqj.train.domain.TrainClass;
 import com.szqj.train.domain.TrainClassRepository;
 import com.szqj.train.domain.TrainPlan;
 import com.szqj.train.domain.TrainPlanRepository;
+import com.szqj.train.domain.TrainSignUp;
+import com.szqj.train.domain.TrainSignUpRepository;
 import com.szqj.train.domain.TrainTeacher;
 import com.szqj.train.domain.TrainTeacherRepository;
 import com.szqj.util.Tools;
@@ -39,6 +43,9 @@ public class TrainControle {
 	@Autowired
 	private TrainClassRepository trainClassRepository;
 	
+	@Autowired
+	private TrainSignUpRepository trainSignUpRepository;
+	
 	
 	/**
 	 * 培训首页
@@ -54,6 +61,47 @@ public class TrainControle {
 		setTrainTeacherClassList(modelMap);
 		
 		return "train/index"; 
+	}
+	
+	/**
+	 * 培训首页
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/train/detail.html")
+	public String train_detail(String trainPlanId,ModelMap modelMap){
+		TrainPlan trainPlan = trainPlanRepository.findById(trainPlanId).get();
+		modelMap.put("trainPlan", trainPlan);
+		return "train/traindetail"; 
+	}
+	
+	
+	/**
+	 * 培训首页
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/train/signup.html")
+	public String train_signup(String trainPlanId,ModelMap modelMap){
+		TrainPlan trainPlan = trainPlanRepository.findById(trainPlanId).get();
+		modelMap.put("trainPlan", trainPlan);
+		return "train/trainsignup"; 
+	}
+	
+	/**
+	 * 培训首页
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/train/saveSignup.do")
+	public String saveSignup(TrainSignUp trainSignUp,ModelMap modelMap){
+		trainSignUp.setCreateDate(new Date());
+		trainSignUpRepository.save(trainSignUp);
+		TrainPlan trainPlan = trainPlanRepository.findById(trainSignUp.getTrainPlanId()).get();
+		
+		modelMap.put("trainSignUp", trainSignUp);
+		modelMap.put("trainPlan", trainPlan);
+		return "train/trainsignup"; 
 	}
 	
 	

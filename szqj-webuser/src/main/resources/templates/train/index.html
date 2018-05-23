@@ -46,7 +46,7 @@
 					 <p>上课时间：<span th:text=" ${#dates.format(mainTrain.trainStartDate, 'yyyy-MM-dd')}">2018-01-03</span></p>
 					 <p>培训地点：<span th:text="${mainTrain.trainAddr}">武汉</span></p>
 				</div>
-				 <a href="#" class="btn btn-primary btn-warning" style="width: 40%;">培训信息</a>
+				 <a th:href="@{'/train/detail.html?trainPlanId='+${mainTrain.trainPlanId}}" class="btn btn-primary btn-warning" style="width: 40%;">培训信息</a>
 			 </div>
 		 </div>
 		</div>
@@ -54,7 +54,7 @@
       <div class="box-bgcl" style="overflow:auto;">
         <div th:each="train,iterStat:${trainList}">
 	        <ul class="gb-news">
-	          <li class="xwlist pull-left"><a href="#" th:text="${train.trainName}">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+	          <li class="xwlist pull-left"><a th:href="@{'/train/detail.html?trainPlanId='+${train.trainPlanId}}" th:text="${train.trainName}">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
 	          <li class="list-unstyled pull-right"><time th:text=" ${#dates.format(train.trainStartDate, 'yyyy-MM-dd')}">2018-1-22</time></li>
 	        </ul>
 	        <div class="gb-line clearfix"  th:if="not ${iterStat.last}"></div>
@@ -68,7 +68,7 @@
     <!--讲师开始-->
     <div class="maintop">
        <ul class="list-inline">
-          <li class="pull-left menubt text-center"><h5>讲师信息</h5></li>
+          <li class="pull-left menubt text-center"><h5>专家信息</h5></li>
           <li class="pull-right morebt"><a href="/train/teacherList.html">more</a></li>
        </ul>
     </div>
