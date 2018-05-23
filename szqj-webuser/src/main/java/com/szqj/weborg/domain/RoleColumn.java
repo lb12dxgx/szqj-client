@@ -61,6 +61,45 @@ public class RoleColumn {
 	}
 
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((columnId == null) ? 0 : columnId.hashCode());
+		result = prime * result + ((roleColumnId == null) ? 0 : roleColumnId.hashCode());
+		result = prime * result + ((roleId == null) ? 0 : roleId.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RoleColumn other = (RoleColumn) obj;
+		if (columnId == null) {
+			if (other.columnId != null)
+				return false;
+		} else if (!columnId.equals(other.columnId))
+			return false;
+		if (roleColumnId == null) {
+			if (other.roleColumnId != null)
+				return false;
+		} else if (!roleColumnId.equals(other.roleColumnId))
+			return false;
+		if (roleId == null) {
+			if (other.roleId != null)
+				return false;
+		} else if (!roleId.equals(other.roleId))
+			return false;
+		return true;
+	}
+
+
 	
 
 }

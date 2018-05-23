@@ -67,41 +67,47 @@ public class ColumnInfoService {
 	}
 	
 	
-	public List<ColumnInfoNode> getTreeByRoleId(String[] columnIdList){
+	public List<ColumnInfoNode> getTreeByPrivage(String[] columnIdList){
+		List<ColumnInfoNode> l=new ArrayList<ColumnInfoNode>();
+		
 		Iterable<String> ids=java.util.Arrays.asList(columnIdList);
 		List<ColumnInfo> exitList = columnInfoRepository.findAllById(ids);
 		ColumnInfo root = columnInfoRepository.getRoot();
 		List<ColumnInfo> ColumnInfos = columnInfoRepository.getTreeNoes();
 		Map<String,ColumnInfoNode> map=new HashMap<String,ColumnInfoNode>();
 		ColumnInfoNode rootNode=change(root);
-		map.put(root.getColumnId(), rootNode);
-		
+
 		for(ColumnInfo m:ColumnInfos){
-			map.put(m.getColumnId(),change(m));
+			ColumnInfoNode node=change(m);
+			map.put(m.getColumnId(),node);
+			
 		}
+		
+		Map<String,ColumnInfoNode> pmap=new HashMap<String,ColumnInfoNode>();
 		
 		for(ColumnInfo m:exitList){
 			String pid = m.getParentId();
-			ColumnInfoNode parent = map.get(pid);
-			if(parent.getColumnId().equals(root.getColumnId())) {
-				List<ColumnInfoNode> l = rootNode.getChildren();
-				l.contains(parent)
+			
+			if(!pid.equals(rootNode.getColumnId())){
+				
+				ColumnInfoNode node=change(m);
+				ColumnInfoNode pnode=pmap.get(pid);
+				if(pnode==null){
+					pnode = map.get(pid);
+					rootNode.addNode(pnode);
+					pmap.put(pnode.getColumnId(), pnode);
+				}
+				pnode.addNode(node);
 			}
-			parent.addNode(change(m));
-			addParent(parent,map);
+			
 		}
+		
+		l.add(rootNode);
+		return l;
 	}
 	
 	
 
-	private void addParent(ColumnInfoNode node, Map<String, ColumnInfoNode> map) {
-		if(node.getParentId()!='-1') {
-			
-		}else {S
-			return ;
-		}
-		
-	}
 
 
 	private ColumnInfoNode change(ColumnInfo columnInfo){

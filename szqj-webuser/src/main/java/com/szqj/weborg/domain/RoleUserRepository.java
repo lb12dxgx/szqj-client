@@ -20,4 +20,7 @@ public interface RoleUserRepository extends JpaRepository<RoleUser, String> {
 	@Query("delete from RoleUser where roleId=?1")
 	public void deleteByRoleId(String roleId);
 	
+	
+	public List<RoleUser> findByUserId(String userId);
+	
 }

@@ -100,7 +100,9 @@
      <!--左侧内容结束-->
      <div class="col-md-1"></div>
       <!--右侧边栏开始-->
-       <div th:include="news/right" />
+       <div class="col-md-3" id="rightContent">
+       		
+       </div>
      <!--右侧边栏结束-->
    </div>
  </div>
@@ -112,6 +114,8 @@
 	$(function(){
 		$('#news').removeClass("manulinknone");
 		$('#news').addClass("manulink");
+		
+		$('#rightContent').load('/right.html');
 		
 		$('.page-link').click(function(){
 			  if(!$(this).parent().hasClass("disabled")){

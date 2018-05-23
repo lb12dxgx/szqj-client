@@ -69,4 +69,11 @@ public class ColumnInfoRest {
 		return RestJson.createSucces(list);
 	}
 	
+	
+	@RequestMapping(value = "/treeByPrivage.do"  )
+	public RestJson treeByPrivage(String[] columnIdList){
+		List<ColumnInfoNode> list = columnInfoService.getTreeByPrivage(columnIdList); 
+		return RestJson.createSucces(list);
+	}
+	
 }

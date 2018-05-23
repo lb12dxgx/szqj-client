@@ -1,3 +1,9 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>会议详情</title>
+<script type="text/javascript" src="bootstrap/js/jquery-1.9.1.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns:th="http://www.thymeleaf.org">
 	<head th:include="head">
@@ -5,10 +11,6 @@
 <head>
 	<link href="/css/gxsg.css" rel="stylesheet" type="text/css">
 </head>
-<head>
- <link href="css/gxsg.css" rel="stylesheet" type="text/css">
-</head>
-
 <body>
 <!--[if lte IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
@@ -29,37 +31,89 @@
      </ul>
    </div>
    <!--面包屑结束-->
-   <div class="row">
+<div class="row">
      <!--左侧内容开始-->
-     <div class="col-md-12">
-
-	   <div class="row">
-		   <div class="col-md-10 text-center"><h3 th:text="${meet.meetName}"></h3></div>
-		   <div class="col-md-2 " style=" margin-top: 10px;"><button id="reg" type="button" class="btn btn-success " >在线报名</button></div>
-	   </div> 
-	    <div class="row">
-	      <div class="pull-left" style="margin-left:30px"  > <h5>开会时间: <span th:text="${#dates.format(meet.startDate, 'yyyy-MM-dd')}"></span></h5></div>
-		   <div class="pull-right" style="margin-right:30px"><h5>开会地点:<span th:text="${meet.meetPlace}"></span></h5></div>
-	   </div> 
-		
-		 <div class="box-bgcl spxq-box"  th:utext="${meet.meetContent}">
-			 
+     <div class="col-md-8">
+	
+		 <div class="maintop">
+              <ul class="list-inline">
+               <li class="pull-left menubt text-center"><h5>会议信息</h5></li>
+               <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
+             </ul>
+         </div>
+		 <div class="box-bgcl spxq-box">
+			 <table width="100%">
+				 <tr height="40px;">
+					 <td width="10%">会议名称：</td>
+					 <td width="40%" class="gray" th:text="${meet.meetName}">第六期城镇排水管道检测与评估</td>
+					 <td width="10%">会议地点：</td>
+					 <td width="40%" class="gray" th:text="${meet.meetPlace}">武汉</td>
+				 </tr>
+				 <tr height="40px;">
+					 <td>参会费用：</td>
+					 <td class="gray"  ><span th:text="${meet.meetPrice}"></span>元</td>
+					 <td>参会人数：</td>
+					 <td class="gray" th:text="${meet.meetPrice}">100</td>
+				 </tr>
+				 <tr height="40px;">
+					 <td>开始时间：</td>
+					 <td class="gray" th:text="${#dates.format(meet.startDate, 'yyyy-MM-dd')}">2018-09-07</td>
+					 <td>结束时间：</td>
+					 <td class="gray" th:text="${#dates.format(meet.endDate, 'yyyy-MM-dd')}">2018-09-08</td>
+				 </tr>
+				
+			 </table>
+            
 		 </div>
-      </div>
-     
+		  <div class="maintop" style="margin-top: 35px;">
+              <ul class="list-inline">
+               <li class="pull-left menubt text-center"><h5>会议摘要</h5></li>
+               <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
+             </ul>
+         </div>
+		 <div class="box-bgcl spxq-box">
+			 <p   th:text="${meet.meetSummary}">    
+			   德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+             </p>
+             <img th:src="@{'/file/downloadByBusi.do?bussinessId='+${meet.meetPicId}}"  width="700" height="300"></img>
+			
+		 </div>
+		 <div class="maintop" style="margin-top: 35px;">
+              <ul class="list-inline">
+               <li class="pull-left menubt text-center"><h5>会议内容</h5></li>
+               <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
+             </ul>
+         </div>
+		 <div class="box-bgcl spxq-box" th:utext="${meet.meetContent}">
+			 <p>    德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+             </p>
+		 </div>
+		 <div class="text-center" style="margin-top:10px"><a  th:href="@{'/service/meet/signup.html?meetId='+${meet.meetId}}" class="btn btn-success bm-btn"> 立即报名</a></div>
+
+     </div>
+     <!--左侧内容结束-->
+     <div class="col-md-1"></div>
+      <!--右侧边栏开始-->
+     <div class="col-md-3" id="rightContent">
+       
+     </div>
+     <!--右侧边栏结束-->
    </div>
  </div>
  
-  	<!--footer开始-->
-	 <div th:include="footer"></div>
-  	<!--footer结束-->
-  	  	<script type="text/javascript" th:inline="javascript">
+    <!--footer开始-->
+	<div th:include="footer"></div>
+ <!--footer结束-->
+ <script type="text/javascript">
 	$(function(){
 		$('#service').removeClass("manulinknone");
 		$('#service').addClass("manulink");
+		$('#l_meet').removeClass("cyfw-manu3-none");
+		$('#l_meet').addClass("cyfw-manu3-on");
+		$('#rightContent').load('/right.html');
 		
 	})
-</script>
-
+ </script>
+ <!--footer结束-->
 </body>
 </html>

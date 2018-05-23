@@ -1,5 +1,5 @@
- <!--右侧边栏开始-->
- 	<div class="col-md-3">
+
+ 	
        <div class="right-box">
        <a th:href="@{'/news/detail.html?contentId='+${ggone.contentId}}" target="_blank" >
        		<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${ggone.titleFileId}}">
@@ -8,14 +8,14 @@
         <div class="right-box">
            <div class="maintop">
               <ul class="list-inline">
-               <li class="pull-left menubt text-center"><h5>推荐新闻</h5></li>
+               <li class="pull-left menubt text-center"><h5>会议信息</h5></li>
                <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
               </ul>
             </div>
             <div class="box-bgcl">
-            	<div th:each="content,iterStat:${ywcontentInfos}">
+            	<div th:each="meet,iterStat:${meetList}">
 	              <ul class="gb-news" >
-	                <li class="xwRightlist"><a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" th:text="${content.contentTitle}"></a></li>
+	                <li class="xwRightlist"><a th:href="@{'/service/meet/detail.html?meetId='+${meet.meetId}}" target="_blank"  th:text="${meet.meetName}"></a></li>
 	              </ul> 
 	               <div class="gb-line " th:if="not ${iterStat.last}"></div>
              	</div>
@@ -30,12 +30,12 @@
         <div class="right-box">
            <div class="maintop">
               <ul class="list-inline">
-               <li class="pull-left menubt text-center"><h5>推荐阅读</h5></li>
+               <li class="pull-left menubt text-center"><h5>推荐新闻</h5></li>
                <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
               </ul>
             </div>
             <div class="box-bgcl">
-             	<div th:each="content,iterStat:${ydcontentInfos}">
+             	<div th:each="content,iterStat:${ywcontentInfos}">
 	              <ul class="gb-news" >
 	                <li class="xwRightlist"><a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" th:text="${content.contentTitle}"></a></li>
 	              </ul> 
@@ -43,6 +43,5 @@
              	</div>
             </div>
         </div>
-     </div>
-     <!--右侧边栏结束-->
+ 
   

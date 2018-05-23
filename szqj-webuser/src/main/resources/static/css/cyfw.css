@@ -328,7 +328,17 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
  background: url( ../images/ryzscx2.jpg);
 	color: #fff;
 }
-/*产业服务新增菜单结束*/
+/*产业服务新增菜单结束*/  
 
 
+/*新增报名样式开始*/
+.baoming-box{
+	background: url(../images/bm-bg.jpg) no-repeat bottom center;
+	margin-bottom: -100px;
+	padding-bottom: 180px;
+}
+.yqlj-text{
+	width: 90%;
+}
+/*新增报名样式结束*/
 

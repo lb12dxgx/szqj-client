@@ -1,5 +1,7 @@
 package com.szqj.weborg.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -78,7 +80,7 @@ public class RoleService {
 	}
 
 	public void saveRoleColumn(String roleId, String[] columnList) {
-		roleMenuRepository.deleteByRoleId(roleId);
+		roleColumnRepository.deleteByRoleId(roleId);
 		for(String columnId:columnList){
 			RoleColumn roleColum=new RoleColumn();
 			roleColum.setRoleId(roleId);
@@ -86,6 +88,18 @@ public class RoleService {
 			roleColumnRepository.save(roleColum);
 		}
 		
+	}
+
+	public List<RoleColumn> getColumnByUserId(String userId) {
+		List<RoleColumn> all=new ArrayList<RoleColumn>();
+		List<RoleUser> roleUsers = roleUserRepository.findByUserId(userId);
+		for(RoleUser roleUser:roleUsers){
+			String roleId = roleUser.getRoleId();
+			List<RoleColumn> l = roleColumnRepository.findByRoleId(roleId);
+			all.addAll(l);
+		}
+		List newList = new ArrayList(new HashSet(all)); 
+		return newList;
 	}
 
 	
