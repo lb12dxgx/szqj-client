@@ -30,6 +30,8 @@ import com.szqj.train.domain.TrainCert;
 import com.szqj.train.domain.TrainCertRepository;
 import com.szqj.train.domain.TrainTeacher;
 import com.szqj.util.Tools;
+import com.szqj.weborg.domain.FileInfo;
+import com.szqj.weborg.domain.FileInfoRepository;
 
 @Controller
 @RequestMapping("/")
@@ -59,6 +61,9 @@ public class ServiceControle {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private FileInfoRepository fileInfoRepository;
 	
 	/**
 	 * 企业信息
@@ -108,8 +113,13 @@ public class ServiceControle {
 	@RequestMapping(value = "/service/product/detail.html"  )
 	public String product_detail(String productId, ModelMap modelMap){
 		Product product = productRepository.findById(productId).get();
+		Enterprise enterprise =enterpriseRepository.findById(product.getEnterpriseId()).get();
+		product.setEmpName(enterprise.getEnterpriseName());
+		product.setProductAddr(enterprise.getAddree());
+		List<FileInfo> list = fileInfoRepository.findByBussinessId(product.getProductPicId());
 		modelMap.put("product", product);
-		return "service/meetdetail"; 
+		modelMap.put("list", list);
+		return "service/productdetail"; 
 	}
 	
 	/**
