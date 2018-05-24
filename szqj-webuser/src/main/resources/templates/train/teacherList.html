@@ -34,7 +34,7 @@
    <!--讲师信息开始-->
    <div class="row">
 	   <div class="col-md-4" th:each="teacher,iterStat:${page.content}">
-	   	 <a href="#">
+	   	 <a th:href="@{'/train/teacherdetail.html?trainTeacherId='+${teacher.trainTeacherId}}">
 		   <div class="img-shadow-1 pxjs_list clearfix">
 			   <dl>
 				   <dt class="pull-left js-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${teacher.teacherPicPath}}" style="width:128px;height:160px"></img></dt>

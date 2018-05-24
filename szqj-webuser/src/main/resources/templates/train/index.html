@@ -75,7 +75,7 @@
     <div class="box-bgcl">
       <div class="row cyfuwu jsxx">
         <div class="col-md-3" th:each="teacher,iterStat:${teacherList}">
-          <a href="/train/teacherList.html" class="js-box">
+          <a th:href="@{'/train/teacherdetail.html?trainTeacherId='+${teacher.trainTeacherId}}" class="js-box">
           <div class="img-round-square"  th:style="'background:#fff url(' + @{'/file/downloadByBusi.do?bussinessId='+${teacher.teacherPicPath}} +') no-repeat '" style="background:#fff url(/images/js1.jpg) no-repeat"></div>
           <P>姓名：<span th:text="${teacher.teacherName}">张三</span></P>
           <p>职称：<span th:text="${teacher.teacherTitle}">高级工程师</span></p>
@@ -122,7 +122,7 @@
                     <div class="mt-comments">
                       <div class="row text-center px_list">
                         <div class="col-md-4" th:each="class,iterStat:${classList}">
-                          <a href="#">
+                          <a th:href="@{'/train/classdetail.html?trainClassId='+${class.trainClassId}}">
                             <div class="img-shadow-1 pxkc-box">
                               <div class="px-kcbt shenhui"><span th:text="${class.trainClassName}">基础知识理论课程</span><br>学时：<span th:text="${class.num}">2</span>小时</div>
                               <div>

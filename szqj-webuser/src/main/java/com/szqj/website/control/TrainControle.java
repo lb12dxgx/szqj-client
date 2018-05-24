@@ -118,6 +118,18 @@ public class TrainControle {
 		return "train/teacherList"; 
 	}
 	
+	/**
+	 * 教师详情
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/train/teacherdetail.html")
+	public String teacherDetail(String trainTeacherId, ModelMap modelMap){
+		TrainTeacher trainTeacher = trainTeacherRepository.findById(trainTeacherId).get();
+		modelMap.put("trainTeacher", trainTeacher);
+		return "train/teacherdetail"; 
+	}
+	
 	
 	/**
 	 * 课程列表
@@ -131,6 +143,20 @@ public class TrainControle {
 		Page<TrainClass> page=trainClassRepository.findPage(pageable);
 		modelMap.put("page", page);
 		return "train/classList"; 
+	}
+	
+	
+
+	/**
+	 * 课程详情
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/train/classdetail.html")
+	public String classDetail(String trainClassId, ModelMap modelMap){
+		TrainClass  trainClass = trainClassRepository.findById(trainClassId).get();
+		modelMap.put("trainClass", trainClass);
+		return "train/classdetail"; 
 	}
 
 

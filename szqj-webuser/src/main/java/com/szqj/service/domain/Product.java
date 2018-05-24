@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -44,6 +45,12 @@ public class Product {
 	private Integer level;//级别  10:普通级别  20:vip级别  30:超级VIP
 	
 	private Integer orderNum;//顺序
+	
+	@Transient
+	private String empName;//企业名称
+	
+	@Transient
+	private String productAddr;//产品地址
 
 	public String getProductId() {
 		return productId;
@@ -155,6 +162,22 @@ public class Product {
 
 	public void setOrderNum(Integer orderNum) {
 		this.orderNum = orderNum;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public String getProductAddr() {
+		return productAddr;
+	}
+
+	public void setProductAddr(String productAddr) {
+		this.productAddr = productAddr;
 	}
 	
 	

@@ -16,10 +16,16 @@ import com.szqj.cms.domain.ColumnInfo;
 import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
+import com.szqj.service.domain.Enterprise;
+import com.szqj.service.domain.EnterpriseRepository;
 import com.szqj.service.domain.Meet;
 import com.szqj.service.domain.MeetRepository;
 import com.szqj.service.domain.MeetSignUp;
 import com.szqj.service.domain.MeetSignUpRepository;
+import com.szqj.service.domain.Product;
+import com.szqj.service.domain.ProductRepository;
+import com.szqj.service.domain.ZbInfo;
+import com.szqj.service.domain.ZbInfoRepository;
 import com.szqj.train.domain.TrainCert;
 import com.szqj.train.domain.TrainCertRepository;
 import com.szqj.train.domain.TrainTeacher;
@@ -43,6 +49,94 @@ public class ServiceControle {
 	
 	@Autowired
 	private TrainCertRepository trainCertRepository;
+	
+	@Autowired
+	private ZbInfoRepository zbInfoRepository;
+	
+	@Autowired
+	private EnterpriseRepository enterpriseRepository;
+	
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
+	/**
+	 * 企业信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/service/enterprise.html"  )
+	public String index_enterprise(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Enterprise> page=enterpriseRepository.findPage(pageable);
+		modelMap.put("page", page);
+		return "service/enterprise"; 
+	}
+	
+	
+	@RequestMapping(value = "/service/enterprise/detail.html"  )
+	public String enterprise_detail(String enterpriseId, ModelMap modelMap){
+		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
+		modelMap.put("enterprise", enterprise);
+		return "service/enterprisedetail"; 
+	}
+	
+	
+	/**
+	 * 产品信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/service/product.html"  )
+	public String index_product(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		for(Product product:page.getContent()){
+			Enterprise enterprise =enterpriseRepository.findById(product.getEnterpriseId()).get();
+			product.setEmpName(enterprise.getEnterpriseName());
+			product.setProductAddr(enterprise.getAddree());
+		}
+		modelMap.put("page", page);
+		return "service/product"; 
+	}
+	
+	
+	@RequestMapping(value = "/service/product/detail.html"  )
+	public String product_detail(String productId, ModelMap modelMap){
+		Product product = productRepository.findById(productId).get();
+		modelMap.put("product", product);
+		return "service/meetdetail"; 
+	}
+	
+	/**
+	 * 招标信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/service/zbinfo.html"  )
+	public String index_zbinfo(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<ZbInfo> page=zbInfoRepository.findPage(pageable);
+		modelMap.put("page", page);
+		return "service/zbInfo"; 
+	}
+	
+	
+	@RequestMapping(value = "/service/zbinfo/detail.html"  )
+	public String zbinfo_detail(String zbInfoId, ModelMap modelMap){
+		ZbInfo zbInfo = zbInfoRepository.findById(zbInfoId).get();
+		modelMap.put("zbInfo", zbInfo);
+		return "service/zbInfodetail"; 
+	}
+	
+	
+	
 	
 	/**
 	 * 电子证书认证
