@@ -18,9 +18,9 @@
 }
 
 .fuwubox{
-	width:19%;
+	width:22%;
 	float:left;
-	margin-right:1.2%;
+	margin-right:3.9%;
 }
 .fuwubox-last{
 	margin-right:0px;
@@ -42,6 +42,12 @@
 }
 .cyfuwu{
 	padding:20px 0 30px 0;
+}
+.right-m{
+	margin-right: 34px;
+}
+.cyfw-link{
+	float: left;
 }
 .dzqk{
 	padding:20px 0 30px 0;

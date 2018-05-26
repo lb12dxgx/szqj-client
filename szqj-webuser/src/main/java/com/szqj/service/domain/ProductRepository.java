@@ -22,13 +22,13 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, S
 
 	
 	
-	@Query("select m from Product m where m.productName like %?1%  order by createDate")
+	@Query("select m from Product m where m.productName like %?1%  order by level ,createDate")
 	Page<Product> findPageByProductName(String productName, Pageable pageable);
 	
-	@Query("select m from Product m  order by createDate")
+	@Query("select m from Product m  order by level, createDate")
 	Page<Product> findPage(Pageable pageable);
 	
-	@Query("select m from Product m where m.enterpriseId=?1 order by createDate")
+	@Query("select m from Product m where m.enterpriseId=?1 order by level, createDate")
 	List<Product> findByEnterpriseId(String enterpriseId);
 	
 }

@@ -29,6 +29,7 @@
    <div class="row baoming-box">
    <form method="post" action="saveSignup.do" id="regForm">
    	 <input  name="meetId"  type="hidden" th:value="${meet.meetId}" />
+   	 <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
    	 <div class="col-md-2"></div>
      <div class="col-md-9">
 		 <div class="row zcsx-list">

@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface ContentInfoRepository extends JpaRepository<ContentInfo, String> {
 	
-	@Query("select m from ContentInfo m where m.columnId =?1  order by createDate")
+	@Query("select m from ContentInfo m where m.columnId =?1  order by level, createDate")
 	public Page<ContentInfo> findByColumnId(String columnId,Pageable pageable);
 	
 	@Query("select m from ContentInfo m where m.columnId =?1 and m.contentTitle like %?2% order by createDate")
@@ -30,4 +30,8 @@ public interface ContentInfoRepository extends JpaRepository<ContentInfo, String
 	
 	@Query("select m from ContentInfo m where m.columnId =?1  order by createDate")
 	public List<ContentInfo> findListByColumnId(String columnId);
+	
+	
+	@Query("select count(m.contentId) from ContentInfo m where m.columnId =?1 ")
+	public Integer findNumByColumnId(String columnId);
 }

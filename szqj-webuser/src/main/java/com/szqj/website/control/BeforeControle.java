@@ -65,6 +65,18 @@ public class BeforeControle {
 	private String pdfPath;
 	
 	
+	/**
+	 * 118服务
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/118/index.html"  )
+	public String index_118(ModelMap modelMap){
+		List<ApplyOrg> l = applyOrgRepository.findAllList();
+		modelMap.put("orgList", l);
+		return "118/index"; 
+	}
+	
 	@RequestMapping(value = "/118/login.html"  )
 	public String login(String applyOrgId,ModelMap modelMap){
 		List<ApplyOrg> l = applyOrgRepository.findAllList();

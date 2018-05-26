@@ -32,6 +32,7 @@
    <div class="row baoming-box">
    	 <form method="post" action="saveSignup.do" id="regForm">
    	 <input  name="trainPlanId"  type="hidden" th:value="${trainPlan.trainPlanId}" />
+   	 <input  name="submittoken"  type="hidden"  th:value="${session.submittoken}"/>
 	   	 <div class="col-md-2"></div>
 	     <div class="col-md-9">
 			<div class="row zcsx-list">
@@ -78,7 +79,7 @@
  </div>
  
   <!--footer开始-->
-	<div th:include="footer"></div>
+  <div th:include="footer"></div>
  <!--footer结束-->
  <link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
  <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>

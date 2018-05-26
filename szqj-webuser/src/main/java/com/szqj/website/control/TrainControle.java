@@ -19,6 +19,7 @@ import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
 import com.szqj.service.domain.Meet;
+import com.szqj.springmvc.Token;
 import com.szqj.train.domain.TrainClass;
 import com.szqj.train.domain.TrainClassRepository;
 import com.szqj.train.domain.TrainPlan;
@@ -81,6 +82,7 @@ public class TrainControle {
 	 * @param modelMap
 	 * @return
 	 */
+	@Token(save = true)
 	@RequestMapping(value = "/train/signup.html")
 	public String train_signup(String trainPlanId,ModelMap modelMap){
 		TrainPlan trainPlan = trainPlanRepository.findById(trainPlanId).get();
@@ -93,6 +95,7 @@ public class TrainControle {
 	 * @param modelMap
 	 * @return
 	 */
+	@Token(remove = true)
 	@RequestMapping(value = "/train/saveSignup.do")
 	public String saveSignup(TrainSignUp trainSignUp,ModelMap modelMap){
 		trainSignUp.setCreateDate(new Date());
@@ -101,7 +104,7 @@ public class TrainControle {
 		
 		modelMap.put("trainSignUp", trainSignUp);
 		modelMap.put("trainPlan", trainPlan);
-		return "train/trainsignup"; 
+		return "train/signupsuccess"; 
 	}
 	
 	

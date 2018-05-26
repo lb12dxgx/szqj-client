@@ -1,11 +1,38 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns:th="http://www.thymeleaf.org">
-<head th:include="head">
+	<head th:include="head">
+</head>
+<head>
+<link  th:href="@{/css/index.css}" rel="stylesheet" type="text/css"/>
+<link th:href="@{/css/notfound.css}" rel="stylesheet" type="text/css"/>
 </head>
 
-<bode>
-   <div style="width=50%;text-align:center">
-     <h3 th:text="${exception}">�����쳣</h3>
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+
+ <div class="gb-main container">
+   <div class="row">
+	   <div class="col-md-12 text-center page-top">
+	   	<img src="/images/page.png">
+	   </div>
+	   <div class="col-md-12 text-center page-midlle"> 
+	   	<span th:text="${exception}" th:if="${exception!=null}">遇到错误啦</span>
+	   	<span  th:if="${exception==null}">遇到错误啦</span>!请返回
+	   </div>
+	   <div class="col-md-12 text-center"><a href="/" class="btn btn-warning">　返回首页　</a></div>
    </div>
-</bode>
-</html>
+   
+ </div>
+ 
+  <!--footer开始-->
+	 <div th:include="footer"></div>
+  <!--footer结束-->

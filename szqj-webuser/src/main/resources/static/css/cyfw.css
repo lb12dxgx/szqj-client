@@ -331,9 +331,10 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 /*产业服务新增菜单结束*/  
 
 
+/*产业服务新增菜单结束*/
 /*新增报名样式开始*/
 .baoming-box{
-	background: url(../images/bm-bg.jpg) no-repeat bottom center;
+	 background: url(../images/bm-bg.jpg) no-repeat bottom center;
 	margin-bottom: -100px;
 	padding-bottom: 180px;
 }
@@ -341,4 +342,40 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 	width: 90%;
 }
 /*新增报名样式结束*/
-
+/*新增产业产品样式*/
+.cyfw-logo{
+	display: block;
+	width: 102px;
+	margin: 0 auto;
+}
+.baoming-cg{
+	background: url(../images/baomingcg1.jpg) no-repeat center bottom;
+	padding: 40px 0 300px ;
+	color: #cd3629;
+}
+.zhengshu-box{
+	width: 1129px;
+	height: 774px;
+	background: url(../images/zhengshu.jpg) no-repeat;
+}
+.zs-pic{
+ padding-top: 300px;
+}
+.zs-pic img{
+	margin-left: -30px;
+}
+.zs-name{
+	font-size: 28px;
+	padding: 295px 0 0 60px;
+}
+.zs-binahao{
+	font-size: 18px;
+	padding: 34px 0 0 230px;
+}
+.zs-binahao li{
+	padding-bottom: 16px;
+}
+.zs-btn{
+	width: 200px;
+	margin-top: 40px;
+}

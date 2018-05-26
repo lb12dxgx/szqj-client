@@ -88,7 +88,7 @@ public class ColumnInfoService {
 		for(ColumnInfo m:exitList){
 			String pid = m.getParentId();
 			
-			if(!pid.equals(rootNode.getColumnId())){
+			if(!pid.equals(rootNode.getColumnId())&&!pid.equals("-1")){
 				
 				ColumnInfoNode node=change(m);
 				ColumnInfoNode pnode=pmap.get(pid);

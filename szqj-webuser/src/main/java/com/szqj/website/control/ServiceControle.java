@@ -26,6 +26,7 @@ import com.szqj.service.domain.Product;
 import com.szqj.service.domain.ProductRepository;
 import com.szqj.service.domain.ZbInfo;
 import com.szqj.service.domain.ZbInfoRepository;
+import com.szqj.springmvc.Token;
 import com.szqj.train.domain.TrainCert;
 import com.szqj.train.domain.TrainCertRepository;
 import com.szqj.train.domain.TrainTeacher;
@@ -64,6 +65,9 @@ public class ServiceControle {
 	
 	@Autowired
 	private FileInfoRepository fileInfoRepository;
+	
+
+	
 	
 	/**
 	 * 企业信息
@@ -221,6 +225,7 @@ public class ServiceControle {
 		return "service/meetdetail"; 
 	}
 	
+	@Token(save = true)
 	@RequestMapping(value = "/service/meet/signup.html"  )
 	public String meet_signup(String meetId, ModelMap modelMap){
 		Meet meet = meetRepository.findById(meetId).get();
@@ -228,13 +233,14 @@ public class ServiceControle {
 		return "service/meetsignup"; 
 	}
 	
+	@Token(remove = true)
 	@RequestMapping(value = "/service/meet/saveSignup.do"  )
 	public String saveSignup(MeetSignUp meetSignUp, ModelMap modelMap){
 		meetSignUp.setCreateDate(new Date());
 		meetSignUpRepository.save(meetSignUp);
 		Meet meet = meetRepository.findById(meetSignUp.getMeetId()).get();
 		modelMap.put("meet", meet);
-		return "service/meetsignup"; 
+		return "service/signupsuccess"; 
 	}
 	
 	/**
