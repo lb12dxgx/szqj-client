@@ -33,5 +33,12 @@ public class TokenRest {
 		}
 		
 	}
+	
+	
+	private String getJwtToken(String accountId, ) {
+		String jwtToken = Jwts.builder().setSubject(reqPerson.getUsername()).claim("roles", "member").setIssuedAt(new Date())
+                .signWith(SignatureAlgorithm.HS256, "secretkey").compact();
+
+	}
 
 }
