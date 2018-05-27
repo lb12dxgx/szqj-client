@@ -100,6 +100,23 @@ public class NewsControle {
 	}
 	
 	
+	/**
+	 * 产业资讯详情
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/news/videodetail.html"  )
+	public String videodetail_news(String contentId, ModelMap modelMap){
+		ColumnInfo pcolumnInfo=columnInfoRepository.findByColumnCode("1_hy_xw");
+		setGG(modelMap,pcolumnInfo);
+		ContentInfo content = contentInfoRepository.findById(contentId).get();
+		modelMap.put("content", content);
+		return "news/videodetail"; 
+	}
+	
+	
+	
+	
 
 	
 

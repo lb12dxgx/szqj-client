@@ -24,6 +24,8 @@ public class IndexControle {
 	@Autowired
 	private IndexService indexService;
 	
+
+	
 	/**
 	 * 首页
 	 * @param modelMap

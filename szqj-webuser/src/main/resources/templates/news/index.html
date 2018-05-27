@@ -47,9 +47,9 @@
                   <div class="mt-comments mt-comments10">
                   	<div th:each="content,iterStat:${page.content}" >
 	                     <div class="media" >
-	                       <a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" target="_blank" class="pull-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="media-object" style="width:174px; height:127px"></a>
+	                       <a th:href="@{'/news/videodetail.html?contentId='+${content.contentId}}" target="_blank" class="pull-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="media-object" style="width:174px; height:127px"></a>
 	                       <div class="media-body gb-sgnews">
-	                         <h4 class="media-heading"><a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></h4>
+	                         <h4 class="media-heading"><a th:href="@{'/news/videodetail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></h4>
 	                         <p class="sg-text"><a href="#" th:text="${content.contentJsonMap['desc']}"> </a></p>
 	                         <ul class="list-unstyled">
 	                           <li class="pull-left"  th:each="tagname:${#strings.listSplit(content.contentJsonMap['tag'],',')}"><a href="#" class="blue-link" th:text="${tagname}"></a></li>

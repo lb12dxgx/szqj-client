@@ -138,7 +138,7 @@ public class ServiceControle {
 		PageRequest pageable=Tools.getPage(pageNum, 5);
 		Page<ZbInfo> page=zbInfoRepository.findPage(pageable);
 		modelMap.put("page", page);
-		return "service/zbInfo"; 
+		return "service/zbinfo"; 
 	}
 	
 	
@@ -146,7 +146,7 @@ public class ServiceControle {
 	public String zbinfo_detail(String zbInfoId, ModelMap modelMap){
 		ZbInfo zbInfo = zbInfoRepository.findById(zbInfoId).get();
 		modelMap.put("zbInfo", zbInfo);
-		return "service/zbInfodetail"; 
+		return "service/zbinfodetail"; 
 	}
 	
 	
