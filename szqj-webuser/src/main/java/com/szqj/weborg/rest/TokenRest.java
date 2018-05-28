@@ -1,5 +1,7 @@
 package com.szqj.weborg.rest;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.util.RestJson;
 import com.szqj.weborg.domain.Account;
+import com.szqj.weborg.rest.vo.MenuNode;
 import com.szqj.weborg.service.AccountService;
 
 
@@ -34,11 +37,5 @@ public class TokenRest {
 		
 	}
 	
-	
-	private String getJwtToken(String accountId, ) {
-		String jwtToken = Jwts.builder().setSubject(reqPerson.getUsername()).claim("roles", "member").setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, "secretkey").compact();
-
-	}
 
 }

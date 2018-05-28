@@ -24,5 +24,11 @@ public interface MenuRepository extends JpaRepository<Menu, String> {
 	public List<Menu> getTreeNoes();
 	
 	
+	@Query("select m from Menu m where m.parentMenuId =?1 order by code")
+	public List<Menu> getModelByParentId(String parentId);
+	
+	
+	@Query("select m from Menu m where m.parentMenuId !=?1 and m.parentMenuId !=-1 order by code")
+	public List<Menu> getAllMenus(String parentId);
 	
 }

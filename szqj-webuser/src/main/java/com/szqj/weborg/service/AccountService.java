@@ -1,6 +1,11 @@
 package com.szqj.weborg.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +18,13 @@ import com.szqj.util.ConstantUtils;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.domain.AccountRepository;
+import com.szqj.weborg.domain.Menu;
+import com.szqj.weborg.domain.MenuRepository;
+import com.szqj.weborg.domain.RoleMenu;
+import com.szqj.weborg.domain.RoleMenuRepository;
+import com.szqj.weborg.domain.RoleUser;
+import com.szqj.weborg.domain.RoleUserRepository;
+import com.szqj.weborg.rest.vo.MenuNode;
 
 /**
  * 
@@ -28,8 +40,12 @@ public class AccountService {
 
 	@Autowired
 	private AccountRepository accountRepository;
-	
-	
+	@Autowired
+	private MenuRepository menuRepository;
+	@Autowired
+	private RoleUserRepository roleUserRepository;
+	@Autowired
+	private RoleMenuRepository roleMenuRepository;
 
 	public Account login(String accountName, String passsword) {
 		Account account = new Account();
@@ -122,7 +138,70 @@ public class AccountService {
 	}
 
 
-	
+	public List<MenuNode> getMenuListByToken(String accessToken) {
+		Menu root = menuRepository.getRoot();
+		List<MenuNode> l=new ArrayList<MenuNode>();
+		
+		List<Menu> modelList = menuRepository.getModelByParentId(root.getMenuId());
+		LinkedHashMap<String,MenuNode> modelMap=new LinkedHashMap<String,MenuNode>();
+		for(Menu model:modelList){
+			modelMap.put(model.getMenuId(), change(model));
+		}
+		
+		
+		List<Menu> menulList = menuRepository.getAllMenus(root.getMenuId());
+		
+		Map<String,String> menuMap=new HashMap<String,String>();
+		
+		List<RoleUser> roleUsers = roleUserRepository.findByUserId(accessToken); 
+		
+		List<RoleMenu> roleMenus=new ArrayList<RoleMenu>();
+		for(RoleUser roleUser:roleUsers){
+			roleMenus.addAll(roleMenuRepository.findByRoleId(roleUser.getRoleId()));
+		}
+		
+		if(roleMenus.size()!=0){
+			for(RoleMenu rm:roleMenus){
+				menuMap.put(rm.getMenuId(), rm.getMenuId());
+			}
+			
+			Iterator<Menu> it = menulList.iterator();
+			
+			while(it.hasNext()){
+				Menu m = it.next();
+			    if(menuMap.get(m.getMenuId())!=null){
+			    	MenuNode nemuNode = change(m);
+			    	MenuNode modelNode = modelMap.get(nemuNode.getParentMenuId());
+			    	modelNode.addNode(nemuNode);
+			    	
+			    }
+			}
+			
+			Iterator<MenuNode> iterator = modelMap.values().iterator();
+			
+			while(iterator.hasNext()){
+				MenuNode m = iterator.next();
+				if(m.getChildren()!=null&&m.getChildren().size()>0){
+					l.add(m);
+				}
+			}
+			
+			
+		}
+		
+		return l;
+		
+	}
+
+
+	private MenuNode change(Menu menu){
+		MenuNode m=new MenuNode();
+		m.setMenuId(menu.getMenuId());
+		m.setMenuName(menu.getMenuName());
+		m.setMenuUrl(menu.getMenuUrl());
+		m.setParentMenuId(menu.getParentMenuId());
+		return m;
+	}
 	
 	
 

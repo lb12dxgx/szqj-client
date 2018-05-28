@@ -17,6 +17,8 @@ import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
 import com.szqj.service.domain.Enterprise;
+import com.szqj.service.domain.EnterpriseCert;
+import com.szqj.service.domain.EnterpriseCertRepository;
 import com.szqj.service.domain.EnterpriseRepository;
 import com.szqj.service.domain.Meet;
 import com.szqj.service.domain.MeetRepository;
@@ -66,7 +68,9 @@ public class ServiceControle {
 	@Autowired
 	private FileInfoRepository fileInfoRepository;
 	
-
+	@Autowired
+	private  EnterpriseCertRepository enterpriseCertRepository;
+	
 	
 	
 	/**
@@ -172,6 +176,37 @@ public class ServiceControle {
 		return "service/regResult";
 	}
 	
+	
+	
+	/**
+	 * 企业电子证书查询
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/service/cardSearchEnteg.html"  )
+	public String cardSearchEnteg(ModelMap modelMap){
+		return "service/cardSearchEnteg"; 
+	}
+	
+	
+	/**
+	 * 企业电子证书结果
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/service/cardResultEnteg.html"  )
+	public String cardResultEnteg(String  enterpriseName, String certCode, ModelMap modelMap){
+		List<EnterpriseCert> l = enterpriseCertRepository.findByEnterpriseNameAndCertCode(enterpriseName, certCode);
+		if(l!=null&&l.size()>0) {
+			modelMap.put("enterpriseCert", l.get(0));
+			return "service/cardResultEnteg"; 
+		}else {
+			modelMap.put("flag", 1);
+			modelMap.put("enterpriseName", enterpriseName);
+			modelMap.put("certCode", certCode);
+			return "service/cardSearchEnteg"; 
+		}
+	}
 	
 	/**
 	 * 电子证书查询

@@ -1,5 +1,6 @@
 package com.szqj.weborg.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
+import com.szqj.weborg.rest.vo.MenuNode;
 import com.szqj.weborg.service.AccountService;
+import com.szqj.weborg.service.MenuService;
 
 
 
@@ -25,6 +28,9 @@ public class AccountRest {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private MenuService menuService;
 	
 	
 	//根据账号类型返回账号列表
@@ -71,6 +77,26 @@ public class AccountRest {
 		return RestJson.createSucces(l);
 	}
 		
+	
+	@RequestMapping(value = "getMenu.do"  )
+	public RestJson getMenu(String accessToken){
+		List<MenuNode> menuList=new ArrayList<MenuNode>();
+		Account account = accountService.getAccount(accessToken);
+		
+		if(account.getAccountType()==0){
+			menuList=menuService.getMenuTree().get(0).getChildren();
+		}else{
+			menuList = accountService.getMenuListByToken(accessToken);
+		}
+		
+		if(menuList==null||menuList.size()==0){
+			return RestJson.createError();
+		}else{
+			return RestJson.createSucces(menuList);
+		}
+		
+	}
+	
 	
 	
 	

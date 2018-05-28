@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.servlet.MultipartConfigElement;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
-import com.szqj.filter.JwtFilter;
 
 @Configuration
 // @ImportResource(locations={"classpath:application-test.xml"})
@@ -70,12 +67,12 @@ public class ConfigClass {
 	}
 	
 	
-	@Bean
+	/*@Bean
     public FilterRegistrationBean jwtFilter() {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new JwtFilter());
         registrationBean.addUrlPatterns("/system/*");
         return registrationBean;
-    }
+    }*/
 
 }
