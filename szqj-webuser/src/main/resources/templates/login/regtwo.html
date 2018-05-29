@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+	<link href="/css/login.css" rel="stylesheet" type="text/css" /> 
+ 	<link rel="stylesheet" href="/css/jquery.step.css" />
+</head> 
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+<div class="row">
+	<div class="col-md-1"></div>
+
+	<div class="col-md-5">
+		<img src="/images/logo100.png">
+	</div>
+</div>
+ <div class="row">
+      <div class="col-md-offset-3 col-md-5 top-20">
+        <div id="step"></div>
+      </div>
+    </div>
+    <div class="row">
+     <div class="col-md-offset-3 col-md-6">
+        <div style="text-align:center;">
+          <div style="padding:10px " class="top-20">
+            <h3 >用户注册</h3> 
+          </div>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-md-3 control-label reg-form-lable">账号类型</label>
+              <div class="col-md-7">
+               <select name="type" id="type" class="form-control">
+                 <option value="1" selected>企业</option>
+                 <option value="2">个人</option>
+               </select>
+              </div>
+            </div> 
+            <div id="emp" class="reg-show">
+              <div class="form-group">
+                <label class="col-md-3 control-label reg-form-lable">
+                  <span style="color:red">*</span>企业名称
+                </label>
+                <div class="col-md-7">
+                 <input type="text" class="form-control reg-form-input" id="telphone" placeholder="请输入企业名称" >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">
+                  <span style="color:red">*</span>企业信用代码
+                </label>
+                <div class="col-md-7">
+                 <input type="text" class="form-control reg-form-input" id="smscode" placeholder="企业信用代码">
+                </div>
+              </div>
+             
+              <div class="form-group">
+                <label class="col-md-3 control-label">
+                  <span style="color:red">*</span>密码
+                </label>
+                <div class="col-md-7">
+                 <input type="text" class="form-control reg-form-input" id="smscode" placeholder="请输入登录密码">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">
+                  <span style="color:red">*</span>重复密码
+                </label>
+                <div class="col-md-7">
+                 <input type="text" class="form-control reg-form-input" id="smscode" placeholder="请输入登录密码">
+                </div>
+              </div>
+            </div>
+            
+            <div id="person" class="reg-hidden">
+              <div class="form-group">
+                <label class="col-md-3 control-label reg-form-lable">
+                  <span style="color:red">*</span>个人名称
+                </label>
+                <div class="col-md-7">
+                 <input type="text" class="form-control reg-form-input" id="telphone" placeholder="请输入个人名称" >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">
+                  <span style="color:red">*</span>身份证号
+                </label>
+                <div class="col-md-7">
+                 <input type="text" class="form-control reg-form-input" id="smscode" placeholder="请输入身份证号">
+                </div>
+              </div>
+             
+              <div class="form-group">
+                <label class="col-md-3 control-label">
+                  <span style="color:red">*</span>密码
+                </label>
+                <div class="col-md-7">
+                 <input type="text" class="form-control reg-form-input" id="smscode" placeholder="请输入登录密码">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">
+                  <span style="color:red">*</span>重复密码
+                </label>
+                <div class="col-md-7">
+                 <input type="text" class="form-control reg-form-input" id="smscode" placeholder="请输入登录密码">
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="col-md-offset-3 col-md-6 top-20">
+                <a href="submitregsuccess.html" class="btn btn-success" style="font-size: 18px" >下一步</a>
+              </div>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+</body>
+<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="/js/constant.js"></script>
+<script src="/js/jquery.step.min.js"></script>
+<script type="text/javascript">
+  var $step = $("#step");
+  $step.step({
+    index: 1,
+    time: 500,
+    title: ["验证手机号", "设置账户信息", "注册成功"]
+  });
+  
+  $("#type").change(function (){
+	    var type=$(this).children('option:selected').val();
+	    if(type==1){
+	      $("#emp").removeClass("reg-hidden");
+	      $("#emp").addClass("reg-show");
+	      $("#person").removeClass("reg-show");
+	      $("#person").addClass("reg-hidden");
+	      
+	    }else{
+	      $("#person").removeClass("reg-hidden");
+	      $("#person").addClass("reg-show");
+	      $("#emp").removeClass("reg-show");
+	      $("#emp").addClass("reg-hidden");
+	    }
+	  })
+</script>
+</html>
+

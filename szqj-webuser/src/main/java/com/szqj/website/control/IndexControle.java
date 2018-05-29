@@ -77,17 +77,6 @@ public class IndexControle {
 	}
 	
 	
-	/**
-	 * 网站登陆
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/login/login.html"  )
-	public String login(ModelMap modelMap){
-		return "login/login"; 
-	}
-	
-	
 	
 	
 

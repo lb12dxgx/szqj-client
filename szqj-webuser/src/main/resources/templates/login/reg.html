@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+	<link href="/css/login.css" rel="stylesheet" type="text/css" /> 
+ 	<link rel="stylesheet" href="/css/jquery.step.css" />
+</head> 
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+<div class="row">
+	<div class="col-md-1"></div>
+
+	<div class="col-md-5">
+		<img src="/images/logo100.png">
+	</div>
+</div>
+<div class="row">
+   <div class="col-md-offset-3 col-md-6 top-20">
+     <div id="step"></div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+       <div style="text-align:center;">
+          <div style="padding:10px " class="top-20">
+            <h3 >用户注册</h3> 
+          </div>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-md-3 control-label reg-form-lable">
+                <span style="color:red">*</span>手机</label>
+              <div class="col-md-7">
+               <input type="text" class="form-control reg-form-input" id="telphone" placeholder="请输入手机号" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">
+                <span style="color:red">*</span>短信验证码
+              </label>
+              <div class="col-md-7">
+               <input type="text" class="form-control reg-form-input" id="smscode" placeholder="请输入短信验证码">
+              </div>
+              <div class="col-md-2">
+               <a href="#" class="btn btn-default"  id="sendsms">发送验证码</a>
+             </div>
+            </div>
+           
+         
+            <div class="form-group">
+              <div class="col-md-offset-3 col-md-6 top-20">
+                <a href="submitreg.html" class="btn btn-success" style="font-size: 18px" >下一步</a>
+              </div>
+            </div>
+          </form>
+          
+        </div>
+    </div>
+</div>
+</body>
+<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="/js/constant.js"></script>
+<script src="/js/jquery.step.min.js"></script>
+<script type="text/javascript">
+  var $step = $("#step");
+  $step.step({
+    index: 0,
+    time: 500,
+    title: ["验证手机号", "设置账户信息", "注册成功"]
+  });
+  
+  $.validator.addMethod("isMobile", function(value, element) {
+	     var length = value.length;
+	     var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+	     return this.optional(element) || (length == 11 && mobile.test(value));
+	 }, "请正确填写您的手机号码");
+	 
+	 
+	function getInviteCode(m,_this){
+		  	var parm=$("#regForm").serialize();
+	        $.post(getSmsCodeUrl,parm,function(data,status){
+	          console.log(data.retData);
+	          var interval=setInterval(function(){
+	              m=m-1;
+	              _this.html(m+"秒后再次发送");
+	              if(m<=0){
+	                 clearInterval(interval);
+	                 $("#sendsms").removeClass("disabled");
+	                  _this.html("再次发送验证码");
+	                 return; 
+	              }
+	             },1000);
+
+	          });
+	   }
+	 
+	 
+	 function validateSmsCode(){
+		  	var parm=$("#regForm").serialize();
+		  	console.log(parm);
+	        $.post(validateSmsCodeUrl,parm,function(data,status){
+	           if(data.retData){
+	        	   $("#smscode-error").html("验证码不正确");
+			       $("#smscode-error").show();
+	           }else{
+	        	   $("#regForm").submit();
+	           }
+	          
+	       });
+	  }
+ 	
+		$(function() {
+			 $("#sendsms").click(function(){
+			       if($("#regForm").valid()){
+			          $("#sendsms").addClass("disabled");
+			          getInviteCode(60,$(this));
+			        }       
+		    });
+			 
+			 $("#reg").click(function(){
+			    	if($("#regForm").valid()){
+			    		
+				      var smscode= $("#smscode").val();
+				      console.log(smscode);
+				      if(smscode.length!=4){
+				    	  $("#smscode-error").html("验证码不正确");
+				    	  $("#smscode-error").show();
+				      }else{
+				    	  validateSmsCode();
+				      }
+			    	}
+
+			    })
+			 
+			 
+			 $("#regForm").validate({
+		          rules: {
+		           
+		            telphone:{
+		              required:true,
+		              isMobile:true,
+		              remote:{  
+		                    type:"POST",  
+		                    url:"/118/isExitByTelphone.do",
+		                    data:{  
+		                    	telphone:function(){ return $("#telphone").val(); }  
+		                    }  
+		                } 
+		            }
+		          },
+		          messages: {
+		           telphone:{
+		              required:'请输入常用手机号',
+		              mobile:'手机格式不正确,请重新输入',
+		              remote:'此手机号已被绑定,请选择其他手机号'
+		            }
+		            
+		          }
+		     });
+			
+			
+			
+		})
+
+	 
+</script>
+</html>
+
