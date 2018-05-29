@@ -35,7 +35,7 @@
     
      <!--右侧内容开始-->
      <div class="col-md-9">
-     <form method="post" action="/service/cardResult.html" id="searchForm">
+     <form method="post" action="/service/cardResultEnteg.html" id="searchForm">
      	  <div class="row " th:if="${flag==1}">
 	     	  <div class="col-md-3 text-right"></div>
 	     	  <div class="col-md-5 text-center">
@@ -43,9 +43,9 @@
 	     	  </div>
      	  </div>
      	  <div class="row zcsx-list">
-			  <div class="col-md-3 text-right"><label class="control-label zscx-text">姓名</label></div>
+			  <div class="col-md-3 text-right"><label class="control-label zscx-text">企业名称</label></div>
 			  <div class="col-md-5 text-center"><input class="form-control" placeholder="请输入企业名称" type="text" name="enterpriseName" th:value="${userName}"></div>
-			  <div class="col-md-4 text-left"><label id="userName-error" class="errorlabel error"  for="userName" /></div>
+			  <div class="col-md-4 text-left"><label id="userName-error" class="errorlabel error"  for="enterpriseName" /></div>
 		   </div>
      		
 	       <div class="row zcsx-list">
