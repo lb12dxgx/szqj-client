@@ -39,6 +39,8 @@ public class Meet {
 	
 	private Date createDate;//创建时间
 	
+	private Integer isSign=0;//开启报名 0:不允许签到  1:允许签到
+	
 
 	public String getMeetId() {
 		return meetId;
@@ -128,6 +130,14 @@ public class Meet {
 
 	public void setMeetPicId(String meetPicId) {
 		this.meetPicId = meetPicId;
+	}
+
+	public Integer getIsSign() {
+		return isSign;
+	}
+
+	public void setIsSign(Integer isSign) {
+		this.isSign = isSign;
 	}
 	
 	

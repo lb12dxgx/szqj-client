@@ -43,6 +43,8 @@ public class MeetSignUp {
 	private Date createDate;//创建时间
 	
 	private String meetId;//会议id
+	
+	private Integer isSign=0;//是否已签到：0:未签到  1：已签到
 
 	public String getMeetSignUpId() {
 		return meetSignUpId;
@@ -125,6 +127,14 @@ public class MeetSignUp {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Integer getIsSign() {
+		return isSign;
+	}
+
+	public void setIsSign(Integer isSign) {
+		this.isSign = isSign;
 	}
 
 	

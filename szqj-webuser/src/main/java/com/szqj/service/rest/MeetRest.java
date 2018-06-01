@@ -71,6 +71,18 @@ public class MeetRest {
 	}
 	
 	
+	@RequestMapping(value = "changeSign.do"  )
+	public RestJson changeSign(String meetId){
+		Meet meet = meetRepository.findById(meetId).get();
+		if(meet.getIsSign()==1){
+			meet.setIsSign(0);
+		}else{
+			meet.setIsSign(1);
+		}
+		meetRepository.save(meet);
+		return RestJson.createSucces();
+	}
+	
 		
 	
 	

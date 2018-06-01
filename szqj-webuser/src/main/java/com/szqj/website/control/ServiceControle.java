@@ -261,6 +261,40 @@ public class ServiceControle {
 	}
 	
 	@Token(save = true)
+	@RequestMapping(value = "/service/meet/sign.html"  )
+	public String meet_sign(String meetId, ModelMap modelMap){
+		 List<Meet> meets = meetRepository.findByIsSign();
+		 if(meets.size()>0&&meets!=null){
+			 modelMap.put("meet", meets.get(0));
+		 }else{
+			 modelMap.put("message", "无待签到会议!");
+		 }
+		return "service/weixin/meetsign"; 
+	}
+	
+	@Token(remove = true)
+	@RequestMapping(value = "/service/meet/saveSign.do"  )
+	public String saveSign(String meetId,String telphone, ModelMap modelMap){
+		
+		List<MeetSignUp> l = meetSignUpRepository.findListByMeetIdAndTelphone(meetId, telphone);
+	    if(l==null||l.size()==0){
+	    	modelMap.put("message", telphone+"未报名参加会议，请核对手机号重新输入!");
+	    }else{
+	    	MeetSignUp meetSignUp=l.get(0);
+	    	if(meetSignUp.getIsSign()==1){
+	    		modelMap.put("mesg", meetSignUp.getUserName()+"已经签到会议，请勿重复签到!");
+	    	}else{
+	    		meetSignUp.setIsSign(1);
+	    		meetSignUpRepository.save(meetSignUp);
+	    		modelMap.put("message",  meetSignUp.getUserName()+"已经签成功!");
+	    	}
+	    }
+		
+		return "service/weixin/signsuccess"; 
+	}
+	
+	
+	@Token(save = true)
 	@RequestMapping(value = "/service/meet/signup.html"  )
 	public String meet_signup(String meetId, ModelMap modelMap){
 		Meet meet = meetRepository.findById(meetId).get();
