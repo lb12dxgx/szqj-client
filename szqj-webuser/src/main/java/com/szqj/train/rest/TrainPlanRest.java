@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.szqj.service.domain.Meet;
 import com.szqj.train.domain.TrainPlan;
 import com.szqj.train.domain.TrainPlanRepository;
 import com.szqj.util.RestJson;
@@ -66,6 +67,20 @@ public class TrainPlanRest {
 		trainPlanRepository.deleteById(trainPlanId);
 		return RestJson.createSucces();
 	}
+	
+	@RequestMapping(value = "changeSign.do"  )
+	public RestJson changeSign(String trainPlanId){
+		TrainPlan trainPlan = trainPlanRepository.findById(trainPlanId).get();
+		if(trainPlan.getIsSign()==1){
+			trainPlan.setIsSign(0);
+		}else{
+			trainPlan.setIsSign(1);
+		}
+		trainPlanRepository.save(trainPlan);
+		return RestJson.createSucces();
+	}
+	
+		
 	
 	
 		

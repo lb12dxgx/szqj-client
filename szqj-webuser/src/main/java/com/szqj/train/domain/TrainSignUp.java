@@ -42,7 +42,8 @@ public class TrainSignUp {
 	
 	private String trainPlanId;//培训计划ID
 
-	
+	@Excel(name = "签到", width = 30, isImportField = "true_st",replace = { "未签到_0", "已签到_1" }, orderNum = "6")
+	private Integer isSign=0;//是否已签到：0:未签到  1：已签到
 
 	public String getUserName() {
 		return userName;
@@ -108,6 +109,14 @@ public class TrainSignUp {
 
 	public void setTrainPlanId(String trainPlanId) {
 		this.trainPlanId = trainPlanId;
+	}
+
+	public Integer getIsSign() {
+		return isSign;
+	}
+
+	public void setIsSign(Integer isSign) {
+		this.isSign = isSign;
 	}
 
 	

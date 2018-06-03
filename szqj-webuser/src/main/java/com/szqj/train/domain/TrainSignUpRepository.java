@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import com.szqj.service.domain.MeetSignUp;
+
 
 
 
@@ -26,5 +28,8 @@ public interface TrainSignUpRepository extends PagingAndSortingRepository<TrainS
 	
 	@Query("select m from TrainSignUp m where m.trainPlanId = ?1  order by empName ,createDate")
 	List<TrainSignUp> findListByTrainPlanId(String trainPlanId);
+	
+	@Query("select m from TrainSignUp m where m.trainPlanId = ?1 and m.telphone= ?2  order by empName ,createDate")
+	List<TrainSignUp> findListByTrainPlanIdAndTelphone(String meetId,String telphone);
 	
 }

@@ -44,6 +44,7 @@ public class MeetSignUp {
 	
 	private String meetId;//会议id
 	
+	@Excel(name = "签到", width = 30, isImportField = "true_st",replace = { "未签到_0", "已签到_1" }, orderNum = "6")
 	private Integer isSign=0;//是否已签到：0:未签到  1：已签到
 
 	public String getMeetSignUpId() {
