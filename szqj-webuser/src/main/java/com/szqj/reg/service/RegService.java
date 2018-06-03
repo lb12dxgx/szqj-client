@@ -39,7 +39,7 @@ public class RegService {
 	    regInfoRet.setSmscode(smscode);
 		regInfoRepository.save(regInfoRet);
 		try {
-			SmsTools.alSendSms(smscode,regInfo.getTelphone());
+			//SmsTools.alSendSms(smscode,regInfo.getTelphone());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,6 +97,16 @@ public class RegService {
 		companyRepository.save(company);
 		return regInfo;
 	}
+	
+	
+	public RegInfo saveRegInfoByTelphone(String telphone,String smscode) {
+		RegInfo regInfo=new RegInfo();
+		regInfo.setTelphone(telphone);
+		regInfo.setSmscode(smscode);
+		regInfoRepository.save(regInfo);
+		return regInfo;
+	}
+
 
 	
 	private Account saveAccount(RegInfo regInfo){
@@ -126,6 +136,8 @@ public class RegService {
 	    return invitecode;
 	}
 
+
+	
 
 	
 

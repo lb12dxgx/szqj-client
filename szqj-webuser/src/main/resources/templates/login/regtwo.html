@@ -33,7 +33,9 @@
           <div style="padding:10px " class="top-20">
             <h3 >用户注册</h3> 
           </div>
-          <form class="form-horizontal">
+          <form class="form-horizontal" id="regForm" action="submitreg.do">
+          <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
+          <input  type="hidden" name="reginfoId" th:value="${regInfo.reginfoId}"/>
             <div class="form-group">
               <label class="col-md-3 control-label reg-form-lable">账号类型</label>
               <div class="col-md-7">

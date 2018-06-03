@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.service.RegService;
+import com.szqj.springmvc.Token;
 import com.szqj.util.RestJson;
 
 @Controller
@@ -42,6 +43,7 @@ public class LoginControle {
 	 * @param modelMap
 	 * @return
 	 */
+	@Token(save = true)
 	@RequestMapping(value = "reg.html"  )
 	public String reg(ModelMap modelMap){
 		return "login/reg"; 
@@ -69,11 +71,15 @@ public class LoginControle {
 		return !flag;
 	}
 	
-	@RequestMapping(value = "submitreg.html"  )
-	public String submitonereg(ModelMap modelMap){
+	@Token(remove =true,save = true)
+	@RequestMapping(value = "submitreg.do"  )
+	public String submitonereg(String telphone,String smscode,ModelMap modelMap){
+		RegInfo regInfo = regService.saveRegInfoByTelphone(telphone,smscode);
+		modelMap.put("regInfo", regInfo);
 		return "login/regtwo"; 
 	}
 	
+	@Token(remove =true)
 	@RequestMapping(value = "submitregsuccess.html"  )
 	public String submittworeg(ModelMap modelMap){
 		return "login/regsuccess"; 
