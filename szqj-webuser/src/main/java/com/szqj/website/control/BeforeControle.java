@@ -185,7 +185,7 @@ public class BeforeControle {
 	@Token(remove =true)
 	@RequestMapping(value = "/118/regComapnySubmit.do"  )
 	public String regComapnySubmit(String reginfoId,Company company,ModelMap modelMap){
-		RegInfo reg=regService.regComapnySubmit(reginfoId,company);
+		RegInfo reg=regService.regBeforeComapnySubmit(reginfoId,company);
 		modelMap.put("regInfo", reg);
 		return "118/login";
 	}

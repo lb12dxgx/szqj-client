@@ -91,21 +91,32 @@ public class RegService {
 	 * @param regInfo
 	 * @return
 	 */
-	public RegInfo regComapnySubmit(String reginfoId, Company company) {
+	public RegInfo regBeforeComapnySubmit(String reginfoId, Company company) {
 		RegInfo regInfo = regInfoRepository.findById(reginfoId).get();
 		company.setAccountId(regInfo.getAccountId());
 		companyRepository.save(company);
 		return regInfo;
 	}
 	
-	
-	public RegInfo saveRegInfoByTelphone(String telphone,String smscode) {
-		RegInfo regInfo=new RegInfo();
-		regInfo.setTelphone(telphone);
-		regInfo.setSmscode(smscode);
-		regInfoRepository.save(regInfo);
-		return regInfo;
+	/**
+	 * 创建网站注册个人与企业账户信息
+	 * @param regInfo
+	 * @return
+	 */
+	public RegInfo regUser(RegInfo regInfo) {
+		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
+		Tools.copyBeanForUpdate(regInfo, regInfoRet);
+		regInfoRet.setType(ConstantUtils.REG_COMPANY);
+		Account account=saveAccount(regInfoRet);
+		regInfoRet.setAccountId(account.getAccountId());
+		regInfoRet.setPassword(account.getAccountPassword());
+		regInfoRepository.save(regInfoRet);
+		return regInfoRet;
+		
 	}
+	
+	
+	
 
 
 	

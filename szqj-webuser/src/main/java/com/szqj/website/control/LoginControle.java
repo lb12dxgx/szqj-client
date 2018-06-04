@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.szqj.reg.domain.RegInfo;
+import com.szqj.reg.domain.RegInfoRepository;
 import com.szqj.reg.service.RegService;
 import com.szqj.springmvc.Token;
 import com.szqj.util.RestJson;
@@ -16,6 +17,9 @@ import com.szqj.util.RestJson;
 @RequestMapping("/")
 @EnableAutoConfiguration
 public class LoginControle {
+	
+	@Autowired 
+	private RegInfoRepository regInfoRepository;
 	
 	@Autowired
 	private RegService regService;
@@ -74,14 +78,15 @@ public class LoginControle {
 	@Token(remove =true,save = true)
 	@RequestMapping(value = "submitreg.do"  )
 	public String submitonereg(String telphone,String smscode,ModelMap modelMap){
-		RegInfo regInfo = regService.saveRegInfoByTelphone(telphone,smscode);
+		RegInfo regInfo=regInfoRepository.findByTelphone(telphone);
 		modelMap.put("regInfo", regInfo);
 		return "login/regtwo"; 
 	}
 	
 	@Token(remove =true)
 	@RequestMapping(value = "submitregsuccess.html"  )
-	public String submittworeg(ModelMap modelMap){
+	public String submittworeg(RegInfo regInfo,ModelMap modelMap){
+		regService.s
 		return "login/regsuccess"; 
 	}
 	
