@@ -20,7 +20,9 @@ public class RegInfo {
 	@Column
 	private String telphone;//电话
 	@Column
-	private String userName;//姓名
+	private String userName;//姓名，企业姓名
+	@Column
+	private String userCode;//身份证号 ，信用代码证
 	@Column
 	private String smscode;//短信
 	@Column

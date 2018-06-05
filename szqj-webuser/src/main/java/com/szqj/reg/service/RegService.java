@@ -104,9 +104,8 @@ public class RegService {
 	 * @return
 	 */
 	public RegInfo regUser(RegInfo regInfo) {
-		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
+		RegInfo regInfoRet=regInfoRepository.findById(regInfo.getReginfoId()).get();
 		Tools.copyBeanForUpdate(regInfo, regInfoRet);
-		regInfoRet.setType(ConstantUtils.REG_COMPANY);
 		Account account=saveAccount(regInfoRet);
 		regInfoRet.setAccountId(account.getAccountId());
 		regInfoRet.setPassword(account.getAccountPassword());

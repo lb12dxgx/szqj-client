@@ -44,7 +44,7 @@ public class TokenContract {
                 if (needSaveSession){
                     String uuid = UUID.randomUUID().toString();
                     request.getSession().setAttribute( "submittoken" , uuid);
-                    logger.debug("进入表单页面，Token值为："+uuid);
+                    logger.info("进入表单页面，Token值为："+uuid);
                 }
  
               
@@ -59,11 +59,13 @@ public class TokenContract {
  
     private boolean isRepeatSubmit(HttpServletRequest request) throws FormRepeatException {
         String serverToken = (String) request.getSession( false ).getAttribute( "submittoken" );
+        String clinetToken = request.getParameter( "submittoken" );
+        logger.info("校验是否重复提交：表单页面submittoken值为："+clinetToken + ",Session中的submittoken值为:"+serverToken);
         if (serverToken == null ) {
             //throw new FormRepeatException("session 为空");
             return true;
         }
-        String clinetToken = request.getParameter( "submittoken" );
+       
         if (clinetToken == null || clinetToken.equals("")) {
             //throw new FormRepeatException("请从正常页面进入！");
             return true;
@@ -72,7 +74,7 @@ public class TokenContract {
             //throw new FormRepeatException("重复表单提交！");
             return true ;
         }
-        logger.debug("校验是否重复提交：表单页面submittoken值为："+clinetToken + ",Session中的submittoken值为:"+serverToken);
+       
         return false ;
     }
 }
