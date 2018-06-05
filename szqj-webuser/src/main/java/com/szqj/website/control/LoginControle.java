@@ -86,7 +86,8 @@ public class LoginControle {
 	@Token(remove =true)
 	@RequestMapping(value = "submitregsuccess.html"  )
 	public String submittworeg(RegInfo regInfo,ModelMap modelMap){
-		regService.s
+		RegInfo regInfoRt=regService.regUser(regInfo);
+		modelMap.put("regInfo", regInfoRt);
 		return "login/regsuccess"; 
 	}
 	

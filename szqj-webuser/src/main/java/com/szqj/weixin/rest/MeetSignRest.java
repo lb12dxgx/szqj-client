@@ -34,13 +34,20 @@ public class MeetSignRest {
 		return RestJson.createSucces(meets.get(0));
 	}
 	
-	@RequestMapping(value = "signMeet.wei"  )
-	public RestJson sign(String meetId,String telphone) {
-		List<MeetSignUp> l = meetsignRepository.findListByMeetIdAndTelphone(meetId, telphone);
+	@RequestMapping(value = "getSignMeet.wei"  )
+	public RestJson getSign(String meetId,String userName) {
+		List<MeetSignUp> l = meetsignRepository.findListByMeetIdAndUserName(meetId, userName);
 		if(l==null||l.size()==0) {
-			 return RestJson.createError("手机号未参与报名,请重新输入!");
+			 return RestJson.createError(userName+"未参与报名,请重新输入!");
 		 }
-		MeetSignUp meetSignUp=l.get(0);
+		return RestJson.createSucces(l);
+	}
+	
+	
+	@RequestMapping(value = "signMeet.wei"  )
+	public RestJson sign(String meetSignUpId) {
+		MeetSignUp meetSignUp = meetsignRepository.findById(meetSignUpId).get();
+		
 		if(meetSignUp.getIsSign()==1) {
 			return RestJson.createError(meetSignUp.getUserName()+"已经签到,请勿重复签到!");
 		}
