@@ -21,26 +21,57 @@
 		<img src="/images/logo100.png">
 	</div>
 	<div class="col-md-4">	
-	  <div class="login-box" style="padding:0.5em 2.5em 5.5em;">
-	    <h3>用户登录</h3>
-		 <div class="login-list">
-		   <input class="form-control" placeholder="账号" type="text" style="height: 50px; font-size: 16px;">
-		</div>
-		 <div class="login-list">
-		   <input class="form-control" placeholder="密码" type="password" style="height: 50px; font-size: 16px;">
-		</div>
-		  <ul class="list-inline list-unstyled">
-			  <li class="pull-left"><a href="reg.html" class="blue-link">注册</a></li>
-			  <li class="pull-right"><a href="#" class="blue-link">忘记密码?</a></li>
-		  </ul>
-		  <div class="login-list">
-			  <a href="#" class="btn btn-primary" style="width:100%; font-size: 16px; height:50px; line-height:37px;">登录</a>
-		  </div>
-	  </div>
+		<form method="post" action="token.do" id="loginForm">
+			  <div class="login-box" style="padding:0.5em 2.5em 5.5em;">
+			     <h3>用户登录</h3>
+				 <div class="login-list">
+				   <input class="form-control" placeholder="个人名称或企业名称" name="userName" type="text" style="height: 50px; font-size: 16px;">
+				</div>
+				 <div class="login-list">
+				   <input class="form-control" placeholder="密码" type="password" name="password" style="height: 50px; font-size: 16px;">
+				</div>
+				  <ul class="list-inline list-unstyled">
+					  <li class="pull-left"><a href="reg.html" class="blue-link">注册</a></li>
+					  <li class="pull-right"><a href="#" class="blue-link">忘记密码?</a></li>
+				  </ul>
+				  <div class="login-list">
+					  <a href="#" class="btn btn-primary" style="width:100%; font-size: 16px; height:50px; line-height:37px;">登录</a>
+				  </div>
+			  </div>
+		  </form>
 	</div>
 	<div class="col-md-2"></div>
 
 </div>
 </body>
+<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(function() {
+			$("#loginForm").validate({
+		          rules: {
+		        	userName:{
+		        		required: true
+		        	},
+		            password: {
+		              required: true,
+		              minlength: 6
+		            }
+		          },
+		          messages: {
+		        	  userName:{
+			        		required: '请输入账号',
+			        	},
+		            password:{
+		              required:'请输入密码',
+		              minlength:'密码要多于6位'
+		            }
+		           
+		          }
+		     });
+		})
+	})
+</script>
 </html>
 

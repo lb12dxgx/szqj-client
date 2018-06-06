@@ -18,6 +18,10 @@ public interface RegInfoRepository extends PagingAndSortingRepository<RegInfo, S
 	
 	
 	public RegInfo findByTelphone(String telphone);
+
+	public RegInfo findByUserCode(String userCode);
+
+	public RegInfo findByUserName(String userName);
 	
 	
 	

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -27,12 +28,14 @@ public class RegInfo {
 	private String smscode;//短信
 	@Column
 	private String invitecode;//邀请码
-	@Column
-	private String password;//密码
+	
 	@Column
 	private Integer type;//0:个人  1：企业
 	@Column
 	private String accountId;//账号ID
+	
+	@Transient
+	private String password;//密码
 
 
 	public String getTelphone() {
@@ -97,6 +100,14 @@ public class RegInfo {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 	  
 	

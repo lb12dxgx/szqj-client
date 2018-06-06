@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+<link  th:href="@{/css/cyfw.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+	   <li><a href="#">118服务</a></li>
+       <li class="active">施工申请</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row">
+      <!--左侧菜单开始-->
+     <div th:include="118/leftmenu"/> 
+     <!--左侧菜单结束-->
+    
+     <!--右侧内容开始-->
+     <div class="col-md-9">
+       <div>
+		   <div class="row hyibg">
+			   <div class="col-md-7">
+				   <h3>如何管理好城市的管线</h3>
+				   <p class="gy-text">据住建部规划管理中心统计，全国每年由路面开挖造成的事故，直接经济损失约2000亿元；据中国城市规划协会地下管线专业委员会统计，管线事故70%是外力破坏、特别第三方施工导致的。到2016年底，全国地下管线总长度为346.5万公里，其中城市管线总长度达到了212.7万公里。如何管理好城市的管线，让城市生活的人也能感受到安全祥和、生态文明。采用什么样的管理措施？怎么样预防和减少施工外力破坏地下管线事故发生，就是摆在我们面前的一个特别大的课题。
+</p>
+			   </div>
+			   <div class="col-md-5"><img src="/images/118pic1gai.jpg" width="340"></div>
+		   </div>
+		   <div class="row qianhuibg">
+			   <div class="col-md-5 text-left" style="padding-top: 30px;"><img src="/images/118pic2.png" width="340"></div>
+			   <div class="col-md-7">
+				   <h3>118一呼通平台来帮忙</h3>
+				   <p class="gy-text">其实任何一个建设施工单位都不希望挖断别人的管线，每一个管线单位也不愿意别人挖断自己的管线。基于这么一个利益共同点，我们创造性的推出118地下管线防范挖掘一呼通平台。以前挖掘工程建设单位要了解施工区域内的地下管线信息，主要通过到城建档案馆查询、到各地下管线权属单位咨询或 者委托勘察单位探测查明等方式。但由于每个城市管线档案资料不健全，建设、施工单位需要打很多电话、跑很多单位或开很多会议，费时费力效果还不好。基于这些原因，我们提出118地下管线防范挖掘一呼通平台理念，通过网络平台，让建设挖掘信息提前叫管线单位知道，同时建设挖掘单位也知道地下地下管线在什么位置，那么开挖导致的事故就会大大降低。
+
+
+</p>
+			   </div>
+			   
+		   </div>
+		   <div class="row hyibg">
+			   <div class="col-md-7">
+				   <h3>信息共享 协调沟通</h3>
+				   <p class="gy-text">本平台只是充分利用互联网信息技术，不替代各项政府许可，纯服务性平台。满足建设施工单位和管线权属单位之间信息公示、信息交流、权属认证这些实际需求，消除以前消息不对称的壁垒，促进信息共享。只是把以前会议、发文、电话这些交流沟通手段，转变成虚拟化、扁平化的平等交流平台。这样能让建设单位和管线权属单位从原来的“被动管理者”变成“主动参与者”，共同做好管线防护工作，政府部门和企业各方共同参与、合作共治。
+</p>
+			   </div>
+			   <div class="col-md-5"><img src="/images/118pic3gai.jpg" width="340"></div>
+		   </div>
+	   </div>
+	
+	  
+	   
+	
+     </div>
+     <!--右侧内容结束-->
+   </div>
+ </div>
+ 
+ <!--footer开始-->
+	   <div th:include="footer"></div>
+  <!--footer结束-->
+<script type="text/javascript" th:inline="javascript">
+		$(function(){
+			$('#118').removeClass("manulinknone");
+			$('#118').addClass("manulink");
+			$('#l_about').removeClass("fw-manu4-none");
+			$('#l_about').addClass("fw-manu4-on");
+			$('#applyOrgId').val([[${applyOrgId}]])
+		})
+</script>
+</body>
+</html>

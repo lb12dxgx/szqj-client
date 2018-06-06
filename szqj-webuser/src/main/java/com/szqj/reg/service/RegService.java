@@ -55,6 +55,25 @@ public class RegService {
 		}
 		  return false;
 	}
+	
+	
+	public boolean isExitByUserCode(RegInfo regInfo){
+		RegInfo regInfoRet=regInfoRepository.findByUserCode(regInfo.getUserCode());
+		if(regInfoRet!=null&&regInfoRet.getAccountId()!=null){
+			return true;
+		}
+		  return false;
+	}
+	
+	
+	public boolean isExitByUserName(RegInfo regInfo){
+		RegInfo regInfoRet=regInfoRepository.findByUserName(regInfo.getUserName());
+		if(regInfoRet!=null&&regInfoRet.getAccountId()!=null){
+			return true;
+		}
+		  return false;
+	}
+	
 
 
 	

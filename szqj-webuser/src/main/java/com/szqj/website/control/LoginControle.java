@@ -37,7 +37,7 @@ public class LoginControle {
 	
 	
 	@RequestMapping(value = "token.do"  )
-	public String token(String accountName, String accountPassword,ModelMap modelMap){
+	public String token(String userName, String password,ModelMap modelMap){
 		return "login"; 
 	}
 	
@@ -75,6 +75,23 @@ public class LoginControle {
 		return !flag;
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value = "isExitByUserName.do"  )
+	public boolean isExitByUserName(RegInfo regInfo){
+		boolean flag = regService.isExitByUserName(regInfo);
+		return !flag;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "isExitByUserCode.do"  )
+	public boolean isExitByUserCode(RegInfo regInfo){
+		boolean flag = regService.isExitByUserCode(regInfo);
+		return !flag;
+	}
+	
+	
+	
 	@Token(remove =true,save = true)
 	@RequestMapping(value = "submitreg.do"  )
 	public String submitonereg(String telphone,String smscode,ModelMap modelMap){
@@ -84,7 +101,7 @@ public class LoginControle {
 	}
 	
 	@Token(remove =true)
-	@RequestMapping(value = "submitregsuccess.html"  )
+	@RequestMapping(value = "submitregsuccess.do"  )
 	public String submittworeg(RegInfo regInfo,ModelMap modelMap){
 		RegInfo regInfoRt=regService.regUser(regInfo);
 		modelMap.put("regInfo", regInfoRt);
