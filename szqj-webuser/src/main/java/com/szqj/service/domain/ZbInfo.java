@@ -33,6 +33,10 @@ public class ZbInfo {
 	
 	private String url;//URL地址
 	
+	private String sourceUrl;//URL地址
+	
+	private String fmedia;//发布网站
+	
 	
 
 	public String getZbXmName() {
@@ -97,6 +101,22 @@ public class ZbInfo {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getSourceUrl() {
+		return sourceUrl;
+	}
+
+	public void setSourceUrl(String sourceUrl) {
+		this.sourceUrl = sourceUrl;
+	}
+
+	public String getFmedia() {
+		return fmedia;
+	}
+
+	public void setFmedia(String fmedia) {
+		this.fmedia = fmedia;
 	}
 	
 	
