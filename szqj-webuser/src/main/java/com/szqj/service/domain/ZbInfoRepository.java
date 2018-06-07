@@ -1,7 +1,8 @@
 package com.szqj.service.domain;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -21,5 +22,9 @@ public interface ZbInfoRepository extends PagingAndSortingRepository<ZbInfo, Str
 	
 	@Query("select m from ZbInfo m  order by createDate")
 	Page<ZbInfo> findPage(Pageable pageable);
+	
+	
+	@Query("select m from ZbInfo m where m.url=?1 order by createDate")
+	List<ZbInfo> findListByUrl(String url);
 	
 }

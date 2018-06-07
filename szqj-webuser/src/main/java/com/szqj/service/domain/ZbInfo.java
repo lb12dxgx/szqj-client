@@ -31,6 +31,8 @@ public class ZbInfo {
 	
 	private Date createDate;//创建时间
 	
+	private String url;//URL地址
+	
 	
 
 	public String getZbXmName() {
@@ -87,6 +89,14 @@ public class ZbInfo {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	
