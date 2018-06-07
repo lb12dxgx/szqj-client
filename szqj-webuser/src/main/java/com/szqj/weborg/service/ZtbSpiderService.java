@@ -32,8 +32,8 @@ public class ZtbSpiderService implements PageProcessor {
     .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
 	
-	@Scheduled(cron = "0 */1 *  * * * ")
-    public void startSearch() { 
+	@Scheduled(cron = "0 * */2  * * * ")
+    public void startSearch() {  
     	Spider spider = Spider.create(this);
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     	String searchDate = formatter.format(new Date());
