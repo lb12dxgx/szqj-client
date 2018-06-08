@@ -32,11 +32,12 @@ public class ZtbSpiderService implements PageProcessor {
     .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
 	
-	@Scheduled(cron = "0 */2 *  * * * ")
-    public void startSearch() { 
+	@Scheduled(cron = "0 * */2  * * * ")
+    public void startSearch() {  
     	Spider spider = Spider.create(this);
-    	
-    	String url="https://r.newssdk.com/bid/item/search?include_keywords=地下管线&exclude_keywords=&start_time=2013-06-07&end_time=2018-06-07&type=1&searchtype=0&page=1&region=&searchscope=title&size=1&uid=oyx_s0L3Ugwsjh96ObNLkpQAHu3M";
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    	String searchDate = formatter.format(new Date());
+    	String url="https://r.newssdk.com/bid/item/search?include_keywords=地下管线&exclude_keywords=&start_time="+searchDate+"&end_time="+searchDate+"&type=1&searchtype=0&page=1&region=&searchscope=title&size=100&uid=oyx_s0L3Ugwsjh96ObNLkpQAHu3M";
 		spider.addUrl(url).run();
     	
     	
@@ -67,6 +68,12 @@ public class ZtbSpiderService implements PageProcessor {
 				zbInfo.setCreateDate(new Date());
 				zbInfo.setZbXmName(zb.getTitle());
 				zbInfo.setUrl(zb.getUrl());
+				
+				ZtbContentProcessor ztbProcessor=new ZtbContentProcessor(zbInfo);
+				Spider spider = Spider.create(ztbProcessor);
+				String url=zb.getUrl().replaceAll("item/default2.html", "hnews/item");
+				spider.addUrl(url).run();
+				System.out.println("结束内容");
 				zbInfoRepository.save(zbInfo);
 			}
 			
