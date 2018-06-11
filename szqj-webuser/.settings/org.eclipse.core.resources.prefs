@@ -4,6 +4,7 @@ encoding//src/main/java/com/szqj/person/domain/Person.java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/resources/application.properties=UTF-8
 encoding//src/main/resources/applicationlinux.properties=UTF-8
+encoding//src/main/resources/templates/118/about.html=UTF-8
 encoding//src/main/resources/templates/118/index.html=UTF-8
 encoding//src/main/resources/templates/118/leftmenu.html=UTF-8
 encoding//src/main/resources/templates/118/login.html=UTF-8
@@ -18,9 +19,13 @@ encoding//src/main/resources/templates/118/submitTwo.html=UTF-8
 encoding//src/main/resources/templates/accident/detail.html=UTF-8
 encoding//src/main/resources/templates/accident/index.html=UTF-8
 encoding//src/main/resources/templates/accident/right.html=UTF-8
+<<<<<<< HEAD
 encoding//src/main/resources/templates/emp=UTF-8
 encoding//src/main/resources/templates/emp/index.html=UTF-8
 encoding//src/main/resources/templates/emp/leftmenu.html=UTF-8
+=======
+encoding//src/main/resources/templates/emp/index.html=UTF-8
+>>>>>>> refs/remotes/origin/master
 encoding//src/main/resources/templates/error.html=UTF-8
 encoding//src/main/resources/templates/footer.html=UTF-8
 encoding//src/main/resources/templates/head.html=UTF-8
@@ -62,6 +67,7 @@ encoding//src/main/resources/templates/train/classList.html=UTF-8
 encoding//src/main/resources/templates/train/index.html=UTF-8
 encoding//src/main/resources/templates/train/signupsuccess.html=UTF-8
 encoding//src/main/resources/templates/train/teacherList.html=UTF-8
+encoding//src/main/resources/templates/train/teacherdetail.html=UTF-8
 encoding//src/main/resources/templates/train/traindetail.html=UTF-8
 encoding//src/main/resources/templates/train/trainsignup.html=UTF-8
 encoding//src/test/java=UTF-8
