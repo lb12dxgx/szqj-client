@@ -4,11 +4,6 @@
 </head>
 <head>
 	<link href="/css/login.css" rel="stylesheet" type="text/css" /> 
-	<style>
-	#errMsg{
-	color:red
-	}
-	</style>
 </head> 
 
 <body>
@@ -29,7 +24,7 @@
 		<form method="post" action="token.do" id="loginForm">
 			  <div class="login-box" style="padding:0.5em 2.5em 5.5em;">
 			     <h3>用户登录</h3>
-			     <h6 id="errMsg"></h6>
+			     <h4 id="errMsg"></h4>
 				 <div class="login-list">
 				   <input class="form-control" placeholder="个人名称或企业名称" name="userName" type="text" style="height: 50px; font-size: 16px;">
 				</div>
@@ -41,7 +36,7 @@
 					  <li class="pull-right"><a href="#" class="blue-link">忘记密码?</a></li>
 				  </ul>
 				  <div class="login-list">
-					   <button id="login" type="button" style="width:100%; font-size: 16px; height:50px; line-height:37px;">登录</button>
+					  <a href="#" class="btn btn-primary" style="width:100%; font-size: 16px; height:50px; line-height:37px;">登录</a>
 				  </div>
 			  </div>
 		  </form>
@@ -53,13 +48,12 @@
 <link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 <script type="text/javascript">
-	$(function() {
+	$(function(){
+		$(function() {
 			$("#loginForm").validate({
 				errorPlacement:function(error,element) {
-					$("#errMsg").next().removeClass("login-list");
-					 error.appendTo("#errMsg");//将错误信息全部放入到一个div内部显示
-					 $("<br/>").appendTo("#errMsg");
-					},
+					error.addpendTo("#errMsg");//将错误信息全部放入到一个div内部显示
+					}),
 					
 				 rules: {
 		        	userName:{
@@ -81,18 +75,8 @@
 		           
 		          }
 		     });
-	
-	 
-	 	$("#login").click(function(){
-	    	if($("#loginForm").valid()){
-	    		
-	    		$("#loginForm").submit();
-	    	}
-
-	    })
+		})
 	})
-
 </script>
-
 </html>
 

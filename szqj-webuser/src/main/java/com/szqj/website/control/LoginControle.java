@@ -1,6 +1,5 @@
 package com.szqj.website.control;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -8,15 +7,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.szqj.before.domain.ApplyOrg;
-import com.szqj.company.domain.Company;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.domain.RegInfoRepository;
 import com.szqj.reg.service.RegService;
 import com.szqj.springmvc.Token;
 import com.szqj.util.RestJson;
-import com.szqj.weborg.domain.Account;
-import com.szqj.weborg.service.AccountService;
 
 @Controller
 @RequestMapping("/")
@@ -28,10 +23,6 @@ public class LoginControle {
 	
 	@Autowired
 	private RegService regService;
-	
-	@Autowired
-	private AccountService accountService;
-	
 	/**
 	 * 网站登陆
 	 * @param modelMap
@@ -47,17 +38,7 @@ public class LoginControle {
 	
 	@RequestMapping(value = "token.do"  )
 	public String token(String userName, String password,ModelMap modelMap){
-		Account account = accountService.login(userName, password);
-		account.setToken(account.getAccountId());
-		if(StringUtils.isBlank(account.getLoginStr())){
-			
-			 return "emp/index"; 
-		}else{
-			 modelMap.put("loginStr", account.getLoginStr());
-			
-			 return "login/login"; 
-		}
-		
+		return "login"; 
 	}
 	
 	
