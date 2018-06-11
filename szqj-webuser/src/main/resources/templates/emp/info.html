@@ -4,7 +4,7 @@
 </head>
 <head>
 	
-	<link href="css/houtai.css" rel="stylesheet" type="text/css">
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
 </head>
  
 
@@ -21,22 +21,22 @@
   <!--菜单结束-->
  <div class="gb-main  container-fluid">
   
-   <div class="row" style="margin-top:20px">
+   <div class="row houtai-box" style="margin-top:5px">
      <!--左侧菜单开始-->
-     <div class="col-md-2" style="border-left:1px solid #ff0000;">
+     <div class="col-md-2 ">
 		<div th:include="emp/leftmenu"/> 
 	 </div>
      <!--左侧菜单结束-->
-	 <div class="col-md-10" style="padding: 0; background: #fff;border-left:1px solid #CCCCCC;">
+	 <div class="col-md-10 main-content" >
 		<div class="row" style="padding:10px;">
 			 <!--中部内容开始-->
-	 	<div class="col-md-12" style="padding-right: 0;">
+	 	 <div class="col-md-12" style="padding-right: 0;">
 		 	<form class="form-horizontal ">
 
                 <div class="form-group">
                   <label class="col-md-1 control-label">企业名称</label>
                   <div class="col-md-7">
-                    <input type="text" class="form-control"  
+                    <input type="text" class="form-control"  th:value="${enterprise.enterpriseName}"
                     placeholder="请输入企业名称">
                   </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="form-group">
                   <label  class="col-md-1 control-label">信用代码</label>
                   <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入统一信用代码">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入统一信用代码" th:value="${enterprise.enterpriseCode}">
                   </div>
                   <label  class="col-md-1 control-label">行业类别</label>
                   <div class="col-md-4">
@@ -73,7 +73,7 @@
                   </div>
                   <label  class="col-md-1 control-label">电话号码</label>
                   <div class="col-md-4">
-                     <input type="email" class="form-control" id="inputEmail3" placeholder="请输入联系电话">
+                     <input type="email" class="form-control" id="inputEmail3" placeholder="请输入联系电话" th:value="${enterprise.telphone}">
                   </div>
                 </div>
 
@@ -106,7 +106,7 @@
 
                 <div class="form-group">
                   <div class="col-md-2 col-md-offset-4"  >
-                    <a href="#" class="btn btn-primary" style="font-size:16px ">
+                    <a href="#" class="btn btn-primary">
                       提交
                     </a>
                   </div>
@@ -123,15 +123,15 @@
    </div>
  </div>
  
-    <!--footer开始-->
-	 <div th:include="footer"></div>
+<!--footer开始-->
+ <div th:include="footer"></div>
   	<!--footer结束-->
   	<script type="text/javascript" th:inline="javascript">
 	$(function(){
 		$('#info').addClass("active");
 	})
 </script>
-  <!--footer����-->
+  <!--footer结束-->
  
 </body>
 </html>

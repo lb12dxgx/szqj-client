@@ -1,5 +1,7 @@
 package com.szqj.website.control;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,12 +10,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.szqj.before.domain.ApplyOrg;
-import com.szqj.company.domain.Company;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.domain.RegInfoRepository;
 import com.szqj.reg.service.RegService;
 import com.szqj.springmvc.Token;
+import com.szqj.util.ConstantUtils;
 import com.szqj.util.RestJson;
 import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.service.AccountService;
@@ -46,12 +47,18 @@ public class LoginControle {
 	
 	
 	@RequestMapping(value = "token.do"  )
-	public String token(String userName, String password,ModelMap modelMap){
+	public String token(String userName, String password,ModelMap modelMap,HttpServletRequest request){
 		Account account = accountService.login(userName, password);
 		account.setToken(account.getAccountId());
 		if(StringUtils.isBlank(account.getLoginStr())){
 			
-			 return "emp/index"; 
+			request.getSession().setAttribute("account", account);
+			
+			if(account.getAccountType()==ConstantUtils.ACCOUNT_COMPANY){
+				return "redirect:emp/info.html"; 
+			}else {
+				return "redirect:per/index.html"; 
+			}
 		}else{
 			 modelMap.put("loginStr", account.getLoginStr());
 			

@@ -1,20 +1,20 @@
 package com.szqj.reg.service;
 
+import java.util.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.szqj.company.domain.Company;
-import com.szqj.company.domain.CompanyRepository;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.domain.RegInfoRepository;
+import com.szqj.service.domain.Enterprise;
+import com.szqj.service.domain.EnterpriseRepository;
 import com.szqj.util.ConstantUtils;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.service.AccountService;
-import com.szqj.yun.SmsTools;
 
 @Service
 @Transactional
@@ -27,8 +27,9 @@ public class RegService {
 	private AccountService accountService;
 	
 	@Autowired 
-	private CompanyRepository companyRepository;
+	private EnterpriseRepository enterpriseRepository;
 	
+
 	public RegInfo genSmsCode(RegInfo regInfo,int count ){
 		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
 		if(regInfoRet==null){
@@ -105,17 +106,6 @@ public class RegService {
 		
 	}
 	
-	/**
-	 * 创建挖掘申请单位信息
-	 * @param regInfo
-	 * @return
-	 */
-	public RegInfo regBeforeComapnySubmit(String reginfoId, Company company) {
-		RegInfo regInfo = regInfoRepository.findById(reginfoId).get();
-		company.setAccountId(regInfo.getAccountId());
-		companyRepository.save(company);
-		return regInfo;
-	}
 	
 	/**
 	 * 创建网站注册个人与企业账户信息
@@ -129,6 +119,15 @@ public class RegService {
 		regInfoRet.setAccountId(account.getAccountId());
 		regInfoRet.setPassword(account.getAccountPassword());
 		regInfoRepository.save(regInfoRet);
+		if(regInfoRet.getType()==ConstantUtils.REG_COMPANY){
+			Enterprise enterprise=new Enterprise();
+			enterprise.setAccountId(account.getAccountId());
+			enterprise.setEnterpriseName(regInfoRet.getUserName());
+			enterprise.setEnterpriseCode(regInfoRet.getUserCode());
+			enterprise.setTelphone(regInfoRet.getTelphone());
+			enterprise.setCreateDate(new Date());
+			enterpriseRepository.save(enterprise);
+		}
 		return regInfoRet;
 		
 	}

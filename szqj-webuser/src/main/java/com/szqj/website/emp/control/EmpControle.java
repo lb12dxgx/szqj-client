@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
@@ -33,6 +36,7 @@ import com.szqj.train.domain.TrainCert;
 import com.szqj.train.domain.TrainCertRepository;
 import com.szqj.train.domain.TrainTeacher;
 import com.szqj.util.Tools;
+import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.domain.FileInfo;
 import com.szqj.weborg.domain.FileInfoRepository;
 
@@ -40,6 +44,12 @@ import com.szqj.weborg.domain.FileInfoRepository;
 @RequestMapping("/")
 @EnableAutoConfiguration
 public class EmpControle {
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
+	@Autowired
+	private EnterpriseRepository enterpriseRepository;
 	
 	/**
 	 * 企业信息
@@ -49,10 +59,29 @@ public class EmpControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/emp/info.html"  )
-	public String info(Integer pageNum, Integer size, ModelMap modelMap){
+	public String info(ModelMap modelMap,HttpServletRequest request){
+		Account account = (Account)request.getSession().getAttribute("account");
+		List<Enterprise> enterprises = enterpriseRepository.findByAccountId(account.getAccountId());
+		modelMap.put("enterprise", enterprises.get(0));
+		return "emp/info"; 
+	}
+	
+	
+	/**
+	 * 企业信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/emp/save.html"  )
+	public String info(Enterprise enterprise, ModelMap modelMap){
+		enterpriseRepository.save(enterprise);
 		return "emp/index"; 
 	}
 	
+	
+
 	/**
 	 * 人员信息
 	 * @param pageNum
@@ -62,6 +91,10 @@ public class EmpControle {
 	 */
 	@RequestMapping(value = "/emp/user.html"  )
 	public String user(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
 		return "emp/user"; 
 	}
 	
@@ -73,10 +106,85 @@ public class EmpControle {
 	 * @param modelMap
 	 * @return
 	 */
+	@RequestMapping(value = "/emp/user/add.html"  )
+	public String userAdd(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
+		return "emp/user_add"; 
+	}
+	
+	
+	/**
+	 * 人员信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/emp/user/save.html"  )
+	public String userSave(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
+		return "emp/user_add"; 
+	}
+	
+	/**
+	 * 人员信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/emp/user/edit.html"  )
+	public String userEdit(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
+		return "emp/user_edit"; 
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 产品信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
 	@RequestMapping(value = "/emp/productinfo.html"  )
 	public String productinfo(Integer pageNum, Integer size, ModelMap modelMap){
-		return "emp/user"; 
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
+		return "emp/productinfo"; 
 	}
+	
+	
+	/**
+	 * 培训信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/emp/meet.html"  )
+	public String meet(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
+		return "emp/meet"; 
+	}
+	
 	
 	
 	/**
@@ -88,6 +196,10 @@ public class EmpControle {
 	 */
 	@RequestMapping(value = "/emp/traininfo.html"  )
 	public String traininfo(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
 		return "emp/traininfo"; 
 	}
 	
@@ -100,6 +212,10 @@ public class EmpControle {
 	 */
 	@RequestMapping(value = "/emp/jobinfo.html"  )
 	public String jobinfo(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
 		return "emp/jobinfo"; 
 	}
 	
@@ -113,6 +229,10 @@ public class EmpControle {
 	 */
 	@RequestMapping(value = "/emp/buyinfo.html"  )
 	public String purchase(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Product> page=productRepository.findPage(pageable);
+		
+		modelMap.put("page", page);
 		return "emp/buyinfo"; 
 	}
 	

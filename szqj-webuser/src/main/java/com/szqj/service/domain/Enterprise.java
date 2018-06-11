@@ -21,6 +21,8 @@ public class Enterprise {
 	
 	private String enterpriseName; //企业名称
 	
+	private String enterpriseCode; //企业信用代码
+	
 	private String enterpriseSummary; //企业介绍
 	
 	private String business;//主营业务
@@ -135,6 +137,14 @@ public class Enterprise {
 
 	public void setOrderNum(Integer orderNum) {
 		this.orderNum = orderNum;
+	}
+
+	public String getEnterpriseCode() {
+		return enterpriseCode;
+	}
+
+	public void setEnterpriseCode(String enterpriseCode) {
+		this.enterpriseCode = enterpriseCode;
 	}
 	
 	

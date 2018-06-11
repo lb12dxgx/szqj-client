@@ -1,102 +1,44 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0020)http://www.ysemm.cn/ -->
-<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>中国地下空间网</title>
-    <meta name="keywords" content="地下空间,地下管线">
-    <meta name="description" content="">
-    <!-- Bootstrap -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" > 
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/spaceemp.css">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
 </head>
-<style type="text/css">
+<head>
+	
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
+</head>
+  
+ 
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
 
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
 
-</style>
-
-<body class="pace-done bg-color">
-     <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-xs-3" style="text-align: center;">
-                    <span style="font-size: 25px;margin: 10px 0;line-height: 80px">
-                      <!-- 中国地下空间网 -->
-                    </span>
-            </div>
-                <div class="col-lg-8 col-xs-8">
-                    <ul class="nav nav-pills">
-                        <li >
-                          <a href="../index.html" class="line">首页</a>
-                        </li>
-                        <li>
-                          <a href="118/index.html" class="line">118服务</a>
-                        </li>
-                        <li>
-                          <a href="news/index.html" class="line">行业资讯</a>
-                        </li>
-                        <li>
-                          <a href="tender/index.html" class="line">行业采购</a>
-                        </li>
-                        <li>
-                          <a href="hr/index.html" class="line">行业招聘</a>
-                        </li>
-                        <li>
-                          <a href="train/index.html" class="line">产业培训</a>
-                        </li>
-                        <li>
-                          <a href="service/index.html" class="line">产业服务</a>
-                        </li>
-                        <li>
-                          <a href="maga/index.html" class="line">电子期刊</a>
-                        </li>
-                        <li class="active">
-                          <a href="index.html" class="line">管理平台</a>
-                        </li>
-                     </ul> 
-                </div>
-            </div>
-        </div>
-    </header>
-
-
-    
-  <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-2 menu-left">
-              <ul class="nav nav-pills nav-stacked ">
-                <li><a href="index.html">企业门户</a></li>
-                <li><a href="empinfo.html">基本信息</a></li>
-                <li ><a href="#">人员管理</a></li>
-                <li><a href="traininfo.html">培训管理</a></li>
-                <li class="active"><a href="jobinfo.html">招聘管理</a></li>
-                <li><a href="productinfo.html">商品管理</a></li>
-                <li><a href="buyinfo.html">采购信息</a></li>
-                <li><a href="achievement.html">企业业绩</a></li>
-              </ul>
-            </div>
-
-            <div class="col-md-10 content-main" style="text-align:left">
-              <div class="col-md-12">
-                <form class="form-inline top-20">
-                  <div class="form-group col-md-4">
-                    <label>职位名</label>
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main  container-fluid">
+  
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--左侧菜单开始-->
+     <div class="col-md-2">
+		<div th:include="emp/leftmenu"/>  
+	 </div>
+     <!--左侧菜单结束-->
+	<div class="col-md-10 main-content" >
+              <div class="col-md-12" style="padding:10px;">
+                <form class="form-inline">
+                   <div class="form-group col-md-4">
+                    <label class="srarch-label">职位名称</label>
                     <input type="text" class="form-control" >
                   </div>
                   <div class="form-group col-md-4" style="margin-right:10px ">
-                    <a class="btn btn-default" style="font-size: 16px">
+                    <a class="btn btn-default">
                       <i class="fa fa-search"></i>查询
                     </a>
-                    <a href="jobinfo_add.html" class="btn btn-primary" style="font-size: 16px">
+                    <a href="jobinfo_add.html" class="btn btn-primary" >
                       <i class="fa fa-plus"></i>新增
                     </a>
                   </div>
@@ -107,7 +49,7 @@
                 <table class="table table-striped table-bordered ">
                   <tr>
                     <th width="5%">序号</th>
-                    <th width="20%">职位名</th>
+                    <th width="20%">职位名称</th>
                     <th width="30%">薪资</th>
                     <th width="10%">人数</th>
                     <th width="15%">发布时间</th>
@@ -178,7 +120,7 @@
                   </tr>
 
                   <tr>
-                    <td>8</td>
+                    <td>5</td>
                     <td>项目经理</td>
                     <td>1.3-1.6万/月</td>
                     <td>2</td>
@@ -192,91 +134,12 @@
                       </a>
                     </td>
                   </tr>
-
-                 <tr>
-                    <td>6</td>
-                    <td>项目经理</td>
-                    <td>1.3-1.6万/月</td>
-                    <td>2</td>
-                    <td>2018-10-12</td>
-                    <td>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          修改
-                      </a>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          删除
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>7</td>
-                    <td>项目经理</td>
-                    <td>1.3-1.6万/月</td>
-                    <td>2</td>
-                    <td>2018-10-12</td>
-                    <td>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          修改
-                      </a>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          删除
-                      </a>
-                    </td>
-                  </tr>
-                   
-
-                   <tr>
-                    <td>8</td>
-                    <td>项目经理</td>
-                    <td>1.3-1.6万/月</td>
-                    <td>2</td>
-                    <td>2018-10-12</td>
-                    <td>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          修改
-                      </a>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          删除
-                      </a>
-                    </td>
-                  </tr>
-
-                 
-
-
-                  
-                </table>
+				</table>
               </div>
 
                <div class="row">
                   <div class="col-md-6 col-md-offset-6" >
-                    <nav>
-                      <ul class="pagination" style="display:block;">
-                        <li>
-                          <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                          </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                          <a href="#" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                          </a>
-                        </li>
-                       </ul>
-                        <div  class="pag-jump">
-                          <span class="page-total" >共100页</span>
-                          <input type="text" name="pageNum" value="" class="page-input">
-                          <a href="#" class="btn btn-primary" onclick="searchKeyword(); return false;">
-                          跳转
-                          </a>
-                        </div>
-                      </nav>
+                    <div th:include="pagination"/> 
                       
                   </div>
                   
@@ -287,59 +150,14 @@
         </div>
   </div>          
   
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 footer-desc">
-          <div>
-            市场商务：<span class="title">010-xxxxx</span>
-          </div>
-          <div>
-            客服热线：<span class="title">400-xxx-xxx</span>
-          </div>
-          <div> 
-          地址： <span class="title">北京市海淀区</span>
-          </div>
-        </div>
-        <div class="col-md-8">
-           <div style="color: #fff;float: left;margin-top:10px; ">友情链接</div>
-           <div class="footer-links">
-            <a href="#">协会111</a>
-            <a href="#">协会111</a>
-            <a href="#">协会111</a>
-            <a href="#">协会111</a>
-            <a href="#">协会111</a>
-           </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="footer-copyright">
-        Copyright©2018d地下空间网,All Rights Reserved  京ICP备16012914号-12 京公网安备11010802022625
-       </div>
-      </div>
-    </div>
-
-  </div>          
-   
-    
-</body>
-
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
-<script type="text/javascript">
-  var mySwiper = new Swiper ('.swiper-container', {
-    loop: true,
-    autoplay:true,
-    pagination: {
-      el: '.swiper-pagination',
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  })        
+   <!--footer开始-->
+ <div th:include="footer"></div>
+  	<!--footer结束-->
+  	<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		$('#job').addClass("active"); 
+	})
 </script>
-
+  <!--footer结束-->
+  </body>
 </html>

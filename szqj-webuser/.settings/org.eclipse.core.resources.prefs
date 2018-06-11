@@ -1,3 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=refs/remotes/origin/master
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/com/szqj/person/domain/Person.java=UTF-8
@@ -19,13 +22,15 @@ encoding//src/main/resources/templates/118/submitTwo.html=UTF-8
 encoding//src/main/resources/templates/accident/detail.html=UTF-8
 encoding//src/main/resources/templates/accident/index.html=UTF-8
 encoding//src/main/resources/templates/accident/right.html=UTF-8
-<<<<<<< HEAD
 encoding//src/main/resources/templates/emp=UTF-8
-encoding//src/main/resources/templates/emp/index.html=UTF-8
+encoding//src/main/resources/templates/emp/buyinfo.html=UTF-8
+encoding//src/main/resources/templates/emp/info.html=UTF-8
+encoding//src/main/resources/templates/emp/jobinfo.html=UTF-8
 encoding//src/main/resources/templates/emp/leftmenu.html=UTF-8
-=======
-encoding//src/main/resources/templates/emp/index.html=UTF-8
->>>>>>> refs/remotes/origin/master
+encoding//src/main/resources/templates/emp/meet.html=UTF-8
+encoding//src/main/resources/templates/emp/productinfo.html=UTF-8
+encoding//src/main/resources/templates/emp/traininfo.html=UTF-8
+encoding//src/main/resources/templates/emp/user.html=UTF-8
 encoding//src/main/resources/templates/error.html=UTF-8
 encoding//src/main/resources/templates/footer.html=UTF-8
 encoding//src/main/resources/templates/head.html=UTF-8

@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.houtai-box{
+	background: #f7f7f7;
+}
+.user{
+  background: #F0F0F0;
+	color: #337ab7;
+}
+.nav-pills li{
+	margin: 4px auto;
+}
+.houtai-tj{
+	border-left:4px #337ab7 solid;
+	background: #F0F0F0;
+	padding: 10px 20px;
+	font-size: 16px;
+}
+.tj-qy{
+	border: 1px solid #D7D7D7;
+	margin: 15px 0 10px 0;
+}
+.qy-link{
+	 display: block;
+}
+.fk-xx{padding-top: 50px;
+}
+
+
+/*** 分页样式***/
+
+.main-content{
+	padding: 0; 
+	background: #fff;
+	min-height:400px;
+}
+
+.srarch-label{
+	margin-right:5px;
+}
+
+.page-jump{
+  margin:5px 0 0 15px;
+  font-size: 14px; 
+  line-height: 30px;
+}
+
+.page-total{
+  margin:0 10px;
+  font-size: 14px; 
+}
+
+.page-input{
+  height:25px; 
+  width:55px
+}
+
+.jumpPage {
+
+    display:inline-block;
+    width: 64px;
+    height: 40px;
+    line-height: 40px;
+    background: #1875f0;
+    border: 0;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 15px;
+}
+
+.jumpPage:hover{
+  text-decoration:none;
+  font-weight: bolder;
+  color: #fff;
+} 
+

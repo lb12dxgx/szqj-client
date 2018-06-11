@@ -6,12 +6,9 @@ import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,7 +17,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.szqj.PdfTools;
 import com.szqj.before.domain.ApplyOrg;
@@ -28,13 +24,10 @@ import com.szqj.before.domain.ApplyOrgRepository;
 import com.szqj.before.domain.BeforeApply;
 import com.szqj.before.domain.BeforeApplyRepository;
 import com.szqj.before.service.BeforeApplyService;
-import com.szqj.company.domain.Company;
-import com.szqj.company.domain.CompanyRepository;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.service.RegService;
 import com.szqj.springmvc.Token;
 import com.szqj.util.RestJson;
-import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.service.AccountService;
 
 @Controller
@@ -58,8 +51,7 @@ public class BeforeControle {
 	@Autowired
 	private ApplyOrgRepository applyOrgRepository;
 	
-	@Autowired 
-	private CompanyRepository companyRepository;
+
 	
 	@Value("${web.upload-pdf}")
 	private String pdfPath;
@@ -132,7 +124,7 @@ public class BeforeControle {
 		return RestJson.createSucces(regInfoRet.getSmscode());
 	}
 	
-	@Token(save = true)
+	/*@Token(save = true)
 	@RequestMapping(value = "/118/login.do"  )
 	public String login(String userName ,String password,String applyOrgId,ModelMap modelMap,RedirectAttributes attributes){
 		Account account = accountService.login(userName, password);
@@ -156,7 +148,7 @@ public class BeforeControle {
 			 return "118/login";
 		}
 		
-	}
+	}*/
 	
 	
 	@ResponseBody
@@ -182,7 +174,7 @@ public class BeforeControle {
 		return "118/regTwo";
 	}
 	
-	@Token(remove =true)
+	/*@Token(remove =true)
 	@RequestMapping(value = "/118/regComapnySubmit.do"  )
 	public String regComapnySubmit(String reginfoId,Company company,ModelMap modelMap){
 		RegInfo reg=regService.regBeforeComapnySubmit(reginfoId,company);
@@ -202,7 +194,7 @@ public class BeforeControle {
 		modelMap.put("company", company);
 		
 		return "118/submitThree";
-	}
+	}*/
 	
 
 	@RequestMapping(value = "/downloadpdf")
