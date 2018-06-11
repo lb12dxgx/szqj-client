@@ -31,26 +31,25 @@
 		<div class="row" style="padding:10px;">
 			 <!--中部内容开始-->
 	 	 <div class="col-md-12" style="padding-right: 0;">
-		 	<form class="form-horizontal ">
+		 	<form class="form-horizontal" id="form" action="/emp/save.do" method="post">
 
                 <div class="form-group">
                   <label class="col-md-1 control-label">企业名称</label>
                   <div class="col-md-7">
-                    <input type="text" class="form-control"  th:value="${enterprise.enterpriseName}"
-                    placeholder="请输入企业名称">
+                    <input type="text" class="form-control"  th:value="${enterprise.enterpriseName}" id="enterpriseName" name="enterpriseName" readonly />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label  class="col-md-1 control-label">信用代码</label>
                   <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入统一信用代码" th:value="${enterprise.enterpriseCode}">
+                    <input type="text" class="form-control" th:value="${enterprise.enterpriseCode}"  id="enterpriseCode" name="enterpriseCode"  readonly />
                   </div>
                   <label  class="col-md-1 control-label">行业类别</label>
                   <div class="col-md-4">
-                    <select class="form-control">
-                      <option>加工</option>
-                      <option>材料</option>
+                    <select class="form-control" name="hyType" id="hyType">
+                      <option value="加工">加工</option>
+                      <option value="材料">材料</option>
                     </select>
                   </div>
                 </div>
@@ -58,57 +57,50 @@
                 <div class="form-group">
                   <label  class="col-md-1 control-label">法人姓名</label>
                   <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入法人姓名">
+                    <input type="text" class="form-control" th:value="${enterprise.frName}"  id="frName" name="frName" placeholder="请输入法人姓名"/>
                   </div>
                   <label  class="col-md-1 control-label">身份证号</label>
                   <div class="col-md-4">
-                     <input type="email" class="form-control" id="inputEmail3" placeholder="请输入法人身份证号">
+                     <input type="text" class="form-control" th:value="${enterprise.frCode}"  id="frCode" name="frCode" placeholder="请输入法人身份证号" />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label  class="col-md-1 control-label">联系人</label>
                   <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入联系人姓名">
+                    <input type="text" class="form-control" th:value="${enterprise.lxName}" id="lxName"  name="lxName" placeholder="请输入联系人姓名" />
                   </div>
                   <label  class="col-md-1 control-label">电话号码</label>
                   <div class="col-md-4">
-                     <input type="email" class="form-control" id="inputEmail3" placeholder="请输入联系电话" th:value="${enterprise.telphone}">
+                     <input type="text" class="form-control" th:value="${enterprise.telphone}" id="telphone" name="telphone" placeholder="请输入联系电话" />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-1 control-label">公司地址</label>
                   <div class="col-md-7">
-                    <input type="text" class="form-control"  
-                    placeholder="请输入公司联系地址">
+                    <input type="text" class="form-control"  th:value="${enterprise.addree}" placeholder="请输入公司联系地址" name="addree" id="addree"/>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-1 control-label">经营范围</label>
                   <div class="col-md-7">
-                    <textarea class="form-control"  
-                    rows="5" placeholder="请输入经营范围">
-                      
-                    </textarea>
+                    <textarea class="form-control"  rows="5"  name="business" id="business" th:value="${enterprise.business}"></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-1 control-label">企业logo</label>
                   <div class="col-md-7">
-                    <input type="file" name="file" class="form-control">
-                      
-                    </textarea>
+                    <input type="file" name="enterprisePicId" class="form-control"/>
+                  
                   </div>
                 </div>
 
                 <div class="form-group">
                   <div class="col-md-2 col-md-offset-4"  >
-                    <a href="#" class="btn btn-primary">
-                      提交
-                    </a>
+            			<button id="submitbut" type="button" class="btn btn-primary">提交</button>
                   </div>
                 </div>
                 
@@ -126,9 +118,68 @@
 <!--footer开始-->
  <div th:include="footer"></div>
   	<!--footer结束-->
+  	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
   	<script type="text/javascript" th:inline="javascript">
 	$(function(){
 		$('#info').addClass("active");
+		
+		  $("#submitbut").click(function(){
+			   if($("#form").valid()){
+				    console.log("sddd");
+			   		$("#form").submit();
+			   		 console.log("eeeddd");
+			   }
+		   });
+		
+		 $("#form").validate({
+	          rules: {
+	            
+	        	frName: {
+	              required: true
+	            },
+	            frCode:{
+	              required: true
+	            },
+	            lxName:{
+	           	  required: true	
+	            },
+	            telphone:{
+	              required: true	
+	            },
+	            addree:{
+	              required: true	
+	            },
+	            business:{
+	              required: true	
+	            }
+	            
+	          },
+	          messages: {
+	            frName:{
+	              required:'请输入法人姓名',
+	             
+	            },
+	            frCode:{
+	              required:'请输入法人身份证号',
+	              
+	            },
+	            lxName:{
+	              required:'请输入联系人姓名',
+	              
+	            },
+	            telphone:{
+		              required:'请输入联系电话',
+		              
+		        },
+		       addree:{
+		              required:'请输入公司联系地址',
+		            },
+		       business:{
+			        required:'请输入经营范围',
+			 	}
+		      }
+	     });
 	})
 </script>
   <!--footer结束-->

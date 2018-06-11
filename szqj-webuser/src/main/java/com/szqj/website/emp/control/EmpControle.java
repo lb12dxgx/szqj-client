@@ -19,6 +19,7 @@ import com.szqj.cms.domain.ColumnInfo;
 import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
+import com.szqj.reg.domain.RegInfo;
 import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseCert;
 import com.szqj.service.domain.EnterpriseCertRepository;
@@ -74,9 +75,11 @@ public class EmpControle {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/emp/save.html"  )
+	@RequestMapping(value = "/emp/save.do"  )
 	public String info(Enterprise enterprise, ModelMap modelMap){
-		enterpriseRepository.save(enterprise);
+		Enterprise enterpriseRet = enterpriseRepository.findById(enterprise.getEnterpriseId()).get()
+		Tools.copyBeanForUpdate(enterprise, enterpriseRet);
+		enterpriseRepository.save(enterpriseRet);
 		return "emp/index"; 
 	}
 	

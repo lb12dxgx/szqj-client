@@ -126,6 +126,7 @@ public class RegService {
 			enterprise.setEnterpriseCode(regInfoRet.getUserCode());
 			enterprise.setTelphone(regInfoRet.getTelphone());
 			enterprise.setCreateDate(new Date());
+			enterprise.setLevel(10);
 			enterpriseRepository.save(enterprise);
 		}
 		return regInfoRet;

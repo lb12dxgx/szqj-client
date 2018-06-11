@@ -29,7 +29,7 @@ public class Enterprise {
 	
 	private String addree;//地址
 	
-	private String telphone;//电话
+	
 	
 	private String quaPicId;//资格图片Id
 	
@@ -38,6 +38,16 @@ public class Enterprise {
 	private String accountId;//账号
 	
 	private Date createDate;//创建时间
+	
+	private String hyType;//行业类型
+	
+	private String frName;//法人名称
+	
+	private String frCode;//法人身份证号
+	
+	private String lxName;//联系人姓名
+	
+	private String telphone;//联系人电话
 	
 	private Integer level;//级别  10:普通级别  20:vip  30:超级VIP
 	
@@ -145,6 +155,38 @@ public class Enterprise {
 
 	public void setEnterpriseCode(String enterpriseCode) {
 		this.enterpriseCode = enterpriseCode;
+	}
+
+	public String getHyType() {
+		return hyType;
+	}
+
+	public void setHyType(String hyType) {
+		this.hyType = hyType;
+	}
+
+	public String getFrName() {
+		return frName;
+	}
+
+	public void setFrName(String frName) {
+		this.frName = frName;
+	}
+
+	public String getFrCode() {
+		return frCode;
+	}
+
+	public void setFrCode(String frCode) {
+		this.frCode = frCode;
+	}
+
+	public String getLxName() {
+		return lxName;
+	}
+
+	public void setLxName(String lxName) {
+		this.lxName = lxName;
 	}
 	
 	
