@@ -117,7 +117,7 @@ public class TrainControle {
 	 */
 	@RequestMapping(value = "/train/teacherList.html")
 	public String teacherList(Integer pageNum, Integer size, ModelMap modelMap){
-		PageRequest pageable=Tools.getPage(pageNum, 5);
+		PageRequest pageable=Tools.getPage(pageNum, 6);
 		Page<TrainTeacher> page=trainTeacherRepository.findPage(pageable);
 		modelMap.put("page", page);
 		return "train/teacherList"; 

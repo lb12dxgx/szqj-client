@@ -22,7 +22,7 @@ public interface TrainTeacherRepository extends PagingAndSortingRepository<Train
 
 	
 
-	@Query("select m from TrainTeacher m   order by m.createDate  ")
+	@Query("select m from TrainTeacher m   order by teacherPicPath,m.createDate  ")
 	Page<TrainTeacher> findPage(Pageable pageable);
 	
 	@Query("select m from TrainTeacher m where m.indexShow=1  order by m.createDate  ")
