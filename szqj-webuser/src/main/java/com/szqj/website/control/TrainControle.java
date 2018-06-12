@@ -77,6 +77,8 @@ public class TrainControle {
 	}
 	
 	
+	
+	
 	/**
 	 * 培训首页
 	 * @param modelMap
@@ -132,6 +134,21 @@ public class TrainControle {
 		modelMap.put("trainTeacher", trainTeacher);
 		return "train/teacherdetail"; 
 	}
+	
+	
+	/**
+	 * 专家证书详情
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/train/teachercert.html")
+	public String teacherCert(String trainTeacherId, ModelMap modelMap){
+		TrainTeacher trainTeacher = trainTeacherRepository.findById(trainTeacherId).get();
+		modelMap.put("trainTeacher", trainTeacher);
+		return "train/teachercert"; 
+	}
+	
+	
 	
 	
 	/**

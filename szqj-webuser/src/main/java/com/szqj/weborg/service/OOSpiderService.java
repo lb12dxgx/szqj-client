@@ -78,13 +78,13 @@ public class OOSpiderService implements PageProcessor {
 		 String keyword = path.substring(s, e);
 		 
     	 Selectable list = page.getHtml().xpath("//h3[@class='c-title']/");
-    	 System.out.println(page.getUrl().toString()+"==="+list.nodes().size());
+    	/* System.out.println(page.getUrl().toString()+"==="+list.nodes().size());
     	 try {
 			FileUtils.writeStringToFile(new File("/usr/local/website/file/"+(UUID.randomUUID().toString())), page.getRawText());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}*/
     	 
     	 Selectable listdesc = page.getHtml().xpath("//div[@class='c-summary']");
     	

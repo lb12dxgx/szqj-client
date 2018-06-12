@@ -21,6 +21,8 @@ public class TrainTeacher {
 	
 	private String teacherName;//老师名称
 	
+	private String companyName;//工作单位
+	
 	private String teacherCode;//证书编码
 	
     private String teacherTitle;//老师职称
@@ -128,6 +130,14 @@ public class TrainTeacher {
 
 	public void setIndexShow(Integer indexShow) {
 		this.indexShow = indexShow;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	

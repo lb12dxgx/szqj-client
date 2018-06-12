@@ -51,8 +51,8 @@
 							<td class="gray" th:text="${trainTeacher.teacherName}">张三</td>
 						</tr>
 						<tr height="40px;">
-							<td class="text-right">职位　</td>
-							<td class="gray" th:text="${trainTeacher.teacherPosition}">总经理</td>
+							<td class="text-right">工作单位　</td>
+							<td class="gray" th:text="${trainTeacher.companyName}">总经理</td>
 						</tr>
 						<tr height="40px;">
 							<td class="text-right">职称　</td>
@@ -68,8 +68,7 @@
 						</tr>
 					</table>
 				</div>
-				
-				<div class="col-md-2"><a href="#" class="btn btn-primary" style="margin-top: 180px;">查看证书</a></div>
+				 <div class="col-md-2"><a th:href="@{'/train/teachercert.html?trainTeacherId='+${trainTeacher.trainTeacherId}}" target="_blank" class="btn btn-primary" style="margin-top: 180px;">查看证书</a></div>
 			</div>
             
 		 </div>

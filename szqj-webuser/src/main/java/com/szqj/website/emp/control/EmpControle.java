@@ -77,7 +77,7 @@ public class EmpControle {
 	 */
 	@RequestMapping(value = "/emp/save.do"  )
 	public String info(Enterprise enterprise, ModelMap modelMap){
-		Enterprise enterpriseRet = enterpriseRepository.findById(enterprise.getEnterpriseId()).get()
+		Enterprise enterpriseRet = enterpriseRepository.findById(enterprise.getEnterpriseId()).get();
 		Tools.copyBeanForUpdate(enterprise, enterpriseRet);
 		enterpriseRepository.save(enterpriseRet);
 		return "emp/index"; 
