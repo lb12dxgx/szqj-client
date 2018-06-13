@@ -30,8 +30,15 @@ public class ToolsControle {
 		File file = new File(filepath);  
 		File[] list = file.listFiles();
 		for(File f:list) {
-			System.out.println(f.getName());
-			Thumbnails.of(f).size(200, 200).keepAspectRatio(false).toFile(f);
+			System.out.println(f.getName()); 
+			String suffixName = f.getName().substring(f.getName().lastIndexOf("."));
+		     if(suffixName=="JPEG"||suffixName=="jpeg"){
+		    	 Thumbnails.of(f).outputFormat("JPEG").size(200, 200).keepAspectRatio(false).toFile(f);
+		     }
+		     
+		     if(suffixName=="PNG"||suffixName=="png"){
+		    	 Thumbnails.of(f).outputFormat("PNG").size(200, 200).keepAspectRatio(false).toFile(f);
+		     }
 		}
 		
 		return RestJson.createSucces();

@@ -76,10 +76,9 @@
       <div class="row cyfuwu jsxx">
         <div class="col-md-3" th:each="teacher,iterStat:${teacherList}">
           <a th:href="@{'/train/teacherdetail.html?trainTeacherId='+${teacher.trainTeacherId}}" class="js-box">
-          <div class="img-round-square"  th:style="'background:#fff url(' + @{'/file/downloadByBusi.do?bussinessId='+${teacher.teacherPicPath}} +') no-repeat '" style="background:#fff url(/images/js1.jpg) no-repeat"></div>
+          <div class="img-round-square"  th:style="'background:#fff url(' + @{'/file/downloadByBusi.do?bussinessId='+${teacher.teacherPicPath}} +') no-repeat'"></div>
           <P>姓名：<span th:text="${teacher.teacherName}">张三</span></P>
-          <p>职称：<span th:text="${teacher.teacherTitle}">高级工程师</span></p>
-          <p>职务：<span th:text="${teacher.teacherPosition}">某某大学教授 某某公司工程师</span></p>
+          <p>职称：<span th:text="${teacher.teacherPosition}">某某大学教授 某某公司工程师</span></p>
           </a>
        </div>
        
@@ -157,6 +156,9 @@
 	$(function(){
 		$('#train').removeClass("manulinknone");
 		$('#train').addClass("manulink");
+		$('.img-round-square').each(function() {
+			   console.log($(this).css("background"))
+		});
 	})
 </script>
   <!--footer结束-->
