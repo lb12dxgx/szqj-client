@@ -18,6 +18,8 @@ import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
 import com.szqj.util.Tools;
+import com.szqj.weborg.domain.FileInfo;
+import com.szqj.weborg.domain.FileInfoRepository;
 
 @Controller
 @RequestMapping("/")
@@ -28,6 +30,8 @@ public class NewsControle {
 	private ColumnInfoRepository columnInfoRepository;
 	@Autowired
 	private ContentInfoRepository contentInfoRepository;
+	@Autowired
+	private FileInfoRepository fileInfoRepository;
 	
 	/**
 	 * 产业资讯
@@ -110,6 +114,11 @@ public class NewsControle {
 		ColumnInfo pcolumnInfo=columnInfoRepository.findByColumnCode("1_hy_xw");
 		setGG(modelMap,pcolumnInfo);
 		ContentInfo content = contentInfoRepository.findById(contentId).get();
+		String tFiled = content.getOtherFileId();
+		List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
+		if(files!=null&&files.size()>0) {
+			modelMap.put("videopath", files.get(0).getFileWebPath());
+		}
 		modelMap.put("content", content);
 		return "news/videodetail"; 
 	}

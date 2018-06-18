@@ -164,7 +164,7 @@ public class FileInfoRest {
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-        try {  
+        try {   
             fis.close();  
             os.close();  
         } catch (IOException e) {  

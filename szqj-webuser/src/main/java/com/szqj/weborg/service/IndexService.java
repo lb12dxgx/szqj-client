@@ -38,6 +38,8 @@ import com.szqj.util.ConstantUtils;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.domain.AccountRepository;
+import com.szqj.weborg.domain.FileInfo;
+import com.szqj.weborg.domain.FileInfoRepository;
 import com.szqj.weborg.domain.Menu;
 import com.szqj.weborg.domain.MenuRepository;
 import com.szqj.weborg.rest.vo.MenuNode;
@@ -72,17 +74,22 @@ public class IndexService {
 	private ProductRepository productRepository;
 	@Autowired
 	private TrainPlanRepository trainPlanRepository;
+	@Autowired
+	private FileInfoRepository fileInfoRepository;
+	
+	
+	
+	
 
-	
-	
-	
-
-	public List<ContentInfo> getBanerNews(){
+	public List<ContentInfo> getBanerNews(HashMap map){
 		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("1_hy_gg_sy");
 		PageRequest pageable=Tools.getPage(0, 10);
 		Page<ContentInfo> page=contentInfoRepository.findByColumnId(columnInfo.getColumnId(), pageable);
+		initMap(map, page);
 		return page.getContent();
 	}
+
+	
 	
 	public List<ContentInfo> getYqNews(){
 		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("3_hy_gg_yq");
@@ -91,10 +98,11 @@ public class IndexService {
 		return page.getContent();
 	}
 	
-	public List<ContentInfo> getYwNews(){
+	public List<ContentInfo> getYwNews(HashMap map){
 		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("1_hy_xw_yw");
 		PageRequest pageable=Tools.getPage(0, 2);
 		Page<ContentInfo> page=contentInfoRepository.findByColumnId(columnInfo.getColumnId(), pageable);
+		initMap(map, page);
 		return page.getContent();
 	}
 	
@@ -113,18 +121,20 @@ public class IndexService {
 		return page.getContent();
 	}
 	
-	public List<ContentInfo> getSpNews(){
+	public List<ContentInfo> getSpNews(HashMap map){
 		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("6_hy_xw_sp");
 		PageRequest pageable=Tools.getPage(0, 4);
 		Page<ContentInfo> page=contentInfoRepository.findByColumnId(columnInfo.getColumnId(), pageable);
+		initMap(map, page);
 		return page.getContent();
 	}
 	
 	
-	public List<ContentInfo> getQkNews(){
+	public List<ContentInfo> getQkNews(HashMap map){
 		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("1_dz_zl_qk");
 		PageRequest pageable=Tools.getPage(0, 4);
 		Page<ContentInfo> page=contentInfoRepository.findByColumnId(columnInfo.getColumnId(), pageable);
+		initMap(map, page);
 		return page.getContent();
 	}
 	
@@ -155,16 +165,32 @@ public class IndexService {
 		return num;
 	}
 	
-	public List<Product> getProductList(){
+	public List<Product> getProductList(HashMap map){
 		PageRequest pageable=Tools.getPage(0, 4);
 		Page<Product> page=productRepository.findPage(pageable);
+		List<Product> l = page.getContent();
+		for(Product c:l) {
+			String tFiled = c.getProductPicId();
+			List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
+			if(files!=null&&files.size()>0) {
+				map.put(tFiled, files.get(0).getFileWebPath());
+			}
+		}
 		return page.getContent();
 	}
 	
 	
-	public List<Enterprise> getEnterpriseList(){
+	public List<Enterprise> getEnterpriseList(HashMap map){
 		PageRequest pageable=Tools.getPage(0, 4);
 		Page<Enterprise> page=enterpriseRepository.findPage(pageable);
+		List<Enterprise> l = page.getContent();
+		for(Enterprise c:l) {
+			String tFiled = c.getEnterprisePicId();
+			List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
+			if(files!=null&&files.size()>0) {
+				map.put(tFiled, files.get(0).getFileWebPath());
+			}
+		}
 		return page.getContent();
 	}
 	
@@ -182,6 +208,17 @@ public class IndexService {
 			l.add(list.get(0));
 		}
 		return l;
+	}
+	
+	private void initMap(HashMap map, Page<ContentInfo> page) {
+		List<ContentInfo> l = page.getContent();
+		for(ContentInfo c:l) {
+			String tFiled = c.getTitleFileId();
+			List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
+			if(files!=null&&files.size()>0) {
+				map.put(tFiled, files.get(0).getFileWebPath());
+			}
+		}
 	}
 	
 	

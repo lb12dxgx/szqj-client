@@ -33,7 +33,7 @@
        <img src="images/lunbo2.jpg" alt="图片2"></a></div>
        <div class="item" th:each="content,iterStat:${banerNewList}" >
        	<a th:href="@{${content.contentJsonMap['url']}}">
-       		<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" style="width:100%;height:462px">
+       		<img th:src="@{${fileMap[content.titleFileId]}}" style="width:100%;height:462px">
        </a>
        </div>
        
@@ -165,7 +165,7 @@
 	                     <div class="media news-box" >
 	                       <div class="media-left">
 	                         <a th:href="@{'/news/detail.html?contentId='+${content.contentId}}">
-	                         	<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" style="width:159px;height:159px"/>
+	                         	<img th:src="@{${fileMap[content.titleFileId]}}" style="width:159px;height:159px"/>
 	                         </a>
 	                       </div>
 	                       <div class="media-body">
@@ -223,7 +223,7 @@
           <div class="row text-center sp-box">  
             <div class="col-md-6"  th:each="content,iterStat:${spNewList}">
                <a th:href="@{'/news/videodetail.html?contentId='+${content.contentId}}" >
-               	<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" style="width:206px;height:134px" />
+               	<img th:src="@{${fileMap[content.titleFileId]}}" style="width:206px;height:134px" />
                </a>
                <h5><a th:href="@{'/news/videodetail.html?contentId='+${content.contentId}}"  class="bt-link" th:text="${content.contentTitle}">习近平讲故事：天下艰难际，时势造英雄</a></h5>
             </div>
@@ -326,8 +326,8 @@
         <div class="box-bgcl">
           <div class="row logopic">
             <div class="col-md-3" th:each="product,iterStat:${productList}" >
-            	<a th:href="@{'/service/product/detail.html?productId='+${product.productId}}" target="_blank" >
-            		<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${product.productPicId}}" class="img-shadow-1" style="width:102px;height:102px" >
+            	<a  th:href="@{'/service/product/detail.html?productId='+${product.productId}}" target="_blank" >
+            		<img th:src="@{${fileMap[product.productPicId]}}" class="img-shadow-1" style="width:102px;height:102px" >
             	</a>
             </div>
             
@@ -353,7 +353,7 @@
           <div class="row logopic">
             <div class="col-md-3" th:each="enterprise,iterStat:${enterpriseList}">
             	<a th:href="@{'/service/enterprise/detail.html?enterpriseId='+${enterprise.enterpriseId}}" target="_blank" >
-            		<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${enterprise.enterprisePicId}}"  class=" img-shadow-1 " style="width:102px;height:102px">
+            		<img th:src="@{${fileMap[enterprise.enterprisePicId]}}"   class=" img-shadow-1 " style="width:102px;height:102px">
             	</a>
             </div>
           
@@ -448,7 +448,7 @@
         <div class="box-bgcl">
           <div th:each="train,iterStat:${trainPlanList}" >
 	          <div class="row peixun">
-	            <div class="col-md-12"><a href="#" class="bt-link"><h5 th:text="${train.trainName}">行业工程师培训</h5></a></div>
+	            <div class="col-md-12"><a th:href="@{'/train/detail.html?trainPlanId='+${train.trainPlanId}}" class="bt-link"><h5 th:text="${train.trainName}">行业工程师培训</h5></a></div>
 	          </div>
 	          <div class="row pxtime">
 	            <div class="col-md-6">培训时间：<span th:text=" ${#dates.format(train.trainStartDate, 'yyyy-MM-dd')}">2018.01.22</span>-<span th:text=" ${#dates.format(train.trainEndDate, 'yyyy-MM-dd')}">2018.01.30</span></div>
@@ -543,7 +543,7 @@
       <ul class="list-inline">
      
         <li th:each="content,iterStat:${yqNewList}" >
-        	<a th:href="@{${content.contentJsonMap['url']}}" th:text="${content.contentTitle}" >地下管线协会</a>
+        	<a th:href="@{${content.contentJsonMap['url']}}" th:text="${content.contentTitle}" tartget="_blank" >地下管线协会</a>
         </li>
        
       </ul>

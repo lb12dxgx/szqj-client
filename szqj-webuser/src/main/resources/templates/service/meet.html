@@ -35,7 +35,10 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
        <div class="row" th:each="meet,iterStat:${page.content}">
-		  <div> <a th:href="@{'/service/meet/detail.html?meetId='+${meet.meetId}}" target="_blank" > <img th:src="@{'/file/downloadByBusi.do?bussinessId='+${meet.meetPicId}}" class="img-responsive"></img></a></div>
+		  <div> <a th:href="@{'/service/meet/detail.html?meetId='+${meet.meetId}}" target="_blank" > 
+		  <img   th:src="@{'/'+${fileMap[meet.meetPicId]}}"  class="img-responsive">
+		  </img>
+		  </a></div>
 		  <div>
 			<a th:href="@{'/service/meet/detail.html?meetId='+${meet.meetId}}" target="_blank" ><h4 th:text="${meet.meetName}">第十九届地下管线布置会议在京召开</h4></a>
 		    <a th:href="@{'/service/meet/detail.html?meetId='+${meet.meetId}}" target="_blank"  th:text="${meet.meetSummary}" >近日，福建省厦门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生门市思明区在全省率先采用“道路病害灾害预警雷达系统VGPR-20”技术，对城区道路进行普查探测，预警地陷灾害，防范事故发生</a>

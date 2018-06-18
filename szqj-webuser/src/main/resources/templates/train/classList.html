@@ -35,7 +35,7 @@
        
 		<div class="col-md-4" th:each="class,iterStat:${page.content}">
 		  	<a th:href="@{'/train/classdetail.html?trainClassId='+${class.trainClassId}}">
-				<div class="img-shadow-1 pxkc-box" >
+				<div class="img-shadow-1 pxkc-box" style="margin-bottom:20px" >
 				  <div class="px-kcbt shenhui"><span th:text="${class.trainClassName}">基础知识理论课程</span><br>学时：<span th:text="${class.num}">2</span>小时</div>
 				  <div>
 				   <p class="gray text-left px-zw" th:text="${class.classDesc}" >课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍</p>

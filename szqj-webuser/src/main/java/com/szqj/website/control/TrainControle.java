@@ -159,7 +159,7 @@ public class TrainControle {
 	@RequestMapping(value = "/train/classList.html")
 	public String classList(Integer pageNum, Integer size, ModelMap modelMap){
 		
-		PageRequest pageable=Tools.getPage(pageNum, 5);
+		PageRequest pageable=Tools.getPage(pageNum, 6);
 		Page<TrainClass> page=trainClassRepository.findPage(pageable);
 		modelMap.put("page", page);
 		return "train/classList"; 
@@ -219,7 +219,11 @@ public class TrainControle {
 	private void setTrainTeacherClassList(ModelMap modelMap) {
 		TrainPlan mainTrain=(TrainPlan)modelMap.get("mainTrain");
 		List<TrainClass> l = trainClassRepository.findByTrainPlanId(mainTrain.getTrainPlanId());
-		modelMap.put("classList", l);
+		if(l.size()>6) {
+			modelMap.put("classList", l.subList(0, 6));
+		}else {
+			modelMap.put("classList", l);
+		}
 	}
 	
 	

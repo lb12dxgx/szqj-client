@@ -1,5 +1,6 @@
 package com.szqj.website.control;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,9 @@ public class IndexControle {
 	@RequestMapping(value = "/index.do"  )
 	public String index(ModelMap modelMap){
 		
-		List<ContentInfo> banerNewList =indexService.getBanerNews();
-		List<ContentInfo> ywNewList =indexService.getYwNews();
+		HashMap map=new HashMap();
+		List<ContentInfo> banerNewList =indexService.getBanerNews(map);
+		List<ContentInfo> ywNewList =indexService.getYwNews(map);
 		List<ContentInfo> qyNewList =indexService.getQyNews();
 		List<ContentInfo> gjNewList = indexService.getGjNews();
 		List<ContentInfo> yqNewList =indexService.getYqNews();
@@ -46,7 +48,7 @@ public class IndexControle {
 		modelMap.put("gjNewList", gjNewList);
 		modelMap.put("yqNewList", yqNewList);
 		
-		List<ContentInfo> spNewList = indexService.getSpNews();
+		List<ContentInfo> spNewList = indexService.getSpNews(map);
 		modelMap.put("spNewList", spNewList);
 		
 		Integer zcNum = indexService.getNumByZc();
@@ -59,8 +61,8 @@ public class IndexControle {
 		modelMap.put("bjNum", bjNum);
 		modelMap.put("lwNum", lwNum);
 		
-		List<Product> productList = indexService.getProductList();
-		List<Enterprise> enterpriseList = indexService.getEnterpriseList();
+		List<Product> productList = indexService.getProductList(map);
+		List<Enterprise> enterpriseList = indexService.getEnterpriseList(map);
 		modelMap.put("productList", productList);
 		modelMap.put("enterpriseList", enterpriseList);
 		
@@ -70,8 +72,9 @@ public class IndexControle {
 		modelMap.put("zbInfoList", zbInfoList);
 		modelMap.put("trainPlanList", trainPlanList);
 		
-		List<ContentInfo> qkNewList = indexService.getQkNews();
+		List<ContentInfo> qkNewList = indexService.getQkNews(map);
 		modelMap.put("qkNewList", qkNewList);
+		modelMap.put("fileMap", map);
 		
 		return "index_temp";
 	}

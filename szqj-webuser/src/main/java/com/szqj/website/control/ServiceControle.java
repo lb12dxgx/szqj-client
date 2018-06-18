@@ -1,6 +1,7 @@
 package com.szqj.website.control;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -248,7 +249,19 @@ public class ServiceControle {
 	public String index_meet(Integer pageNum, Integer size, ModelMap modelMap){
 		PageRequest pageable=Tools.getPage(pageNum, 5);
 		Page<Meet> page=meetRepository.findPage(pageable);
+		
+		List<Meet> l = page.getContent();
+		HashMap map=new HashMap();
+		for(Meet c:l) {
+			String tFiled = c.getMeetPicId();
+			List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
+			if(files!=null&&files.size()>0) {
+				map.put(tFiled, files.get(0).getFileWebPath());
+			}
+		}
+		
 		modelMap.put("page", page);
+		modelMap.put("fileMap", map);
 		return "service/meet"; 
 	}
 	
@@ -256,6 +269,14 @@ public class ServiceControle {
 	@RequestMapping(value = "/service/meet/detail.html"  )
 	public String meet_detail(String meetId, ModelMap modelMap){
 		Meet meet = meetRepository.findById(meetId).get();
+		
+		
+		String tFiled = meet.getMeetPicId();
+		List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
+		if(files!=null&&files.size()>0) {
+			modelMap.put("meetpath", files.get(0).getFileWebPath());
+		}
+		
 		modelMap.put("meet", meet);
 		return "service/meetdetail"; 
 	}
