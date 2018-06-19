@@ -92,7 +92,7 @@
                 <div class="form-group">
                   <label class="col-md-1 control-label">企业logo</label>
                   <div class="col-md-7">
-                    <input type="file" name="enterprisePicId" class="form-control"/>
+                    <input type="file" name="enterprisePicId" class="form-control" id="btn_upload_image"/>
                   
                   </div>
                 </div>
@@ -121,6 +121,12 @@
 	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="/js/template-web.js"></script>
 	
+	<script src="/js/jQuery-File-Upload/jquery.ui.widget.js"></script>
+    <script src="/js/jQuery-File-Upload/jquery.iframe-transport.js"></script>
+　　<script src="/js/jQuery-File-Upload/jquery.fileupload.js"></script>
+　　<script src="/js/jQuery-File-Upload/jquery.fileupload-process.js"></script>
+　　<script src="/js/jQuery-File-Upload/jquery.fileupload-ui.js"></script>
+	
 	<script id="tpl-hytype" type="text/html">
 		{{each  retData}}
   			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
@@ -135,6 +141,23 @@
 			var html = template('tpl-hytype',data);
 				$('#hyType').html(html);
 		  });
+		
+		$("#btn_upload_image").fileupload({
+		    dataType: 'json',
+		    url: url_upload_image,
+		    formData: {param:1},
+		    add: function (e, data) {//上传之前的处理
+		        data.submit();
+		    },
+		    done: function (e, data) { //对接口返回信息的处理
+		        var result = data.result;
+		        if (typeof result.error === 'undefined') {
+		           //成功
+		        } else {
+		            //失败
+		        }
+		    }
+		});
 		
 		
 		$('#info').addClass("active");
