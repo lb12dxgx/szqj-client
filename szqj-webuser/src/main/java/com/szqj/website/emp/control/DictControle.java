@@ -36,7 +36,8 @@ public class DictControle {
 	public RestJson info(String dictValue){
 		List<Dict> dicts = dictRepository.findByDictValue(dictValue);
 		if(dicts!=null&&dicts.size()>0){
-			RestJson.createSucces(dicts); 
+			List<Dict> l = dictRepository.findByParentId(dicts.get(0).getDictId());
+			return RestJson.createSucces(l); 
 		}
 		return RestJson.createError();
 	}

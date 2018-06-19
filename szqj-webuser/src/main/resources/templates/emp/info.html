@@ -48,8 +48,7 @@
                   <label  class="col-md-1 control-label">行业类别</label>
                   <div class="col-md-4">
                     <select class="form-control" name="hyType" id="hyType">
-                      <option value="加工">加工</option>
-                      <option value="材料">材料</option>
+                     
                     </select>
                   </div>
                 </div>
@@ -120,15 +119,30 @@
   	<!--footer结束-->
   	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
 	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="/js/template-web.js"></script>
+	
+	<script id="tpl-hytype" type="text/html">
+		{{each  retData}}
+  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
+		{{/each}}
+	</script>
+	
+	
   	<script type="text/javascript" th:inline="javascript">
 	$(function(){
+		
+		$.get("/dict/getList.html?dictValue=qy_hy_type",function(data,status){
+			var html = template('tpl-hytype',data);
+				$('#hyType').html(html);
+		  });
+		
+		
 		$('#info').addClass("active");
 		
 		  $("#submitbut").click(function(){
 			   if($("#form").valid()){
-				    console.log("sddd");
-			   		$("#form").submit();
-			   		 console.log("eeeddd");
+				   $("#form").submit();
+			   		 
 			   }
 		   });
 		
