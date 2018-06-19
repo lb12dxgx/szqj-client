@@ -82,7 +82,7 @@ public class RegService {
 	
 	public boolean validateSmsCode(RegInfo regInfo) {
 		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
-		if(regInfoRet.getSmscode().equals(regInfo.getSmscode())){
+		if(regInfoRet!=null&&regInfoRet.getSmscode().equals(regInfo.getSmscode())){
 			return true;
 		}
 		return false;
