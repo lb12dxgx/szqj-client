@@ -25,6 +25,8 @@ import com.szqj.util.RestJson;
 import com.szqj.weborg.domain.FileInfo;
 import com.szqj.weborg.domain.FileInfoRepository;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 @Controller
 @RequestMapping("/file/")
 @EnableAutoConfiguration
@@ -75,7 +77,7 @@ public class FileInfoRest {
 	
 	@RequestMapping(value = "/uploadone.do"  )
 	@ResponseBody
-	public RestJson uploadone(@RequestParam("file") MultipartFile file,String ss_accountId,String dirName ,String bussinessId){
+	public RestJson uploadone(@RequestParam("file") MultipartFile file,String ss_accountId,String dirName ,String bussinessId,Integer width,Integer height ){
 		if(StringUtils.isBlank(bussinessId)){
 			bussinessId= UUID.randomUUID().toString();
 		}
@@ -90,6 +92,17 @@ public class FileInfoRest {
         }
         try {
             file.transferTo(dest);
+            
+            if(width!=null&&height!=null){
+	            if(suffixName=="JPEG"||suffixName=="jpeg"){
+			    	 Thumbnails.of(dest).outputFormat("JPEG").size(width, height).keepAspectRatio(false).toFile(dest);
+			     }
+			     
+			     if(suffixName=="PNG"||suffixName=="png"){
+			    	 Thumbnails.of(dest).outputFormat("PNG").size(width, height).keepAspectRatio(false).toFile(dest);
+			     }
+            }
+            
             List<FileInfo> l = fileInfoRepository.findByBussinessId(bussinessId);
             FileInfo f=null;
             if(l==null||l.size()==0){

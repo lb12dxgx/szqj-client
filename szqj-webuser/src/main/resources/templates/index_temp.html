@@ -359,10 +359,10 @@
         </div>
         <div class="box-bgcl">
           <div class="row logopic">
-            <div class="col-md-3" th:each="enterprise,iterStat:${enterpriseList}">
+            <div class="col-md-3" th:each="enterprise,iterStat:${enterpriseList}">       
             	<a th:href="@{'/service/enterprise/detail.html?enterpriseId='+${enterprise.enterpriseId}}" target="_blank" >
-            		<img th:src="@{${fileMap[enterprise.enterprisePicId]}}"   class=" img-shadow-1 " style="width:102px;height:102px">
-            	</a>
+            		<img th:src="@{${fileMap[enterprise.enterprisePicId]}}"   class="img-shadow-1" style="width:102px;height:102px">
+            	</a>                                    
             </div>
           
           </div>

@@ -5,6 +5,9 @@
 <head>
 	
 	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
+	<link href="/css/upload.css" rel="stylesheet" type="text/css">
+	<link href="/js/upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css">
+	
 </head>
  
 
@@ -32,7 +35,7 @@
 			 <!--中部内容开始-->
 	 	 <div class="col-md-12" style="padding-right: 0;">
 		 	<form class="form-horizontal" id="form" action="/emp/save.do" method="post">
-
+                 <input type="hidden" th:value="${enterprise.enterprisePicId}" id="enterprisePicId" name="enterprisePicId" />
                 <div class="form-group">
                   <label class="col-md-1 control-label">企业名称</label>
                   <div class="col-md-7">
@@ -92,8 +95,16 @@
                 <div class="form-group">
                   <label class="col-md-1 control-label">企业logo</label>
                   <div class="col-md-7">
-                    <input type="file" name="enterprisePicId" class="form-control" id="btn_upload_image"/>
                   
+                   <span class="upload-pic fileinput-button">
+                    <i class="glyphicon glyphicon-plus" style="margin-top:80px"></i>
+                  
+                    <input type="file" name="file" id="btn_upload_image" >
+               	 </span>
+                   <div style="color:red;margin-top:5px" id="fileError"></div>
+                   <div id="pic">
+                   </div>
+                    
                   </div>
                 </div>
 
@@ -121,16 +132,23 @@
 	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="/js/template-web.js"></script>
 	
-	<script src="/js/jQuery-File-Upload/jquery.ui.widget.js"></script>
-    <script src="/js/jQuery-File-Upload/jquery.iframe-transport.js"></script>
-　　<script src="/js/jQuery-File-Upload/jquery.fileupload.js"></script>
-　　<script src="/js/jQuery-File-Upload/jquery.fileupload-process.js"></script>
-　　<script src="/js/jQuery-File-Upload/jquery.fileupload-ui.js"></script>
+   <script src="/js/upload/js/vendor/jquery.ui.widget.js"></script>
+   <script src="/js/upload/js/jquery.iframe-transport.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload-process.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload-ui.js"></script>
+  <script src="/js/upload/js/jquery.fileupload-validate.js"></script>
 	
 	<script id="tpl-hytype" type="text/html">
 		{{each  retData}}
   			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
 		{{/each}}
+	</script>
+	
+	<script id="tpl-img" type="text/html">
+		<div class="upload-pic">
+          <image src={{'/'+fileWebPath}} style="width:100%;height:100%;"/>
+	    </div>
 	</script>
 	
 	
@@ -142,20 +160,40 @@
 				$('#hyType').html(html);
 		  });
 		
+		$.get("/dict/getList.html?dictValue=qy_hy_type",function(data,status){
+			var html = template('tpl-hytype',data);
+				$('#hyType').html(html);
+		  });
+		
+		var accountId=[[${session.account.token}]]
+		
+		
+		
 		$("#btn_upload_image").fileupload({
+			autoUpload: true,
+			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+			maxFileSize: 10 * 1024 * 1024,
+			minFileSize: 1,
+			maxNumberOfFiles: 50,
+			messages: {
+			    maxFileSize: '文件不能超过10M',
+			    acceptFileTypes: '文件类型不对'
+			},
+			processfail: function (e, data) {
+			    var currentFile = data.files[data.index];
+			    if (data.files.error && currentFile.error) {
+			        $("#fileError").html(currentFile.error);
+			    }
+			},
 		    dataType: 'json',
-		    url: url_upload_image,
-		    formData: {param:1},
-		    add: function (e, data) {//上传之前的处理
-		        data.submit();
-		    },
+		    url: '/file/uploadone.do',
+		    formData: {dirName:'content/enterprise/logo',width:'200',height:'200',accountId:accountId,businessId:$("#enterprisePicId").val()},
+		   
 		    done: function (e, data) { //对接口返回信息的处理
-		        var result = data.result;
-		        if (typeof result.error === 'undefined') {
-		           //成功
-		        } else {
-		            //失败
-		        }
+		       console.log(data.result.retData)
+		       var html = template('tpl-img',data.result.retData);
+				$('#pic').html(html);
+				$("#enterprisePicId").val(data.result.retData.bussinessId);
 		    }
 		});
 		

@@ -24,6 +24,9 @@ public interface EnterpriseRepository extends PagingAndSortingRepository<Enterpr
 	@Query("select m from Enterprise m  order by level,orderNum,createDate")
 	Page<Enterprise> findPage(Pageable pageable);
 	
+	@Query("select m from Enterprise m  where level=30 order by level,orderNum,createDate")
+	Page<Enterprise> findVipPage(Pageable pageable);
+	
 	List<Enterprise> findByAccountId(String accountId);
 	
 }

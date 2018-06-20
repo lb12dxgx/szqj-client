@@ -84,7 +84,11 @@
 }
 .xwlist{
 	color:#0e57a1;
-	margin-left:-25px;
+	width: 90%;
+    margin-left: -25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .xwRightlist{

@@ -38,12 +38,12 @@
           <div class="row" style="margin-top:-10px;">
      <!--左侧内容开始-->
      <div class="col-md-8">
-			<div >
-          			<ul class="gbzx-news" th:each="zbinfo,iterStat:${page.content}">
+			<div  th:each="zbinfo,iterStat:${page.content}">
+          			<ul class="gbzx-news">
                     <li class="xwlist pull-left"><a th:href="@{'/service/zbinfo/detail.html?zbInfoId='+${zbinfo.zbInfoId}}" target="_blank" th:text="${zbinfo.zbXmName}">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
                     <li class="list-unstyled pull-right gray"><time datetime="2018-1-22" th:text=" ${#dates.format(zbinfo.publishDate, 'yyyy-MM-dd')}">2018-1-22</time></li>
                     </ul>
-                    <div class="gb-line clearfix"></div>
+                    <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
                </div>
 			
 			<!--分页开始-->  

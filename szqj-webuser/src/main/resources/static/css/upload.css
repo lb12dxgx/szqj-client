@@ -1,0 +1,10 @@
+.upload-pic {
+	 border: 1px solid #ccc;
+	 border-radius: 4px;
+	 width:200px;
+	 height:200px;
+	 vertical-align:middle;
+	 text-align:center;
+	 font-size:30px;
+	 color:#ccc
+}

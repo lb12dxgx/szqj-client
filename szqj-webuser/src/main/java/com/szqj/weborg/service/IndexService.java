@@ -182,7 +182,7 @@ public class IndexService {
 	
 	public List<Enterprise> getEnterpriseList(HashMap map){
 		PageRequest pageable=Tools.getPage(0, 4);
-		Page<Enterprise> page=enterpriseRepository.findPage(pageable);
+		Page<Enterprise> page=enterpriseRepository.findVipPage(pageable);
 		List<Enterprise> l = page.getContent();
 		for(Enterprise c:l) {
 			String tFiled = c.getEnterprisePicId();

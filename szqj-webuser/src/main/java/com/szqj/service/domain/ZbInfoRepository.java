@@ -20,7 +20,7 @@ public interface ZbInfoRepository extends PagingAndSortingRepository<ZbInfo, Str
 	@Query("select m from ZbInfo m where m.zbXmName like %?1%  order by createDate")
 	Page<ZbInfo> findPageByZbXmName(String zbXmName, Pageable pageable);
 	
-	@Query("select m from ZbInfo m  order by createDate")
+	@Query("select m from ZbInfo m  order by createDate desc")
 	Page<ZbInfo> findPage(Pageable pageable);
 	
 	
