@@ -38,7 +38,7 @@
                     <a class="btn btn-default">
                       <i class="fa fa-search"></i>查询
                     </a>
-                    <a href="productinfo_add.html" class="btn btn-primary" >
+                    <a href="/emp/productinfo/add.html" class="btn btn-primary" >
                       <i class="fa fa-plus"></i>新增
                     </a>
                   </div>
@@ -52,111 +52,34 @@
                     <th width="20%">产品名称</th>
                     <th width="10%">品牌</th>
                     <th width="10%">类别</th>
-                    <th width="10%">型号</th>
                     <th width="10%">市场价</th>
                     <th width="15%">创建时间</th>
                     <th width="20%">操作</th>
                   </tr>
 
-                  <tr>
-                    <td>1</td>
-                    <td>多功能地下管线探测仪</td>
-                    <td>徐吉</td>
-                    <td>地下管线探测仪</td>
-                    <td>SL-580</td>
-                    <td>30000</td>
-                    <td>2018-10-12</td>
+                  <tr th:each="product,iterStat:${list}">
+                    <td th:text="${iterStat.index}">1</td>
+                    <td th:text="${product.productName}">多功能地下管线探测仪</td>
+                    <td th:text="${product.productBrand}">徐吉</td>
+                    <td th:text="${product.productType}">地下管线探测仪</td>
+                   
+                    <td th:text="${product.productPrice}">30000</td>
+                    <td th:text=" ${#dates.format(product.createDate, 'yyyy-MM-dd')}" >2018-10-12</td>
                     <td>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
+                      <a href="#" class="btn btn-primary btn-sm"  th:onclick="'javascript:edit('+${product.productId}+')'" >
                           修改
                       </a>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
+                      <a href="#" class="btn btn-primary btn-sm" th:onclick="'javascript:del('+${product.productId}+')'" >
                           删除
                       </a>
                     </td>
                   </tr>
 
-                   <tr>
-                    <td>2</td>
-                    <td>多功能地下管线探测仪</td>
-                    <td>徐吉</td>
-                    <td>地下管线探测仪</td>
-                    <td>SL-580</td>
-                    <td>30000</td>
-                    <td>2018-10-12</td>
-                    <td>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          修改
-                      </a>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          删除
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>3</td>
-                    <td>多功能地下管线探测仪</td>
-                    <td>徐吉</td>
-                    <td>地下管线探测仪</td>
-                    <td>SL-580</td>
-                    <td>30000</td>
-                    <td>2018-10-12</td>
-                    <td>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          修改
-                      </a>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          删除
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>4</td>
-                    <td>多功能地下管线探测仪</td>
-                    <td>徐吉</td>
-                    <td>地下管线探测仪</td>
-                    <td>SL-580</td>
-                    <td>30000</td>
-                    <td>2018-10-12</td>
-                    <td>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          修改
-                      </a>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          删除
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>5</td>
-                    <td>多功能地下管线探测仪</td>
-                    <td>徐吉</td>
-                    <td>地下管线探测仪</td>
-                    <td>SL-580</td>
-                    <td>30000</td>
-                    <td>2018-10-12</td>
-                    <td>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          修改
-                      </a>
-                      <a href="#" class="btn btn-primary btn-sm" onclick="searchKeyword(); return false;">
-                          删除
-                      </a>
-                    </td>
-                  </tr>
+                 
                 </table>
               </div>
 
-               <div class="row">
-                  <div class="col-md-6 col-md-offset-6" >
-                     <div th:include="pagination"/> 
-                      
-                  </div>
-                  
-                </div>
+              
             </div>
               
           </div>  

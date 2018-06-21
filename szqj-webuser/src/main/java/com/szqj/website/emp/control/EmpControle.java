@@ -3,6 +3,7 @@ package com.szqj.website.emp.control;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -76,12 +77,62 @@ public class EmpControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/emp/save.do"  )
-	public String info(Enterprise enterprise, ModelMap modelMap){
+	public String save(Enterprise enterprise, ModelMap modelMap){
 		Enterprise enterpriseRet = enterpriseRepository.findById(enterprise.getEnterpriseId()).get();
 		Tools.copyBeanForUpdate(enterprise, enterpriseRet);
 		enterpriseRepository.save(enterpriseRet);
-		return "emp/index"; 
+		return "emp/info"; 
 	}
+	
+	
+	/**
+	 * 产品信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/emp/productinfo.html"  )
+	public String productinfo(String enterpriseId,  ModelMap modelMap){
+		List<Product> list=productRepository.findByEnterpriseId(enterpriseId);
+		modelMap.put("list", list);
+		return "emp/productinfo"; 
+	}
+	
+	
+	
+	@RequestMapping(value = "/emp/productinfo/add.html"  )
+	public String productinfoAdd(String enterpriseId,  ModelMap modelMap){
+		modelMap.put("productPicId", UUID.randomUUID().toString());
+		modelMap.put("enterpriseId", enterpriseId);
+		return "emp/productinfo_add"; 
+	}
+	
+	
+	@RequestMapping(value = "/emp/productinfo/save.html"  )
+	public String productinfoSave(Product  product,  ModelMap modelMap){
+		product.setCreateDate(new Date());
+		productRepository.save(product);
+		
+		return "redirect:/emp/productinfo.html?enterpriseId="+product.getEnterpriseId(); 
+		
+	}
+	
+	@RequestMapping(value = "/emp/productinfo/edit.html"  )
+	public String productinfoEdit(String productId,  ModelMap modelMap){
+		Product product = productRepository.findById(productId).get();
+		modelMap.put("product", product);
+		return "emp/productinfo_edit"; 
+	}
+	
+	
+	@RequestMapping(value = "/emp/productinfo/update.html"  )
+	public String productinfoUpdate(Product  product,  ModelMap modelMap){
+		productRepository.save(product);
+		return "redirect:/emp/productinfo.html?enterpriseId="+product.getEnterpriseId(); 
+		
+	}
+	
 	
 	
 
@@ -155,21 +206,7 @@ public class EmpControle {
 	
 	
 	
-	/**
-	 * 产品信息
-	 * @param pageNum
-	 * @param size
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/emp/productinfo.html"  )
-	public String productinfo(Integer pageNum, Integer size, ModelMap modelMap){
-		PageRequest pageable=Tools.getPage(pageNum, 5);
-		Page<Product> page=productRepository.findPage(pageable);
-		
-		modelMap.put("page", page);
-		return "emp/productinfo"; 
-	}
+
 	
 	
 	/**

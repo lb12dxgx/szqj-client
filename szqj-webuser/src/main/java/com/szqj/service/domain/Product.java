@@ -26,6 +26,10 @@ public class Product {
 	
 	private String productBrand;//产品品牌
 	
+	private String productType;//产品类别
+	
+	private String productTypeCode;//产品类别编码
+	
 	private String producer;//生产企业
 	
 	private String person;//联系人
@@ -178,6 +182,22 @@ public class Product {
 
 	public void setProductAddr(String productAddr) {
 		this.productAddr = productAddr;
+	}
+
+	public String getProductType() {
+		return productType;
+	}
+
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+
+	public String getProductTypeCode() {
+		return productTypeCode;
+	}
+
+	public void setProductTypeCode(String productTypeCode) {
+		this.productTypeCode = productTypeCode;
 	}
 	
 	

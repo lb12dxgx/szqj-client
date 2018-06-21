@@ -36,6 +36,8 @@
 	 	 <div class="col-md-12" style="padding-right: 0;">
 		 	<form class="form-horizontal" id="form" action="/emp/save.do" method="post">
                  <input type="hidden" th:value="${enterprise.enterprisePicId}" id="enterprisePicId" name="enterprisePicId" />
+                 <input type="hidden" th:value="${enterprise.enterpriseId}" id="enterpriseId" name="enterpriseId" />
+                 
                 <div class="form-group">
                   <label class="col-md-1 control-label">企业名称</label>
                   <div class="col-md-7">
@@ -77,6 +79,13 @@
                      <input type="text" class="form-control" th:value="${enterprise.telphone}" id="telphone" name="telphone" placeholder="请输入联系电话" />
                   </div>
                 </div>
+                
+                 <div class="form-group">
+                  <label class="col-md-1 control-label">公司电话</label>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control"  th:value="${enterprise.enttelphone}" placeholder="请输入公司电话" name="enttelphone" id="enttelphone"/>
+                  </div>
+                </div>
 
                 <div class="form-group">
                   <label class="col-md-1 control-label">公司地址</label>
@@ -86,9 +95,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-md-1 control-label">经营范围</label>
+                  <label class="col-md-1 control-label">主营业务</label>
                   <div class="col-md-7">
-                    <textarea class="form-control"  rows="5"  name="business" id="business" th:value="${enterprise.business}"></textarea>
+                    <textarea class="form-control"  rows="5"  name="business" id="business" th:text="${enterprise.business}"></textarea>
                   </div>
                 </div>
 
@@ -96,14 +105,20 @@
                   <label class="col-md-1 control-label">企业logo</label>
                   <div class="col-md-7">
                   
+                  <span id="pic">
+                   	<div class="upload-pic" th:if="${enterprise.enterprisePicId!=null}">
+	                   	<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${enterprise.enterprisePicId}}" style="width:100%;height:100%;" >
+	                   	</img>
+                   	</div>
+                   </span>
+                  	
                    <span class="upload-pic fileinput-button">
                     <i class="glyphicon glyphicon-plus" style="margin-top:80px"></i>
                   
                     <input type="file" name="file" id="btn_upload_image" >
                	 </span>
                    <div style="color:red;margin-top:5px" id="fileError"></div>
-                   <div id="pic">
-                   </div>
+                   
                     
                   </div>
                 </div>
@@ -222,6 +237,9 @@
 	            telphone:{
 	              required: true	
 	            },
+	            enttelphone:{
+		              required: true	
+		         },
 	            addree:{
 	              required: true	
 	            },
@@ -245,6 +263,10 @@
 	            },
 	            telphone:{
 		              required:'请输入联系电话',
+		              
+		        },
+		        enttelphone:{
+		              required:'请输入公司电话',
 		              
 		        },
 		       addree:{

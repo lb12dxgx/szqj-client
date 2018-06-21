@@ -130,6 +130,58 @@ public class FileInfoRest {
 		
 	}
 	
+	
+	@RequestMapping(value = "/uploadlist.do"  )
+	@ResponseBody
+	public RestJson uploadlist(@RequestParam("file") MultipartFile file,String ss_accountId,String dirName ,String bussinessId,Integer width,Integer height ){
+		if(StringUtils.isBlank(bussinessId)){
+			bussinessId= UUID.randomUUID().toString();
+		}
+		String fileName = file.getOriginalFilename();
+		//获取文件的后缀名
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        fileName = UUID.randomUUID() + suffixName;
+        File dest = new File(uploadPath +dirName+File.separator+ fileName);
+        // 检测是否存在目录
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
+        try {
+            file.transferTo(dest);
+            
+            if(width!=null&&height!=null){
+	            if(suffixName=="JPEG"||suffixName=="jpeg"){
+			    	 Thumbnails.of(dest).outputFormat("JPEG").size(width, height).keepAspectRatio(false).toFile(dest);
+			     }
+			     
+			     if(suffixName=="PNG"||suffixName=="png"){
+			    	 Thumbnails.of(dest).outputFormat("PNG").size(width, height).keepAspectRatio(false).toFile(dest);
+			     }
+            }
+            
+           
+            FileInfo f=new FileInfo();
+            f.setCreateDate(new Date());
+    		f.setCreateUserId(ss_accountId);
+    		f.setDelFlag(ConstantUtils.NEW_FLAG);
+    		f.setFilePath(uploadPath +dirName+File.separator+ fileName);
+    		f.setFileWebPath(dirName+"/"+fileName);
+    		f.setFileName(file.getOriginalFilename());
+    		f.setFileType(suffixName);
+    		f.setBussinessId(bussinessId);
+    		fileInfoRepository.save(f);
+    	    List<FileInfo> l = fileInfoRepository.findByBussinessId(bussinessId);
+            return RestJson.createSucces(l);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return RestJson.createError();
+		
+		
+	}
+	
 	@RequestMapping(value = "/delete.do"  )
 	@ResponseBody
 	public RestJson delete(String fileInfoId,String ss_accountId){

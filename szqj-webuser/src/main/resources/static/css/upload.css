@@ -6,5 +6,33 @@
 	 vertical-align:middle;
 	 text-align:center;
 	 font-size:30px;
-	 color:#ccc
+	 color:#ccc;
+	 float:left;
+	 margin-left:5px;
+}
+
+
+.upload-pic-list-plu {
+	 border: 1px solid #ccc;
+	 border-radius: 4px;
+	 width:100px;
+	 height:100px;
+	 vertical-align:middle;
+	 text-align:center;
+	 font-size:30px;
+	 color:#ccc;
+	 float:left;
+	 margin-left:5px;
+}
+
+.upload-pic-list {
+	 border: 1px solid #ccc;
+	 border-radius: 4px;
+	 width:200px;
+	 height:200px;
+	 vertical-align:middle;
+	 text-align:center;
+	 font-size:30px;
+	 color:#ccc;
+	 margin-left:5px;
 }

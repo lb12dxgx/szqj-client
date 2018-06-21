@@ -17,6 +17,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 */
 public interface FileInfoRepository extends PagingAndSortingRepository<FileInfo, String> {
 
-	@Query("select m from FileInfo m where m.bussinessId =?1 and  m.delFlag!=1")
+	@Query("select m from FileInfo m where m.bussinessId =?1 and  m.delFlag!=1 order by createDate")
 	public List<FileInfo> findByBussinessId(String bussinessId);
 }

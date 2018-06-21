@@ -29,7 +29,7 @@ public class Enterprise {
 	
 	private String addree;//地址
 	
-	
+	private String enttelphone;//公司电话
 	
 	private String quaPicId;//资格图片Id
 	
@@ -187,6 +187,14 @@ public class Enterprise {
 
 	public void setLxName(String lxName) {
 		this.lxName = lxName;
+	}
+
+	public String getEnttelphone() {
+		return enttelphone;
+	}
+
+	public void setEnttelphone(String enttelphone) {
+		this.enttelphone = enttelphone;
 	}
 	
 	
