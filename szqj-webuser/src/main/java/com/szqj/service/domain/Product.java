@@ -26,7 +26,7 @@ public class Product {
 	
 	private String productBrand;//产品品牌
 	
-	private String productType;//产品类别
+	private String productType;//产品类别名称
 	
 	private String productTypeCode;//产品类别编码
 	

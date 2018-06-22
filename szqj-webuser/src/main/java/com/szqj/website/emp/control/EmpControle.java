@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.szqj.cms.domain.ColumnInfo;
 import com.szqj.cms.domain.ColumnInfoRepository;
@@ -39,6 +40,8 @@ import com.szqj.train.domain.TrainCertRepository;
 import com.szqj.train.domain.TrainTeacher;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
+import com.szqj.weborg.domain.Dict;
+import com.szqj.weborg.domain.DictRepository;
 import com.szqj.weborg.domain.FileInfo;
 import com.szqj.weborg.domain.FileInfoRepository;
 
@@ -52,6 +55,9 @@ public class EmpControle {
 	
 	@Autowired
 	private EnterpriseRepository enterpriseRepository;
+	
+	@Autowired
+	private DictRepository dictRepository;
 	
 	/**
 	 * 企业信息
@@ -93,8 +99,9 @@ public class EmpControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/emp/productinfo.html"  )
-	public String productinfo(String enterpriseId,  ModelMap modelMap){
-		List<Product> list=productRepository.findByEnterpriseId(enterpriseId);
+	public String productinfo(@SessionAttribute Account account,  ModelMap modelMap){
+		Enterprise enterprise = enterpriseRepository.findByAccountId(account.getAccountId()).get(0);
+		List<Product> list=productRepository.findByEnterpriseId(enterprise.getEnterpriseId());
 		modelMap.put("list", list);
 		return "emp/productinfo"; 
 	}
@@ -102,16 +109,19 @@ public class EmpControle {
 	
 	
 	@RequestMapping(value = "/emp/productinfo/add.html"  )
-	public String productinfoAdd(String enterpriseId,  ModelMap modelMap){
+	public String productinfoAdd(@SessionAttribute Account account, ModelMap modelMap){
+		Enterprise enterprise = enterpriseRepository.findByAccountId(account.getAccountId()).get(0);
 		modelMap.put("productPicId", UUID.randomUUID().toString());
-		modelMap.put("enterpriseId", enterpriseId);
+		modelMap.put("enterpriseId", enterprise.getEnterpriseId());
 		return "emp/productinfo_add"; 
 	}
 	
 	
-	@RequestMapping(value = "/emp/productinfo/save.html"  )
+	@RequestMapping(value = "/emp/productinfo/save.do"  )
 	public String productinfoSave(Product  product,  ModelMap modelMap){
 		product.setCreateDate(new Date());
+		List<Dict> dicts = dictRepository.findByDictValue(product.getProductTypeCode());
+		product.setProductType(dicts.get(0).getDictName());
 		productRepository.save(product);
 		
 		return "redirect:/emp/productinfo.html?enterpriseId="+product.getEnterpriseId(); 
@@ -129,6 +139,14 @@ public class EmpControle {
 	@RequestMapping(value = "/emp/productinfo/update.html"  )
 	public String productinfoUpdate(Product  product,  ModelMap modelMap){
 		productRepository.save(product);
+		return "redirect:/emp/productinfo.html?enterpriseId="+product.getEnterpriseId(); 
+		
+	}
+	
+	@RequestMapping(value = "/emp/productinfo/del.do"  )
+	public String productinfoDel(String  productId,  ModelMap modelMap){
+		Product product = productRepository.findById(productId).get();
+		productRepository.deleteById(productId);
 		return "redirect:/emp/productinfo.html?enterpriseId="+product.getEnterpriseId(); 
 		
 	}

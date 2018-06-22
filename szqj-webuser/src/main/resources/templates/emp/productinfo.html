@@ -38,7 +38,7 @@
                     <a class="btn btn-default">
                       <i class="fa fa-search"></i>查询
                     </a>
-                    <a href="/emp/productinfo/add.html" class="btn btn-primary" >
+                    <a th:href="@{'/emp/productinfo/add.html?accountId='+${session.account.accountId}}" "" class="btn btn-primary" >
                       <i class="fa fa-plus"></i>新增
                     </a>
                   </div>
@@ -58,7 +58,7 @@
                   </tr>
 
                   <tr th:each="product,iterStat:${list}">
-                    <td th:text="${iterStat.index}">1</td>
+                    <td th:text="${iterStat.count}">1</td>
                     <td th:text="${product.productName}">多功能地下管线探测仪</td>
                     <td th:text="${product.productBrand}">徐吉</td>
                     <td th:text="${product.productType}">地下管线探测仪</td>
@@ -66,10 +66,10 @@
                     <td th:text="${product.productPrice}">30000</td>
                     <td th:text=" ${#dates.format(product.createDate, 'yyyy-MM-dd')}" >2018-10-12</td>
                     <td>
-                      <a href="#" class="btn btn-primary btn-sm"  th:onclick="'javascript:edit('+${product.productId}+')'" >
+                      <a href="#" class="btn btn-primary btn-sm"  th:onclick="'javascript:edit(\''+${product.productId}+'\')'" >
                           修改
                       </a>
-                      <a href="#" class="btn btn-primary btn-sm" th:onclick="'javascript:del('+${product.productId}+')'" >
+                      <a href="#" class="btn btn-primary btn-sm" th:onclick="'javascript:showdel(\''+${product.productId}+'\')'" >
                           删除
                       </a>
                     </td>
@@ -84,14 +84,48 @@
               
           </div>  
         </div>
-  </div>          
+  </div>  
+  
+  	<!--删除提示 Modal -->
+	<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">提示信息</h4>
+	      </div>
+	      <div class="modal-body">
+	          		您确认要删除吗？
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>  
+        	<button onclick="del()" class="btn btn-success" data-dismiss="modal">确定</button>  
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>        
   
   <!--footer开始-->
  <div th:include="footer"></div>
   	<!--footer结束-->
   	<script type="text/javascript" th:inline="javascript">
+  	
+	function showdel(id){
+		  $('#delModal').data("delId",id)
+		  $('#delModal').modal();  
+	};
+	
+	function del(){
+		var id=$('#delModal').data("delId");
+		 window.location.href=url;    
+	}
+  	
 	$(function(){
 		$('#product').addClass("active");
+		
+	
+		
 	})
 </script>
   <!--footer结束-->

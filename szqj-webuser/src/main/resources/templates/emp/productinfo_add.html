@@ -31,14 +31,14 @@
      <!--左侧菜单结束-->
 
             <div class="col-md-10 main-content ">
-              <form class="form-horizontal top-20">
+              <form class="form-horizontal top-20" id="form"  action="/emp/productinfo/save.do" method="post">
                 <input type="hidden"  id="productPicId" name="productPicId" th:value="${productPicId}" />
-                <input type="hidden"  id="enterpriseId" name="productPicId" th:value="${enterpriseId}" />
+                <input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
                 
                  <div class="form-group">
                   <label  class="col-md-1 control-label">产品名称</label>
                   <div class="col-md-7">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入产品名称">
+                    <input type="text" class="form-control"  name="productName" id="productName" placeholder="请输入产品名称">
                   </div>
                
                 </div>
@@ -46,7 +46,7 @@
                 <div class="form-group">
                   <label  class="col-md-1 control-label">品牌</label>
                   <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入招聘人数">
+                    <input type="text" class="form-control" id="productBrand" name="productBrand" placeholder="请输入品牌">
                   </div>
                   <label  class="col-md-1 control-label">类别</label>
                     <div class="col-md-2">
@@ -55,31 +55,27 @@
                        </select>
                     </div>
                     <div class="col-md-2">
-                     <select class="form-control" id="cpTwoType" name="productType" >
+                     <select class="form-control" id="cpTwoType" name="productTypeCode" >
                      
                      </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                  <label  class="col-md-1 control-label">型号</label>
-                  <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入型号">
-                  </div>
                   <label  class="col-md-1 control-label">市场价</label>
                     <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入市场价">
+                    <input type="text" class="form-control" id="productPrice" name="productPrice" placeholder="请输入市场价">
                   </div>
                 </div>
                 
                 <div class="form-group">
                   <label  class="col-md-1 control-label">联系人</label>
                   <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入型号">
+                    <input type="text"class="form-control" id="person" name="person" placeholder="请输入联系人">
                   </div>
                   <label  class="col-md-1 control-label">联系电话</label>
                     <div class="col-md-4">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入市场价">
+                    <input type="text" class="form-control" id="telphone" name="telphone" placeholder="请输入联系电话">
                   </div>
                 </div>
 
@@ -90,13 +86,12 @@
                   <div class="col-md-7">
 	                  <span class="upload-pic-list-plu  fileinput-button">
 	                    <i class="glyphicon glyphicon-plus" style="margin-top:30px"></i>
-	                  
 	                    <input type="file" name="file" id="btn_upload_image" >
 	               	 </span>
                   	<div style="color:red;margin-top:5px" id="fileError"></div>
                    
                   
-                  </div>
+                   </div>
                 </div>
                
                  <div class="row" id="piclist" style="margin-left:20px">
@@ -106,17 +101,13 @@
 				<div class="form-group">
                   <label class="col-md-1 control-label">产品信息</label>
                   <div class="col-md-10">
-                    <script id="container" name="content" type="text/plain">
-  
-  					 </script>
+                  	<textarea name="productDesc" id="container" ></textarea>
                   </div>
                 </div>
                
                 <div class="form-group">
                   <div class="col-md-2 col-md-offset-4"  >
-                    <a href="jobinfo.html" class="btn btn-primary" style="font-size:16px ">
-                      提交
-                    </a>
+                    <button id="submitbut" type="button" class="btn btn-primary">提交</button>
                   </div>
                 </div>
                 
@@ -233,6 +224,60 @@
 				$('#piclist').html(html);
 		    }
 		});
+		
+		
+		  $("#submitbut").click(function(){
+			   if($("#form").valid()){
+				   $("#form").submit();
+			   		 
+			   }
+		   });
+		
+		 $("#form").validate({
+	          rules: {
+	            productName: {
+	              required: true
+	            },
+	            productBrand:{
+	              required: true
+	            },
+	            productType:{
+	           	  required: true	
+	            },
+	            productPrice:{
+	              required: true	
+	            },
+	            person:{
+		              required: true	
+		         },
+		         telphone:{
+	              required: true	
+	            }
+	           
+	            
+	          },
+	          messages: {
+	        	  productName: {
+		              required: "请输入产品名称"
+		            },
+		            productBrand:{
+		              required: "请输入产品品牌"
+		            },
+		            productType:{
+		           	  required: "请输入产品类型"	
+		            },
+		            productPrice:{
+		              required: "请输入产品价格"		
+		            },
+		            person:{
+			              required: "请输入联系人"		
+			         },
+			        telphone:{
+		              required: "请输入联系电话"		
+		          }
+		      }
+	     });
+		
 	})
 </script>
     
