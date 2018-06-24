@@ -31,14 +31,15 @@
      <!--左侧菜单结束-->
 
             <div class="col-md-10 main-content ">
-              <form class="form-horizontal top-20" id="form"  action="/emp/productinfo/save.do" method="post">
-                <input type="hidden"  id="productPicId" name="productPicId" th:value="${productPicId}" />
-                <input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
+              <form class="form-horizontal top-20" id="form"  action="/emp/productinfo/update.do" method="post">
+                <input type="hidden"  id="productPicId" name="productPicId" th:value="${product.productPicId}" />
+                <input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${product.enterpriseId}" />
+                <input type="hidden"  id="productId" name="productId" th:value="${product.productId}" />
                 
                  <div class="form-group">
                   <label  class="col-md-1 control-label">产品名称</label>
                   <div class="col-md-7">
-                    <input type="text" class="form-control"  name="productName" id="productName" placeholder="请输入产品名称">
+                    <input type="text" class="form-control" th:value="${product.productName}"  name="productName" id="productName" placeholder="请输入产品名称">
                   </div>
                
                 </div>
@@ -46,7 +47,7 @@
                 <div class="form-group">
                   <label  class="col-md-1 control-label">品牌</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control" id="productBrand" name="productBrand" placeholder="请输入品牌">
+                    <input type="text" class="form-control" th:value="${product.productBrand}" id="productBrand" name="productBrand" placeholder="请输入品牌">
                   </div>
                   <label  class="col-md-1 control-label">类别</label>
                     <div class="col-md-2">
@@ -64,18 +65,18 @@
                 <div class="form-group">
                   <label  class="col-md-1 control-label">市场价</label>
                     <div class="col-md-4">
-                    <input type="text" class="form-control" id="productPrice" name="productPrice" placeholder="请输入市场价">
-                  </div>
+                    <input type="text" class="form-control" th:value="${product.productPrice}" id="productPrice" name="productPrice" placeholder="请输入市场价">
+                  </div> 
                 </div>
                 
                 <div class="form-group">
                   <label  class="col-md-1 control-label">联系人</label>
                   <div class="col-md-4">
-                    <input type="text"class="form-control" id="person" name="person" placeholder="请输入联系人">
+                    <input type="text"class="form-control" th:value="${product.person}"  id="person" name="person" placeholder="请输入联系人">
                   </div>
                   <label  class="col-md-1 control-label">联系电话</label>
                     <div class="col-md-4">
-                    <input type="text" class="form-control" id="telphone" name="telphone" placeholder="请输入联系电话">
+                    <input type="text" class="form-control" th:value="${product.telphone}" id="telphone" name="telphone" placeholder="请输入联系电话">
                   </div>
                 </div>
 
@@ -94,19 +95,20 @@
                    </div>
                 </div>
                
-                 <div class="row" id="piclist" style="margin-left:20px">
+                <div class="row" id="piclist" style="margin-left:20px">
                	   
 				 </div>
+			
 				 
 				<div class="form-group">
                   <label class="col-md-1 control-label">产品信息</label>
                   <div class="col-md-10">
-                  	<textarea name="productDesc" id="container" ></textarea>
+                  	<textarea name="productDesc" id="container" th:text="${product.productDesc}" ></textarea>
                   </div>
                 </div>
                
                 <div class="form-group">
-                  <div class="col-md-2 col-md-offset-4"  >
+                  <div class="col-md-2 col-md-offset-5"  >
                     <button id="submitbut" type="button" class="btn btn-primary">提交</button>
                   </div>
                 </div>
@@ -141,8 +143,8 @@
 		{{/each}}
 	</script>
 	
-   <script id="tpl-img" type="text/html">
-     <ul class="list-group col-md-9 col-md-offset-1">
+	<script id="tpl-img" type="text/html">
+	 <ul class="list-group col-md-9 col-md-offset-1">
 		{{each  retData}}
         <a class="list-group-item" style="height:120px;margin-bottom:10px">
 			<img src={{'/'+$value.fileWebPath}}  class="img-rounded" style="width:100px;height:100px"/>
@@ -152,6 +154,7 @@
 		{{/each}}	
      </ul>
    </script>
+	
    <script type="text/javascript" th:inline="javascript">
    var ue = UE.getEditor('container');
    ue.ready(function() {
@@ -175,14 +178,20 @@
    
 	$(function(){
 		$('#product').addClass("active");
+		
 		$.get("/dict/getList.html?dictValue=cp_type",function(data,status){
 			var onehtml = template('tpl-cptype',data);
-			$.get("/dict/getList.html?dictValue="+data.retData[0].dictValue,function(data){
-			
+			$.get("/dict/getList.html?dictValue="+[[${ptypeCode}]],function(data){
+				
 				$('#cpOneType').html(onehtml);
 				var twohtml = template('tpl-cptype',data);
 				$('#cpTwoType').html(twohtml);
+				
+				
 			});
+			
+			$('#cpTwoType').val([[${product.productTypeCode}]]);
+			$('#cpOneType').val([[${ptypeCode}]]);
 			
 		  });
 		
@@ -194,7 +203,12 @@
 			});
 		});
 		
-		
+		var productPicId=[[${product.productPicId}]];
+		$.get("/file/list.do?bussinessId="+productPicId,function(data,status){
+			console.log(data.result);
+			 var html = template('tpl-img',data);
+				$('#piclist').html(html);
+		})
 		
 		$("#btn_upload_image").fileupload({
 			autoUpload: true,

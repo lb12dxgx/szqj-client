@@ -30,14 +30,9 @@
 	<div class="col-md-10 main-content" >
               <div class="col-md-12" style="padding:10px;">
                 <form class="form-inline" >
-                 <div class="form-group col-md-4">
-                    <label class="srarch-label">产品名称</label>
-                    <input type="text" class="form-control" >
-                  </div>
-                  <div class="form-group col-md-4" style="margin-right:10px ">
-                    <a class="btn btn-default">
-                      <i class="fa fa-search"></i>查询
-                    </a>
+                
+                  <div class="form-group pull-right" style="margin-right:10px ">
+                  
                     <a th:href="@{'/emp/productinfo/add.html?accountId='+${session.account.accountId}}" "" class="btn btn-primary" >
                       <i class="fa fa-plus"></i>新增
                     </a>
@@ -111,6 +106,10 @@
   	<!--footer结束-->
   	<script type="text/javascript" th:inline="javascript">
   	
+  	function edit(id){
+  		 window.location.href='/emp/productinfo/edit.html?productId='+id;
+	};
+  	
 	function showdel(id){
 		  $('#delModal').data("delId",id)
 		  $('#delModal').modal();  
@@ -118,14 +117,11 @@
 	
 	function del(){
 		var id=$('#delModal').data("delId");
-		 window.location.href=url;    
+		 window.location.href='/emp/productinfo/del.do?productId='+id;    
 	}
   	
 	$(function(){
 		$('#product').addClass("active");
-		
-	
-		
 	})
 </script>
   <!--footer结束-->

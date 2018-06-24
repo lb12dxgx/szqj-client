@@ -119,27 +119,33 @@ public class EmpControle {
 	
 	@RequestMapping(value = "/emp/productinfo/save.do"  )
 	public String productinfoSave(Product  product,  ModelMap modelMap){
+		product.setLevel(10);
 		product.setCreateDate(new Date());
 		List<Dict> dicts = dictRepository.findByDictValue(product.getProductTypeCode());
 		product.setProductType(dicts.get(0).getDictName());
 		productRepository.save(product);
 		
-		return "redirect:/emp/productinfo.html?enterpriseId="+product.getEnterpriseId(); 
+		return "redirect:/emp/productinfo.html"; 
 		
 	}
 	
 	@RequestMapping(value = "/emp/productinfo/edit.html"  )
 	public String productinfoEdit(String productId,  ModelMap modelMap){
 		Product product = productRepository.findById(productId).get();
+		List<Dict> dicts = dictRepository.findByDictValue(product.getProductTypeCode());
+		Dict pdict = dictRepository.findById(dicts.get(0).getPdictId()).get();
 		modelMap.put("product", product);
+		modelMap.put("ptypeCode", pdict.getDictValue());
 		return "emp/productinfo_edit"; 
 	}
 	
 	
-	@RequestMapping(value = "/emp/productinfo/update.html"  )
+	@RequestMapping(value = "/emp/productinfo/update.do"  )
 	public String productinfoUpdate(Product  product,  ModelMap modelMap){
-		productRepository.save(product);
-		return "redirect:/emp/productinfo.html?enterpriseId="+product.getEnterpriseId(); 
+		Product productRet = productRepository.findById(product.getProductId()).get();
+		Tools.copyBeanForUpdate(product, productRet);
+		productRepository.save(productRet);
+		return "redirect:/emp/productinfo.html"; 
 		
 	}
 	
@@ -147,7 +153,7 @@ public class EmpControle {
 	public String productinfoDel(String  productId,  ModelMap modelMap){
 		Product product = productRepository.findById(productId).get();
 		productRepository.deleteById(productId);
-		return "redirect:/emp/productinfo.html?enterpriseId="+product.getEnterpriseId(); 
+		return "redirect:/emp/productinfo.html"; 
 		
 	}
 	
