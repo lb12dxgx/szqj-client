@@ -1,130 +1,89 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0020)http://www.ysemm.cn/ -->
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>中国地下空间网</title>
-    <meta name="keywords" content="地下空间,地下管线">
-    <meta name="description" content="">
-    <!-- Bootstrap -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" > 
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/spaceemp.css">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
 </head>
-<style type="text/css">
+<head>
+	
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css"></link>
+	<link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"></link>
+	
+</head>
+  
+ 
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
 
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
 
-</style>
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main  container-fluid">
+  
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--左侧菜单开始-->
+     <div class="col-md-2">
+		<div th:include="emp/leftmenu"/>  
+	 </div>
+     <!--左侧菜单结束-->
 
-<body class="pace-done bg-color">
-     <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-xs-3" style="text-align: center;">
-                    <span style="font-size: 25px;margin: 10px 0;line-height: 80px">
-                      <!-- 中国地下空间网 -->
-                    </span>
-            </div>
-                <div class="col-lg-8 col-xs-8">
-                    <ul class="nav nav-pills">
-                        <li >
-                          <a href="../index.html" class="line">首页</a>
-                        </li>
-                        <li>
-                          <a href="118/index.html" class="line">118服务</a>
-                        </li>
-                        <li>
-                          <a href="news/index.html" class="line">行业资讯</a>
-                        </li>
-                        <li>
-                          <a href="tender/index.html" class="line">行业采购</a>
-                        </li>
-                        <li>
-                          <a href="hr/index.html" class="line">行业招聘</a>
-                        </li>
-                        <li>
-                          <a href="train/index.html" class="line">产业培训</a>
-                        </li>
-                        <li>
-                          <a href="service/index.html" class="line">产业服务</a>
-                        </li>
-                        <li>
-                          <a href="maga/index.html" class="line">电子期刊</a>
-                        </li>
-                        <li class="active">
-                          <a href="index.html" class="line">管理平台</a>
-                        </li>
-                     </ul> 
-                </div>
-            </div>
-        </div>
-    </header>
-
-
-    
-  <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-2 menu-left">
-              <ul class="nav nav-pills nav-stacked ">
-                <li><a href="index.html">企业门户</a></li>
-                <li><a href="empinfo.html">基本信息</a></li>
-                <li ><a href="userinfo.html">人员管理</a></li>
-                <li><a href="#">培训管理</a></li>
-                <li><a href="#">招聘管理</a></li>
-                <li><a href="#">商品管理</a></li>
-                <li class="active"><a href="#">采购信息</a></li>
-                <li><a href="#">活动管理</a></li>
-                <li><a href="#">企业业绩</a></li>
-              </ul>
-            </div>
-
-            <div class="col-md-10 content-main ">
-              <form class="form-horizontal top-20">
+            <div class="col-md-10 main-content ">
+              <form class="form-horizontal top-20" id="form"  action="/emp/buyinfo/save.do" method="post">
+               	<input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
                  <div class="form-group">
                   <label  class="col-md-1 control-label">采购名称</label>
                   <div class="col-md-7">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入采购名称">
+                    <input  type="text" class="form-control" name="buyInfoName" id="buyInfoName" placeholder="请输入采购名称">
                   </div>
                   
                 </div>
 
                 <div class="form-group">
-                  <label  class="col-md-1 control-label">地区</label>
+                  <label  class="col-md-1 control-label">交货地点</label>
                   <div class="col-md-7">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="请输入交货地区">
+                    <input  type="text" class="form-control" name="place" id="place" placeholder="请输入交货地点">
                   </div>
                  </div>
+                 
+                 <div class="form-group">
+                  <label  class="col-md-1 control-label">发布日期</label>
+                  <div class="col-md-4">
+                  	<input  type="text" class="form-control datetimepicker" name="createDate" id="createDate" placeholder="请输入发布日期" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"/>
+                   </div>
+                  <label  class="col-md-1 control-label">截止日期</label>
+                  <div class="col-md-4">
+                     <input  type="text" class="form-control datetimepicker" name="endDate" id="endDate" placeholder="请输入截止日期">
+                  </div>
+                 </div>
+                 
                  <div class="form-group">
                   <label  class="col-md-1 control-label">类型</label>
                   <div class="col-md-4">
-                    <select class="form-control">
-                      <option>物资</option>
-                      <option>服务</option>
+                    <select class="form-control" name="buyInfoTypeCode" id="buyInfoTypeCode">
+                     
                     </select>
                   </div>
                   <label  class="col-md-1 control-label">数量</label>
                   <div class="col-md-4">
-                     <input type="email" class="form-control" id="inputEmail3" placeholder="请输入数量">
+                     <input  type="text" class="form-control" name="num" id="num" placeholder="请输入数量">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label  class="col-md-1 control-label">联系人</label>
                     <div class="col-md-4">
-                     <input type="email" class="form-control" id="inputEmail3" placeholder="请输入联系人">
+                     <input  type="text" class="form-control" name="person" id="person" placeholder="请输入联系人">
                   </div>
                   
                   <label  class="col-md-1 control-label">联系电话</label>
                   <div class="col-md-4">
-                     <input type="email" class="form-control" id="inputEmail3" placeholder="请输入联系电话">
+                     <input  type="text" class="form-control" name="telphone" id="telphone" placeholder="请输入联系电话">
                   </div>
                 </div>
 
@@ -133,19 +92,14 @@
                   <label class="col-md-1 control-label">采购说明</label>
                   <div class="col-md-9">
                     <textarea class="form-control"  
-                    rows="8" placeholder="请输入采购说明<">
-                      
+                    rows="8" placeholder="请输入采购说明" name="buyInfoDesc" id="buyInfoDesc">
                     </textarea>
                   </div>
                 </div>
 
-                
-
                 <div class="form-group">
                   <div class="col-md-2 col-md-offset-4"  >
-                    <a href="buyinfo.html" class="btn btn-primary" style="font-size:16px ">
-                      提交
-                    </a>
+                    <a href="buyinfo.html" class="btn btn-primary" style="font-size:16px ">提交</a>
                   </div>
                 </div>
                 
@@ -156,59 +110,86 @@
         </div>
   </div>          
   
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 footer-desc">
-          <div>
-            市场商务：<span class="title">010-xxxxx</span>
-          </div>
-          <div>
-            客服热线：<span class="title">400-xxx-xxx</span>
-          </div>
-          <div> 
-          地址： <span class="title">北京市海淀区</span>
-          </div>
-        </div>
-        <div class="col-md-8">
-           <div style="color: #fff;float: left;margin-top:10px; ">友情链接</div>
-           <div class="footer-links">
-            <a href="#">协会111</a>
-            <a href="#">协会111</a>
-            <a href="#">协会111</a>
-            <a href="#">协会111</a>
-            <a href="#">协会111</a>
-           </div>
-        </div>
-      </div>
+	 <!--footer开始-->
+	 <div th:include="footer"></div>
+	 <!--footer结束-->
+  	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="/js/template-web.js"></script>
+	
+	<script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+	
 
-      <div class="row">
-        <div class="footer-copyright">
-        Copyright©2018d地下空间网,All Rights Reserved  京ICP备16012914号-12 京公网安备11010802022625
-       </div>
-      </div>
-    </div>
+	<script id="tpl-cgtype" type="text/html">
+		{{each  retData}}
+  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
+		{{/each}}
+	</script>
+	
 
-  </div>          
+   <script type="text/javascript" th:inline="javascript">
+
    
+	$(function(){
+		$('.datetimepicker').datetimepicker({
+		    format: 'yyyy-mm-dd'
+		});
+		
+		$('#buyinfo').addClass("active");
+		
+		$.get("/dict/getList.html?dictValue=cg_type",function(data,status){
+			var onehtml = template('tpl-cgtype',data);
+			$('#buyInfoTypeCode').html(onehtml);
+		});
+		
+		 $("#form").validate({
+	          rules: {
+	        	 buyInfoName: {
+	              required: true
+	            },
+	            place:{
+	              required: true
+	            },
+	            productType:{
+	           	  required: true	
+	            },
+	            productPrice:{
+	              required: true	
+	            },
+	            person:{
+		              required: true	
+		         },
+		         telphone:{
+	              required: true	
+	            }
+	           
+	            
+	          },
+	          messages: {
+	        	  buyInfoName: {
+		              required: "请输入产品名称"
+		            },
+		            place:{
+		              required: "请输入交货地点"
+		            },
+		            productType:{
+		           	  required: "请输入产品类型"	
+		            },
+		            productPrice:{
+		              required: "请输入产品价格"		
+		            },
+		            person:{
+			              required: "请输入联系人"		
+			         },
+			        telphone:{
+		              required: "请输入联系电话"		
+		          }
+		      }
+	     });
+		
+	})
+</script>
     
 </body>
-
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
-<script type="text/javascript">
-  var mySwiper = new Swiper ('.swiper-container', {
-    loop: true,
-    autoplay:true,
-    pagination: {
-      el: '.swiper-pagination',
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  })        
-</script>
-
 </html>

@@ -48,11 +48,14 @@
 			       <tr>
 					   <td><a href="http://service.bjmac.gov.cn/zhxtgl/">北京</a></td>
 			       </tr>
-			       
-			       
-			       <tr th:each="org : ${orgList}">
-					   <td><a th:href="@{'/118/login.html?applyOrgId='+${org.applyOrgId}}" th:text="${org.city}"></a></td>
+			         <tr>
+					   <td><a href="http://www.zbgxxgh.com">淄博</a></td>
 			       </tr>
+			       
+			       
+			       <!-- <tr th:each="org : ${orgList}">
+					   <td><a th:href="@{'/118/login.html?applyOrgId='+${org.applyOrgId}}" th:text="${org.city}"></a></td>
+			       </tr> -->
 			       
 			   </table>
 		   </div>
@@ -214,11 +217,11 @@ $(function(){
 	var BJData = [
 
 	    [{name:'北京'}, {name:'淄博',value:95}],
-	    [{name:'北京'}, {name:'佛山',value:90}],
+	   /*  [{name:'北京'}, {name:'佛山',value:90}],
 	    [{name:'北京'}, {name:'厦门',value:80}],
 	    [{name:'北京'}, {name:'武汉',value:80}],
 	    [{name:'北京'}, {name:'中山',value:80}],
-	    [{name:'北京'}, {name:'南京',value:80}],
+	    [{name:'北京'}, {name:'南京',value:80}], */
 	    [{name:'北京',value:100}, {name:'北京',value:100}]
 	];
 
