@@ -22,91 +22,70 @@ public class Person {
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
 	private String personId;//用户id
-	
-	@Column
-	private String personName;//姓名
-	
-	
-	@Column
-	private String telePhone;//电话
-	
-	@Column
-	private String userCode;//用户身份证
-	
-	
 	@Column
 	private String accountId;//账号
-	
+	@Column
+	private String personName;//姓名
+	@Column
+	private String personSex;
+	@Column
+	private String telePhone;//电话
+	@Column
+	private String userCode;//用户身份证
 	@Column
 	private String companyId;//所属企业
-
-
+	@Column
+	private String personPicId;//个人照片
 	
-
-
 	
-
 	public String getPersonId() {
 		return personId;
 	}
-
-
 	public void setPersonId(String personId) {
 		this.personId = personId;
 	}
-
-
-	public String getPersonName() {
-		return personName;
-	}
-
-
-	public void setPersonName(String personName) {
-		this.personName = personName;
-	}
-
-
-	public String getCompanyId() {
-		return companyId;
-	}
-
-
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
-	}
-
-
-	public String getTelePhone() {
-		return telePhone;
-	}
-
-
-	public void setTelePhone(String telePhone) {
-		this.telePhone = telePhone;
-	}
-
-
-	public String getUserCode() {
-		return userCode;
-	}
-
-
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
-
-
 	public String getAccountId() {
 		return accountId;
 	}
-
-
 	public void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
-
-
-	
-	
+	public String getPersonName() {
+		return personName;
+	}
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+	public String getPersonSex() {
+		return personSex;
+	}
+	public void setPersonSex(String personSex) {
+		this.personSex = personSex;
+	}
+	public String getTelePhone() {
+		return telePhone;
+	}
+	public void setTelePhone(String telePhone) {
+		this.telePhone = telePhone;
+	}
+	public String getUserCode() {
+		return userCode;
+	}
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+	public String getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+	public String getPersonPicId() {
+		return personPicId;
+	}
+	public void setPersonPicId(String personPicId) {
+		this.personPicId = personPicId;
+	}
+    
 
 }
