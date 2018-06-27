@@ -1,4 +1,4 @@
-package com.szqj.person.domain;
+package com.szqj.service.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,13 +15,13 @@ import org.hibernate.annotations.GenericGenerator;
  *
  */
 @Entity
-@Table(name = "webuser_person")
+@Table(name = "service_person")
 public class Person {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
-	private String userId;//用户id
+	private String personId;//用户id
 	
 	@Column
 	private String personName;//姓名
@@ -41,17 +41,40 @@ public class Person {
 	private String companyId;//所属企业
 
 
-	public String getUserId() {
-		return userId;
-	}
-
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+	
 
 
 	
+
+	public String getPersonId() {
+		return personId;
+	}
+
+
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
+
+
+	public String getPersonName() {
+		return personName;
+	}
+
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+
 
 	public String getTelePhone() {
 		return telePhone;

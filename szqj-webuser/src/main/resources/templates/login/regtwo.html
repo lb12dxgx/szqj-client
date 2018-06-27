@@ -41,7 +41,7 @@
               <div class="col-md-6">
                <select name="type" id="type" class="form-control">
                  <option value="1" selected>企业</option>
-                 <option value="2">个人</option>
+                 <option value="0">个人</option>
                </select>
               </div>
             </div> 
@@ -112,10 +112,10 @@
             <div id="person" class="reg-hidden">
               <div class="form-group">
                 <label class="col-md-3 control-label reg-form-lable">
-                  <span style="color:red">*</span>个人名称
+                  <span style="color:red">*</span>个人账号
                 </label>
                 <div class="col-md-6">
-                 <input type="text" class="form-control reg-form-input" id="userName" name="userName" placeholder="请输入个人名称" >
+                 <input type="text" class="form-control reg-form-input" id="userName" name="userName" placeholder="请输入个人账号" >
                 </div>
                  <div class="col-md-3 text-left">
 					<label id="userName-error" class="errorlabel error"  for="userName"/>
@@ -201,7 +201,7 @@ $("#content").html($("#emp").html());
                 type:"POST",  
                 url:"/isExitByUserName.do",
                 data:{userName:function(){ return $("#userName").val(); }}},
-                messages:{remote:"此姓名已存在"}}); 
+                messages:{remote:"此账号已存在"}}); 
 	    	
 	  		$("#userCode").rules("add",{required:true,messages:{required:"请输入身份证号"}}); 
 	  		

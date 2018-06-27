@@ -1,5 +1,7 @@
 package com.szqj.reg.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +35,9 @@ public class RegInfo {
 	private Integer type;//0:个人  1：企业
 	@Column
 	private String accountId;//账号ID
+	
+	@Column
+	private Date createDate;//创建日期
 	
 	@Transient
 	private String password;//密码
@@ -108,6 +113,14 @@ public class RegInfo {
 
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 	  
 	

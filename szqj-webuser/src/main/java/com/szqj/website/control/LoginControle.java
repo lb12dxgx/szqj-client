@@ -57,7 +57,7 @@ public class LoginControle {
 			if(account.getAccountType()==ConstantUtils.ACCOUNT_COMPANY){
 				return "redirect:emp/info.html"; 
 			}else {
-				return "redirect:per/index.html"; 
+				return "redirect:per/info.html";  
 			}
 		}else{
 			 modelMap.put("loginStr", account.getLoginStr());

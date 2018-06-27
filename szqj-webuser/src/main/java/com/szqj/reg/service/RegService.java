@@ -11,6 +11,8 @@ import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.domain.RegInfoRepository;
 import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
+import com.szqj.service.domain.Person;
+import com.szqj.service.domain.PersonRepository;
 import com.szqj.util.ConstantUtils;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
@@ -29,11 +31,15 @@ public class RegService {
 	@Autowired 
 	private EnterpriseRepository enterpriseRepository;
 	
+	@Autowired 
+	private PersonRepository personRepository;
+	
 
 	public RegInfo genSmsCode(RegInfo regInfo,int count ){
 		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
 		if(regInfoRet==null){
 			regInfoRet=new RegInfo();
+			regInfoRet.setCreateDate(new Date());
 		}
 		Tools.copyBeanForUpdate(regInfo, regInfoRet);
 	    String smscode = getRandomCode(count);
@@ -119,6 +125,7 @@ public class RegService {
 		regInfoRet.setAccountId(account.getAccountId());
 		regInfoRet.setPassword(account.getAccountPassword());
 		regInfoRepository.save(regInfoRet);
+		
 		if(regInfoRet.getType()==ConstantUtils.REG_COMPANY){
 			Enterprise enterprise=new Enterprise();
 			enterprise.setAccountId(account.getAccountId());
@@ -129,6 +136,15 @@ public class RegService {
 			enterprise.setLevel(10);
 			enterpriseRepository.save(enterprise);
 		}
+		
+		if(regInfoRet.getType()==ConstantUtils.REG_PERSON){
+			Person person=new Person();
+			person.setAccountId(account.getAccountId());
+			person.setUserCode(regInfo.getUserCode());
+			person.setTelePhone(regInfo.getTelphone());
+			personRepository.save(person);
+		}
+		
 		return regInfoRet;
 		
 	}

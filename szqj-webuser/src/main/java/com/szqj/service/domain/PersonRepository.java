@@ -1,4 +1,6 @@
-package com.szqj.person.domain;
+package com.szqj.service.domain;
+
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,5 +16,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  */
 public interface PersonRepository extends PagingAndSortingRepository<Person, String> {
+
+	List<Person> findByAccountId(String accountId);
 
 }

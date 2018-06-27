@@ -34,12 +34,12 @@
      <!--左侧菜单结束-->
 
             <div class="col-md-10 main-content ">
-              <form class="form-horizontal top-20" id="form"  action="/emp/jobinfo/save.do" method="post">
-                <input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
+              <form class="form-horizontal top-20" id="form"  action="/emp/jobinfo/update.do" method="post">
+               <input type="hidden"  id="jobInfoId" name="jobInfoId" th:value="${jobInfo.jobInfoId}" />
                  <div class="form-group">
                   <label  class="col-md-1 control-label">职位名称</label>
                   <div class="col-md-7">
-                    <input type="text" class="form-control" name="jobName" id="jobName"  placeholder="请输入职位名称">
+                    <input type="text" class="form-control" name="jobName" id="jobName" th:value="${jobInfo.jobName}"  placeholder="请输入职位名称">
                   </div>
                
                 </div>
@@ -49,16 +49,16 @@
                  <div class="form-group">
                   <label  class="col-md-1 control-label">开始日期</label>
                   <div class="col-md-4">
-                  	<input  type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="请输入发布日期" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"/>
+                  	<input  type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="请输入发布日期" th:value="${#dates.format(jobInfo.startDate, 'yyyy-MM-dd')}"/>
                    </div>
                   <label  class="col-md-1 control-label">截止日期</label>
                   <div class="col-md-4">
-                     <input  type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="请输入截止日期">
+                     <input  type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="请输入截止日期" th:value="${#dates.format(jobInfo.endDate, 'yyyy-MM-dd')}">
                   </div>
                  </div> <div class="form-group">
                   <label  class="col-md-1 control-label">招聘人数</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control" name="num" id="num"  placeholder="请输入招聘人数">
+                    <input type="text" class="form-control" name="num" id="num"  placeholder="请输入招聘人数" th:value="${jobInfo.num}">
                   </div>
                   <label  class="col-md-1 control-label">学历要求</label>
                     <div class="col-md-4">
@@ -71,12 +71,12 @@
                 <div class="form-group">
                   <label  class="col-md-1 control-label">工作年限</label>
                     <div class="col-md-4">
-                    <input type="text" class="form-control" name="jobYear" id="jobYear"  placeholder="请输入工作经验">
+                    <input type="text" class="form-control" name="jobYear" id="jobYear"  placeholder="请输入工作经验" th:value="${jobInfo.jobYear}">
                   </div>
                   
                   <label  class="col-md-1 control-label">工作地点</label>
                   <div class="col-md-4">
-                     <input type="text" class="form-control" name="place" id="place"  placeholder="请输入工作地点">
+                     <input type="text" class="form-control" name="place" id="place"  placeholder="请输入工作地点 " th:value="${jobInfo.place}">
                   </div>
                 </div>
                  
@@ -85,19 +85,19 @@
                  <div class="form-group">
                   <label  class="col-md-1 control-label">联系人</label>
                     <div class="col-md-4">
-                     <input  type="text" class="form-control" name="person" id="person" placeholder="请输入联系人">
+                     <input  type="text" class="form-control" name="person" id="person" placeholder="请输入联系人" th:value="${jobInfo.person}">
                   </div>
                   
                   <label  class="col-md-1 control-label">联系电话</label>
                   <div class="col-md-4">
-                     <input  type="text" class="form-control" name="telphone" id="telphone" placeholder="请输入联系电话">
+                     <input  type="text" class="form-control" name="telphone" id="telphone" placeholder="请输入联系电话" th:value="${jobInfo.telphone}">
                   </div>
                 </div>
                 
                  <div class="form-group">
                   <label  class="col-md-1 control-label">月薪</label>
                     <div class="col-md-4">
-                     <input  type="text" class="form-control" name="money" id="money" placeholder="请输入月薪">
+                     <input  type="text" class="form-control" name="money" id="money" placeholder="请输入月薪" th:value="${jobInfo.money}">
                   </div>
                   
                 
@@ -106,7 +106,7 @@
                 <div class="form-group">
                   <label class="col-md-1 control-label">职位要求</label>
                   <div class="col-md-8">
-                    <textarea class="form-control" rows="8" name="jobDesc" id="jobDesc" >1)岗位职责:
+                    <textarea class="form-control" rows="8" name="jobDesc" id="jobDesc" th:text="${jobInfo.jobDesc}">1)岗位职责:
 
 
 
@@ -171,6 +171,7 @@
 		$.get("/dict/getList.html?dictValue=xl_type",function(data,status){
 			var onehtml = template('tpl-cgtype',data);
 			$('#jobStudyCode').html(onehtml);
+			$('#jobStudyCode').val([[${jobInfo.jobStudyCode}]]);
 		});
 		
 		 $("#form").validate({

@@ -1,4 +1,4 @@
-package com.szqj.website.emp.control;
+package com.szqj.website.per.control;
 
 import java.util.List;
 
@@ -10,20 +10,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.szqj.service.domain.Enterprise;
-import com.szqj.service.domain.EnterpriseRepository;
+import com.szqj.service.domain.Person;
+import com.szqj.service.domain.PersonRepository;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
 
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
-public class EmpControle {
+public class PerControle {
 	
 	
 	
 	@Autowired
-	private EnterpriseRepository enterpriseRepository;
+	private PersonRepository personRepository;
 	
 	
 	
@@ -34,12 +34,12 @@ public class EmpControle {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/emp/info.html"  )
+	@RequestMapping(value = "/per/info.html"  )
 	public String info(ModelMap modelMap,HttpServletRequest request){
 		Account account = (Account)request.getSession().getAttribute("account");
-		List<Enterprise> enterprises = enterpriseRepository.findByAccountId(account.getAccountId());
-		modelMap.put("enterprise", enterprises.get(0));
-		return "emp/info"; 
+		List<Person> persons = personRepository.findByAccountId(account.getAccountId());
+		modelMap.put("person", persons.get(0));
+		return "per/info"; 
 	}
 	
 	
@@ -50,12 +50,12 @@ public class EmpControle {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/emp/save.do"  )
-	public String save(Enterprise enterprise, ModelMap modelMap){
-		Enterprise enterpriseRet = enterpriseRepository.findById(enterprise.getEnterpriseId()).get();
-		Tools.copyBeanForUpdate(enterprise, enterpriseRet);
-		enterpriseRepository.save(enterpriseRet);
-		return "emp/info"; 
+	@RequestMapping(value = "/per/save.do"  ) 
+	public String save(Person person, ModelMap modelMap){
+		Person personRet = personRepository.findById(person.getPersonId()).get();
+		Tools.copyBeanForUpdate(person, personRet);
+		personRepository.save(personRet);
+		return "per/info"; 
 	}
 	
 	
