@@ -42,7 +42,7 @@
                <div class="form-group">
                   <label class="col-md-2 control-label"></label>
                   <div class="col-md-7 col-md-offset-2">
-                     <img src="/images/zhanweiren.jpg"  class="img-circle"  style="width:200px; height:200px;">
+                     <img src="/images/zhanweiren.jpg"  class="img-circle"  id="personPic" style="width:150px; height:150px;">
 	                 </img>
                   </div>
                 </div>
@@ -85,7 +85,11 @@
 		              <i class="glyphicon glyphicon-plus" style="margin-top:30px"></i>
 		              <input type="file" name="file" id="btn_upload_image" >
 	           		</span>
+	           		<div style="color:red;margin-top:5px" id="fileError"></div>
                   </div>
+                    
+               </div>
+                  
                 </div>
 
                
@@ -120,11 +124,7 @@
 　　<script src="/js/upload/js/jquery.fileupload-ui.js"></script>
   <script src="/js/upload/js/jquery.fileupload-validate.js"></script>
 	
-	<script id="tpl-hytype" type="text/html">
-		{{each  retData}}
-  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
-		{{/each}}
-	</script>
+
 	
 	<script id="tpl-img" type="text/html">
 		<div class="upload-pic">
@@ -136,22 +136,38 @@
   	<script type="text/javascript" th:inline="javascript">
 	$(function(){
 		
-		$.get("/dict/getList.html?dictValue=qy_hy_type",function(data,status){
-			var html = template('tpl-hytype',data);
-				$('#hyType').html(html);
-		  });
-		
-		$.get("/dict/getList.html?dictValue=qy_hy_type",function(data,status){
-			var html = template('tpl-hytype',data);
-				$('#hyType').html(html);
-		  });
-		
 		var accountId=[[${session.account.token}]]
 		
 		
+		$("#btn_upload_image").fileupload({
+			autoUpload: true,
+			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+			maxFileSize: 10 * 1024 * 1024,
+			minFileSize: 1,
+			maxNumberOfFiles: 50,
+			messages: {
+			    maxFileSize: '文件不能超过10M',
+			    acceptFileTypes: '文件类型不对'
+			},
+			processfail: function (e, data) {
+			    var currentFile = data.files[data.index];
+			    if (data.files.error && currentFile.error) {
+			        $("#fileError").html(currentFile.error);
+			    }
+			},
+		    dataType: 'json',
+		    url: '/file/uploadone.do',
+		    formData: {dirName:'content/enterprise/logo',width:'200',height:'200',accountId:accountId,businessId:$("#enterprisePicId").val()},
+		   
+		    done: function (e, data) { //对接口返回信息的处理
+		       console.log(data.result.retData)
+		       var html = template('tpl-img',data.result.retData);
+				$('#personPic').attr("src",'/'+data.result.retData.fileWebPath);
+				$("#personPicId").val(data.result.retData.bussinessId);
+		    }
+		});
 		
-		
-		
+		$('#personSex').val([[${person.personSex}]]);
 		
 		$('#info').addClass("active");
 		
