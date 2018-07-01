@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
+	<link href="/css/upload.css" rel="stylesheet" type="text/css">
+	<link href="/js/upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css">
+	<style>
+	
+	   .head-icon{
+	   	color:#ff6000;
+	    font-size:30px;
+	    font-weight:bold;
+	    margin-right:10px;
+	  }
+	  
+	   .head-text{
+	    color:#ff6000;
+	    font-size:16px;
+	    font-weight:bold;
+	    margin-right:10px;
+	  }
+	  
+	  .width100{
+		  font-size:15px;
+		  width:100%;
+		  float:left
+	  }
+	  
+	  .top20{
+	    margin-top:20px;
+	  
+	  }
+	  
+	  .top10{
+	  	margin-top:10px;
+	  }
+	 
+	 .right-op{
+	  font-size:15px;
+	  margin:5px;
+	  font-weight:normal;
+	  float:right
+	 }
+	
+	  .box{
+	    border-bottom:1px solid #ccc;
+	    float:left;
+	    padding:10px;
+	    width:100%;
+	    font-size:15px
+	  }
+	  
+	  .box .edit{
+	  	display:none;
+	  	font-size:25px;
+	  	margin:5px;
+	  	float:right
+	  }
+	  
+	   .box .edit a{
+	      color:#ff6000;
+	   }
+	  
+	  .box:hover {
+	  	border:1px solid red;
+	  }
+	  
+	  .box:hover .edit{
+	  	display:inline-block;
+	  }
+	  
+	  .box-head{
+		   float:left;
+		   width: 100%;
+		   font-size:15px;
+		   background-color: #f5f5f5;
+		   padding:10px;
+	  }
+	  
+	   
+	  .resu-head .face{
+	 	 float:left;
+	  }
+	  .resu-head .detail{
+	   	float:left;
+	   	margin-left:20px
+	  }
+	  
+	  .resu-head .email{
+	  	margin-top:20px
+	  }
+	  
+	  
+	  
+	 
+	</style>
+	
+	
+</head>
+ 
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main  container-fluid">
+  
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--左侧菜单开始-->
+     <div class="col-md-2 ">
+		<div th:include="per/leftmenu"/> 
+	 </div>
+     <!--左侧菜单结束-->
+	 <div class="col-md-10 main-content" >
+		<div class="row">
+			 <!--中部内容开始-->
+			 <div class="col-md-9 col-md-offset-1" style="min-height:500px;margin-top:15px"  >
+			   <div id="resu-head">
+				 	
+			   </div>
+			    <div id="resu-money">
+				 	
+			   </div>
+			 	 
+			 	 
+			 	  
+			 	  <div class="box resu-job" >
+			 	     	 <div class="width100">
+				 	     	 <div class="head-icon" style="float:left">
+					 	     	 <i class="fa fa-address-book" aria-hidden="true"></i>
+					 	     	 <span class="head-text">求职意向</span>
+				 	     	 </div>
+				 	     	 <div  class="edit">
+				 	    		<a href="#"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+				 	   		</div>
+			 	   		</div>
+			 	   		
+			 	      	<div class="width100">
+			 	    	    <div class="row top20">
+			 	    	     	<div class="col-md-6">
+			 	    	     	  <div class="col-md-3">期望薪资：</div>
+			 	    	     	  <div >30-40万元/年</div>
+			 	    	     	</div>
+			 	    	     	<div class="col-md-6">
+			 	    	     	  <div class="col-md-3">地点：</div>
+			 	    	     	  <div >北京</div>
+			 	    	     	</div>
+			 	    	    </div>
+			 	    	    
+			 	    	     <div class="row top20" >
+			 	    	     	<div class="col-md-6">
+			 	    	     	  <div class="col-md-3">职位：</div>
+			 	    	     	  <div >部门经理</div>
+			 	    	     	</div>
+			 	    	     	<div class="col-md-6">
+			 	    	     	  <div class="col-md-3">行业：</div>
+			 	    	     	  <div >计算机软件</div>
+			 	    	     	</div>
+			 	    	    </div>
+			 	    	    
+			 	    	     <div class="row top20">
+			 	    	     	<div class="col-md-6">
+			 	    	     	  <div class="col-md-3">工作类型：</div>
+			 	    	     	  <div >全职</div>
+			 	    	     	</div>
+			 	    	     </div>
+			 	    	</div>
+			 	   		
+			 	  </div>
+			 	  
+			 	  <div class="width100">
+				 	    <div class="head-icon">
+					 	     <i class="fa fa-tasks" aria-hidden="true"></i>
+					 	     <span class="head-text">工作经验</span>
+					 	     <div class="right-op">
+				 	    		<a href="#"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增工作</a>
+				 	     	</div>
+				 	    </div>
+				 	</div>
+				 	
+			 	   <div class="box jobdetail">
+			 	   		<div class="row" >
+			 	    	     <div class="col-md-3">2013/11-至今</div>
+			 	    	     <div class="col-md-3" ><strong>北京微昂科技有限公司</strong></div>
+			 	    	     <div class="col-md-4" ><strong>技术总监/经理</strong></div>
+			 	    	     <div class="col-md-2 edit" >
+			 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+			 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+							</div>
+			 	    	  </div>
+			 	    	  <p class="top10">
+			 	    	  	<span>计算机软件</span>  | <span>民营公司</span> |  <span>项目部</span>
+			 	    	  </p>
+			 	    	  <p class="top10">
+			 	    	  	<span>工作描述：</span> <span>哈哈</span>
+			 	    	  </p> 
+			 	   	</div>
+			 	   	
+			 	   <div class="width100">
+				 	    <div class="head-icon" style="float:left">
+					 	     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+					 	     <span class="head-text">教育经历</span>
+				 	    </div>
+				 	     <div   style="font-size:15px;margin:5px;float:right">
+				 	    	<a href="#"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增教育</a>
+				 	     </div>
+			 	   </div>
+			 	   
+		           <div class="box studydetail" >
+			 	   		<div class="row" >
+			 	    	     <div class="col-md-2">1999/7-2003/7</div>
+			 	    	     <div class="col-md-3" ><strong>南方冶金学院</strong></div>
+			 	    	     <div class="col-md-2" ><strong>计算机科学与技术</strong></div>
+			 	    	     <div class="col-md-2" >本科</div>
+			 	    	     <div class="col-md-2 edit" >
+			 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+			 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+							</div>
+			 	    	  </div>
+			 	    	 
+			 	   	</div>
+			 	   	
+			 	   <div class="width100">
+				 	    <div class="head-icon" style="float:left">
+					 	     <i class="fa fa-book" aria-hidden="true"></i>
+					 	     <span class="head-text">技能特长</span>
+				 	    </div>
+			 	   </div>
+			 	   
+			 	   <div class="box-head">
+			 	     <span>证书</span>
+			 	     <a href="#" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增证书</a>
+			 	   </div>
+			 	   
+			 	    <div class="box certdetail" style="float:left;width: 100%;font-size:15px;padding:20px;">
+			 	   		<div class="row" >
+			 	    	     <div class="col-md-3">2010/2</div>
+			 	    	     <div class="col-md-3" ><strong>Analytics</strong></div>
+			 	    	     <div class="col-md-3" ><strong>100</strong></div>
+			 	    	    
+			 	    	     <div class="col-md-2 edit" >
+			 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+			 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+							</div>
+			 	    	  </div>
+			 	    	 
+			 	   	</div>
+			 	   
+			 	   
+			 	    <div class="box-head">
+			 	     <span>培训</span>
+			 	     <a href="#" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增培训</a>
+			 	   </div>
+			 	   
+			 	      <div class="box traindetail" >
+			 	   		 <div class="row" >
+			 	    	     <div class="col-md-3">2010/1-至今</div>
+			 	    	     <div class="col-md-3" ><strong>培训课程</strong></div>
+			 	    	     <div class="col-md-3" ><span>培训机构</span> (地点：<span>培训地点</span>)</div>
+			 	    	     <div class="col-md-2 edit" >
+			 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+			 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+							</div>
+			 	    	  </div>
+			 	    	 
+			 	    	  <p class="top10">
+			 	    	  	<span>培训描述：</span> <span>哈哈</span>
+			 	    	  </p> 
+			 	    	 
+			 	   	</div>
+			 	   
+			 	  
+			  </div>
+			 	 
+			 	 
+			</div>
+			 
+		</div>
+	 	<!--右侧内容结束-->
+     </div>
+     
+   </div>
+ </div>
+ 
+<!--footer开始-->
+ <div th:include="footer"></div>
+  	<!--footer结束-->
+  	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="/js/template-web.js"></script>
+	
+   <script src="/js/upload/js/vendor/jquery.ui.widget.js"></script>
+   <script src="/js/upload/js/jquery.iframe-transport.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload-process.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload-ui.js"></script>
+  <script src="/js/upload/js/jquery.fileupload-validate.js"></script>
+	
+
+	
+	<script id="resu-head-view" type="text/html">
+		 <div class="box resu-head">
+				 	   <div class="face">
+				 	      <img src="/images/zhanweiren.jpg"  class="img-thumbnail"  id="personPic" style="width:100px; height:100px;">
+				 	   </div>
+				 	   <div class="detail">
+				 	    	<h4>张国勇</h4>
+				 	    	<div>
+				 	    	  <span>现居住地:</span><span>北京</span>|
+				 	    	  <span>工作经验:</span><span>15年</span>|
+				 	    	  <span>性别:</span><span>男</span>|
+				 	    	  <span>年龄:</span><span>39</span>|
+				 	    	  <span>我不想换工作</span>
+				 	    	</div>
+				 	    	<div class="email">
+				 	           <i class="fa fa-star" aria-hidden="true"></i><span style="margin-left:10px">39459358@qq.com</span>
+				 	           <i class="fa fa-phone" aria-hidden="true" style="margin-left:30px"></i><span style="margin-left:10px">13720053036</span>
+				 	    	</div>
+				 	    </div>
+				 	   
+				 	   <div  class="edit">
+				 	    	<a href="#"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+				 	   </div>
+				 	   
+		 </div>
+	</script>
+	
+	<script id="resu-money-view" type="text/html">	
+		<div class="box resu-money" >
+			<span class="head-icon">
+			 <i class="fa fa-money" aria-hidden="true"></i></span>
+			<span class="head-text">  目前年收入 </span> 30万元
+			 <div  class="edit" style="font-size:25px;margin:5px;float:right">
+			 	    		<a href="#"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+			 	</div>
+		</div>
+	</script>	
+	
+  	<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		
+		var accountId=[[${session.account.token}]];
+		 var resuHead = template('resu-head-view','');
+		$("#resu-head").html(resuHead);
+		 var resuMoney = template('resu-money-view','');
+			$("#resu-money").html(resuMoney);
+		
+		
+		$('#resume').addClass("active");
+		
+		  $("#submitbut").click(function(){
+			   if($("#form").valid()){
+				   $("#form").submit();
+			   		 
+			   }
+		   });
+		
+		
+	})
+</script>
+  <!--footer结束-->
+ 
+</body>
+</html>

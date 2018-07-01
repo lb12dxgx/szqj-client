@@ -55,7 +55,7 @@ public class EmpControle {
 		Enterprise enterpriseRet = enterpriseRepository.findById(enterprise.getEnterpriseId()).get();
 		Tools.copyBeanForUpdate(enterprise, enterpriseRet);
 		enterpriseRepository.save(enterpriseRet);
-		return "emp/info"; 
+		return "redirect:emp/info"; 
 	}
 	
 	
