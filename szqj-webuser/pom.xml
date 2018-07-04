@@ -171,6 +171,13 @@
 					<fork>true</fork><!-- fork:如果没有该配置，这个devtools不会起作用，即应用不会restart -->
 				</configuration>
 			</plugin>
+			<plugin>
+			  <artifactId>maven-war-plugin</artifactId>
+			  <version>3.0.0</version>
+			  <configuration>
+        		<failOnMissingWebXml>false</failOnMissingWebXml>                        
+      		 </configuration>
+			</plugin>
 			<!-- <plugin> <groupId>com.spotify</groupId> <artifactId>docker-maven-plugin</artifactId> 
 				<version>0.4.11</version> <configuration> <imageName>registry.cn-hangzhou.aliyuncs.com/lb12/org</imageName> 
 				<dockerDirectory>src/main/docker</dockerDirectory> <resources> <resource> 

@@ -37,7 +37,7 @@ public class ZtbSpiderService implements PageProcessor {
     	Spider spider = Spider.create(this);
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     	String searchDate = formatter.format(new Date());
-    	String url="https://r.newssdk.com/bid/item/search?include_keywords=地下管线&exclude_keywords=&start_time="+searchDate+"&end_time="+searchDate+"&type=1&searchtype=0&page=1&region=&searchscope=title&size=100&uid=oyx_s0L3Ugwsjh96ObNLkpQAHu3M";
+    	String url="https://r.newssdk.com/bid/item/search?include_keywords=地下管线&exclude_keywords=&start_time="+searchDate+"&end_time="+searchDate;
 		spider.addUrl(url).run();
     	
     	

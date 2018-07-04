@@ -21,6 +21,7 @@ public class WebUserApplication  extends SpringBootServletInitializer {
 	 }
 	
 	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(WebUserApplication.class, args);
 

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.szqj.util.RestJson;
+import com.szqj.weborg.service.IndexService;
+import com.szqj.weborg.service.ZtbSpiderService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -22,6 +25,12 @@ public class ToolsControle {
 	
 	@Value("${web.upload-path}")
 	private String uploadPath;
+	
+	@Autowired
+	private IndexService indexService;
+	
+	@Autowired
+	private ZtbSpiderService ztbSpiderService;
 
 	@RequestMapping(value = "/tools/teacherPic.html"  )
 	@ResponseBody
@@ -41,6 +50,20 @@ public class ToolsControle {
 		     }
 		}
 		
+		return RestJson.createSucces();
+	}
+	
+	@RequestMapping(value = "/tools/index.html"  )
+	@ResponseBody
+	public RestJson index() throws IOException{
+		indexService.genHtml();
+		return RestJson.createSucces();
+	}
+	
+	@RequestMapping(value = "/tools/ztb.html"  )
+	@ResponseBody
+	public RestJson ztb() throws IOException{
+		ztbSpiderService.startSearch();
 		return RestJson.createSucces();
 	}
 	

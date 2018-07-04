@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 
 
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.repository.Query;
  * @author lb12
  *
  */
+@Repository
 public interface ApplyOrgRepository extends JpaRepository<ApplyOrg, String> {
 	
 	@Query("select m from ApplyOrg m where  m.orgName like %?1% and m.state!=2 order by m.orderNum")

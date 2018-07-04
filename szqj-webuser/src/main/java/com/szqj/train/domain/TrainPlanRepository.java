@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 import com.szqj.service.domain.Meet;
 
@@ -17,6 +18,7 @@ import com.szqj.service.domain.Meet;
  * @author lb12
  *
  */
+@Repository
 public interface TrainPlanRepository extends PagingAndSortingRepository<TrainPlan, String> {
 	
 	@Query("select m from TrainPlan m where m.trainName like %?1% order by m.createDate  ")

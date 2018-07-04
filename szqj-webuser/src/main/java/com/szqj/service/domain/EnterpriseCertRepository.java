@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 
 
@@ -13,6 +14,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author lb12
  *
  */
+
+@Repository
 public interface EnterpriseCertRepository extends PagingAndSortingRepository<EnterpriseCert, String> {
 
 	@Query("select m from EnterpriseCert m  where m.enterpriseId=?1 order by m.createDate ")

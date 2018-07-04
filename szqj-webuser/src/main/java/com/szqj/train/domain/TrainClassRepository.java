@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 
 
@@ -15,6 +16,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author lb12
  *
  */
+@Repository
 public interface TrainClassRepository extends PagingAndSortingRepository<TrainClass, String> {
 
 	Page<TrainClass> findPageByTrainClassName(String trainClassName, Pageable pageable);

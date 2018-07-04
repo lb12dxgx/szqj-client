@@ -79,7 +79,6 @@ encoding//src/main/resources/templates/train/teacherList.html=UTF-8
 encoding//src/main/resources/templates/train/teacherdetail.html=UTF-8
 encoding//src/main/resources/templates/train/traindetail.html=UTF-8
 encoding//src/main/resources/templates/train/trainsignup.html=UTF-8
-encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8
 separateDerivedEncodings=true

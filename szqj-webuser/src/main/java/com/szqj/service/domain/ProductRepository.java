@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 import com.szqj.train.domain.TrainClass;
 
@@ -18,6 +19,7 @@ import com.szqj.train.domain.TrainClass;
  * @author lb12
  *
  */
+@Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product, String> {
 
 	
