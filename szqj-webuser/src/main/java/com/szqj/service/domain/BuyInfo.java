@@ -14,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "service_buy_info")
 public class BuyInfo {
 	
-	@Id 
+	@Id   
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
 	private String buyInfoId;
