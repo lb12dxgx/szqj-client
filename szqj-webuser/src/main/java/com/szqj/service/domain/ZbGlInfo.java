@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "service_zbinfo")
-public class ZbInfo {
+@Table(name = "service_zbglinfo")
+public class ZbGlInfo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
@@ -36,6 +36,7 @@ public class ZbInfo {
 	private String sourceUrl;//URL地址
 	
 	private String fmedia;//发布网站
+	
 	
 	
 	
@@ -120,5 +121,6 @@ public class ZbInfo {
 		this.fmedia = fmedia;
 	}
 
-	
+
+
 }

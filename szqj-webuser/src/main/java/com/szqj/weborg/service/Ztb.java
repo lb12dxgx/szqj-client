@@ -17,7 +17,8 @@ class Ztb{
 	private String area;
 	
 	private String title;
-
+	
+	
 	public String getPublish_time() {
 		return publish_time;
 	}
@@ -81,6 +82,8 @@ class Ztb{
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	
 	
 	
 	

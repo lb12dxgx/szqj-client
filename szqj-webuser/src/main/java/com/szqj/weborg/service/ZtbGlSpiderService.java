@@ -10,6 +10,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.szqj.service.domain.ZbGlInfo;
+import com.szqj.service.domain.ZbGlInfoRepository;
 import com.szqj.service.domain.ZbInfo;
 import com.szqj.service.domain.ZbInfoRepository;
 
@@ -21,10 +23,10 @@ import us.codecraft.webmagic.selector.Json;
 
 @Service
 @Transactional
-public class ZtbSpiderService implements PageProcessor {
+public class ZtbGlSpiderService implements PageProcessor {
 	
 	@Autowired 
-	private ZbInfoRepository zbInfoRepository;
+	private ZbGlInfoRepository zbGlInfoRepository;
 	
 
 	private Site site = Site.me().setSleepTime(500).setTimeOut(3 * 60 * 1000)
@@ -32,16 +34,15 @@ public class ZtbSpiderService implements PageProcessor {
     .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .addHeader("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
 	
-	@Scheduled(cron = "0 0 */2  * * * ") 
+	@Scheduled(cron = "0 0 */3  * * * ") 
     public void startSearch() {  
     	Spider spider = Spider.create(this);
     	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     	String searchDate = formatter.format(new Date());
-    	String url="https://r.newssdk.com/bid/item/search?include_keywords=地下管线&exclude_keywords=&start_time="+searchDate+"&end_time="+searchDate+"&type=1&searchtype=0";
+    	String url="https://r.newssdk.com/bid/item/search?include_keywords=公路&type=1&searchtype=0&page=1&region=内蒙&searchscope=title&size=100";
 		spider.addUrl(url).run();
     	
-    	
-	}
+    }
 
    
     public void process(Page page) {
@@ -52,10 +53,10 @@ public class ZtbSpiderService implements PageProcessor {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		for(Ztb zb:l){
 			
-			List<ZbInfo> list = zbInfoRepository.findListByUrl(zb.getUrl());
+			List<ZbGlInfo> list = zbGlInfoRepository.findListByUrl(zb.getUrl());
 			
 			if(list==null||list.size()==0){
-				ZbInfo zbInfo=new ZbInfo();
+				ZbGlInfo zbInfo=new ZbGlInfo();
 				zbInfo.setArea(zb.getArea());
 				Date date=null;
 				try {
@@ -68,14 +69,14 @@ public class ZtbSpiderService implements PageProcessor {
 				zbInfo.setCreateDate(new Date());
 				zbInfo.setZbXmName(zb.getTitle());
 				zbInfo.setUrl(zb.getUrl());
+			
 				
-				
-				ZtbContentProcessor ztbProcessor=new ZtbContentProcessor(zbInfo);
+				ZtbGlContentProcessor ztbProcessor=new ZtbGlContentProcessor(zbInfo); 
 				Spider spider = Spider.create(ztbProcessor);
 				String url=zb.getUrl().replaceAll("item/default2.html", "hnews/item");
 				spider.addUrl(url).run();
 				System.out.println("结束内容");
-				zbInfoRepository.save(zbInfo);
+				zbGlInfoRepository.save(zbInfo);
 			}
 			
 		}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.szqj.util.RestJson;
 import com.szqj.weborg.service.IndexService;
+import com.szqj.weborg.service.ZtbGlSpiderService;
 import com.szqj.weborg.service.ZtbSpiderService;
 
 import net.coobird.thumbnailator.Thumbnails;
@@ -31,6 +32,10 @@ public class ToolsControle {
 	
 	@Autowired
 	private ZtbSpiderService ztbSpiderService;
+	
+	@Autowired
+	private ZtbGlSpiderService ztbGlSpiderService;
+	
 
 	@RequestMapping(value = "/tools/teacherPic.html"  )
 	@ResponseBody
@@ -67,4 +72,11 @@ public class ToolsControle {
 		return RestJson.createSucces();
 	}
 	
+	
+	@RequestMapping(value = "/tools/ztbgl.html"  )
+	@ResponseBody
+	public RestJson ztbgl() throws IOException{
+		ztbGlSpiderService.startSearch();
+		return RestJson.createSucces();
+	}
 }
