@@ -45,7 +45,7 @@ public class ZtbGlSpiderService implements PageProcessor {
     }
 
    
-    public void process(Page page) {
+    public void process(Page page) { 
     	System.out.println( "抓取招标数据");
 		Json json = page.getJson();
 		ZtbPage ztb = json.toObject(ZtbPage.class);
