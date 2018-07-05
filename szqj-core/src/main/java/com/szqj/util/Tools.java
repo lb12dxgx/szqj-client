@@ -61,7 +61,7 @@ public class Tools {
 			pageNum=0;
 		}
 		if(size==null){
-			size=10;
+			size=5;
 		}
 		
 		return new PageRequest(pageNum,size);

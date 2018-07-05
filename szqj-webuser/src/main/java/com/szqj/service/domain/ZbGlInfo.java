@@ -2,7 +2,9 @@ package com.szqj.service.domain;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +29,7 @@ public class ZbGlInfo {
 	
 	private String area;//项目地址
 	
+	@Basic(fetch = FetchType.LAZY) 
 	private String zbContent;//招标文件内容
 	
 	private Date createDate;//创建时间

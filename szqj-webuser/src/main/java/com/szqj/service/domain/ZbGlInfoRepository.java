@@ -19,10 +19,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ZbGlInfoRepository extends PagingAndSortingRepository<ZbGlInfo, String> {
 
-	@Query("select m from ZbGlInfo m where m.zbXmName like %?1%  order by createDate")
+	@Query("select m from ZbGlInfo m where m.zbXmName like %?1%  order by publishDate")
 	Page<ZbGlInfo> findPageByZbXmName(String zbXmName, Pageable pageable);
 	
-	@Query("select m from ZbGlInfo m  order by createDate desc")
+	@Query("select m from ZbGlInfo m  order by publishDate desc")
 	Page<ZbGlInfo> findPage(Pageable pageable);
 	
 	

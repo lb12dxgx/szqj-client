@@ -11,8 +11,8 @@ import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.domain.RegInfoRepository;
 import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
+import com.szqj.service.domain.MyPersonRepository;
 import com.szqj.service.domain.Person;
-import com.szqj.service.domain.PersonRepository;
 import com.szqj.util.ConstantUtils;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
@@ -32,7 +32,7 @@ public class RegService {
 	private EnterpriseRepository enterpriseRepository;
 	
 	@Autowired 
-	private PersonRepository personRepository;
+	private MyPersonRepository personRepository;
 	
 
 	public RegInfo genSmsCode(RegInfo regInfo,int count ){

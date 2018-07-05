@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.szqj.service.domain.MyPersonRepository;
 import com.szqj.service.domain.Person;
-import com.szqj.service.domain.PersonRepository;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.domain.FileInfo;
@@ -25,7 +25,7 @@ public class PerControle {
 	
 	
 	@Autowired
-	private PersonRepository personRepository;
+	private MyPersonRepository personRepository;
 	
 	@Autowired
 	private FileInfoRepository fileInfoRepository;
