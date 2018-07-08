@@ -87,4 +87,35 @@ public class PerControle {
 	}
 	
 	
+	/**
+	 * 简历基本信息
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/per/infoedit.html"  )
+	public String infoedit(ModelMap modelMap,HttpServletRequest request){
+		Account account = (Account)request.getSession().getAttribute("account");
+		List<Person> persons = personRepository.findByAccountId(account.getAccountId());
+		modelMap.put("person", persons.get(0));
+		return "per/infoedit"; 
+	}
+	
+	/**
+	 * 简历基本信息保存
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/per/infosave.do"  )
+	public String infosave(ModelMap modelMap,HttpServletRequest request){
+		Account account = (Account)request.getSession().getAttribute("account");
+		List<Person> persons = personRepository.findByAccountId(account.getAccountId());
+		modelMap.put("person", persons.get(0));
+		return "per/infoview"; 
+	}
+	
+	
 }
