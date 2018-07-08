@@ -121,7 +121,11 @@
                             });
                             break;
                         case 'area':
-                            
+                            $.each(areas, function (i, o) {
+                                if (o.cityCode == code) {
+                                    data.push(o);
+                                }
+                            });
                             break;
                         default:
                             $('.city-popup').hide();
