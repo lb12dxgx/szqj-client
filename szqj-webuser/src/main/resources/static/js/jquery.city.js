@@ -14,6 +14,7 @@
             p = $.extend({
                 urlOrData: null,                            // 地址或者json数据
                 showHot: false,                              // 显示热门城市，默认值true
+                showArea:true,
                 animate: { showClass: '', hideClass: '' },  // 显示/隐藏动画效果
                 separator: '-',                             // 用什么字符隔开，默认值“-”
                 onChoice: false                             // 选择后执行的事件
@@ -80,16 +81,31 @@
                             var dataInfo = eval('(' + $(this).data("info") + ')');
                             if (dataInfo != undefined) {
                                 option.getDataForTab(tbaction, $(this).data("code"));
-
-                                if (dataInfo.provinceName != undefined && dataInfo.cityName != undefined && dataInfo.areaName != undefined) {
-
-                                    var addressInfo = dataInfo.provinceName + p.separator + dataInfo.cityName + p.separator + dataInfo.areaName;
-
-                                    if (p.onChoice) {
-                                        p.onChoice(dataInfo);
-                                    }
-
-                                    $(e).val(addressInfo);
+                                
+                                
+                                if(p.showArea){
+	                                if (dataInfo.provinceName != undefined && dataInfo.cityName != undefined && dataInfo.areaName != undefined) {
+	
+	                                    var addressInfo = dataInfo.provinceName + p.separator + dataInfo.cityName + p.separator + dataInfo.areaName;
+	
+	                                    if (p.onChoice) {
+	                                        p.onChoice(dataInfo);
+	                                    }
+	
+	                                    $(e).val(addressInfo);
+	                                }
+                                }else{
+                                	
+                                	  if (dataInfo.provinceName != undefined && dataInfo.cityName != undefined ) {
+                                			
+  	                                    var addressInfo = dataInfo.provinceName + p.separator + dataInfo.cityName ;
+  	
+  	                                    if (p.onChoice) {
+  	                                        p.onChoice(dataInfo);
+  	                                    }
+  	
+  	                                    $(e).val(addressInfo);
+  	                                }
                                 }
 
                             }
@@ -120,13 +136,7 @@
                                 }
                             });
                             break;
-                        case 'area':
-                            $.each(areas, function (i, o) {
-                                if (o.cityCode == code) {
-                                    data.push(o);
-                                }
-                            });
-                            break;
+                        
                         default:
                             $('.city-popup').hide();
                             break;
@@ -147,7 +157,9 @@
 
                     choicePopup += '<li tabname="province">省 份</li>';
                     choicePopup += '<li tabname="city">城 市</li>';
-                    choicePopup += '<li tabname="area">区（县）</li>';
+                    if(p.showArea){
+                    	choicePopup += '<li tabname="area">区（县）</li>';
+                    }
                     choicePopup += '</ul>';
                     choicePopup += '</div>';
                     choicePopup += '<div class="city-content">';
@@ -221,9 +233,11 @@
                     $(".city-search-item").html(items);
 
                     $(".city-search-item li").on('click', function (event) {
+                    	
                         var dataJson = eval('(' + $(this).data('info') + ')');
                         if (dataJson != undefined) {
                             $('.city-search').hide();
+                            console.log($(this).attr('nextobj'));
                             if ($(this).attr('nextobj') == 'area') {
                                 $('.city-popup').show();
                                 option.getDataForTab('area', dataJson.cityCode);
@@ -235,8 +249,11 @@
                                 }
 
                                 var addressInfo = dataJson.provinceName + p.separator + dataJson.cityName + p.separator + dataJson.areaName;;
-
-                                $(e).val(addressInfo);
+                               
+                              
+                              
+                                
+                                //$(e).val(addressInfo);
                             }
                         }
 

@@ -175,10 +175,7 @@
 				$('#hyType').html(html);
 		  });
 		
-		$.get("/dict/getList.html?dictValue=qy_hy_type",function(data,status){
-			var html = template('tpl-hytype',data);
-				$('#hyType').html(html);
-		  });
+		
 		
 		var accountId=[[${session.account.token}]]
 		

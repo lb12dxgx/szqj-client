@@ -110,10 +110,13 @@ public class PerControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/per/infosave.do"  )
-	public String infosave(ModelMap modelMap,HttpServletRequest request){
+	public String infosave(ModelMap modelMap,HttpServletRequest request,Person person){
 		Account account = (Account)request.getSession().getAttribute("account");
-		List<Person> persons = personRepository.findByAccountId(account.getAccountId());
-		modelMap.put("person", persons.get(0));
+		
+		Person personRet = personRepository.findById(person.getPersonId()).get();
+		Tools.copyBeanForUpdate(person, personRet);
+		personRepository.save(personRet);
+		modelMap.put("person", personRet);
 		return "per/infoview"; 
 	}
 	

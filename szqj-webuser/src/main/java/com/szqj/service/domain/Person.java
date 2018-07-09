@@ -1,5 +1,7 @@
 package com.szqj.service.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,6 +38,31 @@ public class Person {
 	private String companyId;//所属企业
 	@Column
 	private String personPicId;//个人照片
+	@Column
+	private Date birthDate;//生日
+	@Column
+	private Date jobDate;//工作时间
+	@Column
+	private String perCity;//居住地
+	@Column
+	private Float perMoney;//年收入
+	@Column
+	private String perEmail;//邮箱
+	@Column
+	private Float perSalary;//期望工资
+	@Column
+	private String workCity;//工作地点
+	@Column
+	private String jobName;//职位名称
+	@Column
+	private String hyType;//行业
+	@Column
+	private String jobStudyCode;//学历
+	@Column
+	private String workType;//工作类型
+	@Column
+	private Date createDate=new Date();
+	
 	
 	
 	public String getPersonId() {
@@ -86,6 +113,78 @@ public class Person {
 	public void setPersonPicId(String personPicId) {
 		this.personPicId = personPicId;
 	}
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	public Date getJobDate() {
+		return jobDate;
+	}
+	public void setJobDate(Date jobDate) {
+		this.jobDate = jobDate;
+	}
+	public String getPerCity() {
+		return perCity;
+	}
+	public void setPerCity(String perCity) {
+		this.perCity = perCity;
+	}
+	public Float getPerMoney() {
+		return perMoney;
+	}
+	public void setPerMoney(Float perMoney) {
+		this.perMoney = perMoney;
+	}
+	public String getPerEmail() {
+		return perEmail;
+	}
+	public void setPerEmail(String perEmail) {
+		this.perEmail = perEmail;
+	}
+	public Float getPerSalary() {
+		return perSalary;
+	}
+	public void setPerSalary(Float perSalary) {
+		this.perSalary = perSalary;
+	}
+	public String getWorkCity() {
+		return workCity;
+	}
+	public void setWorkCity(String workCity) {
+		this.workCity = workCity;
+	}
+	public String getJobName() {
+		return jobName;
+	}
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
+	}
+	public String getHyType() {
+		return hyType;
+	}
+	public void setHyType(String hyType) {
+		this.hyType = hyType;
+	}
+	public String getJobStudyCode() {
+		return jobStudyCode;
+	}
+	public void setJobStudyCode(String jobStudyCode) {
+		this.jobStudyCode = jobStudyCode;
+	}
+	public String getWorkType() {
+		return workType;
+	}
+	public void setWorkType(String workType) {
+		this.workType = workType;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
     
-
+   
 }

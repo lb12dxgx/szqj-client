@@ -2,6 +2,7 @@ package com.szqj.service.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +38,7 @@ public class Enterprise {
 	
 	private String accountId;//账号
 	
-	private Date createDate;//创建时间
+	private Date createDate=new Date();//创建时间
 	
 	private String hyType;//行业类型
 	
@@ -52,6 +53,9 @@ public class Enterprise {
 	private Integer level;//级别  10:普通级别  20:vip  30:超级VIP
 	
 	private Integer orderNum;//顺序
+	
+
+	
 
 	public String getEnterpriseId() {
 		return enterpriseId;
