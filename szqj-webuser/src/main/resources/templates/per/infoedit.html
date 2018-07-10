@@ -1,17 +1,12 @@
-<div class="panel panel-default">
-  <div class="panel-heading "><span class="head-text">修改信息</span></div>
+<div class="panel panel-default animated bounceInDown">
+  <div class="panel-heading ">修改信息</div>
   <div class="panel-body">
      	<div class="col-md-12" >
 		 	<form class="form-horizontal" id="infosave" action="/per/infosave.do" method="post">
                 <input type="hidden" th:value="${person.personPicId}" id="personPicId" name="personPicId" />
                 <input type="hidden" th:value="${person.personId}" id="personId" name="personId" />
                 
-               <div class="form-group">
-                 <div class="col-md-4 col-md-offset-5">
-                     <img src="/images/zhanweiren.jpg"  class="img-circle"  id="personPic" style="width:150px; height:150px;">
-	                 </img>
-                  </div>
-                </div>
+               
                   <div style="border-bottom:1px solid #ccc; color: #ff6000;font-size: 16px;font-weight: bold">基本信息</div>
                 <div class="form-group top20">
                   <label class="col-md-2 control-label">姓名</label>
@@ -30,22 +25,22 @@
                  <div class="form-group top20">
                   <label class="col-md-2 control-label">出生日期</label>
                   <div class="col-md-4">
-                    <input  type="text" class="form-control datepicker" name="birthDate" id="birthDate" placeholder="请输入截止日期">
+                    <input  type="text" class="form-control datepicker" name="birthDate" id="birthDate" placeholder="请输入截止日期"  th:value="${#dates.format(person.birthDate, 'yyyy-MM-dd')}">
                   </div>
                   <label class="col-md-2 control-label">开始工作时间</label>
                   <div class="col-md-4">
-                    <input  type="text" class="form-control datepicker" name="jobDate" id="jobDate" placeholder="请输入截止日期">
+                    <input  type="text" class="form-control datepicker" name="jobDate" id="jobDate" placeholder="请输入截止日期"   th:value="${#dates.format(person.jobDate, 'yyyy-MM-dd')}">
                   </div>
                 </div>
                 
                 <div class="form-group top20">
                   <label class="col-md-2 control-label">居住地</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control txt_city"   name="perCity" id="perCity" />
+                    <input type="text" class="form-control txt_city"   name="perCity" id="perCity" th:value="${person.perCity}" />
                   </div>
                   <label class="col-md-2 control-label">目前年收入(万元)</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control"  name="perMoney" id="perMoney"   th:value="${session.account.accountName}" />
+                    <input type="text" class="form-control"  name="perMoney" id="perMoney"   th:value="${person.perMoney}" />
                      
                   </div>
                   
@@ -55,30 +50,28 @@
                  <div class="form-group top20">
                   <label class="col-md-2 control-label">邮箱</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control"  name="perEmail" id="perEmail"  th:value="${session.account.accountName}" s />
+                    <input type="text" class="form-control"  name="perEmail" id="perEmail"  th:value="${person.perEmail}" />
+                  </div>
+                  <label class="col-md-2 control-label">工作状态</label>
+                  <div class="col-md-4">
+	                   <select class="form-control" name="workStateCode" id="workStateCode">
+	                     	
+	                    </select>
                   </div>
                 </div>
                 
-                 <div class="form-group">
-                  <label class="col-md-2 control-label">头像</label>
-                  <div class="col-md-10">
-                   	<span class="upload-pic-per fileinput-button">
-		              <i class="glyphicon glyphicon-plus" style="margin-top:30px"></i>
-		              <input type="file" name="file" id="btn_upload_image" >
-	           		</span>
-	           		<div style="color:red;margin-top:5px" id="fileError"></div>
-                  </div>
                 
                 <div style="border-bottom:1px solid #ccc; color: #ff6000;font-size: 16px;font-weight: bold">求职意向</div>
                  
                 <div class="form-group top20">
-                  <label class="col-md-2 control-label">期望工资(月)</label>
+                  <label class="col-md-2 control-label">期望月工资(万)</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control"  name="perSalary" id="perSalary" th:value="${session.account.accountName}"  />
-                  </div>
+                      <select class="form-control" name="perSalaryCode" id="perSalaryCode">
+	                    </select>
+                    </div>
                   <label class="col-md-2 control-label">工作地点</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control txt_city"  name="workCity" id="workCity" th:value="${session.account.accountName}"  />
+                    <input type="text" class="form-control txt_city"  name="workCity" id="workCity" th:value="${person.workCity}"  />
                   </div>
                 </div>
                 
@@ -86,11 +79,11 @@
                  <div class="form-group top20">
                   <label class="col-md-2 control-label">职位</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control" name="jobName" id="jobName"  th:value="${session.account.accountName}"  />
+                    <input type="text" class="form-control" name="jobName" id="jobName" th:value="${person.jobName}"  />
                   </div>
                   <label class="col-md-2 control-label">行业</label>
                   <div class="col-md-4">
-                    <select class="form-control" name="hyType" id="hyType">
+                    <select class="form-control" name="hyTypeCode" id="hyTypeCode">
                      
                     </select>
                   </div>
@@ -119,6 +112,7 @@
  				<div class="form-group">
                   <div class="col-md-2 col-md-offset-6"  >
             			<button id="submitbut" type="button" class="btn btn-warning">提交</button>
+            			<button id="backbut" type="button" class="btn btn-default">取消</button>
                   </div>
                 </div>
                 
@@ -138,9 +132,27 @@
 <script type="text/javascript" th:inline="javascript">
 	$(function(){
 		
+	
+	$('#personSex').val([[${person.personSex}]]);
+	$('#workType').val([[${person.workType}]]);
+	
+	
+	$.get("/dict/getList.html?dictValue=per_workstate",function(data,status){
+		var html = template('tpl-hytype',data);
+			$('#workStateCode').html(html);
+			$('#workStateCode').val([[${person.workStateCode}]]);
+	 });
+	
+	$.get("/dict/getList.html?dictValue=per_salary",function(data,status){
+		var html = template('tpl-hytype',data);
+			$('#perSalaryCode').html(html);
+			$('#perSalaryCode').val([[${person.perSalaryCode}]]);
+	 });
+		
 	$.get("/dict/getList.html?dictValue=qy_hy_type",function(data,status){
 			var html = template('tpl-hytype',data);
-				$('#hyType').html(html);
+				$('#hyTypeCode').html(html);
+				$('#hyTypeCode').val([[${person.hyTypeCode}]]);
 	 });
 	
 	
@@ -148,6 +160,7 @@
 	$.get("/dict/getList.html?dictValue=xl_type",function(data,status){
 		var onehtml = template('tpl-hytype',data);
 		$('#jobStudyCode').html(onehtml);
+		$('#jobStudyCode').val([[${person.jobStudyCode}]]);
 		
 	});
 		
@@ -173,7 +186,7 @@
 	  $("#submitbut").click(function(){
 	      var form = $("#infosave");
 		    $.ajax({
-		        url: form.attr("action"),
+		        url:'/per/infosave.do',
 		        type: form.attr("method"),
 		        data: form.serialize(),
 		        success: function (data)
@@ -183,6 +196,10 @@
 		    });
 
 	});
+	  
+	  $("#backbut").click(function(){
+		  $("#resu-info").load('/per/infoview.html');
+	  })
 	 
   })
  </script>

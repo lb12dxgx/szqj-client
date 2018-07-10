@@ -49,17 +49,30 @@ public class Person {
 	@Column
 	private String perEmail;//邮箱
 	@Column
-	private Float perSalary;//期望工资
+	private String perSalaryCode;//期望工资编码
+	@Column
+	private String perSalary;//期望工资
 	@Column
 	private String workCity;//工作地点
 	@Column
 	private String jobName;//职位名称
 	@Column
-	private String hyType;//行业
+	private String hyTypeCode;//行业编码
+	
 	@Column
-	private String jobStudyCode;//学历
+	private String hyType;//行业
+	
+	@Column
+	private String jobStudy;//学历
+	@Column
+	private String jobStudyCode;//学历编码
 	@Column
 	private String workType;//工作类型
+	
+	@Column
+	private String workStateCode;//工作状态编码
+	@Column
+	private String workState;//工作状态
 	@Column
 	private Date createDate=new Date();
 	
@@ -143,12 +156,7 @@ public class Person {
 	public void setPerEmail(String perEmail) {
 		this.perEmail = perEmail;
 	}
-	public Float getPerSalary() {
-		return perSalary;
-	}
-	public void setPerSalary(Float perSalary) {
-		this.perSalary = perSalary;
-	}
+	
 	public String getWorkCity() {
 		return workCity;
 	}
@@ -184,6 +192,42 @@ public class Person {
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+	public String getWorkState() {
+		return workState;
+	}
+	public void setWorkState(String workState) {
+		this.workState = workState;
+	}
+	public String getPerSalary() {
+		return perSalary;
+	}
+	public void setPerSalary(String perSalary) {
+		this.perSalary = perSalary;
+	}
+	public String getPerSalaryCode() {
+		return perSalaryCode;
+	}
+	public void setPerSalaryCode(String perSalaryCode) {
+		this.perSalaryCode = perSalaryCode;
+	}
+	public String getJobStudy() {
+		return jobStudy;
+	}
+	public void setJobStudy(String jobStudy) {
+		this.jobStudy = jobStudy;
+	}
+	public String getWorkStateCode() {
+		return workStateCode;
+	}
+	public void setWorkStateCode(String workStateCode) {
+		this.workStateCode = workStateCode;
+	}
+	public String getHyTypeCode() {
+		return hyTypeCode;
+	}
+	public void setHyTypeCode(String hyTypeCode) {
+		this.hyTypeCode = hyTypeCode;
 	}
     
    

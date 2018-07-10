@@ -126,90 +126,18 @@
 		<div class="row">
 			 <!--中部内容开始-->
 			 <div class="col-md-9 col-md-offset-1" style="min-height:500px;margin-top:15px"  >
-			  <div id="resu-info">
-					  <div class="box" >
-					  <div class=" resu-head">
-						 	   <div class="face">
-						 	      <img src="/images/zhanweiren.jpg"  class="img-thumbnail"  id="personPic" style="width:100px; height:100px;">
-						 	   </div>
-						 	   <div class="detail">
-						 	    	<h4>张国勇</h4>
-						 	    	<div>
-						 	    	  <span>现居住地:</span><span>北京</span>|
-						 	    	  <span>工作经验:</span><span>15年</span>|
-						 	    	  <span>性别:</span><span>男</span>|
-						 	    	  <span>年龄:</span><span>39</span>|
-						 	    	  <span>我不想换工作</span>
-						 	    	</div>
-						 	    	<div class="email">
-						 	           <i class="fa fa-star" aria-hidden="true"></i><span style="margin-left:10px">39459358@qq.com</span>
-						 	           <i class="fa fa-phone" aria-hidden="true" style="margin-left:30px"></i><span style="margin-left:10px">13720053036</span>
-						 	    	</div>
-						 	    </div>
-						 	   
-						 	   <div  class="edit">
-						 	    	<a href="#" onclick="infoedit()"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a> 
-						 	   </div>
-						 	   
-				 </div>
-				 
-				<div class=" resu-money width100 top20" >
-					<span class="head-icon">
-					 <i class="fa fa-money" aria-hidden="true"></i></span>
-					<span class="head-text">  目前年收入 </span> 30万元
+			  	<div id="resu-info">
 					
-				</div>
-					 	 
-				<div class=" resu-job " >
-					 	     	 <div class="width100 top20">
-						 	     	 <div class="head-icon" style="float:left">
-							 	     	 <i class="fa fa-address-book" aria-hidden="true"></i>
-							 	     	 <span class="head-text">求职意向</span>
-						 	     	 </div>
-						 	     	
-					 	   		</div>
-					 	   		
-					 	      	<div class="width100">
-					 	    	    <div class="row top20">
-					 	    	     	<div class="col-md-6">
-					 	    	     	  <div class="col-md-3">期望薪资：</div>
-					 	    	     	  <div >30-40万元/年</div>
-					 	    	     	</div>
-					 	    	     	<div class="col-md-6">
-					 	    	     	  <div class="col-md-3">地点：</div>
-					 	    	     	  <div >北京</div>
-					 	    	     	</div>
-					 	    	    </div>
-					 	    	    
-					 	    	     <div class="row top20" >
-					 	    	     	<div class="col-md-6">
-					 	    	     	  <div class="col-md-3">职位：</div>
-					 	    	     	  <div >部门经理</div>
-					 	    	     	</div>
-					 	    	     	<div class="col-md-6">
-					 	    	     	  <div class="col-md-3">行业：</div>
-					 	    	     	  <div >计算机软件</div>
-					 	    	     	</div>
-					 	    	    </div>
-					 	    	    
-					 	    	     <div class="row top20">
-					 	    	     	<div class="col-md-6">
-					 	    	     	  <div class="col-md-3">工作类型：</div>
-					 	    	     	  <div >全职</div>
-					 	    	     	</div>
-					 	    	     </div>
-					 	    	</div>
-					 	   		
-					 	  </div>
-					</div>
 			     </div>
 			 	  
-			 	  <div class="width100">
+			 	  <div class="width100" id="jobdetail-info">
 				 	    <div class="head-icon">
 					 	     <i class="fa fa-tasks" aria-hidden="true"></i>
 					 	     <span class="head-text">工作经验</span>
 					 	     <div class="right-op">
-				 	    		<a href="#"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增工作</a>
+				 	    		<a href="#" onclick="jobdetailAdd()" >
+				 	    		 <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增工作
+				 	    		</a>
 				 	     	</div>
 				 	    </div>
 				 	</div>
@@ -232,13 +160,13 @@
 			 	    	  </p> 
 			 	   	</div>
 			 	   	
-			 	   <div class="width100">
+			 	   <div class="width100" id="study-info">
 				 	    <div class="head-icon" style="float:left">
 					 	     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
 					 	     <span class="head-text">教育经历</span>
 				 	    </div>
 				 	     <div   style="font-size:15px;margin:5px;float:right">
-				 	    	<a href="#"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增教育</a>
+				 	    	<a href="#" onclick="studydetailAdd()" > <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增教育</a>
 				 	     </div>
 			 	   </div>
 			 	   
@@ -256,7 +184,7 @@
 			 	    	 
 			 	   	</div>
 			 	   	
-			 	   <div class="width100">
+			 	   <div class="width100" id="card-info">
 				 	    <div class="head-icon" style="float:left">
 					 	     <i class="fa fa-book" aria-hidden="true"></i>
 					 	     <span class="head-text">技能特长</span>
@@ -265,10 +193,10 @@
 			 	   
 			 	   <div class="box-head">
 			 	     <span>证书</span>
-			 	     <a href="#" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增证书</a>
+			 	     <a href="#" onclick="carddetailAdd()" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增证书</a>
 			 	   </div>
 			 	   
-			 	    <div class="box certdetail" style="float:left;width: 100%;font-size:15px;padding:20px;">
+			 	    <div class="box carddetail" style="float:left;width: 100%;font-size:15px;padding:20px;">
 			 	   		<div class="row" >
 			 	    	     <div class="col-md-3">2010/2</div>
 			 	    	     <div class="col-md-3" ><strong>Analytics</strong></div>
@@ -283,9 +211,9 @@
 			 	   	</div>
 			 	   
 			 	   
-			 	    <div class="box-head">
+			 	    <div class="box-head" id="train-info">
 			 	     <span>培训</span>
-			 	     <a href="#" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增培训</a>
+			 	     <a href="#" onclick="traindetailAdd()" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增培训</a>
 			 	   </div>
 			 	   
 			 	      <div class="box traindetail" >
@@ -339,13 +267,57 @@
       <script src="/js/jquery.city.js"></script>
 	
   	<script type="text/javascript" th:inline="javascript">
+  	 
+  	
   	function infoedit(){
   		$("#resu-info").load('/per/infoedit.html');
   	}
   	
+  	function jobdetailAdd(){
+  		$(".jobdetail").load('/per/jobdetail/add.html',function() {
+  			var t =$("#jobdetail-info").offset().top-100;
+  			
+  	  	    $(window).scrollTop(t);
+  		});
+  		
+  	}
+  	
+  	function studydetailAdd(){
+  		$(".studydetail").load('/per/study/add.html',function() {
+  			var t =$("#study-info").offset().top-100;
+  			
+  	  	    $(window).scrollTop(t);
+  		});
+  		
+  	}
+  	
+  	
+	function carddetailAdd(){
+	
+  		$(".carddetail").load('/per/card/add.html',function() {
+  			var t =$("#card-info").offset().top-100;
+  			
+  	  	    $(window).scrollTop(t);
+  		});
+  		
+  	}
+	
+	
+	function traindetailAdd(){
+	
+  		$(".traindetail").load('/per/train/add.html',function() {
+  			var t =$("#train-info").offset().top-100;
+  			
+  	  	    $(window).scrollTop(t);
+  		});
+  		
+  	}
+  	
+  	
+  	
 	$(function(){
 		
-		var accountId=[[${session.account.token}]];
+		$("#resu-info").load('/per/infoview.html');
 		
 		$('#resume').addClass("active");
 		

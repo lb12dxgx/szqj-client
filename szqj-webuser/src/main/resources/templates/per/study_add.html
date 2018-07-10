@@ -1,0 +1,149 @@
+<div class="panel panel-default animated bounceInLeft">
+  <div class="panel-heading ">新增教育经历</div>
+  <div class="panel-body">
+     	<div class="col-md-12" > 
+		 	<form class="form-horizontal" id="infosave" action="/per/infosave.do" method="post">
+               
+                <input type="hidden" th:value="${person.personId}" id="personId" name="personId" />
+                
+               <div class="form-group top20">
+                  <label class="col-md-2 control-label">学校名称</label>
+                  <div class="col-md-6">
+                     <input type="text" class="form-control"   id="personName" name="personName"    />
+                  </div>
+                  
+                </div>
+                
+                 <div class="form-group top20">
+                  <label class="col-md-2 control-label">毕业状态</label>
+                  <div class="col-md-6">
+                      <select class="form-control" name="studyState" id="studyState">
+                     	<option value="已毕业">已毕业</option>
+                     	<option value="未毕业">未毕业</option>
+                     </select>
+                  </div>
+                  
+                </div>
+                
+                 <div class="form-group top20" id="studyDate">
+               
+      			</div>
+                
+                <div class="form-group top20">
+                  <label class="col-md-2 control-label">专业</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control "   name="professional" id="professional"   />
+                  </div>
+                  <label class="col-md-2 control-label">学位</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control"  name="degree" id="degree"   />
+                     
+                  </div>
+                  
+                </div>
+                
+                <div class="form-group top20">
+                  <label class="col-md-2 control-label">专业描述</label>
+                  <div class="col-md-10">
+                   <textarea rows="5" class="form-control" name="studydesc" id="studydesc"></textarea>
+                  </div>
+                 
+                </div>
+                
+                <div class="form-group">
+                  <div class="col-md-2 col-md-offset-6"  >
+            			<button id="submitbut" type="button" class="btn btn-warning">提交</button>
+            			<button id="backbut" type="button" class="btn btn-default">返回</button>
+                  </div>
+                </div>
+                
+              </form>
+    	 </div>
+	
+	</div>
+</div>
+
+
+<script id="tpl-hytype" type="text/html">
+		{{each  retData}}
+  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
+		{{/each}}
+</script>
+
+<script id="tpl-jobEndDate" type="text/html">
+	    <label class="col-md-2 control-label">时间</label>
+        <div class="col-md-3">
+                <input  type="text" class="form-control datepicker" name="jobStartDate" id="jobEndDate" placeholder="请输入开始日期"  >
+         </div>
+         <div class="col-md-3">
+             <input  type="text" class="form-control datepicker" name="jobEndDate" id="jobEndDate" placeholder="请输入截止日期"  >
+      	</div>
+</script>
+
+<script id="tpl-jobStartDate" type="text/html">
+	    <label class="col-md-2 control-label">开始日期</label>
+        <div class="col-md-3">
+                <input  type="text" class="form-control datepicker" name="jobStartDate" id="jobEndDate" placeholder="请输开始日期"  >
+         </div>
+         
+</script>
+
+<script type="text/javascript" th:inline="javascript">
+	$(function(){
+	var jobStartDate = template('tpl-jobEndDate');
+	$('#studyDate').html(jobStartDate);
+	
+	
+	
+	$('#studyState').change(function(){
+		
+		if($(this).val()=='未毕业'){
+			var jobStartDate = template('tpl-jobStartDate');
+			$('#studyDate').html(jobStartDate);
+		}else{
+			var jobEndDate = template('tpl-jobEndDate');
+			$('#studyDate').html(jobEndDate);
+		}
+	})
+	
+	
+	
+		
+	 $('.datepicker').datepicker({
+		 format: 'yyyy-mm',  
+		 startView: 'years',
+         maxViewMode:'years',
+         minViewMode:'months',
+         language: 'zh-CN',
+         pickerPosition:'bottom-right',
+         todayButton:true
+	});
+	 
+
+	
+	 
+					  
+	  $("#submitbut").click(function(){
+	      var form = $("#infosave");
+		    $.ajax({
+		        url:'/per/infosave.do',
+		        type: form.attr("method"),
+		        data: form.serialize(),
+		        success: function (data)
+		        {
+		            $("#resu-info").html(data);
+		        }
+		    });
+
+	});
+	  
+	  $("#backbut").click(function(){
+		  $("#resu-info").load('/per/infoview.html');
+	  })
+	 
+  })
+ </script>
+ 	
+ 	
+			
+		
