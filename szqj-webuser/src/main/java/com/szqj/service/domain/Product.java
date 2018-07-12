@@ -18,7 +18,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
-	private String productId;
+	private String productId; 
 	
 	private String productName;//产品名称
 	

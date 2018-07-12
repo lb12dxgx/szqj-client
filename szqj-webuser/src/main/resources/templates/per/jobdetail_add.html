@@ -2,14 +2,13 @@
   <div class="panel-heading ">新增工作经验</div>
   <div class="panel-body">
      	<div class="col-md-12" >
-		 	<form class="form-horizontal" id="infosave" action="/per/infosave.do" method="post">
-                <input type="hidden" th:value="${person.personPicId}" id="personPicId" name="personPicId" />
+		 	<form class="form-horizontal" id="jobdetailsave" action="/per/jobdetail/save.do" method="post">
                 <input type="hidden" th:value="${person.personId}" id="personId" name="personId" />
                 
                <div class="form-group top20">
                   <label class="col-md-2 control-label">公司名称</label>
                   <div class="col-md-6">
-                     <input type="text" class="form-control"   id="personName" name="personName"    />
+                     <input type="text" class="form-control"   id="companyName" name="companyName"    />
                   </div>
                   
                 </div>
@@ -51,7 +50,7 @@
                 </div>
                 
                 <div class="form-group">
-                  <div class="col-md-2 col-md-offset-6"  >
+                  <div class="col-md-4 col-md-offset-6"  >
             			<button id="submitbut" type="button" class="btn btn-warning">提交</button>
             			<button id="backbut" type="button" class="btn btn-default">返回</button>
                   </div>
@@ -93,9 +92,6 @@
 	var jobStartDate = template('tpl-jobStartDate');
 	$('#jobDate').html(jobStartDate);
 	
-	$('#personSex').val([[${person.personSex}]]);
-	$('#workType').val([[${person.workType}]]);
-	
 	$('#jobState').change(function(){
 		if($(this).val()=='在职'){
 			var jobStartDate = template('tpl-jobStartDate');
@@ -104,74 +100,48 @@
 			var jobEndDate = template('tpl-jobEndDate');
 			$('#jobDate').html(jobEndDate);
 		}
+		
+		$('#jobDate .datepicker').datepicker({
+			 format: 'yyyy-mm',  
+			 startView: 'years',
+	         maxViewMode:'years',
+	         minViewMode:'months',
+	         language: 'zh-CN',
+	         pickerPosition:'bottom-right',
+	         autoclose:true
+		});
+		 
 	})
 	
 	
-	$.get("/dict/getList.html?dictValue=per_workstate",function(data,status){
-		var html = template('tpl-hytype',data);
-			$('#workStateCode').html(html);
-			$('#workStateCode').val([[${person.workStateCode}]]);
-	 });
-	
-	$.get("/dict/getList.html?dictValue=per_salary",function(data,status){
-		var html = template('tpl-hytype',data);
-			$('#perSalaryCode').html(html);
-			$('#perSalaryCode').val([[${person.perSalaryCode}]]);
-	 });
-		
-	$.get("/dict/getList.html?dictValue=qy_hy_type",function(data,status){
-			var html = template('tpl-hytype',data);
-				$('#hyTypeCode').html(html);
-				$('#hyTypeCode').val([[${person.hyTypeCode}]]);
-	 });
-	
-	
-	
-	$.get("/dict/getList.html?dictValue=xl_type",function(data,status){
-		var onehtml = template('tpl-hytype',data);
-		$('#jobStudyCode').html(onehtml);
-		$('#jobStudyCode').val([[${person.jobStudyCode}]]);
-		
+	$('.datepicker').datepicker({
+			 format: 'yyyy-mm',  
+			 startView: 'years',
+	         maxViewMode:'years',
+	         minViewMode:'months',
+	         language: 'zh-CN',
+	         pickerPosition:'bottom-right',
+	         autoclose:true
 	});
 		
-	 $('.datepicker').datepicker({
-		 format: 'yyyy-mm',  
-		 startView: 'years',
-         maxViewMode:'years',
-         minViewMode:'months',
-         language: 'zh-CN',
-         pickerPosition:'bottom-right',
-         todayButton:true
-	});
-	 
-	 $('.txt_city').jcity({
-         urlOrData: '/js/citydata.json',
-         showArea:false,
-         animate: { showClass: 'animated flipInX', hideClass: 'animated flipOutX' },  // 需要第一步引用的animate.min.css文件，也可以自己定义动画 
-         onChoice: function (data) {
-             console.log(data);
-         }
-     });
-	 
-	
 	 
 					  
 	  $("#submitbut").click(function(){
-	      var form = $("#infosave");
+	      var form = $("#jobdetailsave");
 		    $.ajax({
-		        url:'/per/infosave.do',
+		        url:'/per/jobdetail/save.do',
 		        type: form.attr("method"),
 		        data: form.serialize(),
 		        success: function (data)
 		        {
-		            $("#resu-info").html(data);
+		            $("#jobdetail").html(data);
 		        }
 		    });
 
 	});
 	  
 	  $("#backbut").click(function(){
-		  $("#resu-info").load('/per/infoview.html');
+		  $("#jobdetail").load('/per/jobdetail/list.html');
 	  })
 	 
   })

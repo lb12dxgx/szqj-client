@@ -8,6 +8,7 @@
 	<link href="/css/upload.css" rel="stylesheet" type="text/css">
 	<link href="/js/upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css">
 	<link href="/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"></link>
+	<link href="/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css">
 	<style>
 	
 	   .head-icon{
@@ -142,22 +143,8 @@
 				 	    </div>
 				 	</div>
 				 	
-			 	   <div class="box jobdetail">
-			 	   		<div class="row" >
-			 	    	     <div class="col-md-3">2013/11-至今</div>
-			 	    	     <div class="col-md-3" ><strong>北京微昂科技有限公司</strong></div>
-			 	    	     <div class="col-md-4" ><strong>技术总监/经理</strong></div>
-			 	    	     <div class="col-md-2 edit" >
-			 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-			 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-							</div>
-			 	    	  </div>
-			 	    	  <p class="top10">
-			 	    	  	<span>计算机软件</span>  | <span>民营公司</span> |  <span>项目部</span>
-			 	    	  </p>
-			 	    	  <p class="top10">
-			 	    	  	<span>工作描述：</span> <span>哈哈</span>
-			 	    	  </p> 
+			 	   <div class="box jobdetail" id="jobdetail">
+			 	   		
 			 	   	</div>
 			 	   	
 			 	   <div class="width100" id="study-info">
@@ -171,17 +158,18 @@
 			 	   </div>
 			 	   
 		           <div class="box studydetail" >
-			 	   		<div class="row" >
-			 	    	     <div class="col-md-2">1999/7-2003/7</div>
-			 	    	     <div class="col-md-3" ><strong>南方冶金学院</strong></div>
-			 	    	     <div class="col-md-2" ><strong>计算机科学与技术</strong></div>
-			 	    	     <div class="col-md-2" >本科</div>
-			 	    	     <div class="col-md-2 edit" >
-			 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-			 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-							</div>
-			 	    	  </div>
-			 	    	 
+		           		<div class="well">
+				 	   		<div class="row" >
+				 	    	     <div class="col-md-2">1999/7-2003/7</div>
+				 	    	     <div class="col-md-3" ><strong>南方冶金学院</strong></div>
+				 	    	     <div class="col-md-3" ><strong>计算机科学与技术</strong></div>
+				 	    	     <div class="col-md-1" >本科</div>
+				 	    	     <div class="col-md-2 edit" >
+				 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+				 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+								</div>
+				 	    	  </div>
+			 	    	 </div>
 			 	   	</div>
 			 	   	
 			 	   <div class="width100" id="card-info">
@@ -246,6 +234,9 @@
    </div>
  </div>
  
+ 
+  
+ 
 <!--footer开始-->
  <div th:include="footer"></div>
   	<!--footer结束-->
@@ -263,10 +254,12 @@
 　　<script src="/js/upload/js/jquery.fileupload-ui.js"></script>
   <script src="/js/upload/js/jquery.fileupload-validate.js"></script>
   <script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="/js/locale/bootstrap-datepicker.zh-CN.min.js"></script>
-      <script src="/js/jquery.city.js"></script>
+  <script type="text/javascript" src="/js/locale/bootstrap-datepicker.zh-CN.min.js"></script>
+  <script src="/js/jquery.city.js"></script>
+  <script src="/js/bootstrap-dialog.min.js"></script>
 	
   	<script type="text/javascript" th:inline="javascript">
+  	
   	 
   	
   	function infoedit(){
@@ -281,6 +274,29 @@
   		});
   		
   	}
+  	
+  	function jobInfoDel(perJobInfoId){
+  		
+  		$.showConfirm("确认删除吗？", function(){
+  			 $(".jobdetail").load('/per/jobdetail/del.do?perJobInfoId='+perJobInfoId,function() {
+ 	  			var t =$("#jobdetail-info").offset().top-100;
+ 	  			    $(window).scrollTop(t);
+ 	  	  });
+  		});
+  		
+  	}
+  	
+  	
+  	function jobInfoEdit(perJobInfoId){
+  		$(".jobdetail").load('/per/jobdetail/edit.html?perJobInfoId='+perJobInfoId,function() {
+  			var t =$("#jobdetail-info").offset().top-100;
+  			
+  	  	    $(window).scrollTop(t);
+  		});
+  		
+  	}
+  	
+  	
   	
   	function studydetailAdd(){
   		$(".studydetail").load('/per/study/add.html',function() {
@@ -318,6 +334,7 @@
 	$(function(){
 		
 		$("#resu-info").load('/per/infoview.html');
+		$("#jobdetail").load('/per/jobdetail/list.html');
 		
 		$('#resume').addClass("active");
 		
