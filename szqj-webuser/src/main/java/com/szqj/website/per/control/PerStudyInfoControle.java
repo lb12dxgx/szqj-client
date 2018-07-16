@@ -17,7 +17,7 @@ import com.szqj.weborg.domain.Account;
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
-public class StudyControle {
+public class PerStudyInfoControle {
 	
 	@Autowired
 	private MyPersonRepository personRepository;
