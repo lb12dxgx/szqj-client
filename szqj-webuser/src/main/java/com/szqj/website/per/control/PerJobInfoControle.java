@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.szqj.service.domain.MyPersonRepository;
 import com.szqj.service.domain.PerJobInfo;
 import com.szqj.service.domain.PerJobInfoRepository;
+import com.szqj.service.domain.PerStudyInfo;
+import com.szqj.service.domain.PerStudyInfoRepository;
 import com.szqj.service.domain.Person;
 import com.szqj.weborg.domain.Account;
 
@@ -68,5 +70,4 @@ public class PerJobInfoControle {
 		perJobInfoRepository.deleteById(perJobInfoId);
 		return "redirect:/per/jobdetail/list.html"; 
 	}
-
 }

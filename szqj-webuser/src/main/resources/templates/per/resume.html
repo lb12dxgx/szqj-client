@@ -143,7 +143,7 @@
 				 	    </div>
 				 	</div>
 				 	
-			 	   <div class="box jobdetail" id="jobdetail">
+			 	   <div class="box " id="jobdetail">
 			 	   		
 			 	   	</div>
 			 	   	
@@ -157,19 +157,8 @@
 				 	     </div>
 			 	   </div>
 			 	   
-		           <div class="box studydetail" >
-		           		<div class="well">
-				 	   		<div class="row" >
-				 	    	     <div class="col-md-2">1999/7-2003/7</div>
-				 	    	     <div class="col-md-3" ><strong>南方冶金学院</strong></div>
-				 	    	     <div class="col-md-3" ><strong>计算机科学与技术</strong></div>
-				 	    	     <div class="col-md-1" >本科</div>
-				 	    	     <div class="col-md-2 edit" >
-				 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-				 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-								</div> 
-				 	    	  </div>
-			 	    	 </div>
+		           <div class="box " id="studydetail" >
+		           	
 			 	   	</div>
 			 	   	 
 			 	   <div class="width100" id="card-info">
@@ -267,7 +256,7 @@
   	}
   	
   	function jobdetailAdd(){
-  		$(".jobdetail").load('/per/jobdetail/add.html',function() {
+  		$("#jobdetail").load('/per/jobdetail/add.html',function() {
   			var t =$("#jobdetail-info").offset().top-100;
   			
   	  	    $(window).scrollTop(t);
@@ -278,7 +267,7 @@
   	function jobInfoDel(perJobInfoId){
   		
   		$.showConfirm("确认删除吗？", function(){
-  			 $(".jobdetail").load('/per/jobdetail/del.do?perJobInfoId='+perJobInfoId,function() {
+  			 $("#jobdetail").load('/per/jobdetail/del.do?perJobInfoId='+perJobInfoId,function() {
  	  			var t =$("#jobdetail-info").offset().top-100;
  	  			    $(window).scrollTop(t);
  	  	  });
@@ -288,7 +277,7 @@
   	
   	
   	function jobInfoEdit(perJobInfoId){
-  		$(".jobdetail").load('/per/jobdetail/edit.html?perJobInfoId='+perJobInfoId,function() {
+  		$("#jobdetail").load('/per/jobdetail/edit.html?perJobInfoId='+perJobInfoId,function() {
   			var t =$("#jobdetail-info").offset().top-100;
   			
   	  	    $(window).scrollTop(t);
@@ -299,7 +288,29 @@
   	
   	
   	function studydetailAdd(){
-  		$(".studydetail").load('/per/study/add.html',function() {
+  		
+  		$("#studydetail").load('/per/studyinfo/add.html',function() {
+  			var t =$("#study-info").offset().top-100;
+  			console.log(t);
+  			 $(window).scrollTop(t);
+  		});
+   }
+  	
+  	
+	function studyInfoDel(perStudyInfoId){
+  		
+  		$.showConfirm("确认删除吗？", function(){
+  			 $("#studydetail").load('/per/studyinfo/del.do?perStudyInfoId='+perStudyInfoId,function() {
+ 	  			var t =$("#study-info").offset().top-100;
+ 	  			    $(window).scrollTop(t);
+ 	  	  });
+  		});
+  		
+  	}
+  	
+  	
+  	function studyInfoEdit(perStudyInfoId){
+  		$("#studydetail").load('/per/studyinfo/edit.html?perStudyInfoId='+perStudyInfoId,function() {
   			var t =$("#study-info").offset().top-100;
   			
   	  	    $(window).scrollTop(t);
@@ -335,6 +346,7 @@
 		
 		$("#resu-info").load('/per/infoview.html');
 		$("#jobdetail").load('/per/jobdetail/list.html');
+		$("#studydetail").load('/per/studyinfo/list.html');
 		
 		$('#resume').addClass("active");
 		

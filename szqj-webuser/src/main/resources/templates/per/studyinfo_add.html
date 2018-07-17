@@ -2,14 +2,14 @@
   <div class="panel-heading ">新增教育经历</div>
   <div class="panel-body">
      	<div class="col-md-12" > 
-		 	<form class="form-horizontal" id="infosave" action="/per/infosave.do" method="post">
+		 	<form class="form-horizontal" id="infosave" action="/per/studyinfo/save.do" method="post">
                
                 <input type="hidden" th:value="${person.personId}" id="personId" name="personId" />
                 
                <div class="form-group top20">
                   <label class="col-md-2 control-label">学校名称</label>
                   <div class="col-md-6">
-                     <input type="text" class="form-control"   id="personName" name="personName"    />
+                     <input type="text" class="form-control"   id="schoole" name="schoole"   />
                   </div>
                   
                 </div>
@@ -32,7 +32,7 @@
                 <div class="form-group top20">
                   <label class="col-md-2 control-label">专业</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control "   name="professional" id="professional"   />
+                    <input type="text" class="form-control "   name="major" id="major"   />
                   </div>
                   <label class="col-md-2 control-label">学位</label>
                   <div class="col-md-4">
@@ -45,7 +45,7 @@
                 <div class="form-group top20">
                   <label class="col-md-2 control-label">专业描述</label>
                   <div class="col-md-10">
-                   <textarea rows="5" class="form-control" name="studydesc" id="studydesc"></textarea>
+                   <textarea rows="5" class="form-control" name="majorDesc" id="majorDesc"></textarea>
                   </div>
                  
                 </div>
@@ -73,19 +73,18 @@
 <script id="tpl-jobEndDate" type="text/html">
 	    <label class="col-md-2 control-label">时间</label>
         <div class="col-md-3">
-                <input  type="text" class="form-control datepicker" name="jobStartDate" id="jobEndDate" placeholder="请输入开始日期"  >
+                <input  type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="请输入开始日期"  >
          </div>
          <div class="col-md-3">
-             <input  type="text" class="form-control datepicker" name="jobEndDate" id="jobEndDate" placeholder="请输入截止日期"  >
+             <input  type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="请输入截止日期"  >
       	</div>
 </script>
 
 <script id="tpl-jobStartDate" type="text/html">
 	    <label class="col-md-2 control-label">开始日期</label>
         <div class="col-md-3">
-                <input  type="text" class="form-control datepicker" name="jobStartDate" id="jobEndDate" placeholder="请输开始日期"  >
+                <input  type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="请输开始日期"  >
          </div>
-         
 </script>
 
 <script type="text/javascript" th:inline="javascript">
@@ -96,28 +95,33 @@
 	
 	
 	$('#studyState').change(function(){
-		
 		if($(this).val()=='未毕业'){
-			var jobStartDate = template('tpl-jobStartDate');
+			var jobStartDate = $('#tpl-jobStartDate').html();
 			$('#studyDate').html(jobStartDate);
 		}else{
-			var jobEndDate = template('tpl-jobEndDate');
+			var jobEndDate =  $('#tpl-jobEndDate').html();
 			$('#studyDate').html(jobEndDate);
 		}
+	
 	})
 	
 	
 	
 		
-	 $('.datepicker').datepicker({
-		 format: 'yyyy-mm',  
-		 startView: 'years',
-         maxViewMode:'years',
-         minViewMode:'months',
-         language: 'zh-CN',
-         pickerPosition:'bottom-right',
-         todayButton:true
-	});
+		$(document).on("focus",".datepicker", function () {
+		
+		 $(this).attr('autocomplete','off').datepicker({
+			 format: 'yyyy-mm',  
+			 startView: 'years',
+	         maxViewMode:'years',
+	         minViewMode:'months',
+	         language: 'zh-CN',
+	         pickerPosition:'bottom-right',
+	         autoclose:true
+		});
+
+    });
+	 
 	 
 
 	
@@ -126,19 +130,25 @@
 	  $("#submitbut").click(function(){
 	      var form = $("#infosave");
 		    $.ajax({
-		        url:'/per/infosave.do',
+		        url:'/per/studyinfo/save.do',
 		        type: form.attr("method"),
 		        data: form.serialize(),
 		        success: function (data)
 		        {
-		            $("#resu-info").html(data);
+		            $("#studydetail").html(data);
 		        }
 		    });
 
 	});
 	  
 	  $("#backbut").click(function(){
-		  $("#resu-info").load('/per/infoview.html');
+		 
+		  $("#studydetail").load('/per/studyinfo/list.html' ,function(){
+			  var t =$("#studydetail-info").offset().top-100;
+				
+		  	    $(window).scrollTop(t);
+		  });
+		  
 	  })
 	 
   })
