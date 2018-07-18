@@ -4,10 +4,10 @@
 			<div class="col-md-3" th:if="${jobInfo.jobState=='在职'}"><span th:text="${jobInfo.jobStartDate}">2013/11</span>-<span>至今</span></div>
 			<div class="col-md-3" ><strong th:text="${jobInfo.companyName}">北京微昂科技有限公司</strong></div>
 			<div class="col-md-4" ><strong th:text="${jobInfo.jobname}">技术总监/经理</strong></div>
-			   <div class="col-md-2 edit" >
-					<a herf="#" th:onclick="'javascript:jobInfoEdit(\''+${jobInfo.perJobInfoId}+'\')'" style="margin-right:10px;cursor: pointer;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-					<a herf="#" th:onclick="'javascript:jobInfoDel(\''+${jobInfo.perJobInfoId}+'\')'" style="cursor: pointer;"><i class="fa fa-trash" aria-hidden="true"></i></a>
-			   </div>
+			<div class="col-md-2 edit" >
+				<a herf="#" th:onclick="'javascript:jobInfoEdit(\''+${jobInfo.perJobInfoId}+'\')'" style="margin-right:10px;cursor: pointer;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+				<a herf="#" th:onclick="'javascript:jobInfoDel(\''+${jobInfo.perJobInfoId}+'\')'" style="cursor: pointer;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+			</div>
 	</div>
 	<p class="top10">
 	    <span>所属部门：</span> <span th:text="${jobInfo.department}">项目部</span>
