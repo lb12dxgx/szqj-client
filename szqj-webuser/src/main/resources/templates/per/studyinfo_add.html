@@ -108,7 +108,7 @@
 	
 	
 		
-		$(document).on("focus",".datepicker", function () {
+	$(document).on("focus",".datepicker", function () {
 		
 		 $(this).attr('autocomplete','off').datepicker({
 			 format: 'yyyy-mm',  
@@ -122,11 +122,6 @@
 
     });
 	 
-	 
-
-	
-	 
-					  
 	  $("#submitbut").click(function(){
 	      var form = $("#infosave");
 		    $.ajax({

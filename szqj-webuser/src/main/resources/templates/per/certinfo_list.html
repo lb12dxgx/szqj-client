@@ -1,0 +1,12 @@
+<div th:each="certInfo:${list}" class="well" >
+		<div class="row" >
+			  <div class="col-md-2" th:text="${certInfo.startDate}">2010/2</div>
+			  <div class="col-md-3" th:text="${certInfo.certName}"><strong>证书名称</strong></div>
+			  <div class="col-md-3" th:text="${certInfo.certOrgName}"><strong>中国地下管线协会</strong></div>
+			 	    	    
+			 	<div class="col-md-2 edit" >
+			 	    <a herf="#" th:onclick="'javascript:certInfoEdit(\''+${certInfo.perCertInfoId}+'\')'" style="margin-right:10px;cursor: pointer;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+					  <a herf="#" th:onclick="'javascript:certInfoDel(\''+${certInfo.perCertInfoId}+'\')'" style="cursor: pointer;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				</div>
+	    </div>
+</div> 

@@ -94,14 +94,20 @@
 	
 	$('#jobState').change(function(){
 		if($(this).val()=='在职'){
-			var jobStartDate = template('tpl-jobStartDate');
+			var jobStartDate =  $('#tpl-jobStartDate').html();
 			$('#jobDate').html(jobStartDate);
 		}else{
-			var jobEndDate = template('tpl-jobEndDate');
+			var jobEndDate =  $('#tpl-jobEndDate').html();
 			$('#jobDate').html(jobEndDate);
 		}
+	
+	})
+	
+	
+			
+  $(document).on("focus",".datepicker", function () {
 		
-		$('#jobDate .datepicker').datepicker({
+		 $(this).attr('autocomplete','off').datepicker({
 			 format: 'yyyy-mm',  
 			 startView: 'years',
 	         maxViewMode:'years',
@@ -110,20 +116,8 @@
 	         pickerPosition:'bottom-right',
 	         autoclose:true
 		});
-		 
-	})
-	
-	
-	$('.datepicker').datepicker({
-			 format: 'yyyy-mm',  
-			 startView: 'years',
-	         maxViewMode:'years',
-	         minViewMode:'months',
-	         language: 'zh-CN',
-	         pickerPosition:'bottom-right',
-	         autoclose:true
-	});
-		
+
+    });
 	 
 					  
 	  $("#submitbut").click(function(){

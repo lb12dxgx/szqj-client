@@ -2,14 +2,15 @@
   <div class="panel-heading ">新增培训经历</div>
   <div class="panel-body">
      	<div class="col-md-12" > 
-		 	<form class="form-horizontal" id="infosave" action="/per/infosave.do" method="post">
+		 	<form class="form-horizontal" id="infosave" action="/per/traininfo/update.do" method="post">
                
-                <input type="hidden" th:value="${person.personId}" id="personId" name="personId" />
+                <input type="hidden" th:value="${perTrainInfo.personId}" id="personId" name="personId" />
+                <input type="hidden" th:value="${perTrainInfo.perTrainInfoId}" id="perTrainInfoId" name="perTrainInfoId" />
                 
                <div class="form-group top20">
                   <label class="col-md-2 control-label">培训课程</label>
                   <div class="col-md-6">
-                     <input type="text" class="form-control"   id="trainClassName" name="trainClassName"    />
+                     <input type="text" class="form-control"   id="trainClassName" name="trainClassName"  th:value="${perTrainInfo.trainClassName}"   />
                   </div>
                   
                 </div>
@@ -19,21 +20,21 @@
                  <div class="form-group top20" id="studyDate">
                   	<label class="col-md-2 control-label">时间</label>
 			        <div class="col-md-3">
-			                <input  type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="请输入开始日期"  >
+			                <input  type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="请输入开始日期"  th:value="${perTrainInfo.startDate}"  >
 			         </div>
 			         <div class="col-md-3">
-			             <input  type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="请输入截止日期"  >
+			             <input  type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="请输入截止日期"  th:value="${perTrainInfo.endDate}" >
 			      	</div>
       			</div>
                 
                 <div class="form-group top20">
                   <label class="col-md-2 control-label">培训机构</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control "   name="trainOrgName" id="trainOrgName"   />
+                    <input type="text" class="form-control "   name="trainOrgName" id="trainOrgName"   th:value="${perTrainInfo.trainOrgName}" />
                   </div>
                   <label class="col-md-2 control-label">培训地点</label>
                   <div class="col-md-4">
-                    <input type="text" class="form-control"  name="trainPlace" id="trainPlace"   />
+                    <input type="text" class="form-control"  name="trainPlace" id="trainPlace"  th:value="${perTrainInfo.trainPlace}"  />
                      
                   </div>
                   
@@ -42,7 +43,7 @@
                 <div class="form-group top20">
                   <label class="col-md-2 control-label">培训描述</label>
                   <div class="col-md-10">
-                   <textarea rows="5" class="form-control" name="trainDesc" id="trainDesc"></textarea>
+                   <textarea rows="5" class="form-control" name="trainDesc" id="trainDesc" th:text="${perTrainInfo.trainDesc}" ></textarea>
                   </div>
                  
                 </div>
@@ -91,7 +92,7 @@
 	  $("#submitbut").click(function(){
 	      var form = $("#infosave");
 		    $.ajax({
-		    	  url:'/per/traininfo/save.do',
+		        url:'/per/traininfo/update.do',
 		        type: form.attr("method"),
 		        data: form.serialize(),
 		        success: function (data)

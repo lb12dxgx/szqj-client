@@ -161,7 +161,7 @@
 		           	
 			 	   	</div>
 			 	   	 
-			 	   <div class="width100" id="card-info">
+			 	   <div class="width100" id="cert-info">
 				 	    <div class="head-icon" style="float:left">
 					 	     <i class="fa fa-book" aria-hidden="true"></i>
 					 	     <span class="head-text">技能特长</span>
@@ -170,20 +170,11 @@
 			 	   
 			 	   <div class="box-head">
 			 	     <span>证书</span>
-			 	     <a href="#" onclick="carddetailAdd()" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增证书</a>
+			 	     <a href="#" onclick="certdetailAdd()" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增证书</a>
 			 	   </div>
 			 	   
-			 	    <div class="box carddetail" style="float:left;width: 100%;font-size:15px;padding:20px;">
-			 	   		<div class="row" >
-			 	    	     <div class="col-md-3">2010/2</div>
-			 	    	     <div class="col-md-3" ><strong>Analytics</strong></div>
-			 	    	     <div class="col-md-3" ><strong>100</strong></div>
-			 	    	    
-			 	    	     <div class="col-md-2 edit" >
-			 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-			 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-							</div>
-			 	    	  </div>
+			 	    <div class="box " style="float:left;width: 100%;font-size:15px;padding:20px;" id="certdetail">
+			 	   	
 			 	    	 
 			 	   	</div>
 			 	   
@@ -193,20 +184,8 @@
 			 	     <a href="#" onclick="traindetailAdd()" style="float:right;"> <i class="fa fa-plus" aria-hidden="true" style="margin-left:10px"></i> 新增培训</a>
 			 	   </div>
 			 	   
-			 	      <div class="box traindetail" >
-			 	   		 <div class="row" >
-			 	    	     <div class="col-md-3">2010/1-至今</div>
-			 	    	     <div class="col-md-3" ><strong>培训课程</strong></div>
-			 	    	     <div class="col-md-3" ><span>培训机构</span> (地点：<span>培训地点</span>)</div>
-			 	    	     <div class="col-md-2 edit" >
-			 	    	     	<a herf="#" style="margin-right:10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-			 	    	     	<a herf="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-							</div>
-			 	    	  </div>
-			 	    	 
-			 	    	  <p class="top10">
-			 	    	  	<span>培训描述：</span> <span>哈哈</span>
-			 	    	  </p> 
+			 	      <div class="box "  id="traindetail">
+			 	   		
 			 	    	 
 			 	   	</div>
 			 	   
@@ -319,10 +298,32 @@
   	}
   	
   	
-	function carddetailAdd(){
+	function certdetailAdd(){
 	
-  		$(".carddetail").load('/per/card/add.html',function() {
-  			var t =$("#card-info").offset().top-100;
+  		$("#certdetail").load('/per/certinfo/add.html',function() {
+  			var t =$("#cert-info").offset().top-100;
+  			
+  	  	    $(window).scrollTop(t);
+  		});
+  		
+  	}
+	
+	
+	function certInfoDel(perCertInfoId){
+  		
+  		$.showConfirm("确认删除吗？", function(){
+  			 $("#certdetail").load('/per/certinfo/del.do?perCertInfoId='+perCertInfoId,function() {
+ 	  			var t =$("#cert-info").offset().top-100;
+ 	  			    $(window).scrollTop(t);
+ 	  	  });
+  		});
+  		
+  	}
+  	
+  	
+  	function certInfoEdit(perCertInfoId){
+  		$("#certdetail").load('/per/certinfo/edit.html?perCertInfoId='+perCertInfoId,function() {
+  			var t =$("#cert-info").offset().top-100;
   			
   	  	    $(window).scrollTop(t);
   		});
@@ -332,8 +333,29 @@
 	
 	function traindetailAdd(){
 	
-  		$(".traindetail").load('/per/train/add.html',function() {
+  		$("#traindetail").load('/per/traininfo/add.html',function() {
   			var t =$("#train-info").offset().top-100;
+  			
+  	  	    $(window).scrollTop(t);
+  		});
+  		
+  	}
+	
+	function trainInfoDel(perTrainInfoId){
+  		
+  		$.showConfirm("确认删除吗？", function(){
+  			 $("#traindetail").load('/per/traininfo/del.do?perTrainInfoId='+perTrainInfoId,function() {
+ 	  			var t =$("#cert-info").offset().top-100;
+ 	  			    $(window).scrollTop(t);
+ 	  	  });
+  		});
+  		
+  	}
+  	
+  	
+  	function trainInfoEdit(perTrainInfoId){
+  		$("#traindetail").load('/per/traininfo/edit.html?perTrainInfoId='+perTrainInfoId,function() {
+  			var t =$("#cert-info").offset().top-100;
   			
   	  	    $(window).scrollTop(t);
   		});
@@ -347,6 +369,8 @@
 		$("#resu-info").load('/per/infoview.html');
 		$("#jobdetail").load('/per/jobdetail/list.html');
 		$("#studydetail").load('/per/studyinfo/list.html');
+		$("#certdetail").load('/per/certinfo/list.html');
+		$("#traindetail").load('/per/traininfo/list.html');
 		
 		$('#resume').addClass("active");
 		
