@@ -1,0 +1,153 @@
+<div class="panel panel-default animated bounceInLeft">
+  <div class="panel-heading ">修改工作经验</div>
+  <div class="panel-body">
+     	<div class="col-md-12" >
+		 	<form class="form-horizontal" id="jobdetailsave" action="/per/jobdetail/update.do" method="post">
+                <input type="hidden" th:value="${perJobInfo.personId}" id="personId" name="personId" />
+                <input type="hidden" th:value="${perJobInfo.perJobInfoId}" id="perJobInfoId" name="perJobInfoId" />
+                
+               <div class="form-group top20">
+                  <label class="col-md-2 control-label">公司名称</label>
+                  <div class="col-md-6">
+                     <input type="text" class="form-control"   id="companyName" name="companyName" th:value="${perJobInfo.companyName}"   />
+                  </div>
+                  
+                </div>
+                
+                 <div class="form-group top20">
+                  <label class="col-md-2 control-label">职位状态</label>
+                  <div class="col-md-6">
+                      <select class="form-control" name="jobState" id="jobState">
+                     	<option value="在职">在职</option>
+                     	<option value="离职">离职</option>
+                     </select>
+                  </div>
+                  
+                </div>
+                
+                 <div class="form-group top20" id="jobDate">
+               
+      			</div>
+                
+                <div class="form-group top20">
+                  <label class="col-md-2 control-label">部门</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control "   name="department" id="department" th:value="${perJobInfo.department}" />
+                  </div>
+                  <label class="col-md-2 control-label">职位</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control"  name="jobname" id="jobname" th:value="${perJobInfo.jobname}"  />
+                     
+                  </div>
+                  
+                </div>
+                
+                <div class="form-group top20">
+                  <label class="col-md-2 control-label">工作描述</label>
+                  <div class="col-md-10">
+                   <textarea rows="5" class="form-control" name="workdesc" id="workdesc" th:text="${perJobInfo.workdesc}"></textarea>
+                  </div>
+                 
+                </div>
+                
+                <div class="form-group">
+                  <div class="col-md-4 col-md-offset-6"  >
+            			<button id="submitbut" type="button" class="btn btn-warning">提交</button>
+            			<button id="backbut" type="button" class="btn btn-default">返回</button>
+                  </div>
+                </div>
+                
+              </form>
+    	 </div>
+	
+	</div>
+</div>
+
+
+<script id="tpl-hytype" type="text/html">
+		{{each  retData}}
+  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
+		{{/each}}
+</script>
+
+<script id="tpl-jobEndDate" type="text/html">
+	    <label class="col-md-2 control-label">时间</label>
+        <div class="col-md-3">
+                <input  type="text" class="form-control datepicker" name="jobStartDate" id="jobStartDate" placeholder="请输入开始日期" th:value="${perJobInfo.jobStartDate}" >
+         </div>
+         <div class="col-md-3">
+             <input  type="text" class="form-control datepicker" name="jobEndDate" id="jobEndDate" placeholder="请输入截止日期" th:value="${perJobInfo.jobEndDate}" >
+      	</div>
+</script>
+
+<script id="tpl-jobStartDate" type="text/html">
+	    <label class="col-md-2 control-label">开始日期</label>
+        <div class="col-md-3">
+                <input  type="text" class="form-control datepicker" name="jobStartDate" id="jobStartDate" placeholder="请输开始日期" th:value="${perJobInfo.jobStartDate}" >
+         </div>
+         
+</script>
+
+<script type="text/javascript" th:inline="javascript">
+	$(function(){
+	var jobStartDate = template('tpl-jobStartDate');
+	$('#jobDate').html(jobStartDate);
+	
+	$('#jobState').change(function(){
+		if($(this).val()=='在职'){
+			var jobStartDate = template('tpl-jobStartDate');
+			$('#jobDate').html(jobStartDate);
+		}else{
+			var jobEndDate = template('tpl-jobEndDate');
+			$('#jobDate').html(jobEndDate);
+		}
+		
+		$('#jobDate .datepicker').datepicker({
+			 format: 'yyyy-mm',  
+			 startView: 'years',
+	         maxViewMode:'years',
+	         minViewMode:'months',
+	         language: 'zh-CN',
+	         pickerPosition:'bottom-right',
+	         autoclose:true
+		});
+		 
+	})
+	
+	
+	$('.datepicker').datepicker({
+			 format: 'yyyy-mm',  
+			 startView: 'years',
+	         maxViewMode:'years',
+	         minViewMode:'months',
+	         language: 'zh-CN',
+	         pickerPosition:'bottom-right',
+	         autoclose:true
+	});
+		
+	 
+					  
+	  $("#submitbut").click(function(){
+	      var form = $("#jobdetailsave");
+		    $.ajax({
+		        url:'/per/jobdetail/save.do',
+		        type: form.attr("method"),
+		        data: form.serialize(),
+		        success: function (data)
+		        {
+		            $("#jobdetail").html(data);
+		        }
+		    });
+
+	});
+	  
+	  $("#backbut").click(function(){
+		  $("#jobdetail").load('/per/jobdetail/list.html');
+	  })
+	 
+  })
+ </script>
+ 	
+ 	
+			
+		

@@ -1,0 +1,13 @@
+<div th:each="studyInfo:${list}" class="well" >
+	  <div class="row" >
+				 <div class="col-md-3" th:if="${studyInfo.studyState=='已毕业'}"><span th:text="${studyInfo.startDate}">2013/11</span>-<span th:text="${studyInfo.endDate}">至今</span></div>
+				 <div class="col-md-3" th:if="${studyInfo.studyState=='未毕业'}"><span th:text="${studyInfo.startDate}">2013/11</span>-<span>至今</span></div>
+				 <div class="col-md-3" ><strong th:text="${studyInfo.schoole}">南方冶金学院</strong></div>
+				 <div class="col-md-3" ><strong th:text="${studyInfo.major}">计算机科学与技术</strong></div>
+				 <div class="col-md-1" th:text="${studyInfo.degree}">本科</div>
+				 <div class="col-md-2 edit" >
+				 	  <a herf="#" th:onclick="'javascript:studyInfoEdit(\''+${studyInfo.perStudyInfoId}+'\')'" style="margin-right:10px;cursor: pointer;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+					  <a herf="#" th:onclick="'javascript:studyInfoDel(\''+${studyInfo.perStudyInfoId}+'\')'" style="cursor: pointer;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				</div> 
+	 </div>
+</div>

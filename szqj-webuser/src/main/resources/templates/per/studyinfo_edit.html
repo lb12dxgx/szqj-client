@@ -1,0 +1,165 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div class="panel panel-default animated bounceInLeft">
+  <div class="panel-heading ">新增教育经历</div>
+  <div class="panel-body">
+     	<div class="col-md-12" > 
+		 	<form class="form-horizontal" id="infosave" action="/per/studyinfo/update.do" method="post">
+               
+                <input type="hidden" th:value="${perStudyInfo.personId}" id="personId" name="personId" />
+                <input type="hidden" th:value="${perStudyInfo.perStudyInfoId}" id="perStudyInfoId" name="perStudyInfoId" />
+                
+             
+                
+               <div class="form-group top20">
+                  <label class="col-md-2 control-label">学校名称</label>
+                  <div class="col-md-6">
+                     <input type="text" class="form-control"   id="schoole" name="schoole"    th:value="${perStudyInfo.schoole}" />
+                  </div>
+                  
+                </div>
+                
+                 <div class="form-group top20">
+                  <label class="col-md-2 control-label">毕业状态</label>
+                  <div class="col-md-6">
+                      <select class="form-control" name="studyState" id="studyState" th:attr="selectval=${perStudyInfo.studyState}" >
+                     	<option value="已毕业">已毕业</option>
+                     	<option value="未毕业">未毕业</option>
+                     </select>
+                  </div>
+                  
+                </div>
+                
+                 <div class="form-group top20" id="studyDate">
+               
+      			</div>
+                
+                <div class="form-group top20">
+                  <label class="col-md-2 control-label">专业</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control "   name="major" id="major" th:value="${perStudyInfo.major}"  />
+                  </div>
+                  <label class="col-md-2 control-label">学位</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control"  name="degree" id="degree"  th:value="${perStudyInfo.degree}" />
+                     
+                  </div>
+                  
+                </div>
+                
+                <div class="form-group top20">
+                  <label class="col-md-2 control-label">专业描述</label>
+                  <div class="col-md-10">
+                    <textarea rows="5" class="form-control" name="majorDesc" id="majorDesc" th:text="${perStudyInfo.majorDesc}"></textarea>
+                  </div>
+                 
+                </div>
+                
+                <div class="form-group">
+                  <div class="col-md-4 col-md-offset-6"  >
+            			<button id="submitbut" type="button" class="btn btn-warning">提交</button>
+            			<button id="backbut" type="button" class="btn btn-default">返回</button>
+                  </div>
+                </div>
+                
+              </form>
+    	 </div>
+	
+	</div>
+</div>
+
+
+<script id="tpl-hytype" type="text/html">
+		{{each  retData}}
+  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
+		{{/each}}
+</script>
+
+<script id="tpl-jobEndDate" type="text/html">
+	    <label class="col-md-2 control-label">时间</label>
+        <div class="col-md-3">
+                <input  type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="请输入开始日期"  th:value="${perStudyInfo.startDate}" >
+         </div>
+         <div class="col-md-3">
+             <input  type="text" class="form-control datepicker"  name="endDate" id="endDate" placeholder="请输入截止日期" th:value="${perStudyInfo.endDate}"  >
+      	</div>
+</script>
+
+<script id="tpl-jobStartDate" type="text/html">
+	    <label class="col-md-2 control-label">开始日期</label>
+        <div class="col-md-3">
+                <input  type="text" class="form-control datepicker" name="startDate" id="startDate" placeholder="请输开始日期" th:value="${perStudyInfo.startDate}" >
+         </div>
+</script>
+
+<script type="text/javascript" th:inline="javascript">
+	$(function(){
+	 var p=$('#studyState').attr("selectval");
+	 $('#studyState').val(p);
+	 if(p=='已毕业'){
+		var jobStartDate = $('#tpl-jobEndDate').html();
+		$('#studyDate').html(jobStartDate);
+		console.log(jobStartDate);
+	}else{
+		var jobStartDate = $('#tpl-jobStartDate').html();
+		$('#studyDate').html(jobStartDate);
+		console.log(jobStartDate);
+	}
+	
+	$('#studyState').change(function(){
+		if($(this).val()=='未毕业'){
+			var jobStartDate = $('#tpl-jobStartDate').html();
+			$('#studyDate').html(jobStartDate);
+		}else{
+			var jobEndDate =  $('#tpl-jobEndDate').html();
+			$('#studyDate').html(jobEndDate);
+		}
+	})
+	 
+	
+	$(document).on("focus",".datepicker", function () {
+		
+		 $(this).attr('autocomplete','off').datepicker({
+			 format: 'yyyy-mm',  
+			 startView: 'years',
+	         maxViewMode:'years',
+	         minViewMode:'months',
+	         language: 'zh-CN',
+	         pickerPosition:'bottom-right',
+	         autoclose:true
+		});
+
+    });
+	 
+
+	
+	 
+					  
+	  $("#submitbut").click(function(){
+	      var form = $("#infosave");
+		    $.ajax({
+		        url:'/per/studyinfo/save.do',
+		        type: form.attr("method"),
+		        data: form.serialize(),
+		        success: function (data)
+		        {
+		            $("#studydetail").html(data);
+		        }
+		    });
+
+	});
+	  
+	  $("#backbut").click(function(){
+		  $("#studydetail").load('/per/studyinfo/list.html' ,function(){
+			  var t =$("#study-info").offset().top-100;
+				 $(window).scrollTop(t);
+		  });
+	  })
+	 
+  })
+ </script>
+</html> 	 
+ 	
+			
+		
