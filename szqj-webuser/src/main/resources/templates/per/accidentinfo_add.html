@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0020)http://www.ysemm.cn/ -->
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css"></link>
+	<link href="/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"></link>
+	
+</head>
+  
+ 
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main  container-fluid">
+  
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--左侧菜单开始-->
+     <div class="col-md-2">
+		<div th:include="emp/leftmenu"/>  
+	 </div>
+     <!--左侧菜单结束-->
+
+            <div class="col-md-10 main-content ">
+              <form class="form-horizontal top-20" id="form"  action="/emp/buyinfo/save.do" method="post">
+               	<input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
+                 <div class="form-group">
+                  <label  class="col-md-1 control-label">采购名称</label>
+                  <div class="col-md-7">
+                    <input  type="text" class="form-control" name="buyInfoName" id="buyInfoName" placeholder="请输入采购名称">
+                  </div>
+                  
+                </div>
+
+                <div class="form-group">
+                  <label  class="col-md-1 control-label">交货地点</label>
+                  <div class="col-md-7">
+                    <input  type="text" class="form-control" name="place" id="place" placeholder="请输入交货地点">
+                  </div>
+                 </div>
+                 
+                 <div class="form-group">
+                  <label  class="col-md-1 control-label">发布日期</label>
+                  <div class="col-md-4">
+                  	<input  type="text" class="form-control datepicker" name="createDate" id="createDate" placeholder="请输入发布日期" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"/>
+                   </div>
+                  <label  class="col-md-1 control-label">截止日期</label>
+                  <div class="col-md-4">
+                     <input  type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="请输入截止日期">
+                  </div>
+                 </div>
+                 
+                 <div class="form-group">
+                  <label  class="col-md-1 control-label">类型</label>
+                  <div class="col-md-4">
+                    <select class="form-control" name="buyInfoTypeCode" id="buyInfoTypeCode">
+                     
+                    </select>
+                  </div>
+                  <label  class="col-md-1 control-label">数量</label>
+                  <div class="col-md-4">
+                     <input  type="text" class="form-control" name="num" id="num" placeholder="请输入数量">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label  class="col-md-1 control-label">联系人</label>
+                    <div class="col-md-4">
+                     <input  type="text" class="form-control" name="person" id="person" placeholder="请输入联系人">
+                  </div>
+                  
+                  <label  class="col-md-1 control-label">联系电话</label>
+                  <div class="col-md-4">
+                     <input  type="text" class="form-control" name="telphone" id="telphone" placeholder="请输入联系电话">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-md-1 control-label">采购说明</label>
+                  <div class="col-md-9">
+                    <textarea class="form-control" rows="8" placeholder="请输入采购说明" name="buyInfoDesc" id="buyInfoDesc"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-2 col-md-offset-4"  >
+                    <button id="submitbut" class="btn btn-primary" style="font-size:16px ">提交</button>
+                  </div>
+                </div>
+                
+              </form>
+            </div>
+              
+          </div>  
+        </div>
+  </div>          
+  
+	 <!--footer开始-->
+	 <div th:include="footer"></div>
+	 <!--footer结束-->
+  	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="/js/template-web.js"></script>
+
+	<script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/js/locale/bootstrap-datepicker.zh-CN.min.js"></script>
+	
+
+	<script id="tpl-cgtype" type="text/html">
+		{{each  retData}}
+  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
+		{{/each}}
+	</script>
+	
+
+   <script type="text/javascript" th:inline="javascript">
+
+   
+	$(function(){
+		$('.datepicker').datepicker({
+		    format: 'yyyy-mm-dd',
+		    language: 'zh-CN',
+		    autoclose:true,
+		    startDate: new Date()
+		});
+		
+		 $("#submitbut").click(function(){
+			   if($("#form").valid()){
+				   $("#form").submit();
+			   		 
+			   }
+		   });
+		
+		$('#buyinfo').addClass("active");
+		
+		$.get("/dict/getList.html?dictValue=cg_type",function(data,status){
+			var onehtml = template('tpl-cgtype',data);
+			$('#buyInfoTypeCode').html(onehtml);
+		});
+		
+		 $("#form").validate({
+	          rules: {
+	        	 buyInfoName: {
+	              required: true
+	            },
+	            place:{
+	              required: true
+	            },
+	            productType:{
+	           	  required: true	
+	            },
+	            num:{
+	              digits:true,
+	              required: true	
+	            },
+	            person:{
+		              required: true	
+		         },
+		         telphone:{
+	              required: true	
+	            }
+	           
+	            
+	          },
+	          messages: {
+	        	  buyInfoName: {
+		              required: "请输入采购名称"
+		            },
+		            place:{
+		              required: "请输入交货地点"
+		            },
+		            productType:{
+		           	  required: "请输入产品类型"	
+		            },
+		            num:{
+		            	digits: "请输入整数",
+		            	required: "请输入数量"	
+		            },
+		            person:{
+			              required: "请输入联系人"		
+			         },
+			        telphone:{
+		              required: "请输入联系电话"		
+		          }
+		      }
+	     });
+		
+	})
+</script>
+    
+</body>
+</html>

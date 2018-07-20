@@ -2,6 +2,7 @@ package com.szqj.service.domain;
 
 import java.util.Date;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,8 @@ public class AccidentInfo {
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
 	private String accidentInfod;
 	
+	private String accountId;//账号
+	
 	private String accidentName;//事故名称
 	
 	private String accidentDesc;//事故描述
@@ -34,10 +37,7 @@ public class AccidentInfo {
 	
 	private Date  creatDate;//创建时间
 	
-	private String personId;//用户id
 	
-	
-
 	public String getAccidentInfod() {
 		return accidentInfod;
 	}
@@ -86,12 +86,13 @@ public class AccidentInfo {
 		this.creatDate = creatDate;
 	}
 
-	public String getPersonId() {
-		return personId;
+	
+	public String getAccountId() {
+		return accountId;
 	}
 
-	public void setPersonId(String personId) {
-		this.personId = personId;
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 	
 	
