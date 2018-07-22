@@ -9,6 +9,8 @@
 	
 	<link href="/css/houtai.css" rel="stylesheet" type="text/css"></link>
 	<link href="/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"></link>
+	<link href="/css/upload.css" rel="stylesheet" type="text/css">
+	<link href="/js/upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css">
 	
 </head>
   
@@ -29,71 +31,74 @@
    <div class="row houtai-box" style="margin-top:5px">
      <!--左侧菜单开始-->
      <div class="col-md-2">
-		<div th:include="emp/leftmenu"/>  
+		<div th:include="per/leftmenu"/>  
 	 </div>
      <!--左侧菜单结束-->
 
             <div class="col-md-10 main-content ">
-              <form class="form-horizontal top-20" id="form"  action="/emp/buyinfo/save.do" method="post">
-               	<input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
+              <form class="form-horizontal top-20" id="form"  action="/per/accidentinfo/save.do" method="post">
+               	 <input type="hidden"  id="accidentPicId" name="accidentPicId" th:value="${accidentPicId}" />
+               	 <input type="hidden"  id="accidentVideoId" name="accidentVideoId" th:value="${accidentVideoId}" />
                  <div class="form-group">
-                  <label  class="col-md-1 control-label">采购名称</label>
+                  <label  class="col-md-1 control-label">事故名称</label>
                   <div class="col-md-7">
-                    <input  type="text" class="form-control" name="buyInfoName" id="buyInfoName" placeholder="请输入采购名称">
+                    <input  type="text" class="form-control" name="accidentName" id="accidentName" placeholder="请输入事故名称">
                   </div>
                   
                 </div>
 
                 <div class="form-group">
-                  <label  class="col-md-1 control-label">交货地点</label>
-                  <div class="col-md-7">
-                    <input  type="text" class="form-control" name="place" id="place" placeholder="请输入交货地点">
-                  </div>
-                 </div>
-                 
-                 <div class="form-group">
-                  <label  class="col-md-1 control-label">发布日期</label>
+                  <label  class="col-md-1 control-label">事故地点</label>
                   <div class="col-md-4">
-                  	<input  type="text" class="form-control datepicker" name="createDate" id="createDate" placeholder="请输入发布日期" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"/>
+                    <input  type="text" class="form-control txt_city" name="accidentPlace" id="accidentPlace" placeholder="请输入事故地点">
+                  </div>
+                
+                  <label  class="col-md-1 control-label">事故时间</label>
+                  <div class="col-md-4">
+                  	<input  type="text" class="form-control datepicker" name="accidentDate" id="accidentDate" placeholder="请输入事故时间" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"/>
                    </div>
-                  <label  class="col-md-1 control-label">截止日期</label>
-                  <div class="col-md-4">
-                     <input  type="text" class="form-control datepicker" name="endDate" id="endDate" placeholder="请输入截止日期">
-                  </div>
+                 
                  </div>
                  
-                 <div class="form-group">
-                  <label  class="col-md-1 control-label">类型</label>
-                  <div class="col-md-4">
-                    <select class="form-control" name="buyInfoTypeCode" id="buyInfoTypeCode">
-                     
-                    </select>
-                  </div>
-                  <label  class="col-md-1 control-label">数量</label>
-                  <div class="col-md-4">
-                     <input  type="text" class="form-control" name="num" id="num" placeholder="请输入数量">
-                  </div>
-                </div>
-
                 <div class="form-group">
-                  <label  class="col-md-1 control-label">联系人</label>
-                    <div class="col-md-4">
-                     <input  type="text" class="form-control" name="person" id="person" placeholder="请输入联系人">
-                  </div>
-                  
-                  <label  class="col-md-1 control-label">联系电话</label>
-                  <div class="col-md-4">
-                     <input  type="text" class="form-control" name="telphone" id="telphone" placeholder="请输入联系电话">
-                  </div>
-                </div>
-
-
-                <div class="form-group">
-                  <label class="col-md-1 control-label">采购说明</label>
+                  <label class="col-md-1 control-label">事故描述</label>
                   <div class="col-md-9">
-                    <textarea class="form-control" rows="8" placeholder="请输入采购说明" name="buyInfoDesc" id="buyInfoDesc"></textarea>
+                    <textarea class="form-control" rows="8" placeholder="请输入事故描述" name="accidentDesc" id="accidentDesc"></textarea>
                   </div>
                 </div>
+                
+                <div class="form-group">
+                  <label class="col-md-1 control-label">事故图片</label>
+                  <div class="col-md-7">
+	                  <span class="upload-pic-list-plu  fileinput-button">
+	                    <i class="glyphicon glyphicon-plus" style="margin-top:30px"></i>
+	                    <input type="file" name="file" id="btn_upload_image" >
+	               	 </span>
+                  	<div style="color:red;margin-top:5px" id="fileError"></div>
+                   
+                  
+                   </div>
+                </div>
+                
+                 <div class="row" id="piclist" style="margin-left:20px">
+               	   
+				 </div>
+				 
+				 <div class="form-group">
+                  <label class="col-md-1 control-label">事故视频</label>
+                  <div class="col-md-7">
+	                  <span class=" upload-pic-list-plu fileinput-button">
+	                    <i class="glyphicon glyphicon-plus" style="margin-top:30px"></i>
+	                    <input type="file" name="file" id="btn_upload_video" >
+	               	 </span>
+                  	<div style="color:red;margin-top:5px" id="videoError"></div>
+                   
+                  
+                   </div>
+                </div>
+                <div class="row" id="videolist" style="margin-left:20px">
+               	   
+				 </div>
 
                 <div class="form-group">
                   <div class="col-md-2 col-md-offset-4"  >
@@ -110,26 +115,65 @@
   
 	 <!--footer开始-->
 	 <div th:include="footer"></div>
-	 <!--footer结束-->
-  	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
 	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="/js/template-web.js"></script>
-
-	<script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="/js/locale/bootstrap-datepicker.zh-CN.min.js"></script>
+	<link th:href="@{/css/jquery.city.bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/animate.min.css}" rel="stylesheet" type="text/css">
 	
-
-	<script id="tpl-cgtype" type="text/html">
+   <script src="/js/upload/js/vendor/jquery.ui.widget.js"></script>
+   <script src="/js/upload/js/jquery.iframe-transport.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload-process.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload-ui.js"></script>
+   <script src="/js/upload/js/jquery.fileupload-validate.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="/js/locale/bootstrap-datepicker.zh-CN.min.js"></script>
+  <script src="/js/jquery.city.js"></script>
+	
+   <script id="tpl-img" type="text/html">
+     <ul class="list-group col-md-9 col-md-offset-1">
 		{{each  retData}}
-  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
-		{{/each}}
-	</script>
-	
-
+        <a class="list-group-item" style="height:120px;margin-bottom:10px">
+			<img src={{'/'+$value.fileWebPath}}  class="img-rounded" style="width:100px;height:100px"/>
+			<span style="margin-left:20px;font-size:15px" >{{$value.fileName}}</span>
+			<button type="button" class="close" aria-label="Close" style="opacity:1" onclick="delFile('{{$value.fileInfoId}}')"><span style="color:red">&times;</span></button>
+  		</a>
+		{{/each}}	
+     </ul>
+   </script>
+   
+     <script id="tpl-video" type="text/html">
+     <ul class="list-group col-md-9 col-md-offset-1">
+		{{each  retData}}
+        <a class="list-group-item" style="height:40px;margin-bottom:10px">
+			 <span style="margin-left:20px;font-size:15px" >{{$value.fileName}}</span>
+			<button type="button" class="close" aria-label="Close" style="opacity:1" onclick="delFile('{{$value.fileInfoId}}')"><span style="color:red">&times;</span></button>
+  		</a>
+		{{/each}}	
+     </ul>
+   </script>
+   
    <script type="text/javascript" th:inline="javascript">
-
+ 
+   var accountId=[[${session.account.token}]]; 
+   
+   function delFile(fileid){
+	   
+	   $.get("/file/delete.do?fileInfoId="+fileid+"&ss_accountId="+accountId,function(data,status){
+		   $.get("/file/list.do?bussinessId="+$("#accidentPicId").val(),function(data,status){
+			   console.log(data);
+			   var html = template('tpl-img',data);
+				$('#piclist').html(html);
+		   });
+	   });
+	   
+	  
+   };
    
 	$(function(){
+		$('#accidentinfo').addClass("active");
+		
 		$('.datepicker').datepicker({
 		    format: 'yyyy-mm-dd',
 		    language: 'zh-CN',
@@ -137,69 +181,108 @@
 		    startDate: new Date()
 		});
 		
-		 $("#submitbut").click(function(){
+		
+		$("#btn_upload_image").fileupload({
+			autoUpload: true,
+			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+			maxFileSize: 10 * 1024 * 1024,
+			minFileSize: 1,
+			maxNumberOfFiles: 50,
+			messages: {
+			    maxFileSize: '文件不能超过10M',
+			    acceptFileTypes: '文件类型不对'
+			},
+			processfail: function (e, data) {
+			    var currentFile = data.files[data.index];
+			    if (data.files.error && currentFile.error) {
+			        $("#fileError").html(currentFile.error);
+			    }
+			},
+		    dataType: 'json',
+		    url: '/file/uploadlist.do',
+		    formData: {dirName:'content/accidentinfo/img/',accountId:accountId,bussinessId:$("#accidentPicId").val()},
+		   
+		    done: function (e, data) { //对接口返回信息的处理
+		       console.log(data.result.retData)
+		       var html = template('tpl-img',data.result);
+				$('#piclist').html(html);
+		    }
+		});
+		
+		$("#btn_upload_video").fileupload({
+			autoUpload: true,
+			acceptFileTypes: /(\.|\/)(mp4)$/i,
+			maxFileSize: 100 * 1024 * 1024,
+			minFileSize: 1,
+			maxNumberOfFiles: 50,
+			messages: {
+			    maxFileSize: '文件不能超过100M',
+			    acceptFileTypes: '文件类型不对'
+			},
+			processfail: function (e, data) {
+			    var currentFile = data.files[data.index];
+			    if (data.files.error && currentFile.error) {
+			        $("#videoError").html(currentFile.error);
+			    }
+			},
+		    dataType: 'json',
+		    url: '/file/uploadlist.do',
+		    formData: {dirName:'content/accidentinfo/video',accountId:accountId,bussinessId:$("#accidentVideoId").val()},
+		   
+		    done: function (e, data) { //对接口返回信息的处理
+		       console.log(data.result.retData)
+		       var html = template('tpl-video',data.result);
+				$('#videolist').html(html);
+		    }
+		});
+		
+		 $('.txt_city').jcity({
+	         urlOrData: '/js/citydata.json',
+	         showArea:false,
+	         animate: { showClass: 'animated flipInX', hideClass: 'animated flipOutX' },  // 需要第一步引用的animate.min.css文件，也可以自己定义动画 
+	         onChoice: function (data) {
+	             console.log(data);
+	         }
+	     });
+		
+		
+		  $("#submitbut").click(function(){
 			   if($("#form").valid()){
 				   $("#form").submit();
 			   		 
 			   }
 		   });
 		
-		$('#buyinfo').addClass("active");
-		
-		$.get("/dict/getList.html?dictValue=cg_type",function(data,status){
-			var onehtml = template('tpl-cgtype',data);
-			$('#buyInfoTypeCode').html(onehtml);
-		});
-		
 		 $("#form").validate({
 	          rules: {
-	        	 buyInfoName: {
+	        	 accidentName: {
 	              required: true
 	            },
-	            place:{
+	            accidentDate:{
 	              required: true
 	            },
-	            productType:{
+	            accidentDesc:{
 	           	  required: true	
-	            },
-	            num:{
-	              digits:true,
-	              required: true	
-	            },
-	            person:{
-		              required: true	
-		         },
-		         telphone:{
-	              required: true	
 	            }
 	           
 	            
 	          },
 	          messages: {
-	        	  buyInfoName: {
-		              required: "请输入采购名称"
+	        	  accidentName: {
+		              required: "请输入事故名称"
 		            },
-		            place:{
-		              required: "请输入交货地点"
+		            accidentDate:{
+		              required: "请输入事故时间"
 		            },
-		            productType:{
-		           	  required: "请输入产品类型"	
-		            },
-		            num:{
-		            	digits: "请输入整数",
-		            	required: "请输入数量"	
-		            },
-		            person:{
-			              required: "请输入联系人"		
-			         },
-			        telphone:{
-		              required: "请输入联系电话"		
-		          }
+		            accidentDesc:{
+		           	  required: "请输入事故描述"
+		            }
 		      }
 	     });
 		
 	})
 </script>
+    
     
 </body>
 </html>

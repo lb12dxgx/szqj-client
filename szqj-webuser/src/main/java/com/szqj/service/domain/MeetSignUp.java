@@ -2,6 +2,7 @@ package com.szqj.service.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,6 +47,9 @@ public class MeetSignUp {
 	
 	@Excel(name = "签到", width = 30, isImportField = "true_st",replace = { "未签到_0", "已签到_1" }, orderNum = "6")
 	private Integer isSign=0;//是否已签到：0:未签到  1：已签到
+	
+	@Column
+	private String accountId;//账号
 
 	public String getMeetSignUpId() {
 		return meetSignUpId;
@@ -136,6 +140,14 @@ public class MeetSignUp {
 
 	public void setIsSign(Integer isSign) {
 		this.isSign = isSign;
+	}
+
+	public String getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 
 	

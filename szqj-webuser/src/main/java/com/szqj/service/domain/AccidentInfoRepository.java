@@ -20,12 +20,12 @@ import org.springframework.stereotype.Repository;
 public interface AccidentInfoRepository extends PagingAndSortingRepository<AccidentInfo, String> {
 
 
-	@Query("select m from AccidentInfo m where m.accountId=?1  order by m.createDate desc")
+	@Query("select m from AccidentInfo m where m.accountId=?1  order by m.creatDate desc")
 	Page<AccidentInfo> findPageByAccountId(String accountId,Pageable pageable);
 	
 
 
-	@Query("select m from AccidentInfo m  order by m.createDate desc")
-	Page<AccidentInfo> findPage(Pageable pageable);
+	@Query("select m from AccidentInfo m  order by m.creatDate desc")
+	Page<AccidentInfo> findAllPage(Pageable pageable);
 	
 }

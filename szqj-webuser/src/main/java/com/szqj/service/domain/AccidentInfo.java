@@ -23,13 +23,21 @@ public class AccidentInfo {
 	@Id   
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
-	private String accidentInfod;
+	private String accidentInfoId;
 	
 	private String accountId;//账号
 	
 	private String accidentName;//事故名称
 	
 	private String accidentDesc;//事故描述
+	
+	private String accidentPlace;//事故地点
+	
+	private Date accidentDate;//事故时间
+	
+	private String personName;//姓名
+	
+	private String telePhone;//电话
 	
 	private String accidentPicId;//事故图片标识
 	
@@ -38,12 +46,14 @@ public class AccidentInfo {
 	private Date  creatDate;//创建时间
 	
 	
-	public String getAccidentInfod() {
-		return accidentInfod;
+	
+
+	public String getAccidentInfoId() {
+		return accidentInfoId;
 	}
 
-	public void setAccidentInfod(String accidentInfod) {
-		this.accidentInfod = accidentInfod;
+	public void setAccidentInfoId(String accidentInfoId) {
+		this.accidentInfoId = accidentInfoId;
 	}
 
 	public String getAccidentName() {
@@ -93,6 +103,38 @@ public class AccidentInfo {
 
 	public void setAccountId(String accountId) {
 		this.accountId = accountId;
+	}
+
+	public String getAccidentPlace() {
+		return accidentPlace;
+	}
+
+	public void setAccidentPlace(String accidentPlace) {
+		this.accidentPlace = accidentPlace;
+	}
+
+	public Date getAccidentDate() {
+		return accidentDate;
+	}
+
+	public void setAccidentDate(Date accidentDate) {
+		this.accidentDate = accidentDate;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+	public String getTelePhone() {
+		return telePhone;
+	}
+
+	public void setTelePhone(String telePhone) {
+		this.telePhone = telePhone;
 	}
 	
 	
