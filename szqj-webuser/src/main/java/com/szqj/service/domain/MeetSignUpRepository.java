@@ -38,6 +38,10 @@ public interface MeetSignUpRepository extends PagingAndSortingRepository<MeetSig
 	List<MeetSignUp> findListByMeetIdAndUserName(String meetId,String userName);
 	
 	
+	@Query("select m from MeetSignUp m where m.meetId = ?1 and m.accountId= ?2  order by empName ,createDate")
+	List<MeetSignUp> findListByMeetIdAndAccountId(String meetId,String accountId);
+	
+	
 
 	
 	

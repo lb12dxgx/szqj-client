@@ -43,7 +43,7 @@ public class Meet {
 	private Integer isSign=0;//开启报名 0:不允许签到  1:允许签到
 	
 	@Transient
-	private Integer signState;//0:报名 1:已报名 2:报名
+	private Integer signState;//0:报名 1:已报名 2:报名结束
 	
 
 	public String getMeetId() {
@@ -142,6 +142,14 @@ public class Meet {
 
 	public void setIsSign(Integer isSign) {
 		this.isSign = isSign;
+	}
+
+	public Integer getSignState() {
+		return signState;
+	}
+
+	public void setSignState(Integer signState) {
+		this.signState = signState;
 	}
 	
 	

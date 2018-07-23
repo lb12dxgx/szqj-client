@@ -1,10 +1,7 @@
 package com.szqj.website.per.control;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -24,8 +21,6 @@ import com.szqj.service.domain.Person;
 import com.szqj.springmvc.Token;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
-import com.szqj.weborg.domain.Dict;
-import com.szqj.weborg.domain.DictRepository;
 import com.szqj.weborg.domain.FileInfo;
 import com.szqj.weborg.domain.FileInfoRepository;
 
@@ -48,23 +43,32 @@ public class PerMeetControle {
 	
 	
 	/**
-	 * 会议展览
+	 * 会议信息
 	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/per/meet.html"  )
-	public String index_meet(Integer pageNum, Integer size, ModelMap modelMap){
+	public String index_meet(@SessionAttribute Account account,Integer pageNum, Integer size, ModelMap modelMap){
 		PageRequest pageable=Tools.getPage(pageNum, 5);
 		Page<Meet> page=meetRepository.findPage(pageable);
 		
 		List<Meet> l = page.getContent();
-		HashMap map=new HashMap();
-		for(Meet c:l) {
-	         个人报名状态	
+		
+		for(Meet meet:l) {
+			List<MeetSignUp> list = meetSignUpRepository.findListByMeetIdAndAccountId(meet.getMeetId(), account.getAccountId());
+			if(list.size()>0){
+				meet.setSignState(1);//已报名
+			}else{
+				if(meet.getStartDate().getTime()>new Date().getTime()){
+					meet.setSignState(2);//报名结束
+				}else{
+					meet.setSignState(0);//报名
+				}
+			}
 		}
 		
 		modelMap.put("page", page);
-		modelMap.put("fileMap", map);
+		
 		return "per/meet"; 
 	}
 	
