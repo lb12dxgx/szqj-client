@@ -33,5 +33,8 @@ public interface TrainSignUpRepository extends PagingAndSortingRepository<TrainS
 	
 	@Query("select m from TrainSignUp m where m.trainPlanId = ?1 and m.telphone= ?2  order by empName ,createDate")
 	List<TrainSignUp> findListByTrainPlanIdAndTelphone(String meetId,String telphone);
+
+	@Query("select m from TrainSignUp m where m.trainPlanId = ?1 and m.accountId= ?2  order by empName ,createDate")
+	List<TrainSignUp> findListByTrainPlanIdAndAccountId(String trainPlanId, String accountId);
 	
 }

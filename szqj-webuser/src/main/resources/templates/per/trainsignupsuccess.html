@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	<link href="/css/cyfw.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+   <!--面包屑结束-->
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+      
+       <li class="active">培训报名</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row baoming-cg">
+   
+
+	   <div class="col-md-2"></div>
+     <div class="col-md-8 text-center">
+		<div><img src="/images/chegngong.png"></div>
+		<h3>报名成功!</h3>
+	   <div>
+	  
+	   </div>
+     </div>
+	   <div class="col-md-2"></div>
+ 
+   </div>
+ </div>
+ 
+ <!--footer开始-->
+	<div th:include="footer"></div>
+ <!--footer结束-->
+ <script type="text/javascript">
+	$(function(){
+		
+		
+	})
+ </script>
+ <!--footer结束-->
+</body>
+</html>

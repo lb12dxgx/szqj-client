@@ -59,7 +59,7 @@ public class PerMeetControle {
 			if(list.size()>0){
 				meet.setSignState(1);//已报名
 			}else{
-				if(meet.getStartDate().getTime()>new Date().getTime()){
+				if(meet.getStartDate().getTime()<new Date().getTime()){
 					meet.setSignState(2);//报名结束
 				}else{
 					meet.setSignState(0);//报名
@@ -74,8 +74,20 @@ public class PerMeetControle {
 	
 	
 	@RequestMapping(value = "/per/meet/detail.html"  )
-	public String meet_detail(String meetId, ModelMap modelMap){
+	public String meet_detail(@SessionAttribute Account account,String meetId, ModelMap modelMap){
 		Meet meet = meetRepository.findById(meetId).get();
+		
+		List<MeetSignUp> list = meetSignUpRepository.findListByMeetIdAndAccountId(meet.getMeetId(), account.getAccountId());
+		if(list.size()>0){
+			meet.setSignState(1);//已报名
+		}else{
+			if(meet.getStartDate().getTime()<new Date().getTime()){
+				meet.setSignState(2);//报名结束
+			}else{
+				meet.setSignState(0);//报名
+			}
+		}
+		
 		String tFiled = meet.getMeetPicId();
 		List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
 		if(files!=null&&files.size()>0) {

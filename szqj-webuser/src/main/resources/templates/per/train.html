@@ -29,7 +29,7 @@
 	<div class="col-md-10 main-content" >
        		 
        		  <div class="col-md-12" style="padding:10px;">
-                <form class="form-inline" action="/per/meet.html" method="post">
+                <form class="form-inline" action="/per/train.html" method="post">
                    
                 </form>
               </div>
@@ -38,24 +38,24 @@
                 <table class="table table-striped table-bordered ">
                   <tr>
                     <th width="5%">序号</th>
-                    <th width="50%">会议名称</th>
+                    <th width="50%">培训名称</th>
                     <th width="10%">地点</th>
                     <th width="8%">开始时间</th>
                     <th width="8%">结束时间</th>
                     <th width="14%">操作</th>
                   </tr>
-                  <tr th:each="meet,iterStat:${page.content}">
+                  <tr th:each="train,iterStat:${page.content}">
                     <td  th:text="${iterStat.count}">1</td>
-                    <td  th:text="${meet.meetName}">项目经理</td>
-                    <td  th:text="${meet.meetPlace}">1.3-1.6万/月</td>
-                    <td  th:text="${#dates.format(meet.startDate, 'yyyy-MM-dd')}">1.3-1.6万/月</td>
-                  	<td  th:text="${#dates.format(meet.endDate, 'yyyy-MM-dd')}">2</td>
+                    <td  th:text="${train.trainName}">项目经理</td>
+                    <td  th:text="${train.trainAddr}">1.3-1.6万/月</td>
+                    <td  th:text="${#dates.format(train.trainStartDate, 'yyyy-MM-dd')}">1.3-1.6万/月</td>
+                  	<td  th:text="${#dates.format(train.trainEndDate, 'yyyy-MM-dd')}">2</td>
                     
                     <td>
-                     <a href="#" class="btn btn-default btn-sm"  th:onclick="'javascript:view(\''+${meet.meetId}+'\')'" >查看</a>
-	                      <a th:if="${meet.signState==0}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  target="_blank" class="btn btn-success btn-sm"> 报名</a>
-	                      <a th:if="${meet.signState==1}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  target="_blank" class="btn btn-info btn-sm"> 已报名</a>
-	               		  <a th:if="${meet.signState==2}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  target="_blank" class="btn btn-default btn-sm" disabled> 报名结束</a>
+                     <a href="#" class="btn btn-default btn-sm"  th:onclick="'javascript:view(\''+${train.trainPlanId}+'\')'" >查看</a>
+	                      <a th:if="${train.signState==0}" th:href="@{'/per/train/signup.html?trainPlanId='+${train.trainPlanId}}"  target="_blank" class="btn btn-success btn-sm"> 报名</a>
+	                      <a th:if="${train.signState==1}" th:href="@{'/per/train/signup.html?trainPlanId='+${train.trainPlanId}}"  target="_blank" class="btn btn-info btn-sm"> 已报名</a>
+	               		  <a th:if="${train.signState==2}" th:href="@{'/per/train/signup.html?trainPlanId='+${train.trainPlanId}}"  target="_blank" class="btn btn-default btn-sm" disabled> 报名结束</a>
                     </td>
                   </tr>
 				</table>
@@ -80,15 +80,12 @@
   	<script type="text/javascript" th:inline="javascript">
   	
   	function view(id){
-  		window.open('/per/meet/detail.html?meetId='+id);
+  		window.open('/per/train/detail.html?trainPlanId='+id);
 	};
 	
 	
 	$(function(){
-		$('#meet').addClass("active"); 
-		
-		
-		
+		$('#traininfo').addClass("active"); 
 		$('.page-link').click(function(){
 			  if(!$(this).parent().hasClass("disabled")){
 				  $('#pageNum').val($(this).attr("pageIndex"));
@@ -96,7 +93,7 @@
 			  }
 		});
 	})
-</script>
+</script>  
   <!--footer结束-->
   </body>
 </html>

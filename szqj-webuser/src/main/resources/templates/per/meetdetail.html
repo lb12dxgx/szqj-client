@@ -88,7 +88,11 @@
 			 <p>    德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
              </p>
 		 </div>
-		 <div class="text-center" style="margin-top:10px"><a  th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}" class="btn btn-success bm-btn"> 立即报名</a></div>
+		 <div class="text-center" style="margin-top:10px">
+		 	 <a th:if="${meet.signState==0}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  class="btn btn-success btn-sm"> 报名</a>
+	         <a th:if="${meet.signState==1}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  class="btn btn-info btn-sm"> 已报名</a>
+	         <a th:if="${meet.signState==2}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"   class="btn btn-default btn-sm" disabled> 报名结束</a>
+		 </div>
 
      </div>
      <!--左侧内容结束-->

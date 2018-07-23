@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	<link href="/css/cyfw.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main container" >
+   <!--面包屑开始-->
+    <div class="row" >
+     <ul class="breadcrumb col-md-12">
+       <li class="active">会议报名</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row baoming-box">
+   <form method="post" action="saveSignup.do" id="regForm">
+   	 <input  name="meetId"  type="hidden" th:value="${meet.meetId}" />
+   	 <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
+   	 <div class="col-md-2"></div>
+     <div class="col-md-9">
+		 <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text">姓名</label></div>
+		  <div class="col-md-5 text-center"><input class="form-control " name="userName" placeholder="请输入姓名" type="text" th:value="${person.personName}" readonly></div>
+		  <div class="col-md-4 text-left"><label id="userName-error" class="errorlabel error"  for="userName" /></div>
+	   </div>
+		 <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text">手机</label></div>
+		  <div class="col-md-5 text-center"><input class="form-control" name="telphone" placeholder="请输入手机号" type="text" th:value="${person.telePhone}" readonly></div>
+		  <div class="col-md-4 text-left"><label id="telphone-error" class="errorlabel error"  for="telphone" /></div>
+	   </div>
+	   <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text">邮箱</label></div>
+		  <div class="col-md-5 text-center"><input class="form-control" name="email" placeholder="请输入邮箱" type="text"  th:value="${person.perEmail}" ></div>
+		  <div class="col-md-4 text-left"><label id="email-error" class="errorlabel error"  for="email"/></div>
+	   </div>
+		
+		 <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text">企业名称</label></div>
+		  <div class="col-md-5 text-center"><input class="form-control" name="empName" placeholder="请输入企业名称" type="text"></div>
+		  <div class="col-md-4 text-left"><label id="empName-error" class="errorlabel error"  for="empName"/></div>
+	   </div>
+       <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text">职务</label></div>
+		  <div class="col-md-5 text-center"><input class="form-control" name="post" placeholder="请输入职务" type="text"></div>
+		  <div class="col-md-4 text-left"></div>
+	   </div>
+		
+		
+	   
+	   <div>
+			<div class="col-md-3 text-right"></div>
+			<div class="col-md-5 text-center">
+				<a href="#" class="btn btn-success" style="width: 100%" id="reg">提交报名</a>
+		   </div>
+			<div class="col-md-4 text-left">
+			  
+			</div>
+	   </div>
+	   </div>
+     </div>
+	   <div class="col-md-1"></div>
+     </form>
+   </div>
+ </div>
+ 
+ <!--footer开始-->
+	<div th:include="footer"></div>
+ <!--footer结束-->
+ <link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+ <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+ <script type="text/javascript">
+	$(function(){
+		
+		
+		 $("#reg").click(function(){
+		    	if($("#regForm").valid()){
+		    		
+		    		 $("#regForm").submit();
+		    	}
+
+		    })
+		
+		 $.validator.addMethod("isMobile", function(value, element) {
+		     var length = value.length;
+		     var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+		     return this.optional(element) || (length == 11 && mobile.test(value));
+		 }, "请正确填写您的手机号码");
+		 
+		
+		$("#regForm").validate({
+	          rules: {
+	            userName:{
+	               required:true,
+	            },
+	            telphone:{
+	              required:true,
+	              isMobile:true
+	            },
+	            empName: {
+	              required: true
+	            },
+	            email: {
+	            	 
+		              required: true
+		         }
+	           
+	          },
+	          messages: {
+	            userName:{
+	              required:'请输入姓名'
+	            },
+	            telphone:{
+	              required:'请输入常用手机号',
+	              mobile:'手机格式不正确,请重新输入'
+	            },
+	            empName:{
+	              required:'请输入企业名称'
+	            },
+	            email:{
+		              required:'请输入邮箱'
+		             
+		         }
+	           
+	          }
+	     });
+		
+		
+		
+	})
+ </script>
+ <!--footer结束-->
+</body>
+</html>

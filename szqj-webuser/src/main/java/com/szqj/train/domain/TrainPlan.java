@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -38,6 +39,9 @@ public class TrainPlan {
     private Date createDate;//创建时间
     
     private Integer isSign=0;//开启报名 0:不允许签到  1:允许签到
+    
+    @Transient
+	private Integer signState;//0:报名 1:已报名 2:报名结束
 
 	public String getTrainPlanId() {
 		return trainPlanId;
@@ -125,6 +129,14 @@ public class TrainPlan {
 
 	public void setIsSign(Integer isSign) {
 		this.isSign = isSign;
+	}
+
+	public Integer getSignState() {
+		return signState;
+	}
+
+	public void setSignState(Integer signState) {
+		this.signState = signState;
 	}
     
     
