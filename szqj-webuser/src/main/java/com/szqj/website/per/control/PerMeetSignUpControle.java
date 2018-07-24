@@ -27,7 +27,7 @@ import com.szqj.weborg.domain.FileInfoRepository;
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
-public class PerMeetControle {
+public class PerMeetSignUpControle {
 	
 	@Autowired
 	private MeetRepository meetRepository;

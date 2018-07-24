@@ -6,6 +6,7 @@
 <script type="text/javascript" src="/js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/vendor/modernizr-2.6.2.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-dialog.min.js"></script>
 <!-- Respond.js for IE 8 or less only -->
 <!--[if (lt IE 9) & (!IEMobile)]>
             <script src="/js/vendor/respond.min.js"></script>
@@ -15,6 +16,7 @@
 <link th:href="@{/css/components.min.css}" rel="stylesheet" type="text/css">
 <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
 <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" th:inline="javascript">
   	
@@ -81,6 +83,40 @@
   	        onhide : func
   	    });
   	};
+  	
+  	$.showDailogByUrl = function(str,url, funcok, funcclose) {
+  	    BootstrapDialog.confirm({
+  	        title : str,
+  	     
+  	        type : BootstrapDialog.TYPE_PRIMARY, // <-- Default value is
+  	        // BootstrapDialog.TYPE_PRIMARY
+  	        closable : true, // <-- Default value is false，点击对话框以外的页面内容可关闭
+  	        draggable : true, // <-- Default value is false，可拖拽
+  	        btnCancelLabel : '取消', // <-- Default value is 'Cancel',
+  	        btnOKLabel : '确定', // <-- Default value is 'OK',
+  	        btnOKClass : 'btn-success', // <-- If you didn't specify it, dialog type 
+  	        size : BootstrapDialog.SIZE_WIDE,
+	  	    message: function (dialog) {
+	              var $message = $('<div></div>');
+	              var pageToLoad = dialog.getData('pageToLoad');
+	              $message.load(pageToLoad);
+	              return $message;
+	          },                 
+	          data: {
+	              'pageToLoad': url,
+	          },
+  	        // 对话框关闭的时候执行方法
+  	        onhide : funcclose,
+  	        callback : function(result) {
+  	            // 点击确定按钮时，result为true
+  	            if (result) {
+  	                // 执行方法
+  	                funcok.call();
+  	            }
+  	        }
+  	    });
+  	};
+  	
  </script>
 
 

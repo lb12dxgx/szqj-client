@@ -4,6 +4,7 @@
 </head>
 <head>
 	<link href="/css/cyfw.css" rel="stylesheet" type="text/css">
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!--[if lte IE 7]>
@@ -16,28 +17,27 @@
    <!--菜单开始-->
 	<header th:include="header"/>
   <!--菜单结束-->
-   <!--面包屑结束-->
- <div class="gb-main container">
-   <!--面包屑开始-->
-   <div class="row">
-     <ul class="breadcrumb col-md-12">
-      
-       <li class="active">培训报名</li>
-     </ul>
-   </div>
-   <!--面包屑结束-->
-   <div class="row baoming-cg">
-   
-
-	   <div class="col-md-2"></div>
-     <div class="col-md-8 text-center">
-		<div><img src="/images/chegngong.png"></div>
-		<h3>报名成功!</h3>
-	   <div>
-	  
-	   </div>
-     </div>
-	   <div class="col-md-2"></div>
+   <div class="gb-main  container-fluid">
+ 
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--左侧菜单开始-->
+     <div class="col-md-2">
+		<div th:include="per/leftmenu"/>  
+	 </div>
+     <!--左侧菜单结束-->
+   <div class="col-md-10 main-content">
+     <div class="row">
+	     <div class="col-md-12 text-center">
+			<div><img src="/images/chegngong.png"></div>
+			<h3>报名成功!</h3>
+		   
+	    </div>
+	 </div> 
+	 <div class="row">
+	    <div class="col-md-12 text-center" style="margin-top:20px">
+			<a href="/per/train.html" class="btn btn-success  btn-lg" >返回</a>
+		 </div>
+	 </div>
  
    </div>
  </div>
@@ -47,7 +47,7 @@
  <!--footer结束-->
  <script type="text/javascript">
 	$(function(){
-		
+		$('#traininfo').addClass("active"); 
 		
 	})
  </script>

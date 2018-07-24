@@ -52,10 +52,10 @@
                   	<td  th:text="${#dates.format(meet.endDate, 'yyyy-MM-dd')}">2</td>
                     
                     <td>
-                     <a href="#" class="btn btn-default btn-sm"  th:onclick="'javascript:view(\''+${meet.meetId}+'\')'" >查看</a>
-	                      <a th:if="${meet.signState==0}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  target="_blank" class="btn btn-success btn-sm"> 报名</a>
-	                      <a th:if="${meet.signState==1}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  target="_blank" class="btn btn-info btn-sm"> 已报名</a>
-	               		  <a th:if="${meet.signState==2}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  target="_blank" class="btn btn-default btn-sm" disabled> 报名结束</a>
+                     	  <a href="#" class="btn btn-default btn-sm"  th:onclick="'javascript:view(\''+${meet.meetId}+'\')'" >查看</a>
+	                      <a th:if="${meet.signState==0}" th:href="@{'/per/meet/signup.html?meetId='+${meet.meetId}}"  class="btn btn-success btn-sm"> 报名</a>
+	                      <a th:if="${meet.signState==1}" class="btn btn-info btn-sm"> 已报名</a>
+	               		  <a th:if="${meet.signState==2}" class="btn btn-default btn-sm" disabled> 报名结束</a>
                     </td>
                   </tr>
 				</table>

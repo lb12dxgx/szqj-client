@@ -53,9 +53,9 @@
                     
                     <td>
                      <a href="#" class="btn btn-default btn-sm"  th:onclick="'javascript:view(\''+${train.trainPlanId}+'\')'" >查看</a>
-	                      <a th:if="${train.signState==0}" th:href="@{'/per/train/signup.html?trainPlanId='+${train.trainPlanId}}"  target="_blank" class="btn btn-success btn-sm"> 报名</a>
-	                      <a th:if="${train.signState==1}" th:href="@{'/per/train/signup.html?trainPlanId='+${train.trainPlanId}}"  target="_blank" class="btn btn-info btn-sm"> 已报名</a>
-	               		  <a th:if="${train.signState==2}" th:href="@{'/per/train/signup.html?trainPlanId='+${train.trainPlanId}}"  target="_blank" class="btn btn-default btn-sm" disabled> 报名结束</a>
+	                      <a th:if="${train.signState==0}" th:href="@{'/per/train/signup.html?trainPlanId='+${train.trainPlanId}}"  class="btn btn-success btn-sm"> 报名</a>
+	                      <a th:if="${train.signState==1}"   class="btn btn-info btn-sm"> 已报名</a>
+	               		  <a th:if="${train.signState==2}"  class="btn btn-default btn-sm" disabled> 报名结束</a>
                     </td>
                   </tr>
 				</table>
@@ -82,6 +82,12 @@
   	function view(id){
   		window.open('/per/train/detail.html?trainPlanId='+id);
 	};
+	
+	function singup(id){
+		$.showDailogByUrl("培训报名？","/per/train/signup.html?trainPlanId="+id,function(id){
+			
+		});
+	}
 	
 	
 	$(function(){

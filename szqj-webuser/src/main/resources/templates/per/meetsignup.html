@@ -4,6 +4,7 @@
 </head>
 <head>
 	<link href="/css/cyfw.css" rel="stylesheet" type="text/css">
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!--[if lte IE 7]>
@@ -16,15 +17,15 @@
    <!--菜单开始-->
 	<header th:include="header"/>
   <!--菜单结束-->
- <div class="gb-main container" >
-   <!--面包屑开始-->
-    <div class="row" >
-     <ul class="breadcrumb col-md-12">
-       <li class="active">会议报名</li>
-     </ul>
-   </div>
-   <!--面包屑结束-->
-   <div class="row baoming-box">
+ <div class="gb-main  container-fluid">
+ 
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--左侧菜单开始-->
+     <div class="col-md-2">
+		<div th:include="per/leftmenu"/>  
+	 </div>
+     <!--左侧菜单结束-->
+   <div class="col-md-10 main-content">
    <form method="post" action="saveSignup.do" id="regForm">
    	 <input  name="meetId"  type="hidden" th:value="${meet.meetId}" />
    	 <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
@@ -82,7 +83,7 @@
  <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
  <script type="text/javascript">
 	$(function(){
-		
+		$('#meet').addClass("active"); 
 		
 		 $("#reg").click(function(){
 		    	if($("#regForm").valid()){

@@ -22,22 +22,37 @@
    <div class="row houtai-box" style="margin-top:5px">
      <!--左侧菜单开始-->
      <div class="col-md-2">
-		<div th:include="per/leftmenu"/>  
+		<div th:include="emp/leftmenu"/>  
 	 </div>
      <!--左侧菜单结束-->
    <div class="col-md-10 main-content">
-     <div class="row">
-	     <div class="col-md-12 text-center">
-			<div><img src="/images/chegngong.png"></div>
-			<h3>报名成功!</h3>
-		   
-	    </div>
-	 </div> 
-	 <div class="row">
-	    <div class="col-md-12 text-center" style="margin-top:20px">
-			<a href="/per/meet.html" class="btn btn-success  btn-lg" >返回</a>
-		 </div>
+     <div class="col-md-8 col-md-offset-1" style="margin-top:40px">
+	     <div class="panel panel-default">
+			  <div class="panel-heading"><h5>安全设置</h5></div>
+			  <div class="panel-body">
+			     <ul class="list-group" style="line-height:40px">
+				  <li class="list-group-item">
+				  	 <div style="font-size:18px">
+				  	 	<i class="fa fa-key" style="margin-right:10px;font-size:25px"></i>登录密码
+				  		<a href="/per/changepassword.html" class=" btn btn-primary pull-right" style="" >
+                     		<i class="fa fa-pencil" style="margin-right:5px;"></i>修改
+                    	</a>
+				  	 </div>
+				  	 
+				  </li>
+				  <li class="list-group-item">
+				   <div style="font-size:18px"> 
+				   	 <i class="fa fa-mobile" style="margin-right:10px;font-size:30px"></i>手机绑定
+				   	<a href="/per/changetelphone.html" class=" btn btn-primary pull-right" style="" >
+                     		<i class="fa fa-pencil" style="margin-right:5px;"></i>修改
+                    	</a>
+				   </div>
+				  </li>
+				</ul>	
+			  </div> 
+		  </div>
 	 </div>
+	 
  
    </div>
  </div>
@@ -47,7 +62,7 @@
  <!--footer结束-->
  <script type="text/javascript">
 	$(function(){
-		$('#meet').addClass("active"); 
+		$('#security').addClass("active"); 
 		
 	})
  </script>

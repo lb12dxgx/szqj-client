@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	<link href="/css/cyfw.css" rel="stylesheet" type="text/css">
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main  container-fluid">
+ 
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--左侧菜单开始-->
+     <div class="col-md-2">
+		<div th:include="per/leftmenu"/>  
+	 </div>
+     <!--左侧菜单结束-->
+   <div class="col-md-10 main-content">
+   <form method="post" action="savetelphone.do" id="form">
+   
+   	 <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
+   	
+     <div class="col-md-9 col-md-offset-2 " style="margin-top:30px">
+		 <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text">原手机号</label></div>
+		  <div class="col-md-5 text-center"><input class="form-control " name="oldtelphone" id="oldtelphone"  type="text" readonly th:value="${oldtelphone}"></div>
+		  <div class="col-md-4 text-left"><label id="oldtelphone-error" class="errorlabel error"  for="oldtelphone" /></div>
+	   	 </div>
+	   	 
+		 <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text">验证码</label></div>
+		  <div class="col-md-5 text-center"><input class="form-control" name="changetelcode"  id="changetelcode" placeholder="请输入验证码" type="text" ></div>
+		  <div class="col-md-2 text-center">
+				 <a href="#" class="btn btn-default"  id="sendsms">发送验证码</a>
+		   </div>
+		  <div class="col-md-2 text-left"><label id="changetelcode-error" class="errorlabel error"  for="changetelcode" /></div>
+	   </div>
+	   <div class="row zcsx-list">
+		  <div class="col-md-3 text-right"><label class="control-label zscx-text">新手机号</label></div>
+		  <div class="col-md-5 text-center"><input class="form-control" name="telphone"   id="telphone" placeholder="请重复输入新手机号" type="text" th:value="${telphone}"  ></div>
+		  <div class="col-md-4 text-left"><label id="telphone-error" class="errorlabel error"  for="telphone"/></div>
+	   </div>
+		
+		 <div>
+			<div class="col-md-3 text-right"></div>
+			<div class="col-md-5 text-center">
+				<a href="#" class="btn btn-success" style="width: 100%" id="reg">提交</a>
+		   </div>
+			<div class="col-md-4 text-left">
+			  
+			</div>
+	   </div>
+	   </div>
+     </div>
+	   <div class="col-md-1"></div>
+     </form>
+   </div>
+ </div>
+ 
+ <!--footer开始-->
+	<div th:include="footer"></div>
+ <!--footer结束-->
+ <link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+ <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+ <script type="text/javascript">
+ 
+	 $.validator.addMethod("isMobile", function(value, element) {
+	     var length = value.length;
+	     var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+	     return this.optional(element) || (length == 11 && mobile.test(value));
+	 }, "请正确填写您的手机号码");
+ 	
+ 
+	function getInviteCode(m,_this){
+		  	var parm=$("#form").serialize();
+	        $.post("/per/sendsms.html",parm,function(data,status){
+	          console.log(data.retData);
+	          var interval=setInterval(function(){
+	              m=m-1;
+	              _this.html(m+"秒后再次发送");
+	              if(m<=0){
+	                 clearInterval(interval);
+	                 $("#sendsms").removeClass("disabled");
+	                  _this.html("再次发送验证码");
+	                 return; 
+	              }
+	             },1000);
+
+	          });
+	   }
+	 
+	 
+	
+ 
+	$(function(){
+		
+		$('#security').addClass("active"); 
+		
+		 $("#reg").click(function(){
+		    	if($("#form").valid()){
+		    		
+		    		 $("#form").submit();
+		    	}
+
+		    })
+		
+		 
+		  $("#sendsms").click(function(){
+				  $("#sendsms").addClass("disabled");
+			       getInviteCode(60,$(this));
+			           
+		    });
+		
+		$("#form").validate({
+	          rules: {
+	        	  telphone:{
+	            	  required:true,
+	            	  isMobile:true,
+		              remote:{  
+		                    type:"POST",  
+		                    url:"/per/isExitByPerTelphone.html",
+		                    data:{  
+		                    	telphone:function(){ return $("#telphone").val(); }  
+		                    }  
+		                } 
+	            },
+	            changetelcode:{
+	              required:true,
+	              remote:{  
+	                    type:"POST",  
+	                    url:"/per/isExitByTelcode.html",
+	                    data:{  
+	                    	changetelcode:function(){ return $("#changetelcode").val(); }  
+	                    }  
+	                } 
+	            }
+	           
+	          },
+	          messages: {
+	        	  telphone:{
+		              required:'请输入手机号码',
+		              isMobile:'手机格式不正确,请重新输入',
+		              remote:'此手机号已被绑定,请选择其他手机号'
+		            },
+		            changetelcode:{
+		              required:'请输入验证码',
+		              remote:"验证码不正确"
+		            }
+	           
+	          }
+	     });
+		
+		
+		
+	})
+ </script>
+ <!--footer结束-->
+</body>
+</html>

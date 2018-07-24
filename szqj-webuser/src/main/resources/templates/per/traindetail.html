@@ -76,11 +76,7 @@
 		 </div>
 		
 		 
-		  <div class="text-center" style="margin-top:10px">
-		 	 <a th:if="${trainPlan.signState==0}" th:href="@{'/per/meet/signup.html?trainPlanId='+${trainPlan.trainPlanId}}"  class="btn btn-success btn-sm"> 报名</a>
-	         <a th:if="${trainPlan.signState==1}" th:href="@{'/per/meet/signup.html?trainPlanId='+${trainPlan.trainPlanId}}"  class="btn btn-info btn-sm"> 已报名</a>
-	         <a th:if="${trainPlan.signState==2}" th:href="@{'/per/meet/signup.html?trainPlanId='+${trainPlan.trainPlanId}}"   class="btn btn-default btn-sm" disabled> 报名结束</a>
-		 </div>
+		  
 
      </div>
      <!--左侧内容结束-->
