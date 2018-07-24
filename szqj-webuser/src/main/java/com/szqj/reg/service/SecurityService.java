@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.domain.RegInfoRepository;
+import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
 import com.szqj.service.domain.MyPersonRepository;
 import com.szqj.service.domain.Person;
@@ -109,14 +110,32 @@ public class SecurityService {
 	}
 	
 	
+   /**
+    * 判断企业电话是否存在
+    * @param accountId
+    * @param telphone
+    * @return
+    */
+	public boolean isExitByEmpTelphone(String accountId, String telphone) {
+		List<Enterprise> l = enterpriseRepository.findByAccountIdAndTelePhone(accountId,telphone);
+		if(l==null||l.size()==0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
 	/**
 	 * 保存新的企业注册手机号码
 	 * @param accountId
 	 * @param telphone
 	 */
 	public void saveEmpTelphone(String accountId, String telphone) {
-		// TODO Auto-generated method stub
-		
+		List<Enterprise> l = enterpriseRepository.findByAccountId(accountId);
+		Enterprise enterprise=l.get(0);
+		enterprise.setTelphone(telphone);
+		enterpriseRepository.save(enterprise);
 	}
 	
 	
@@ -130,5 +149,6 @@ public class SecurityService {
 	    }
 	    return invitecode;
 	}
+
 
 }

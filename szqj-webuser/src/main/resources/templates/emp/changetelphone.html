@@ -83,7 +83,7 @@
  
 	function getInviteCode(m,_this){
 		  	var parm=$("#form").serialize();
-	        $.post("/per/sendsms.html",parm,function(data,status){
+	        $.post("/emp/sendsms.html",parm,function(data,status){
 	          console.log(data.retData);
 	          var interval=setInterval(function(){
 	              m=m-1;
@@ -128,7 +128,7 @@
 	            	  isMobile:true,
 		              remote:{  
 		                    type:"POST",  
-		                    url:"/per/isExitByPerTelphone.html",
+		                    url:"/emp/isExitByEmpTelphone.html",
 		                    data:{  
 		                    	telphone:function(){ return $("#telphone").val(); }  
 		                    }  
@@ -138,7 +138,7 @@
 	              required:true,
 	              remote:{  
 	                    type:"POST",  
-	                    url:"/per/isExitByTelcode.html",
+	                    url:"/emp/isExitByTelcode.html",
 	                    data:{  
 	                    	changetelcode:function(){ return $("#changetelcode").val(); }  
 	                    }  

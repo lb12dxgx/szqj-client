@@ -120,8 +120,8 @@ public class EmpSecurityControle {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/emp/isExitByPerTelphone.html"  )
-	public boolean isExitByPerTelphone(@SessionAttribute Account account,String telphone){
+	@RequestMapping(value = "/emp/isExitByEmpTelphone.html"  )
+	public boolean isExitByEmpTelphone(@SessionAttribute Account account,String telphone){
 		boolean flag = securityService.isExitByEmpTelphone(account.getAccountId(),telphone);
 		return flag;
 	}
