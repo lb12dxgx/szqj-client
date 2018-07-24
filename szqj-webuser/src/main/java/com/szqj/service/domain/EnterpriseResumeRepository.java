@@ -33,7 +33,7 @@ public interface EnterpriseResumeRepository extends PagingAndSortingRepository<E
 	/**
 	 * 已处理
 	 * @param enterpriseName
-	 * @param pageable
+	 * @param pageable1
 	 * @return
 	 */
 	@Query("select a.person from EnterpriseResume a where a.enterprise.enterpriseId =?1 and (a.state=1 or a.state=2)   order by a.createDate ")
