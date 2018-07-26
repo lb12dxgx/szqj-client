@@ -17,6 +17,7 @@ import com.szqj.util.ConstantUtils;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.service.AccountService;
+import com.szqj.yun.SmsTools;
 
 @Service
 @Transactional
@@ -46,7 +47,7 @@ public class RegService {
 	    regInfoRet.setSmscode(smscode);
 		regInfoRepository.save(regInfoRet);
 		try {
-			//SmsTools.alSendSms(smscode,regInfo.getTelphone());
+			SmsTools.alSendSms(smscode,regInfo.getTelphone());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

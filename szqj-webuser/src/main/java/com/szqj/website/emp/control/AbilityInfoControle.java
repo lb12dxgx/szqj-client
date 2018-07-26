@@ -15,11 +15,8 @@ import com.szqj.service.domain.AbilityInfo;
 import com.szqj.service.domain.AbilityInfoRepository;
 import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
-import com.szqj.service.domain.Ability;
-import com.szqj.service.domain.AbilityRepository;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
-import com.szqj.weborg.domain.Dict;
 import com.szqj.weborg.domain.DictRepository;
 
 @Controller
@@ -77,10 +74,10 @@ public class AbilityInfoControle {
 	@RequestMapping(value = "/emp/abilityinfo/edit.html"  )
 	public String abilityinfoEdit(String abilityId,  ModelMap modelMap){
 		AbilityInfo ability = abilityInfoRepository.findById(abilityId).get();
-		List<Dict> dicts = dictRepository.findByDictValue(ability.getAbilityTypeCode());
+		/*List<Dict> dicts = dictRepository.findByDictValue(ability.getAbilityTypeCode());
 		Dict pdict = dictRepository.findById(dicts.get(0).getPdictId()).get();
 		modelMap.put("ability", ability);
-		modelMap.put("ptypeCode", pdict.getDictValue());
+		modelMap.put("ptypeCode", pdict.getDictValue());*/
 		return "emp/abilityinfo_edit"; 
 	}
 	

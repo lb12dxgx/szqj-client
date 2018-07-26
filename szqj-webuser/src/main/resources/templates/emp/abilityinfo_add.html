@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
+	<link href="/css/upload.css" rel="stylesheet" type="text/css">
+	<link href="/js/upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css">
+</head>
+  
+ 
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+ <div class="gb-main  container-fluid">
+  
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--左侧菜单开始-->
+     <div class="col-md-2">
+		<div th:include="emp/leftmenu"/>  
+	 </div>
+     <!--左侧菜单结束-->
+
+            <div class="col-md-10 main-content ">
+            
+              <form class="form-horizontal top-20" id="form"  action="/emp/productinfo/save.do" method="post">
+               
+                
+                 <div class="form-group">
+                  <label  class="col-md-1 control-label">企业名称</label>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control"  name="productName" id="productName" placeholder="请输入企业名称名称" >
+                  </div>
+               
+                </div>
+
+                <div class="form-group">
+                  <label  class="col-md-1 control-label">类型</label>
+                  <div class="col-md-4">
+                    <select class="form-control" id="cpType">
+                        <option>地下管线探测单位作业能力</option>
+                        <option>地下管线探测工程监理作业能力</option>
+                     </select>
+                  </div>
+                  <label  class="col-md-1 control-label">级别</label>
+                    <div class="col-md-2">
+                      <select class="form-control" id="cType">
+                          <option>I级</option>
+                        <option>II级</option>
+                        <option>Ⅲ级</option>
+                       </select>
+                    </div>
+                  
+                </div>
+                
+                <div class="form-group">
+                  <label  class="col-md-1 control-label">评价类型</label>
+                  <div class="col-md-4">
+                    <select class="form-control" id="cpType">
+                        <option>初次评价</option>
+                        <option>升级评价 </option>
+                        <option>延续评价 </option>
+                     </select>
+                  </div>
+                  
+                  
+                </div>
+
+               
+                
+                <div class="form-group">
+                  <label  class="col-md-1 control-label">联系人</label>
+                  <div class="col-md-4">
+                    <input type="text"class="form-control" id="person" name="person" placeholder="请输入联系人">
+                  </div>
+                  <label  class="col-md-1 control-label">联系电话</label>
+                    <div class="col-md-4">
+                    <input type="text" class="form-control" id="telphone" name="telphone" placeholder="请输入联系电话">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-1 control-label">申请材料</label>
+                  <div class="col-md-7">
+	                  <span class="upload-pic-list-plu  fileinput-button">
+	                    <i class="glyphicon glyphicon-plus" style="margin-top:30px"></i>
+	                    <input type="file" name="file" id="btn_upload_image" >
+	               	 </span>
+                  	<div style="color:red;margin-top:5px" id="fileError"></div>
+                   
+                  
+                   </div>
+                </div>
+               
+                 <div class="row" id="piclist" style="margin-left:20px">
+               	   
+				 </div>
+               
+                <div class="form-group">
+                  <div class="col-md-2 col-md-offset-4"  >
+                    <button id="submitbut" type="button" class="btn btn-primary">提交</button>
+                  </div>
+                </div>
+                
+              </form>
+              
+              	<div class="col-md-8 col-md-offset-1 " >
+              	    <ul class="list-group" style="line-height:20px">
+						  <li class="list-group-item">
+						  	 <div style="font-size:16px">
+						  	 	<i class="fa fa-key" style="margin-right:10px;font-size:16px"></i>申请规则
+						  		<a href="/emp/changepassword.html" class=" btn btn-primary pull-right btn-small" style="" >
+		                     		<i class="fa fa-pencil" style="margin-right:5px;"></i> 下载
+		                    	</a>
+						  	 </div>
+						   </li>
+						    <li class="list-group-item">
+						  	 <div style="font-size:16px">
+						  	 	<i class="fa fa-key" style="margin-right:10px;font-size:16px"></i>申请模板
+						  		<a href="/emp/changepassword.html" class=" btn btn-primary pull-right btn-small" style="" >
+		                     		<i class="fa fa-pencil" style="margin-right:5px;"></i> 下载
+		                    	</a>
+						  	 </div>
+						   </li>
+						    <li class="list-group-item">
+						  	 <div style="font-size:16px">
+						  	 	<i class="fa fa-key" style="margin-right:10px;font-size:16px"></i>业务咨询QQ群：39348487
+						  		
+						  	 </div>
+						   </li>
+					  </ul>
+              </div>
+              
+            </div>
+              
+          </div>  
+        </div>
+  </div>          
+  
+    <!--footer开始-->
+ <div th:include="footer"></div>
+  	<!--footer结束-->
+  	<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="/js/template-web.js"></script>
+	
+   <script src="/js/upload/js/vendor/jquery.ui.widget.js"></script>
+   <script src="/js/upload/js/jquery.iframe-transport.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload-process.js"></script>
+　　<script src="/js/upload/js/jquery.fileupload-ui.js"></script>
+  <script src="/js/upload/js/jquery.fileupload-validate.js"></script>
+   
+   <script type="text/javascript" src="/ueditor.config.js"></script>
+   <script type="text/javascript" src="/ueditor.all.js"></script>
+  
+  	<script id="tpl-cptype" type="text/html">
+		{{each  retData}}
+  			<option value={{$value.dictValue}}>{{$value.dictName}}</option>
+		{{/each}}
+	</script>
+	
+   <script id="tpl-img" type="text/html">
+     <ul class="list-group col-md-9 col-md-offset-1">
+		{{each  retData}}
+        <a class="list-group-item" style="height:120px;margin-bottom:10px">
+			<img src={{'/'+$value.fileWebPath}}  class="img-rounded" style="width:100px;height:100px"/>
+			<span style="margin-left:20px;font-size:15px" >{{$value.fileName}}</span>
+			<button type="button" class="close" aria-label="Close" style="opacity:1" onclick="delFile('{{$value.fileInfoId}}')"><span style="color:red">&times;</span></button>
+  		</a>
+		{{/each}}	
+     </ul>
+   </script>
+   <script type="text/javascript" th:inline="javascript">
+  
+   
+   var accountId=[[${session.account.token}]]; 
+   
+   function delFile(fileid){
+	   
+	   $.get("/file/delete.do?fileInfoId="+fileid+"&ss_accountId="+accountId,function(data,status){
+		   $.get("/file/list.do?bussinessId="+$("#productPicId").val(),function(data,status){
+			   console.log(data);
+			   var html = template('tpl-img',data);
+				$('#piclist').html(html);
+		   });
+	   });
+	   
+	  
+   };
+   
+	$(function(){
+		$('#ability').addClass("active");
+	
+		
+		
+		$("#btn_upload_image").fileupload({
+			autoUpload: true,
+			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+			maxFileSize: 10 * 1024 * 1024,
+			minFileSize: 1,
+			maxNumberOfFiles: 50,
+			messages: {
+			    maxFileSize: '文件不能超过10M',
+			    acceptFileTypes: '文件类型不对'
+			},
+			processfail: function (e, data) {
+			    var currentFile = data.files[data.index];
+			    if (data.files.error && currentFile.error) {
+			        $("#fileError").html(currentFile.error);
+			    }
+			},
+		    dataType: 'json',
+		    url: '/file/uploadlist.do',
+		    formData: {dirName:'content/product/logo',width:'360',height:'320',accountId:accountId,bussinessId:$("#productPicId").val()},
+		   
+		    done: function (e, data) { //对接口返回信息的处理
+		       console.log(data.result.retData)
+		       var html = template('tpl-img',data.result);
+				$('#piclist').html(html);
+		    }
+		});
+		
+		
+		  $("#submitbut").click(function(){
+			   if($("#form").valid()){
+				   $("#form").submit();
+			   		 
+			   }
+		   });
+		
+		 $("#form").validate({
+	          rules: {
+	            productName: {
+	              required: true
+	            },
+	            productBrand:{
+	              required: true
+	            },
+	            productType:{
+	           	  required: true	
+	            },
+	            productPrice:{
+	              required: true	
+	            },
+	            person:{
+		              required: true	
+		         },
+		         telphone:{
+	              required: true	
+	            }
+	           
+	            
+	          },
+	          messages: {
+	        	  productName: {
+		              required: "请输入产品名称"
+		            },
+		            productBrand:{
+		              required: "请输入产品品牌"
+		            },
+		            productType:{
+		           	  required: "请输入产品类型"	
+		            },
+		            productPrice:{
+		              required: "请输入产品价格"		
+		            },
+		            person:{
+			              required: "请输入联系人"		
+			         },
+			        telphone:{
+		              required: "请输入联系电话"		
+		          }
+		      }
+	     });
+		
+	})
+</script>
+    
+</body>
+
+
+
+</html>
