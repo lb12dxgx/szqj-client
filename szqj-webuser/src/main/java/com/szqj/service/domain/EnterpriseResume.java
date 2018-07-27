@@ -28,7 +28,7 @@ public class EnterpriseResume {
 	@ManyToOne
 	@JoinColumn(name = "person_id")
 	private Person person;
-	
+	 
 	private Date createDate;
 	
 	private Integer state;//0:待查看,1:已查看,2:通过,3:取消	
