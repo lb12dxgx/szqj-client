@@ -22,7 +22,7 @@
    <div class="row houtai-box" style="margin-top:5px">
      <!--左侧菜单开始-->
      <div class="col-md-2">
-		<div th:include="per/leftmenu"/>  
+		<div th:include="emp/leftmenu"/>  
 	 </div>
      <!--左侧菜单结束-->
    <div class="col-md-10 main-content">
@@ -112,12 +112,13 @@
 		    		 $("#form").submit();
 		    	}
 
-		    })
+		    });
 		
 		 
 		  $("#sendsms").click(function(){
+			 	  $("#sendsms").html("发送中");
 				  $("#sendsms").addClass("disabled");
-			       getInviteCode(60,$(this));
+			      getInviteCode(60,$(this));
 			           
 		    });
 		

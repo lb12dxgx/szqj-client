@@ -1,6 +1,7 @@
 package com.szqj.reg.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +58,23 @@ public class RegService {
 	
 	
 	public boolean isExitByTelphone(RegInfo regInfo){
-		RegInfo regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
-		if(regInfoRet!=null&&regInfoRet.getAccountId()!=null){
-			return true;
+		
+		if(regInfo.getType()==1){
+			List<Enterprise> list = enterpriseRepository.findByTelePhone(regInfo.getTelphone());
+			if(list==null||list.size()==0){
+				return true;
+			}else{
+				 return false;
+			}
+		}else{
+			List<Person> list = personRepository.findByTelePhone(regInfo.getTelphone());
+			if(list==null||list.size()==0){
+				return true;
+			}else{
+				 return false;
+			}
 		}
-		  return false;
+	
 	}
 	
 	
@@ -141,8 +154,8 @@ public class RegService {
 		if(regInfoRet.getType()==ConstantUtils.REG_PERSON){
 			Person person=new Person();
 			person.setAccountId(account.getAccountId());
-			person.setUserCode(regInfo.getUserCode());
-			person.setTelePhone(regInfo.getTelphone());
+			person.setUserCode(regInfoRet.getUserCode());
+			person.setTelePhone(regInfoRet.getTelphone());
 			personRepository.save(person);
 		}
 		

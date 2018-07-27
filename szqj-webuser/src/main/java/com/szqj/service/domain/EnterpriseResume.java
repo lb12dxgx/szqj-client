@@ -31,7 +31,7 @@ public class EnterpriseResume {
 	
 	private Date createDate;
 	
-	private Integer state;//0:待面试,1:通过,2:取消	
+	private Integer state;//0:待查看,1:已查看,2:通过,3:取消	
 
 	public String getEnterpriseResumeId() {
 		return enterpriseResumeId;

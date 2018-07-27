@@ -22,7 +22,10 @@ public interface MyPersonRepository extends PagingAndSortingRepository<Person, S
 	
 	
 	@Query("select m from Person m where m.accountId !=?1 and m.telePhone=?2 ")
-	List<Person> findByAccountIdAndTelePhone(String accountId,String telePhone);  
+	List<Person> findByAccountIdAndTelePhone(String accountId,String telePhone);
+
+	@Query("select m from Person m where  m.telePhone=?1 ")
+	List<Person> findByTelePhone(String telphone);  
    
 	
 	

@@ -34,4 +34,8 @@ public interface EnterpriseRepository extends PagingAndSortingRepository<Enterpr
 	@Query("select m from Enterprise m where m.accountId=?1 and m.telphone=?2 ")
 	List<Enterprise> findByAccountIdAndTelePhone(String accountId, String telphone);
 	
+	
+	@Query("select m from Enterprise m where  m.telphone=?1 ")
+	List<Enterprise> findByTelePhone( String telphone);
+	
 }

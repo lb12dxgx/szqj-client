@@ -98,7 +98,7 @@ public class LoginControle {
 	@RequestMapping(value = "isExitByTelphone.do"  )
 	public boolean isExitByTelphone(RegInfo regInfo){
 		boolean flag = regService.isExitByTelphone(regInfo);
-		return !flag;
+		return flag;
 	}
 	
 	
@@ -123,7 +123,12 @@ public class LoginControle {
 	public String submitonereg(String telphone,String smscode,ModelMap modelMap){
 		RegInfo regInfo=regInfoRepository.findByTelphone(telphone);
 		modelMap.put("regInfo", regInfo);
-		return "login/regtwo"; 
+		if(regInfo.getType()==1){
+			return "login/regemp"; 
+		}else{
+			return "login/regper"; 
+		}
+		
 	}
 	
 	@Token(remove =true)

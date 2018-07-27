@@ -35,16 +35,30 @@
           </div>
           <form class="form-horizontal" id="regForm" action="submitreg.do" method="post">
           	<input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
+          	
+          	 <div class="form-group">
+              <label class="col-md-3 control-label reg-form-lable">
+    			 <span style="color:red">*</span>账号类型</label>          
+             </label>
+              <div class="col-md-5">
+               <select name="type" id="type" class="form-control">
+                 <option value="1" selected>企业</option>
+                 <option value="0">个人</option>
+               </select>
+              </div>
+            </div> 
+          	
+          	
             <div class="form-group">
               <label class="col-md-3 control-label reg-form-lable">
                 <span style="color:red">*</span>手机</label>
               <div class="col-md-5">
                <input type="text" class="form-control reg-form-input" id="telphone" name="telphone" placeholder="请输入手机号" >
               </div>
-              <div class="col-md-4 text-left">
-				<label id="telphone-error" class="errorlabel  error " for="telphone"/>
-                </label>
-			</div>
+              	<div class="col-md-4 text-left">
+					<label id="telphone-error" class="errorlabel  error " for="telphone"/>
+	                </label>
+				</div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">
@@ -65,8 +79,7 @@
          
             <div class="form-group">
               <button id="reg" type="button" class="btn btn-success">下一步</button>
-            
-            </div>
+             </div>
           </form>
           
         </div>
@@ -129,6 +142,7 @@
 			 $("#sendsms").click(function(){
 				  
 			       if($("#regForm").valid()){
+			    	   $("#sendsms").html("发送中");
 			          $("#sendsms").addClass("disabled");
 			          getInviteCode(60,$(this));
 			        }       
@@ -160,7 +174,8 @@
 		                    type:"POST",  
 		                    url:"/isExitByTelphone.do",
 		                    data:{  
-		                    	telphone:function(){ return $("#telphone").val(); }  
+		                    	telphone:function(){ return $("#telphone").val(); }, 
+		                    	type:function(){ return $("#type").val(); }  
 		                    }  
 		                } 
 		            }
