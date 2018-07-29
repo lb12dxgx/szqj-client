@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+<link href="/css/gxsg.css" rel="stylesheet" type="text/css">
+<link href="/css/caigou.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+	<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+	<!--菜单开始-->
+	<header th:include="header" />
+	<!--菜单结束-->
+
+	<div class="gb-main">
+
+		<div class=" container">
+			<div class="heizw"></div>
+			
+			
+			<!--最新职位开始-->
+			<div class="maintop">
+				<ul class="list-inline">
+					<li class="pull-left menubt text-center"><h5>推荐职位</h5></li>
+					<li class="pull-right morebt"><a href="/job/joblist.html">more</a></li>
+				</ul>
+			</div>
+			<div class="box-bgcl">
+				<div class="row">
+					<!--职位信息开始-->
+					
+					<div class="col-md-6"  th:each="job,iterStat:${newJobList}">
+						<div class="row peixun">
+							<div class="col-md-12">
+								<a href="#" class="bt-link"><h5 th:text="${job.jobName}">行业工程师培训</h5></a>
+							</div>
+						</div>
+						<div class="row pxtime">
+							<div class="col-md-8">公司名称：<span th:text="${job.enterpriseName}">北京一呼通网络科技有限责任公司</span></div>
+							<div class="col-md-4">
+								薪资待遇：<span class="xzred" th:text="${job.money}">3000-5000</span>
+							</div>
+						</div>
+						<div class="row pxtime">
+							<div class="col-md-8">工作地点：<span th:text="${job.place}">北京</span></div>
+							<div class="col-md-4">发布日期：<span th:text="${#dates.format(job.startDate, 'yyyy-MM-dd')}">2018.01.30</span></div>
+						</div>
+						<div class="gb-line clearfix"></div>
+					</div>
+					<!--职位信息结束-->
+
+				</div>
+			</div>
+			<!--最新职位结束-->
+
+			<div class="heizw"></div>
+
+			<div class="maintop">
+				<ul class="list-inline">
+					<li class="pull-left menubt text-center"><h5>名企招聘</h5></li>
+					
+				</ul>
+			</div>
+			<div class="box-bgcl">
+				<div class="row text-center cg_list">
+					<div class="col-md-3" th:each="enterprise,iterStat:${mainEmpList}">
+						<a href="#">
+							<div class="img-shadow-1 caigou-box">
+								<div>
+									<img th:src="@{${fileMap[enterprise.enterprisePicId]}}"  width="130" height="130">
+								</div>
+								<div class="cg-bt text-center" th:text="${enterprise.enterpriseName}">格力空调有限责任公司</div>
+							</div>
+						</a>
+					</div>
+				
+				</div>
+
+			</div>
+			
+			
+			<div class="heizw"></div>
+			
+			<!--最新简历开始-->
+			<div class="maintop">
+				<ul class="list-inline">
+					<li class="pull-left menubt text-center"><h5>推荐简历</h5></li>
+					<li class="pull-right morebt"><a href="/job/resumelist.html">more</a></li>
+				</ul>
+			</div>
+			<div class="box-bgcl">
+				<div class="row">
+					
+					<!--简历信息开始-->
+					<div class="col-md-6" th:each="resume,iterStat:${topResumList}">
+						<div class="row peixun">
+							<div class="col-md-12">
+								<a href="#" class="bt-link"><h5 th:text="${resume.personName}">张三</h5></a>
+							</div>
+						</div>
+						<div class="row pxtime">
+							<div class="col-md-8">工作职位：<span th:text="${resume.jobName}">技术操作工 </span></div>
+							<div class="col-md-4">
+								期望薪资：<span class="xzred" th:text="${resume.perSalary}">3000-5000</span>
+							</div>
+						</div>
+						<div class="row pxtime">
+							<div class="col-md-8">工作地点：<span th:text="${resume.perCity}">北京</span></div>
+							<div class="col-md-4">发布日期：<span th:text="${#dates.format(resume.updateDate, 'yyyy-MM-dd')}">2018.01.30</span></div>
+						</div>
+						
+						<div class="gb-line clearfix"></div>
+						
+					</div>
+						
+				</div>
+			</div>
+			<!--最新简历结束-->
+
+
+
+
+			
+
+
+		</div>
+	</div>
+	 <!--footer开始-->
+	 <div th:include="footer"></div>
+  	<!--footer结束-->
+  	<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		$('#job').removeClass("manulinknone");
+		$('#job').addClass("manulink");
+		
+	})
+</script>
+</body>
+</html>

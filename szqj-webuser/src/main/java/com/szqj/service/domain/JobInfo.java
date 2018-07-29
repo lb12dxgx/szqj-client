@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,7 +20,7 @@ public class JobInfo {
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
 	private String jobInfoId;
 	private String enterpriseId;
-	private Integer level;//级别  10:普通级别  20:vip  30:超级VIP
+	private Integer level;//级别  10:普通级别  20:vip 
 	private String jobName;//职位名称
 	private String money;//薪资
 	private String num;//人数
@@ -32,6 +33,7 @@ public class JobInfo {
 	private String person;//联系人
 	private String telphone;//联系电话
 	private String email;//邮箱
+	private String enterpriseName;//企业名称
 	
 	
 	public String getJobInfoId() {
@@ -125,6 +127,12 @@ public class JobInfo {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getEnterpriseName() {
+		return enterpriseName;
+	}
+	public void setEnterpriseName(String enterpriseName) {
+		this.enterpriseName = enterpriseName;
 	}
 	
 	

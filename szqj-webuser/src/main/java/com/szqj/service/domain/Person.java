@@ -76,6 +76,11 @@ public class Person {
 	@Column
 	private Date createDate=new Date();
 	
+	@Column
+	private Date updateDate=new Date();//简历更新时间
+	
+	private Integer level;//级别  10:普通级别  20:vip 
+	
 	
 	
 	public String getPersonId() {
@@ -228,6 +233,18 @@ public class Person {
 	}
 	public void setHyTypeCode(String hyTypeCode) {
 		this.hyTypeCode = hyTypeCode;
+	}
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	public Integer getLevel() {
+		return level;
+	}
+	public void setLevel(Integer level) {
+		this.level = level;
 	}
     
    

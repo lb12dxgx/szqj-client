@@ -26,7 +26,19 @@ public interface JobInfoRepository extends PagingAndSortingRepository<JobInfo, S
 	@Query("select m from JobInfo m  where m.enterpriseId=?1  order by m.startDate desc")
 	Page<JobInfo> findPageByEnterpriseId(String enterpriseId,Pageable pageable);
 
-	@Query("select m from JobInfo m  order by m.startDate desc")
+	@Query("select m from JobInfo m where m.level=20 order by m.startDate desc")
+	Page<JobInfo> findTopPage(Pageable pageable);
+	
+	
+	@Query("select m from JobInfo m  order by m.startDate desc,level desc")
 	Page<JobInfo> findPage(Pageable pageable);
+	
+	
+	@Query("select m from JobInfo m where m.jobName like %?1%   order by m.startDate desc,level desc")
+	Page<JobInfo> findAdminPageByJobInfoName(String jobName,Pageable pageable);
+	
+	
+	@Query("select m from JobInfo m where m.enterpriseName like %?1% order by m.startDate desc,level desc")
+	Page<JobInfo> findAdminPageByEnterpriseName(String enterpriseName, Pageable pageable);
 	
 }

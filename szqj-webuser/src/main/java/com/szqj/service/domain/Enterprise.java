@@ -52,6 +52,8 @@ public class Enterprise {
 	
 	private Integer level;//级别  10:普通级别  20:vip  30:超级VIP
 	
+	private Integer jobLevel;//级别  10:普通招聘  20:名企招聘
+	
 	private Integer orderNum;//顺序
 	
 
@@ -200,6 +202,15 @@ public class Enterprise {
 	public void setEnttelphone(String enttelphone) {
 		this.enttelphone = enttelphone;
 	}
+
+	public Integer getJobLevel() {
+		return jobLevel;
+	}
+
+	public void setJobLevel(Integer jobLevel) {
+		this.jobLevel = jobLevel;
+	}
+
 	
 	
 }

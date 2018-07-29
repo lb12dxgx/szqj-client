@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/* CSS Document */
+.caigou-box{
+	background: #fff;
+	border: 1px #E5E5E5 solid;
+	padding: 10px;
+}
+.cg_list{
+	padding: 20px 10px 20px 10px;
+}
+.cg-rmb{
+	color: #C30104;
+}
+.cg-bt{
+	padding-top: 10px;
+}
+.maintop{
+	margin-top: 10px;
+}
+.heizw{
+	height: 10px;
+	clear: both;
+}
+.cg-spfl{
+	background: #0f57a1;
+	height: 40px;
+	color: #fff;
+	font-size: 14px;
+	line-height: 40px;
+}
+.line-wb{
+	border-bottom: 1px #fff solid;
+	border-top:1px #c9c9c9 solid;
+	height: 2px;
+	margin-bottom: 10px;
+}
+.cg-mune{
+	background: #f8f8f8;
+	padding: 15px;
+	height: 320px;
+	overflow: hidden;
+}
+.cg-fllist li{
+	padding: 0 6px 5px 5px;
+}
+.cg-flbt{
+	padding-bottom: 5px;
+}
+.cghui-link:link,
+.cghui-link:visited{
+	color: #8d8d8d;
+}.cghui-link:hover,
+.cghui-link:active{
+	color: #3384a6;
+}
+.cg-flmenu{
+	height: 40px;
+	line-height: 40px;
+	background: #f8f8f8;
+	font-size: 14px;
+}
+.cg-flmenu .list-unstyled li{
+	padding-left: 40px;
+}
+.pxtime{
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+.xzred{
+	color: #D1171A;
+}
+.spfl-list{
+	margin: 10px 0 10px 0;
+}

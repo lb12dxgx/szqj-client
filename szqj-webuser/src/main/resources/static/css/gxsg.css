@@ -8,28 +8,6 @@
 	line-height:39px;
 }
 
-.qk-manu-on:link,
-.qk-manu-on:visited{
-	background:url(../images/dz2.jpg);
-	color:#fff;
-}
-.qk-manu-on:hover,
-.qk-manu-on:active{
-	background:url(../images/dz2.jpg);
-	color:#fff;
-}
-.qk-manu-none:link,
-.qk-manu-none:visited{
-	background:url(../images/dz1.jpg);
-	color:#0f57a1;
-}
-.qk-manu-none:hover, 
-.qk-manu-none:active{
-	background:url(../images/dz2.jpg);
-	color:#fff;
-}
-
-
 .left-manu1-on:link,
 .left-manu1-on:visited{
 	background:url(../images/shigu2.jpg);
@@ -175,4 +153,32 @@
 .gxsg-ewm img{
 	display: block;
 	margin: 0 auto;
+}
+.bm-btn{
+	width:30%;
+	margin-top: 30px;
+}
+.jiaoshi-pic{
+   padding: 20px 30px;
+}
+.jiaoshi-text{
+	padding-top: 20px;
+	font-size:14px;
+}
+.cp-logopic{
+	padding: 15px 0;
+	
+}
+.cp-logopic img{
+	display: block;
+	border: 1px #B8B8B8 solid;
+}
+.tjcp{
+	padding: 10px 0;
+}
+.jianli-text{
+	margin-top: 20px;
+}
+.tjzw-list{
+	padding-top: 10px;
 }

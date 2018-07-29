@@ -32,7 +32,7 @@ public class JobInfoControle {
 	private JobInfoRepository jobInfoRepository;
 	
 	/**
-	 * 供求信息
+	 * 招聘信息
 	 * @param pageNum
 	 * @param size
 	 * @param modelMap
@@ -64,6 +64,9 @@ public class JobInfoControle {
 	
 	@RequestMapping(value = "/emp/jobinfo/save.do"  )
 	public String jobinfoSave(JobInfo  jobInfo,  ModelMap modelMap){
+		String enterpriseName = enterpriseRepository.findById(jobInfo.getEnterpriseId()).get().getEnterpriseName();
+		jobInfo.setEnterpriseName(enterpriseName);
+		jobInfo.setLevel(10);
 		jobInfoRepository.save(jobInfo);
 		return "redirect:/emp/jobinfo.html"; 
 		

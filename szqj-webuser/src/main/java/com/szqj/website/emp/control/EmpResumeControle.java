@@ -17,16 +17,16 @@ public class EmpResumeControle {
 	
 	/**
 	 * 
-	 * @param account
+	 * 
 	 * @param pageNum
 	 * @param size
-	 * @param area 地区
+	 * @param workCity 地区
 	 * @param hyType 行业
 	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/emp/resume/search.html")
-	public String searchResume(@SessionAttribute Account account,Integer pageNum, Integer size,String area,String hyType,ModelMap modelMap){
+	public String searchResume(Integer pageNum, Integer size,String workCity,String hyType,ModelMap modelMap){
 		
 		return "emp/resume_search"; 
 	}
