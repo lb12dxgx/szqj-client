@@ -63,5 +63,13 @@
    <!--footer开始-->
 	 <div th:include="footer"></div>
   	<!--footer结束-->
+  	
+	<script type="text/javascript" th:inline="javascript">
+		$(function(){
+			$('#job').removeClass("manulinknone");
+			$('#job').addClass("manulink");
+			
+		})
+	</script>
 </body>
 </html>
