@@ -57,10 +57,12 @@ public class EmpControle {
 	public String save(Enterprise enterprise, ModelMap modelMap){
 		Enterprise enterpriseRet = enterpriseRepository.findById(enterprise.getEnterpriseId()).get();
 		Tools.copyBeanForUpdate(enterprise, enterpriseRet);
+		String hyType = dictRepository.findByDictValue(enterpriseRet.getHyTypeCode()).get(0).getDictName();
 		String qyXj = dictRepository.findByDictValue(enterpriseRet.getQyXjCode()).get(0).getDictName();
 		String qyGm = dictRepository.findByDictValue(enterpriseRet.getQyGmCode()).get(0).getDictName();
 		enterpriseRet.setQyXj(qyXj);
 		enterpriseRet.setQyGm(qyGm);
+		enterpriseRet.setHyType(hyType);
 		enterpriseRepository.save(enterpriseRet);
 		return "redirect:/emp/info.html"; 
 	}

@@ -78,6 +78,27 @@ public class JobControle {
 		return "job/job_list"; 
 	}
 	
+	@RequestMapping(value = "/job/jobemp.html"  )
+	public String job_emp(String enterpriseId,Integer pageNum, Integer size, ModelMap modelMap) {
+	
+		Enterprise enterprise=enterpriseRepository.findById(enterpriseId).get();
+		modelMap.put("enterprise",enterprise);
+		
+		PageRequest pageable=Tools.getPage(pageNum, size);
+		Page<JobInfo> page=jobInfoRepository.findPageByEnterpriseId(enterpriseId,pageable);
+		modelMap.put("page",page);
+		
+		PageRequest toppageable=Tools.getPage(0, 4);
+		Page<JobInfo> toppage=jobInfoRepository.findTopPage(toppageable);
+		List<JobInfo> l = toppage.getContent();
+		for(JobInfo job:l) {
+			Enterprise ent = enterpriseRepository.findById(job.getEnterpriseId()).get();
+			job.setEnterpriseName(ent.getEnterpriseName());
+		}
+		modelMap.put("joblist",l);
+		return "job/job_emp"; 
+	}
+	
 	@RequestMapping(value = "/job/jobview.html"  )
 	public String job_view(String jobInfoId , ModelMap modelMap,HttpServletRequest request) {
 		Object accountob = request.getSession().getAttribute("account");

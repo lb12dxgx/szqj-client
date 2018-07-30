@@ -40,6 +40,8 @@ public class Enterprise {
 	
 	private Date createDate=new Date();//创建时间
 	
+	private String hyTypeCode;//行业类型编码
+	
 	private String hyType;//行业类型
 	
 	private String frName;//法人名称
@@ -251,6 +253,14 @@ public class Enterprise {
 
 	public void setQyGm(String qyGm) {
 		this.qyGm = qyGm;
+	}
+
+	public String getHyTypeCode() {
+		return hyTypeCode;
+	}
+
+	public void setHyTypeCode(String hyTypeCode) {
+		this.hyTypeCode = hyTypeCode;
 	}
 
 	

@@ -40,7 +40,7 @@
 					<div class="col-md-6"  th:each="job,iterStat:${newJobList}">
 						<div class="row peixun">
 							<div class="col-md-12">
-								<a href="#" class="bt-link"><h5 th:text="${job.jobName}">行业工程师培训</h5></a>
+								<a th:href="@{'/job/jobview.html?jobInfoId='+${job.jobInfoId}}" class="bt-link"><h5 th:text="${job.jobName}">行业工程师培训</h5></a>
 							</div>
 						</div>
 						<div class="row pxtime">
@@ -72,7 +72,7 @@
 			<div class="box-bgcl">
 				<div class="row text-center cg_list">
 					<div class="col-md-3" th:each="enterprise,iterStat:${mainEmpList}">
-						<a href="#">
+						<a th:href="@{'/job/jobemp.html?enterpriseId='+${enterprise.enterpriseId}}">
 							<div class="img-shadow-1 caigou-box">
 								<div>
 									<img th:src="@{${fileMap[enterprise.enterprisePicId]}}"  width="130" height="130">

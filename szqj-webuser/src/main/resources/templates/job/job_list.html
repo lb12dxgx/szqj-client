@@ -38,7 +38,7 @@
 		  </tr>
 		  <tr th:each="jobInfo,iterStat:${page.content}">
 			  <td style="padding-left: 35px;"><a th:href="@{'/job/jobview.html?jobInfoId='+${jobInfo.jobInfoId}}"   th:text="${jobInfo.jobName}">技术操作工</a></td>
-			  <td><a href="#" th:text="${jobInfo.enterpriseName}">北京市一呼通网络科技有限公司</a></td>
+			  <td><a  th:href="@{'/job/jobemp.html?enterpriseId='+${jobInfo.enterpriseId}}" th:text="${jobInfo.enterpriseName}">北京市一呼通网络科技有限公司</a></td>
 			  <td class="text-center" th:text="${jobInfo.place}">北京</td>
 			  <td class="text-center"><span class="xzred" th:text="${jobInfo.money}">5000-8000</span></td>
 			  <td class="text-center" th:text="${#dates.format(jobInfo.startDate, 'yyyy-MM-dd')}">2018-01-09</td>
@@ -68,6 +68,13 @@
 		$(function(){
 			$('#job').removeClass("manulinknone");
 			$('#job').addClass("manulink");
+			
+			$('.page-link').click(function(){
+				  if(!$(this).parent().hasClass("disabled")){
+					  var pageNum=$(this).attr("pageIndex");
+					  $(window).attr('location', '/job/joblist.html?pageNum='+pageNum);
+				  }
+			});
 			
 		})
 	</script>

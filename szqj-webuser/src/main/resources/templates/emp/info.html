@@ -52,7 +52,7 @@
                   </div>
                   <label  class="col-md-1 control-label">行业类别</label>
                   <div class="col-md-4">
-                    <select class="form-control" name="hyType" id="hyType">
+                    <select class="form-control" name="hyTypeCode" id="hyTypeCode">
                      
                     </select>
                   </div>
@@ -187,8 +187,8 @@
 		
 		$.get("/dict/getList.html?dictValue=qy_hy_type",function(data,status){
 			var html = template('tpl-hytype',data);
-				$('#hyType').html(html);
-				$('#hyType').val([[${enterprise.hyType}]]);
+				$('#hyTypeCode').html(html);
+				$('#hyTypeCode').val([[${enterprise.hyTypeCode}]]);
 		  });
 		
 		$.get("/dict/getList.html?dictValue=qy_xj",function(data,status){
