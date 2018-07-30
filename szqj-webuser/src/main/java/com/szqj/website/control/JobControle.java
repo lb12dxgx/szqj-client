@@ -1,7 +1,10 @@
 package com.szqj.website.control;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.szqj.cms.domain.ColumnInfo;
 import com.szqj.cms.domain.ColumnInfoRepository;
@@ -18,11 +22,14 @@ import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
 import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
+import com.szqj.service.domain.EnterpriseResume;
+import com.szqj.service.domain.EnterpriseResumeRepository;
 import com.szqj.service.domain.JobInfo;
 import com.szqj.service.domain.JobInfoRepository;
 import com.szqj.service.domain.MyPersonRepository;
 import com.szqj.service.domain.Person;
 import com.szqj.util.Tools;
+import com.szqj.weborg.domain.Account;
 import com.szqj.weborg.domain.FileInfo;
 import com.szqj.weborg.domain.FileInfoRepository;
 
@@ -40,6 +47,9 @@ public class JobControle {
 	private JobInfoRepository jobInfoRepository;
 	@Autowired
 	private FileInfoRepository fileInfoRepository;
+	
+	@Autowired
+	private EnterpriseResumeRepository enterpriseResumeRepository;
 	
 	/**
 	 * 行业招聘
@@ -69,7 +79,9 @@ public class JobControle {
 	}
 	
 	@RequestMapping(value = "/job/jobview.html"  )
-	public String job_view(String jobInfoId , ModelMap modelMap) {
+	public String job_view(String jobInfoId , ModelMap modelMap,HttpServletRequest request) {
+		Object accountob = request.getSession().getAttribute("account");
+		
 		JobInfo jobInfo = jobInfoRepository.findById(jobInfoId).get();
 		Enterprise enterprise=enterpriseRepository.findById(jobInfo.getEnterpriseId()).get();
 		modelMap.put("jobInfo",jobInfo);
@@ -85,8 +97,47 @@ public class JobControle {
 		}
 		modelMap.put("joblist",l);
 		
+		
+		//判断个人是否有简历和是否已经投过简历
+		if(accountob!=null){
+			Account account=(Account)accountob;
+			List<Person> persons = personRepository.findByAccountId(account.getAccountId());
+			Person person=persons.get(0);
+			if(person.getUpdateDate()!=null){
+				modelMap.put("hasResume",true);
+			}else{
+				modelMap.put("hasResume",false);
+			}
+			
+			List<EnterpriseResume> list = enterpriseResumeRepository.findByJobInfoAndPerson(jobInfo.getJobInfoId(),person.getPersonId());
+			if(list!=null&list.size()>0){
+				modelMap.put("hasJob",true);
+			}
+			
+			modelMap.put("accountType",account.getAccountType());
+		}else{
+			modelMap.put("accountType","");
+		}
+		
 		return "job/job_view"; 
 	}
+	
+	@RequestMapping(value = "/job/applayJob.do"  )
+    public String applay_Job(@SessionAttribute Account account,String jobInfoId,String enterpriseId){
+		List<Person> persons = personRepository.findByAccountId(account.getAccountId());
+		
+		JobInfo jobInfo = jobInfoRepository.findById(jobInfoId).get();
+		Enterprise ent = enterpriseRepository.findById(enterpriseId).get();
+		EnterpriseResume empResume=new EnterpriseResume();
+		empResume.setCreateDate(new Date());
+		empResume.setEnterprise(ent);
+		empResume.setJobInfo(jobInfo);
+		empResume.setPerson(persons.get(0));
+		
+		enterpriseResumeRepository.save(empResume);
+		
+		return "redirect:/job/jobview.html?jobInfoId="+jobInfoId; 
+    }
 	
 	@RequestMapping(value = "/job/resumelist.html"  )
 	public String resume_list(Integer pageNum, Integer size,ModelMap modelMap) {

@@ -29,7 +29,8 @@ public class JobInfo {
 	private String jobYear;//工作经验
 	private String jobStudyCode;//学历要求
 	private String place;//工作地点
-	private String jobDesc;//职位信息
+	private String jobDesc;//岗位职责
+	private String jobQua;//任职资格
 	private String person;//联系人
 	private String telphone;//联系电话
 	private String email;//邮箱
@@ -133,6 +134,12 @@ public class JobInfo {
 	}
 	public void setEnterpriseName(String enterpriseName) {
 		this.enterpriseName = enterpriseName;
+	}
+	public String getJobQua() {
+		return jobQua;
+	}
+	public void setJobQua(String jobQua) {
+		this.jobQua = jobQua;
 	}
 	
 	

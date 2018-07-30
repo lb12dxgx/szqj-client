@@ -39,6 +39,9 @@ public interface EnterpriseResumeRepository extends PagingAndSortingRepository<E
 	@Query("select a.person from EnterpriseResume a where a.enterprise.enterpriseId =?1 and (a.state=1 or a.state=2)   order by a.createDate ")
 	Page<Person> findPageaByFinsh(String enterpriseId, Pageable pageable);
 	
+	@Query("select a from EnterpriseResume a where a.jobInfo.jobInfoId =?1 and a.person.personId=?2   order by a.createDate ")
+	List<EnterpriseResume> findByJobInfoAndPerson(String jobInfoId,String personId);
+	
 	
 	
 }

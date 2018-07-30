@@ -156,7 +156,8 @@ public class RegService {
 			person.setAccountId(account.getAccountId());
 			person.setUserCode(regInfoRet.getUserCode());
 			person.setTelePhone(regInfoRet.getTelphone());
-			person.setUpdateDate(new Date());
+			person.setCreateDate(new Date());
+			
 			personRepository.save(person);
 		}
 		

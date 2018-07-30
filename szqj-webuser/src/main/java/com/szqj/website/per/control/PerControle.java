@@ -1,5 +1,6 @@
 package com.szqj.website.per.control;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,6 +68,7 @@ public class PerControle {
 	public String save(Person person, ModelMap modelMap){
 		Person personRet = personRepository.findById(person.getPersonId()).get();
 		Tools.copyBeanForUpdate(person, personRet);
+	
 		personRepository.save(personRet);
 		return "redirect:/per/info.html"; 
 	}
@@ -132,6 +134,8 @@ public class PerControle {
 		personRet.setPerSalary(perSalary);
 		personRet.setJobStudy(jobStudy);
 		personRet.setWorkState(workState);
+		personRet.setUpdateDate(new Date());
+		
 		personRepository.save(personRet);
 		
 		modelMap.put("person", personRet);
@@ -156,6 +160,24 @@ public class PerControle {
 			modelMap.put("fileWebPath", files.get(0).getFileWebPath());
 		}
 		return "per/infoview"; 
+	}
+	
+	
+	/**
+	 * 更新简历基本信
+	 * @param pageNum
+	 * @param size
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/per/resumupadte.html"  )
+	public String resumupadte(ModelMap modelMap,HttpServletRequest request){
+		Account account = (Account)request.getSession().getAttribute("account");
+		List<Person> persons = personRepository.findByAccountId(account.getAccountId());
+		Person person = persons.get(0);
+		person.setUpdateDate(new Date());
+		personRepository.save(person);
+		return "redirect:/per/info.html"; 
 	}
 	
 }

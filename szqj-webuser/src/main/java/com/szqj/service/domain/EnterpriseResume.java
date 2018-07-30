@@ -28,10 +28,15 @@ public class EnterpriseResume {
 	@ManyToOne
 	@JoinColumn(name = "person_id")
 	private Person person;
+	
+
+	@ManyToOne
+	@JoinColumn(name = "job_info_id")
+	private JobInfo jobInfo;
 	 
 	private Date createDate;
 	
-	private Integer state;//0:待查看,1:已查看,2:通过,3:取消	
+	private Integer state=0;//0:待查看,1:已查看,2:通过,3:取消	
 
 	public String getEnterpriseResumeId() {
 		return enterpriseResumeId;
@@ -71,6 +76,14 @@ public class EnterpriseResume {
 
 	public void setPerson(Person person) {
 		this.person = person;
+	}
+
+	public JobInfo getJobInfo() {
+		return jobInfo;
+	}
+
+	public void setJobInfo(JobInfo jobInfo) {
+		this.jobInfo = jobInfo;
 	}
 
 	

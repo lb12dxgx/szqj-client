@@ -14,6 +14,7 @@ import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Account;
+import com.szqj.weborg.domain.DictRepository;
 
 @Controller
 @RequestMapping("/")
@@ -24,6 +25,8 @@ public class EmpControle {
 	
 	@Autowired
 	private EnterpriseRepository enterpriseRepository;
+	@Autowired
+	private DictRepository dictRepository;
 	
 	
 	
@@ -54,8 +57,12 @@ public class EmpControle {
 	public String save(Enterprise enterprise, ModelMap modelMap){
 		Enterprise enterpriseRet = enterpriseRepository.findById(enterprise.getEnterpriseId()).get();
 		Tools.copyBeanForUpdate(enterprise, enterpriseRet);
+		String qyXj = dictRepository.findByDictValue(enterpriseRet.getQyXjCode()).get(0).getDictName();
+		String qyGm = dictRepository.findByDictValue(enterpriseRet.getQyGmCode()).get(0).getDictName();
+		enterpriseRet.setQyXj(qyXj);
+		enterpriseRet.setQyGm(qyGm);
 		enterpriseRepository.save(enterpriseRet);
-		return "redirect:emp/info"; 
+		return "redirect:/emp/info.html"; 
 	}
 	
 	

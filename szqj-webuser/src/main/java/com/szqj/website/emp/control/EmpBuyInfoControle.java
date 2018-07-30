@@ -27,7 +27,7 @@ import com.szqj.weborg.domain.DictRepository;
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
-public class BuyInfoControle {
+public class EmpBuyInfoControle {
 	
 	@Autowired
 	private EnterpriseRepository enterpriseRepository;

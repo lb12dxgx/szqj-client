@@ -23,7 +23,7 @@ import com.szqj.weborg.domain.DictRepository;
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
-public class ProductControle {
+public class EmpProductControle {
 	
 	
 	@Autowired

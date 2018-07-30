@@ -39,7 +39,8 @@ public class LoginControle {
 	 * @return
 	 */
 	@RequestMapping(value = "login.html"  )
-	public String login(ModelMap modelMap){
+	public String login(ModelMap modelMap,String backurl,HttpServletRequest request){
+		request.getSession().setAttribute("backurl", backurl);
 		return "login/login.html"; 
 	}
 	
@@ -54,6 +55,11 @@ public class LoginControle {
 			
 			request.getSession().setAttribute("account", account);
 			
+			Object backurlOb = request.getSession().getAttribute("backurl");
+			if(backurlOb!=null){
+				return "redirect:"+String.valueOf(backurlOb); 
+			}
+			
 			if(account.getAccountType()==ConstantUtils.ACCOUNT_COMPANY){
 				return "redirect:emp/info.html"; 
 			}else {
@@ -64,6 +70,18 @@ public class LoginControle {
 			
 			 return "login/login"; 
 		}
+		
+	}
+	
+	
+	
+	@RequestMapping(value = "logout.html"  )
+	public String logout(ModelMap modelMap,HttpServletRequest request){
+		
+			request.getSession().removeAttribute("account");
+			
+			return "redirect:/index.do"; 
+		
 		
 	}
 	
@@ -138,6 +156,9 @@ public class LoginControle {
 		modelMap.put("regInfo", regInfoRt);
 		return "login/regsuccess"; 
 	}
+	
+	
+	
 	
 	
 	

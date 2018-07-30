@@ -54,7 +54,17 @@ public class Enterprise {
 	
 	private Integer jobLevel;//级别  10:普通招聘  20:名企招聘
 	
+	private String qyXjCode;//企业性质编码
+	
+	private String qyXj;//企业性质
+	
+	private String qyGmCode;//企业规模
+	
+	private String qyGm;//企业规模
+	
 	private Integer orderNum;//顺序
+	
+	
 	
 
 	
@@ -209,6 +219,38 @@ public class Enterprise {
 
 	public void setJobLevel(Integer jobLevel) {
 		this.jobLevel = jobLevel;
+	}
+
+	public String getQyXjCode() {
+		return qyXjCode;
+	}
+
+	public void setQyXjCode(String qyXjCode) {
+		this.qyXjCode = qyXjCode;
+	}
+
+	public String getQyXj() {
+		return qyXj;
+	}
+
+	public void setQyXj(String qyXj) {
+		this.qyXj = qyXj;
+	}
+
+	public String getQyGmCode() {
+		return qyGmCode;
+	}
+
+	public void setQyGmCode(String qyGmCode) {
+		this.qyGmCode = qyGmCode;
+	}
+
+	public String getQyGm() {
+		return qyGm;
+	}
+
+	public void setQyGm(String qyGm) {
+		this.qyGm = qyGm;
 	}
 
 	

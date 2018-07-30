@@ -22,7 +22,7 @@ import com.szqj.weborg.domain.DictRepository;
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
-public class AbilityInfoControle {
+public class EmpAbilityInfoControle {
 	
 	
 	@Autowired

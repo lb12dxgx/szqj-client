@@ -21,7 +21,7 @@ import com.szqj.weborg.domain.Account;
 @Controller
 @RequestMapping("/")
 @EnableAutoConfiguration
-public class JobInfoControle {
+public class EmpJobInfoControle {
 	
 	@Autowired
 	private EnterpriseRepository enterpriseRepository;
