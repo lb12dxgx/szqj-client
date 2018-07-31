@@ -7,9 +7,9 @@
 						 	    	<h4 th:text="${person.personName}">张国勇</h4>
 						 	    	<div>
 						 	    	  <span>现居住地:</span><span th:text="${person.perCity}">北京</span>|
-						 	    	  <span>工作经验:</span><span>15年</span>|
+						 	    	  <span>工作经验:</span th:text="${person.workYear}"><span>15年</span>|
 						 	    	  <span>性别:</span><span th:text="${person.personSex}">男</span>|
-						 	    	  <span>年龄:</span><span>39</span>|
+						 	    	  <span>年龄:</span><span th:text="${person.perNum}">39</span>|
 						 	    	  <span th:text="${person.workState}">我不想换工作</span>
 						 	    	</div>
 						 	    	<div class="email">
@@ -72,6 +72,12 @@
 					 	    	     	  <div class="col-md-3">工作类型：</div>
 					 	    	     	  <div th:text="${person.workType}">全职</div>
 					 	    	     	</div>
+					 	    	     </div>
+					 	    	      <div class="row top20">
+					 	    	      <div class="col-md-10">
+					 	    	     	<div class="col-md-2">自我评价：</div>
+					 	    	     	 <div th:text="${person.perDesc}">全职</div>
+					 	    	     </div>
 					 	    	     </div>
 					 	    	</div>
 					 	   		

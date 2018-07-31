@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	<link href="/css/houtai.css" rel="stylesheet" type="text/css">
+</head>
+  
+ 
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+   <!--�˵���ʼ-->
+	<header th:include="header"/>
+  <!--�˵�����-->
+ <div class="gb-main  container-fluid">
+  
+   <div class="row houtai-box" style="margin-top:5px">
+     <!--���˵���ʼ-->
+     <div class="col-md-2">
+		<div th:include="emp/leftmenu"/>  
+	 </div>
+     <!--���˵�����-->
+	<div class="col-md-10 main-content" >
+              <div class="col-md-12" style="padding:10px;">
+                <ul class="nav nav-pills" role="tablist">
+				  <li role="presentation" class="active"><a href="/emp/resume/adminUn.html">未处理 <span class="badge" th:text="${page.totalElements}">42</span></a></li>
+				  <li role="presentation" ><a href="/emp/resume/adminFinsh.html">已处理 <span class="badge" th:text="${finshPage.totalElements}">42</span></a></li>
+				</ul>
+              </div>
+              
+              <div class="col-md-12 top-20"> 
+                <table class="table table-striped table-bordered ">
+                  <tr>
+                    <th width="5%">序号</th>
+                    <th width="30%">职位名称</th>
+                    <th width="20%">地点</th>
+                    <th width="10%"> 姓名</th>
+                    <th width="10%">发布时间</th>
+                    <th width="25%">操作</th>
+                  </tr>
+                  <tr th:each="enterpriseResume,iterStat:${page.content}">
+                    <td  th:text="${iterStat.count}">1</td>
+                    <td  th:text="${enterpriseResume.jobInfo.jobName}">项目经理</td>
+                    <td  th:text="${enterpriseResume.jobInfo.place}">1.3-1.6万/月</td>
+                    <td  th:text="${enterpriseResume.person.personName}">1.3-1.6万/月</td>
+                 
+                    <td th:text=" ${#dates.format(enterpriseResume.createDate, 'yyyy-MM-dd')}" >2018-10-12</td>
+                    <td>
+                     <a th:href="@{'/emp/resume/view.html?personId='+${enterpriseResume.person.personId}}"  target="_blank" class="btn btn-primary btn-sm"   >
+                        		查看简历
+                      </a>
+                  
+                    </td>
+                  </tr>
+				</table>
+              </div>
+
+               <div class="row">
+                  <div class="col-md-6 col-md-offset-6" >
+                    <div th:include="pagination"/> 
+                   </div>
+                </div>
+            </div>
+              
+          </div>  
+        </div>
+  </div>          
+  
+ 	          
+  
+   <!--footer��ʼ-->
+ <div th:include="footer"></div>
+  	<!--footer����-->
+  	<script type="text/javascript" th:inline="javascript">
+  	
+  
+	function showdel(id){
+		  $('#delModal').data("delId",id)
+		  $('#delModal').modal();  
+	};
+	
+	function del(){
+		var id=$('#delModal').data("delId");
+		 window.location.href='/emp/jobinfo/del.do?jobInfoId='+id;    
+	}
+ 	
+  	
+	$(function(){
+		$('#resumemy').addClass("active"); 
+		
+		$('#search').click(function (){
+			 $('#form').submit();
+		})
+		
+		$('.page-link').click(function(){
+			  if(!$(this).parent().hasClass("disabled")){
+				  $('#pageNum').val($(this).attr("pageIndex"));
+				  $('#form').submit();
+			  }
+		});
+	})
+</script>
+  <!--footer����-->
+  </body>
+</html>

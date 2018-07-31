@@ -80,7 +80,7 @@ public class LoginControle {
 		
 			request.getSession().removeAttribute("account");
 			
-			return "redirect:/index.do"; 
+			return "redirect:/login.html"; 
 		
 		
 	}

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -74,12 +75,18 @@ public class Person {
 	@Column
 	private String workState;//工作状态
 	@Column
+	private String perDesc;//自我评价
+	@Column
 	private Date createDate=new Date();
-	
 	@Column
 	private Date updateDate=new Date();//简历更新时间
 	
 	private Integer level;//级别  10:普通级别  20:vip 
+	
+	@Transient
+	private Integer workYear;//工作年龄
+	@Transient
+	private Integer perNum;//个人年龄
 	
 	
 	
@@ -246,6 +253,24 @@ public class Person {
 	public void setLevel(Integer level) {
 		this.level = level;
 	}
-    
+	public String getPerDesc() {
+		return perDesc;
+	}
+	public void setPerDesc(String perDesc) {
+		this.perDesc = perDesc;
+	}
+	public Integer getWorkYear() {
+		return workYear;
+	}
+	public void setWorkYear(Integer workYear) {
+		this.workYear = workYear;
+	}
+	public Integer getPerNum() {
+		return perNum;
+	}
+	public void setPerNum(Integer perNum) {
+		this.perNum = perNum;
+	}
+	
    
 }

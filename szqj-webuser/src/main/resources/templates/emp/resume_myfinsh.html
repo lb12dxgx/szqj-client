@@ -29,8 +29,8 @@
 	<div class="col-md-10 main-content" >
               <div class="col-md-12" style="padding:10px;">
                 <ul class="nav nav-pills" role="tablist">
-				  <li role="presentation" class="active"><a href="#">未处理 <span class="badge" th:text="${unPage.totalElements}">42</span></a></li>
-				  <li role="presentation"><a href="#">已处理</a> <span class="badge" th:text="${finshPage.totalElements}">42</span></li>
+				  <li role="presentation" class="active"><a href="#">已处理 <span class="badge" th:text="${page.totalElements}">42</span></a></li>
+				  <li role="presentation"><a href="#">未处理</a> <span class="badge" th:text="${finshPage.totalElements}">42</span></li>
 				</ul>
               </div>
               
@@ -46,18 +46,18 @@
                     <th width="10%">发布时间</th>
                     <th width="25%">操作</th>
                   </tr>
-                  <tr th:each="jobInfo,iterStat:${unPage.content}">
+                  <tr th:each="enterpriseResume,iterStat:${page.content}">
                     <td  th:text="${iterStat.count}">1</td>
-                    <td  th:text="${jobInfo.jobName}">项目经理</td>
-                    <td  th:text="${jobInfo.place}">1.3-1.6万/月</td>
-                    <td  th:text="${jobInfo.money}">1.3-1.6万/月</td>
-                  	<td  th:text="${jobInfo.num}">2</td>
-                    <td th:text=" ${#dates.format(jobInfo.startDate, 'yyyy-MM-dd')}" >2018-10-12</td>
+                    <td  th:text="${enterpriseResume.jobInfo.jobName}">项目经理</td>
+                    <td  th:text="${enterpriseResume.jobInfo.place}">1.3-1.6万/月</td>
+                    <td  th:text="${enterpriseResume.person.personName}">1.3-1.6万/月</td>
+                 
+                    <td th:text=" ${#dates.format(enterpriseResume.createDate, 'yyyy-MM-dd')}" >2018-10-12</td>
                     <td>
-                     <a href="#" class="btn btn-primary btn-sm"  th:onclick="'javascript:edit(\''+${jobInfo.jobInfoId}+'\')'" >
+                     <a href="#" class="btn btn-primary btn-sm"  th:onclick="'javascript:edit(\''+${enterpriseResume.enterpriseResumeId}+'\')'" >
                           修改
                       </a>
-                      <a href="#" class="btn btn-primary btn-sm" th:onclick="'javascript:showdel(\''+${jobInfo.jobInfoId}+'\')'" >
+                      <a href="#" class="btn btn-primary btn-sm" th:onclick="'javascript:showdel(\''+${enterpriseResume.enterpriseResumeId}+'\')'" >
                           删除
                       </a>
                     </td>
