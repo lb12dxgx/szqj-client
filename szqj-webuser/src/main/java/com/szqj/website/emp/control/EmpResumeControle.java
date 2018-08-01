@@ -17,8 +17,6 @@ import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
 import com.szqj.service.domain.EnterpriseResume;
 import com.szqj.service.domain.EnterpriseResumeRepository;
-import com.szqj.service.domain.JobInfo;
-import com.szqj.service.domain.JobInfoRepository;
 import com.szqj.service.domain.MyPersonRepository;
 import com.szqj.service.domain.PerCertInfo;
 import com.szqj.service.domain.PerCertInfoRepository;

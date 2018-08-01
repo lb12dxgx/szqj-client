@@ -140,7 +140,7 @@
 	
   	<script type="text/javascript" th:inline="javascript">
   	
-  	 
+  	
   	
   	function infoedit(){
   		$("#resu-info").load('/per/infoedit.html');
@@ -285,8 +285,10 @@
 		$("#traindetail").load('/per/traininfo/list.html');
 		
 		$('#resume').addClass("active");
-		
-	
+		var flag=[[${flag}]];
+		if(1==flag){
+			$.showSuccessTimeout('简历更新成功!');
+		}
 		
 		
 	})

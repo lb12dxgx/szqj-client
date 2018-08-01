@@ -68,16 +68,18 @@
 	 
 					  
 	  $("#submitbut").click(function(){
-	      var form = $("#infosave");
-		    $.ajax({
-		        url:'/per/certinfo/save.do',
-		        type: form.attr("method"),
-		        data: form.serialize(),
-		        success: function (data)
-		        {
-		            $("#certdetail").html(data);
-		        }
-		    });
+		  if($("#infosave").valid()){ 
+		      var form = $("#infosave");
+			    $.ajax({
+			        url:'/per/certinfo/save.do',
+			        type: form.attr("method"),
+			        data: form.serialize(),
+			        success: function (data)
+			        {
+			            $("#certdetail").html(data);
+			        }
+			    });
+		  }
 
 	});
 	  

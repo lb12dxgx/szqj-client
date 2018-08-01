@@ -82,7 +82,7 @@ public class PerControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/per/resume.html"  )
-	public String resume(ModelMap modelMap,HttpServletRequest request){
+	public String resume(ModelMap modelMap,HttpServletRequest request,String flag){
 		Account account = (Account)request.getSession().getAttribute("account");
 		List<Person> persons = personRepository.findByAccountId(account.getAccountId());
 		List<FileInfo> files = fileInfoRepository.findByBussinessId(persons.get(0).getPersonPicId());
@@ -90,6 +90,7 @@ public class PerControle {
 			modelMap.put("fileWebPath", files.get(0).getFileWebPath());
 		}
 		modelMap.put("person", addWorkYearAndPerNum(persons.get(0)));
+		modelMap.put("flag", 1);
 		return "per/resume"; 
 	}
 	
@@ -218,7 +219,8 @@ public class PerControle {
 		Person person = persons.get(0);
 		person.setUpdateDate(new Date());
 		personRepository.save(person);
-		return "redirect:/per/info.html"; 
+		
+		return "redirect:/per/resume.html?flag=1"; 
 	}
 	
 }

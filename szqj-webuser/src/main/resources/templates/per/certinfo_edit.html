@@ -70,22 +70,45 @@
 	 
 					  
 	  $("#submitbut").click(function(){
-	      var form = $("#infosave");
-		    $.ajax({
-		        url:'/per/certinfo/update.do',
-		        type: form.attr("method"),
-		        data: form.serialize(),
-		        success: function (data)
-		        {
-		            $("#certdetail").html(data);
-		        }
-		    });
+		  if($("#infosave").valid()){ 
+		      var form = $("#infosave");
+			    $.ajax({
+			        url:'/per/certinfo/update.do',
+			        type: form.attr("method"),
+			        data: form.serialize(),
+			        success: function (data)
+			        {
+			            $("#certdetail").html(data);
+			        }
+			    });
+		  }
 
 	});
 	  
 	  $("#backbut").click(function(){
 		  $("#certdetail").load('/per/certinfo/list.html');
-	  })
+	  });
+	  
+	  $("#infosave").validate({
+          rules: {
+        	  certName: {
+              required: true
+            },
+            startDate:{
+              required: true
+            }
+           
+            
+          },
+          messages: {
+        	  certName: {
+	              required: "请输入证书名称"
+	            },
+	            startDate:{
+	              required: "请输入获得时间"
+	            }
+	      }
+     });
 	 
   })
  </script>
