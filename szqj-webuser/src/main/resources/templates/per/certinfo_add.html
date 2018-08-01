@@ -83,7 +83,29 @@
 	  
 	  $("#backbut").click(function(){
 		  $("#certdetail").load('/per/certinfo/list.html');
-	  })
+	  });
+	  
+	  
+	  $("#infosave").validate({
+          rules: {
+        	  certName: {
+              required: true
+            },
+            startDate:{
+              required: true
+            }
+           
+            
+          },
+          messages: {
+        	  certName: {
+	              required: "请输入证书名称"
+	            },
+	            startDate:{
+	              required: "请输入获得时间"
+	            }
+	      }
+     })
 	 
   })
  </script>

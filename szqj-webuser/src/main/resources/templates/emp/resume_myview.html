@@ -43,7 +43,7 @@ table{
 		 <div class="box-bgcl">
 			<div class="row">
 				<div class="col-md-3 jiaoshi-pic">
-					<img th:if="${fileWebPath!=null}" th:src="@{${fileWebPath}}" width="160" height="200">
+					<img th:if="${fileWebPath!=null}" th:src="@{'/'+${fileWebPath}}" width="160" height="200">
 					<img th:if="${fileWebPath==null}" src="/images/zhanweiren.jpg" width="160" height="200">
 				</div>
 				<div class="col-md-9">

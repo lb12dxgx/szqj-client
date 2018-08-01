@@ -65,9 +65,18 @@ public class JobControle {
 	}
 	
 	@RequestMapping(value = "/job/joblist.html"  )
-	public String job_list(Integer pageNum, Integer size, ModelMap modelMap) {
+	public String job_list(Integer pageNum, Integer size, String jobName,String place,ModelMap modelMap) {
 		PageRequest pageable=Tools.getPage(pageNum, 8);
-		Page<JobInfo> page=jobInfoRepository.findTopPage(pageable);
+		Page<JobInfo> page=null;
+		if(StringUtils.isBlank(jobName)&&StringUtils.isBlank(place)){
+		 page=jobInfoRepository.findPage(pageable);
+		}else if (StringUtils.isNotBlank(jobName)&&StringUtils.isNotBlank(place)){
+			 page=jobInfoRepository.findAllPageByPlaceAndPlace(jobName,place, pageable);
+		}else if(StringUtils.isNotBlank(place)){
+			 page=jobInfoRepository.findAllPageByPlace(jobName, pageable);
+		}else if(StringUtils.isNotBlank(jobName)){
+			 page=jobInfoRepository.findAllPageByJobInfoName(jobName, pageable);
+		}
 		List<JobInfo> l = page.getContent();
 		for(JobInfo jobInfo:l) {
 			String enterpriseId = jobInfo.getEnterpriseId();
@@ -75,6 +84,8 @@ public class JobControle {
 			jobInfo.setEnterpriseName(enterprise.getEnterpriseName());
 		}
 		modelMap.put("page",page);
+		modelMap.put("jobName",jobName);
+		modelMap.put("place",place);
 		return "job/job_list"; 
 	}
 	

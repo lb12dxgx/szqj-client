@@ -123,16 +123,19 @@
     });
 	 
 	  $("#submitbut").click(function(){
-	      var form = $("#infosave");
-		    $.ajax({
-		        url:'/per/studyinfo/save.do',
-		        type: form.attr("method"),
-		        data: form.serialize(),
-		        success: function (data)
-		        {
-		            $("#studydetail").html(data);
-		        }
-		    });
+		  
+		  if($("#infosave").valid()){ 
+		      var form = $("#infosave");
+			    $.ajax({
+			        url:'/per/studyinfo/save.do',
+			        type: form.attr("method"),
+			        data: form.serialize(),
+			        success: function (data)
+			        {
+			            $("#studydetail").html(data);
+			        }
+			    });
+		  }
 
 	});
 	  
@@ -144,7 +147,34 @@
 		  	    $(window).scrollTop(t);
 		  });
 		  
-	  })
+	  });
+	  
+	  $("#infosave").validate({
+          rules: {
+        	  schoole: {
+              required: true
+            },
+            major:{
+              required: true
+            },
+            degree:{
+                required: true
+              }
+           
+            
+          },
+          messages: {
+        	  companyName: {
+	              required: "请输入学校名称"
+	            },
+	            major:{
+	              required: "请输入专业"
+	            },
+	            degree:{
+	                required: "请输入学位"
+	              }
+	      }
+     })
 	 
   })
  </script>

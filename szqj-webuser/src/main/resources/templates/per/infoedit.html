@@ -25,11 +25,11 @@
                  <div class="form-group top20">
                   <label class="col-md-2 control-label">出生日期</label>
                   <div class="col-md-4">
-                    <input  type="text" class="form-control datepicker" name="birthDate" id="birthDate" placeholder="请输入截止日期"  th:value="${#dates.format(person.birthDate, 'yyyy-MM-dd')}">
+                    <input  type="text" class="form-control datepicker" name="birthDate" id="birthDate" placeholder="请输入出生日期"  th:value="${#dates.format(person.birthDate, 'yyyy-MM-dd')}">
                   </div>
                   <label class="col-md-2 control-label">开始工作时间</label>
                   <div class="col-md-4">
-                    <input  type="text" class="form-control datepicker" name="jobDate" id="jobDate" placeholder="请输入截止日期"   th:value="${#dates.format(person.jobDate, 'yyyy-MM-dd')}">
+                    <input  type="text" class="form-control datepicker" name="jobDate" id="jobDate" placeholder="请输入开始工作时间"   th:value="${#dates.format(person.jobDate, 'yyyy-MM-dd')}">
                   </div>
                 </div>
                 
@@ -192,22 +192,69 @@
 	 
 					  
 	  $("#submitbut").click(function(){
-	      var form = $("#infosave");
-		    $.ajax({
-		        url:'/per/infosave.do',
-		        type: form.attr("method"),
-		        data: form.serialize(),
-		        success: function (data)
-		        {
-		            $("#resu-info").html(data);
-		        }
-		    });
+		  if($("#infosave").valid()){
+		      var form = $("#infosave");
+			    $.ajax({
+			        url:'/per/infosave.do',
+			        type: form.attr("method"),
+			        data: form.serialize(),
+			        success: function (data)
+			        {
+			            $("#resu-info").html(data);
+			        }
+			    });
+		  }
 
 	});
 	  
 	  $("#backbut").click(function(){
 		  $("#resu-info").load('/per/infoview.html');
 	  })
+	  
+	  $("#infosave").validate({
+          rules: {
+        	  personName: {
+              required: true
+            },
+            birthDate:{
+              required: true
+            },
+            jobDate:{
+           	  required: true	
+            },
+            workCity:{
+              required: true	
+            },
+            jobName:{
+	              required: true	
+	         },
+	         perEmail:{
+              required: true	
+            }
+           
+            
+          },
+          messages: {
+        	  personName: {
+	              required: "请输入姓名"
+	            },
+	            birthDate:{
+	              required: "请输入出生日期"
+	            },
+	            jobDate:{
+	           	  required: "请输入开始工作时间"	
+	            },
+	            workCity:{
+	            	required: "请输入工作地点"	
+	            },
+	            jobName:{
+		              required: "请输入职位信息"		
+		         },
+		         perEmail:{
+	              required: "请输入邮箱"		
+	          }
+	      }
+     });
 	 
   })
  </script>

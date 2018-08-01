@@ -3,6 +3,7 @@ package com.szqj.service.domain;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -40,5 +41,16 @@ public interface JobInfoRepository extends PagingAndSortingRepository<JobInfo, S
 	
 	@Query("select m from JobInfo m where m.enterpriseName like %?1% order by m.startDate desc,level desc")
 	Page<JobInfo> findAdminPageByEnterpriseName(String enterpriseName, Pageable pageable);
+
+	@Query("select m from JobInfo m where m.jobName like %?1% and m.place like %?2%  order by m.startDate desc,level desc")
+	Page<JobInfo> findAllPageByPlaceAndPlace(String jobName, String place, Pageable pageable);
+
+	@Query("select m from JobInfo m where  m.place like %?1%  order by m.startDate desc,level desc")
+	Page<JobInfo> findAllPageByPlace(String place, Pageable pageable);
+	
+	@Query("select m from JobInfo m where  m.jobName like %?1%  order by m.startDate desc,level desc")
+	Page<JobInfo> findAllPageByJobInfoName(String jobName, Pageable pageable);
+
+
 	
 }

@@ -121,22 +121,45 @@
 	 
 					  
 	  $("#submitbut").click(function(){
-	      var form = $("#jobdetailsave");
-		    $.ajax({
-		        url:'/per/jobdetail/save.do',
-		        type: form.attr("method"),
-		        data: form.serialize(),
-		        success: function (data)
-		        {
-		            $("#jobdetail").html(data);
-		        }
-		    });
+		  if($("#jobdetailsave").valid()){
+		      var form = $("#jobdetailsave");
+			    $.ajax({
+			        url:'/per/jobdetail/save.do',
+			        type: form.attr("method"),
+			        data: form.serialize(),
+			        success: function (data)
+			        {
+			            $("#jobdetail").html(data);
+			        }
+			    });
+		  }
 
 	});
 	  
 	  $("#backbut").click(function(){
 		  $("#jobdetail").load('/per/jobdetail/list.html');
-	  })
+	  });
+	  
+	  $("#jobdetailsave").validate({
+          rules: {
+        	companyName: {
+              required: true
+            },
+            jobname:{
+              required: true
+            }
+           
+            
+          },
+          messages: {
+        	  companyName: {
+	              required: "请输入公司名称"
+	            },
+	            jobname:{
+	              required: "请输入职位信息"
+	            }
+	      }
+     })
 	 
   })
  </script>
