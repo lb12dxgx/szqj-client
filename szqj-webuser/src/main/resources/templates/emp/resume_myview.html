@@ -150,7 +150,7 @@ table{
              </ul>
          </div>
 		 <div class="box-bgcl spxq-box">
-			 <div th:each="jobInfo:${joblist}">
+			 <div th:each="jobInfo,iterStat:${joblist}">
 					 <table width="100%">
 						 <tr height="40px;">
 							 <td width="10%">公司名称：</td>
@@ -180,7 +180,7 @@ table{
              </ul>
          </div>
 		 <div class="box-bgcl spxq-box">
-		 <div style="background: #fff;">
+	
 		  <table class="table table-striped" width="100%">
 				 <tr height="40px;">
 					 <th width="40%">证书名称</th>
@@ -196,7 +196,6 @@ table{
 				 
 			 </table>
 			 
-			 </div>
 		 </div>
 		 	 <div class="maintop" style="margin-top: 35px;">
               <ul class="list-inline">
@@ -205,39 +204,29 @@ table{
              </ul>
          </div>
 		 <div class="box-bgcl spxq-box">
-
-			 <table width="100%">
-				 <tr height="40px;" >
-					 <td width="10%">培训课程：</td>
-					 <td width="40%" class="gray">基础操作技术</td>
-					 <td width="10%">培训时间：</td>
-					 <td width="40%" class="gray">2018-09-07至今</td>
-				 </tr>
-				
-			 </table>
-			 <div>
-				<h5>培训描述：</h5>
-				 <p>河北安闻汽车零部件有限公司（金色时光全资子公司）(简称AEW，注：我公司是AEW注册商标的拥有者)成立于1997年，公司总部地处素有“京津走廊上的明珠”之称的廊坊市，</p>
-			 </div>
-			 <div class="gb-line"></div>
-			  <table width="100%">
-				 <tr height="40px;">
-					 <td width="10%">培训课程：</td>
-					 <td width="40%" class="gray">基础操作技术</td>
-					 <td width="10%">培训时间：</td>
-					 <td width="40%" class="gray">2018-09-07至今</td>
-				 </tr>
-				 <tr height="40px;">
-					 <td>培训机构：</td>
-					 <td class="gray">北京地下管线协会</td>
-					 <td>培训地点：</td>
-					 <td class="gray">北京</td>
-				 </tr>
-			 </table>
-			 <div>
-				<h5>培训描述：</h5>
-				 <p>河北安闻汽车零部件有限公司（金色时光全资子公司）(简称AEW，注：我公司是AEW注册商标的拥有者)成立于1997年，公司总部地处素有“京津走廊上的明珠”之称的廊坊市，</p>
-			 </div>
+			<div th:each="trainInfo,iterStat:${trainlist}">
+				 <table width="100%">
+					 <tr height="40px;" >
+						 <td width="10%">培训课程：</td>
+						 <td width="40%" class="gray" th:text="${trainInfo.trainClassName}">基础操作技术</td>
+						 <td width="10%" >培训时间：</td>
+						 <td width="40%" class="gray"  th:if="${trainInfo.endDate!=''}" ><span th:text="${trainInfo.startDate}">2013/11</span>-<span th:text="${trainInfo.endDate}">至今</span></td>
+						  <td width="40%" class="gray"  th:if="${trainInfo.endDate==''}" ><span th:text="${trainInfo.startDate}">2013/11</span>-<span>至今</span></td>
+					 </tr>
+					 <tr height="40px;" >
+						 <td width="10%">培训机构：</td>
+						 <td width="40%" class="gray" th:text="${trainInfo.trainOrgName}">基础操作技术</td>
+						 <td width="10%" >培训地点：</td>
+						 <td width="40%" class="gray" ><span th:text="${trainInfo.trainPlace}"></td>
+					 </tr>
+					
+				 </table>
+				 <div>
+					<h5>培训描述：</h5>
+					 <p th:text="${trainInfo.trainDesc}">河北安闻汽车零部件有限公司（金色时光全资子公司）(简称AEW，注：我公司是AEW注册商标的拥有者)成立于1997年，公司总部地处素有“京津走廊上的明珠”之称的廊坊市，</p>
+				 </div>
+				 <div class="gb-line" th:if="not ${iterStat.last}"></div>
+			  </div>
 			
 		 </div>
 			 <div class="maintop">
@@ -247,8 +236,7 @@ table{
              </ul>
          </div>
 		 <div class="box-bgcl spxq-box">
-			
-			 <div>
+			 <div  th:text="${person.perDesc}">
 				 河北安闻汽车零部件有限公司（金色时光全资子公司）(简称AEW，注：我公司是AEW注册商标的拥有者)成立于1997年，公司总部地处素有“京津走廊上的明珠”之称的廊坊市，目前公司拥有廊坊、上海、广东（梅州）四个生产制造基地及总部实力雄厚的研发团队，我公司已经在汽车座椅安全与舒适性领域取得了近206项专利。我们一直秉承“做小型巨人企业，以科学技术和科学方法服务世界”的发展理念，致力于打造座椅安全及舒适性的本土高端品牌并走向国际化市场。
 
 			 </div>
@@ -270,29 +258,16 @@ table{
               </ul>
             </div>
             <div class="box-bgcl">
+                <div th:each="person,iterStat:${toplist}">
 				 <ul class="list-unstyled tjzw-list">
-					 <li><a href="#"><h5>张三</h5></a></li>
-					 <li>意向岗位：<span class="gray">销售经理</span></li>
-					 <li>希望薪资：<span class="gray">3000-5000/月</span></li>
-					 <li>工作地点：<span class="gray">北京</span></li>
-					 <li>发布日期：<span class="gray">2010-09-03</span></li>
+					 <li><a href="#"><h5 th:text="${person.personName}">张三</h5></a></li>
+					 <li>意向岗位：<span class="gray" th:text="${person.jobName}">销售经理</span></li>
+					 <li>希望薪资：<span class="gray" th:text="${person.perSalary}" >3000-5000/月</span></li>
+					 <li>工作地点：<span class="gray" th:text="${person.workCity}">北京</span></li>
+					 <li>发布日期：<span class="gray" th:text="${#dates.format(person.updateDate, 'yyyy-MM-dd')} ">2010-09-03</span></li>
 				 </ul>
-				<div class="gb-line"></div>
-				<ul class="list-unstyled tjzw-list">
-				 <li><a href="#"><h5>张三</h5></a></li>
-					 <li>意向岗位：<span class="gray">销售经理</span></li>
-					 <li>希望薪资：<span class="gray">3000-5000/月</span></li>
-					 <li>工作地点：<span class="gray">北京</span></li>
-					 <li>发布日期：<span class="gray">2010-09-03</span></li>
-			    </ul>
-				<div class="gb-line"></div>
-				<ul class="list-unstyled tjzw-list">
-			 <li><a href="#"><h5>张三</h5></a></li>
-					 <li>意向岗位：<span class="gray">销售经理</span></li>
-					 <li>希望薪资：<span class="gray">3000-5000/月</span></li>
-					 <li>工作地点：<span class="gray">北京</span></li>
-					 <li>发布日期：<span class="gray">2010-09-03</span></li>
-			 </ul>
+				<div class="gb-line" th:if="not ${iterStat.last}"></div>
+				</div>
             </div>
         </div>
      

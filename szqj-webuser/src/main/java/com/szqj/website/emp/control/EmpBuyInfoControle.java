@@ -56,6 +56,7 @@ public class EmpBuyInfoControle {
 			page=buyInfoRepository.findPageByBuyInfoName(buyInfoName,enterprise.getEnterpriseId(),pageable);
 		}
 		modelMap.put("page", page);
+		modelMap.put("buyInfoName", buyInfoName);
 		return "emp/buyinfo"; 
 	}
 	

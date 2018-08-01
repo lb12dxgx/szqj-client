@@ -15,9 +15,9 @@
 
 ">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-  
+   
 	<header th:include="header"/>
-
+  
  <div class="gb-main  container-fluid">
   
    <div class="row houtai-box" style="margin-top:5px">
@@ -33,6 +33,10 @@
                    <div class="form-group col-md-4">
                     <label class="srarch-label">职位名称</label>
                     <input type="text" class="form-control" name="jobName" th:value="${jobName}">
+                  </div>
+                   <div class="form-group col-md-4">
+                    <label class="srarch-label">工作地点</label>
+                    <input type="text" class="form-control" name="workCity" th:value="${workCity}">
                   </div>
                   <div class="form-group col-md-4" style="margin-right:10px ">
                     <a class="btn btn-default" id="search">

@@ -61,8 +61,6 @@ public class EmpResumeControle {
 	@Autowired
 	private FileInfoRepository fileInfoRepository ;
 	@Autowired
-	private JobInfoRepository jobInfoRepository;
-	@Autowired
 	private EnterpriseResumeRepository enterpriseResumeRepository;
 	
 	
@@ -78,8 +76,23 @@ public class EmpResumeControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/emp/resume/search.html")
-	public String searchResume(Integer pageNum, Integer size,String workCity,String hyType,ModelMap modelMap){
+	public String searchResume(Integer pageNum, Integer size,String workCity,String jobName,ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 6);
+		Page<Person> page=null;
 		
+		if(StringUtils.isBlank(workCity)&&(StringUtils.isBlank(jobName))){
+			page=personRepository.findEmpPage(pageable);
+		}else if(StringUtils.isNotBlank(workCity)&&(StringUtils.isNotBlank(jobName))){
+			page=personRepository.findEmpPageByWorkCityAndJobName(workCity, jobName, pageable);
+		}else if (StringUtils.isNotBlank(workCity)){
+			page=personRepository.findEmpPageByWorkCity(workCity, pageable);
+		}else if (StringUtils.isNotBlank(jobName)){
+			page=personRepository.findEmpPageByJobName(workCity, pageable);
+		}
+	
+		modelMap.put("page",page);
+		modelMap.put("jobName",jobName);
+		modelMap.put("workCity",workCity);
 		return "emp/resume_search"; 
 	}
 	
@@ -94,14 +107,16 @@ public class EmpResumeControle {
 	@RequestMapping(value = "/emp/resume/adminUn.html")
 	public String myUnResume(@SessionAttribute Account account,Integer pageNum, Integer size,String jobName,ModelMap modelMap){
 		PageRequest pageable=Tools.getPage(pageNum, 6);
-		
 		Enterprise enterprise = enterpriseRepository.findByAccountId(account.getAccountId()).get(0);
-		Page<EnterpriseResume> page = enterpriseResumeRepository.findPageaByUn(enterprise.getEnterpriseId(), pageable);
-		Page<EnterpriseResume> finshPage = enterpriseResumeRepository.findPageaByFinsh(enterprise.getEnterpriseId(), pageable);
 		
+		Page<EnterpriseResume> page=null;
+		if(StringUtils.isBlank(jobName)){
+			 page = enterpriseResumeRepository.findPageaByUn(enterprise.getEnterpriseId(), pageable);
+		}else{
+			page =enterpriseResumeRepository.findPageaByUnAndJobName(enterprise.getEnterpriseId(), jobName, pageable);
+		}
 		modelMap.put("page", page);
-		modelMap.put("finshPage", finshPage);
-	
+		modelMap.put("jobName", jobName);
 		return "emp/resume_myun"; 
 	}
 	
@@ -152,6 +167,11 @@ public class EmpResumeControle {
 		if(files!=null&&files.size()>0) {
 			modelMap.put("fileWebPath", files.get(0).getFileWebPath());
 		}
+		
+		
+		List<Person> toplist = personRepository.findTopList();
+		
+		modelMap.put("toplist", toplist);
 		
 		return "emp/resume_myview"; 
 	}

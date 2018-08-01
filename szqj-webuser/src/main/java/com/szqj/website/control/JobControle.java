@@ -223,9 +223,9 @@ public class JobControle {
 	 * @param modelMap
 	 */
 	private void topResum(ModelMap modelMap) {
-		PageRequest pageable=Tools.getPage(0, 4);
-		Page<Person> page = personRepository.findPage(pageable);
-		for(Person person:page.getContent()) {
+		
+		List<Person> list = personRepository.findTopList();
+		for(Person person:list) {
 			String personName=person.getPersonName();
 			personName=personName.substring(0, 1);
 			if("男".equals(person.getPersonSex())) {
@@ -235,7 +235,7 @@ public class JobControle {
 			}
 			person.setPersonName(personName);
 		}
-		modelMap.put("topResumList",page.getContent());
+		modelMap.put("topResumList",list);
 	}
 	
 	private void initMap(HashMap map, Page<Enterprise> page) {

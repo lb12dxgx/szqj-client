@@ -29,6 +29,16 @@ public interface EnterpriseResumeRepository extends PagingAndSortingRepository<E
 	@Query("select a from EnterpriseResume a  where a.enterprise.enterpriseId =?1 and a.state=0  order by a.createDate ")
 	Page<EnterpriseResume> findPageaByUn(String enterpriseId, Pageable pageable);
 	
+	/**
+	 * 待处理
+	 * @param enterpriseName
+	 * @param pageable
+	 * @return
+	 */                                                
+	@Query("select a from EnterpriseResume a  where a.enterprise.enterpriseId =?1 and a.state=0 and jobInfo.jobName like %?2%  order by a.createDate ")
+	Page<EnterpriseResume> findPageaByUnAndJobName(String enterpriseId, String jobName,Pageable pageable);
+	
+	
 	
 	/**
 	 * 已处理

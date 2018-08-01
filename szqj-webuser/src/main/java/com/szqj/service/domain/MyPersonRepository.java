@@ -34,16 +34,34 @@ public interface MyPersonRepository extends PagingAndSortingRepository<Person, S
 	
 	
 	@Query("select m from Person m where m.level=20 order by m.updateDate desc,level desc")
-	Page<Person> findTopPage(Pageable pageable);
+	List<Person> findTopList();
 	
+	
+	
+	
+	
+	@Query("select m from Person m where m.personName like %?1% order by m.updateDate desc,level desc")
+	Page<Person> findAdminPageByPersonName(String personName, Pageable pageable);
 	
 	
 	@Query("select m from Person m where m.jobName like %?1%   order by m.updateDate desc,level desc")
 	Page<Person> findAdminPageByJobName(String jobName,Pageable pageable);
 	
 	
-	@Query("select m from Person m where m.personName like %?1% order by m.updateDate desc,level desc")
-	Page<Person> findAdminPageByPersonName(String personName, Pageable pageable);
+	@Query("select m from Person m where workState!=3  order by m.updateDate desc,level desc")
+	Page<Person> findEmpPage(Pageable pageable);
+	
+	@Query("select m from Person m where m.jobName like %?1% and workState!=3  order by m.updateDate desc,level desc")
+	Page<Person> findEmpPageByJobName(String jobName,Pageable pageable);
+	
+	
+	@Query("select m from Person m where m.workCity like %?1% and workState!=3  order by m.updateDate desc,level desc")
+	Page<Person> findEmpPageByWorkCity(String workCity,Pageable pageable);
+	
+	
+	@Query("select m from Person m where m.workCity like %?1% and m.jobName like %?2% and workState!=3  order by m.updateDate desc,level desc")
+	Page<Person> findEmpPageByWorkCityAndJobName(String workCity,String jobName,Pageable pageable);
+	
    
 	
 	

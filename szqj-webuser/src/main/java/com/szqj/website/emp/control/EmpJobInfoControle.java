@@ -48,6 +48,7 @@ public class EmpJobInfoControle {
 		}else{
 			page=jobInfoRepository.findPageByJobInfoName(jobInfoName,enterprise.getEnterpriseId(),pageable);
 		}
+		modelMap.put("jobInfoName", jobInfoName);
 		modelMap.put("page", page);
 		return "emp/jobinfo"; 
 	}
