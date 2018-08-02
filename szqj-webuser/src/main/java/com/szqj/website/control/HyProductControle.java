@@ -4,10 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.szqj.service.domain.BuyInfo;
+import com.szqj.service.domain.BuyInfoRepository;
+import com.szqj.service.domain.Enterprise;
+import com.szqj.service.domain.EnterpriseRepository;
+import com.szqj.service.domain.Product;
+import com.szqj.service.domain.ProductRepository;
+import com.szqj.service.domain.ZbInfo;
+import com.szqj.service.domain.ZbInfoRepository;
+import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Dict;
 import com.szqj.weborg.domain.DictRepository;
 
@@ -18,6 +29,16 @@ public class HyProductControle {
 	
 	@Autowired
 	private DictRepository dictRepository;
+	@Autowired
+	private ZbInfoRepository zbInfoRepository;
+	@Autowired
+	private BuyInfoRepository buyInfoRepository;
+	@Autowired
+	private EnterpriseRepository enterpriseRepository;
+	@Autowired
+	private ProductRepository productRepository;
+	
+	
 	/**
 	 * 行业采购
 	 * @param modelMap
@@ -55,8 +76,10 @@ public class HyProductControle {
 	 * @param modelMap
 	 */
 	private void zbInfoList(ModelMap modelMap) {
+		PageRequest pageable=Tools.getPage(0, 5);
+		Page<ZbInfo> page=zbInfoRepository.findPage(pageable);
+		modelMap.put("zbList",page.getContent());
 		
-		asda
 	}
 	
 	
@@ -65,7 +88,9 @@ public class HyProductControle {
 	 * @param modelMap
 	 */
 	private void buyInfoList(ModelMap modelMap) {
-		
+		PageRequest pageable=Tools.getPage(0, 5);
+		Page<BuyInfo> page = buyInfoRepository.findPage(pageable);
+		modelMap.put("buyList",page.getContent());
 		
 	}
 	
@@ -75,7 +100,8 @@ public class HyProductControle {
 	 * @param modelMap
 	 */
 	private void topEnterpriseList(ModelMap modelMap) {
-		
+		List<Enterprise> list = enterpriseRepository.findVipList();
+		modelMap.put("entList",list);
 		
 	}
 	
@@ -85,7 +111,8 @@ public class HyProductControle {
 	 * @param modelMap
 	 */
 	private void topProductList(ModelMap modelMap) {
-		
+		List<Product> list = productRepository.findVipList();
+		modelMap.put("productList",list);
 		
 	}
 

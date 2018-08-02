@@ -33,4 +33,7 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, S
 	@Query("select m from Product m where m.enterpriseId=?1 order by level desc, createDate")
 	List<Product> findByEnterpriseId(String enterpriseId);
 	
+	@Query("select m from Product m where m.level=30 order by  createDate")
+	List<Product> findVipList();
+	
 }
