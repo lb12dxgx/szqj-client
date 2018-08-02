@@ -21,6 +21,8 @@ import com.szqj.service.domain.ZbInfoRepository;
 import com.szqj.util.Tools;
 import com.szqj.weborg.domain.Dict;
 import com.szqj.weborg.domain.DictRepository;
+import com.szqj.weborg.domain.FileInfo;
+import com.szqj.weborg.domain.FileInfoRepository;
 
 @Controller
 @RequestMapping("/")
@@ -37,6 +39,9 @@ public class HyProductControle {
 	private EnterpriseRepository enterpriseRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private FileInfoRepository fileInfoRepository;
 	
 	
 	/**
@@ -101,6 +106,15 @@ public class HyProductControle {
 	 */
 	private void topEnterpriseList(ModelMap modelMap) {
 		List<Enterprise> list = enterpriseRepository.findVipList();
+		
+		for(Enterprise enterprise:list) {
+			String tFiled = enterprise.getEnterprisePicId();
+			List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
+			if(files!=null&&files.size()>0) {
+				enterprise.setEnterprisePicPath(files.get(0).getFileWebPath());
+			}
+		}
+		
 		modelMap.put("entList",list);
 		
 	}
@@ -112,6 +126,15 @@ public class HyProductControle {
 	 */
 	private void topProductList(ModelMap modelMap) {
 		List<Product> list = productRepository.findVipList();
+		
+		for(Product product:list) {
+			String tFiled = product.getProductPicId();
+			List<FileInfo> files = fileInfoRepository.findByBussinessId(tFiled);
+			if(files!=null&&files.size()>0) {
+				product.setProductPicPath(files.get(0).getFileWebPath());
+			}
+		}
+		
 		modelMap.put("productList",list);
 		
 	}

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -66,7 +67,8 @@ public class Enterprise {
 	
 	private Integer orderNum;//顺序
 	
-	
+	@Transient
+	private String enterprisePicPath;//企业图片
 	
 
 	
@@ -263,6 +265,14 @@ public class Enterprise {
 		this.hyTypeCode = hyTypeCode;
 	}
 
+	public String getEnterprisePicPath() {
+		return enterprisePicPath;
+	}
+
+	public void setEnterprisePicPath(String enterprisePicPath) {
+		this.enterprisePicPath = enterprisePicPath;
+	}
+	
 	
 	
 }

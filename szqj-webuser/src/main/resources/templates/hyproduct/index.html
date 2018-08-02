@@ -24,63 +24,31 @@
   <div class=" container">
 	  <div class="row">
 		  <div class="col-md-3" style="padding-right: 0px;">
-			  <div class="cg-spfl text-center">商品分类</div>
-			  <div class="cg-mune">
-				  <div>
-					  <p class="cg-flbt">商品分类1</p>
-					  <ul class="list-unstyled list-inline cg-fllist">
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-				          <li><a href="#" class="cghui-link">产品分类</a></li>
-					  </ul>
-				  </div>
-				  <div class="line-wb"></div>
-				   <div>
-					  <p class="cg-flbt">商品分类1</p>
-					  <ul class="list-unstyled list-inline cg-fllist">
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-
-	
-					  </ul>
-				  </div>
-				  <div class="line-wb"></div>
-				   <div>
-					  <p class="cg-flbt">商品分类1</p>
-					  <ul class="list-unstyled list-inline cg-fllist">
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-
-	
-					  </ul>
-				  </div>
-				  <div class="line-wb"></div>
-				   <div>
-					  <p class="cg-flbt">商品分类1</p>
-					  <ul class="list-unstyled list-inline cg-fllist">
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-						  <li><a href="#" class="cghui-link">产品分类</a></li>
-
-	
-					  </ul>
-				  </div>
+		  		<div class="cg-spfl text-center" >商品分类</div>
+				  <div class="cg-mune">
+					   <th:block th:each="dic,iterStat:${dictList}">
+						  <div>
+							  <p class="cg-flbt" th:text="${dic.dictName}">商品分类1</p>
+							   <ul class="list-unstyled list-inline cg-fllist">
+								  <li th:each="child,iterStat:${dic.children}">
+								  	<a href="#" class="cghui-link" th:text="${child.dictName}">产品分类</a>
+								  </li>
+								</ul>
+						  </div>
+						  <div class="line-wb" th:if="not ${iterStat.last}"></div>
+					 	</th:block>
+				 </div>
+				
 			  </div>
 		  </div>
 	  
 		  <div class="col-md-9" style="padding-left: 0px;">
 			  <div class="cg-flmenu">
 				  <ul class="list-inline list-unstyled">
-					  <li><a href="#">商品分类1</a></li>
-					  <li><a href="#">商品分类2</a></li>
-					  <li><a href="#">商品分类3</a></li>
-					  <li><a href="#">商品分类4</a></li>
+					  <li th:each="dic,iterStat:${dictList}">
+					 	 <a href="#" th:text="${dic.dictName}">商品分类1</a>
+					  </li>
+					  
 				  </ul>
 			  </div>
 		   <!--轮播开始-->
@@ -109,35 +77,15 @@
           </ul>
         </div>
         <div class="box-bgcl">
-          <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
-          <div class="gb-line clearfix"></div>
-           <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会地下管线协</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
-          <div class="gb-line clearfix"></div>
-           <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
-          <div class="gb-line clearfix"></div>
-           <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
-          <div class="gb-line clearfix"></div>
-           <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
+         <th:block th:each="zbInfo,iterStat:${zbList}">
+	          <ul class="gb-news">
+	            <li class="xwlist pull-left gb-zhaopin1"><a href="#" th:text="${zbInfo.zbXmName}">生物识别技术加持 智能门锁将迎新时代</a></li>
+	            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#" th:text="${zbInfo.area}">地下管线协会</a></li>
+	            <li class="list-unstyled pull-right"><time datetime="2018-1-22"  th:text="${#dates.format(zbInfo.publishDate, 'yyyy-MM-dd')}" >2018-1-22</time></li>
+	          </ul>
+	          <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
+          </th:block>
+           
 
           
         </div>
@@ -152,35 +100,14 @@
           </ul>
         </div>
         <div class="box-bgcl">
-          <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
-          <div class="gb-line clearfix"></div>
-           <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会地下管线协</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
-          <div class="gb-line clearfix"></div>
-           <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
-          <div class="gb-line clearfix"></div>
-           <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
-          <div class="gb-line clearfix"></div>
-           <ul class="gb-news">
-            <li class="xwlist pull-left gb-zhaopin1"><a href="#">生物识别技术加持 智能门锁将迎新时代</a></li>
-            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#">地下管线协会</a></li>
-            <li class="list-unstyled pull-right"><time datetime="2018-1-22">2018-1-22</time></li>
-          </ul>
+	        <th:block th:each="buyInfo,iterStat:${buyList}">
+		          <ul class="gb-news">
+		            <li class="xwlist pull-left gb-zhaopin1"><a href="#" th:text="${buyInfo.buyInfoName}">生物识别技术加持 智能门锁将迎新时代</a></li>
+		            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#" th:text="${buyInfo.empName}">地下管线协会</a></li>
+		            <li class="list-unstyled pull-right"><time datetime="2018-1-22" th:text="${#dates.format(buyInfo.createDate, 'yyyy-MM-dd')}">2018-1-22</time></li>
+		          </ul>
+		          <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
+	         </th:block> 
 
           
         </div>
@@ -199,49 +126,19 @@
     </div>
     <div class="box-bgcl">
 		<div class="row text-center cg_list">
-			<div class="col-md-3">
+			<div class="col-md-3" th:each="enterprise,iterStat:${entList}">
 			  <a href="#">
 				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/logo160.jpg" width="130" height="130"></div>
-				  <div class="cg-bt text-left"><span class=" shenhui"><strong>采购品类：</strong></span><span class="gray">电工电气类、电子产品</span></div>
-				  <div class="cg-bt shenhui text-left"><strong>采购额度：</strong><span class="gray">1000亿/年</span></div>
+				  <div><img  th:src="@{'/'+${enterprise.enterprisePicPath}}"  width="130" height="130" /></div>
+				  <div class="cg-bt text-left"><span class=" shenhui"><strong>企业名称：</strong></span><span class="gray" th:text="${enterprise.enterpriseName}">电工电气类、电子产品</span></div>
+				  <div class="cg-bt shenhui text-left"><strong>所属行业：</strong><span class="gray" th:text="${enterprise.hyType}">1000亿/年</span></div>
 
 				</div>
 
 			  </a>
 			</div>
-			<div class="col-md-3">
-			  <a href="#">
-				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/logo160.jpg" width="130" height="130"></div>
-				  <div class="cg-bt text-left"><span class=" shenhui"><strong>采购品类：</strong></span><span class="gray">电工电气类、电子产品</span></div>
-				  <div class="cg-bt shenhui text-left"><strong>采购额度：</strong><span class="gray">1000亿/年</span></div>
-
-				</div>
-			  </a>
-			</div>
-			<div class="col-md-3">
-			  <a href="#">
-					<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/logo160.jpg" width="130" height="130"></div>
-				  <div class="cg-bt text-left"><span class=" shenhui"><strong>采购品类：</strong></span><span class="gray">电工电气类、电子产品</span></div>
-				  <div class="cg-bt shenhui text-left"><strong>采购额度：</strong><span class="gray">1000亿/年</span></div>
-
-				</div>
-
-			  </a>
-			</div>
-			<div class="col-md-3">
-			  <a href="#">
-					<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/logo160.jpg" width="130" height="130"></div>
-				  <div class="cg-bt text-left"><span class=" shenhui"><strong>采购品类：</strong></span><span class="gray">电工电气类、电子产品</span></div>
-				  <div class="cg-bt shenhui text-left"><strong>采购额度：</strong><span class="gray">1000亿/年</span></div>
-
-				</div>
-			  </a>
-			</div>
-		  </div> 
+			
+		 </div> 
 
     </div>
     <!--推荐产品结束-->
@@ -254,104 +151,18 @@
        </ul>
     </div>
     <div class="box-bgcl">
-		<div class="row text-center cg_list">
-			<div class="col-md-3">
-			  <a href="#">
+		<div class="col-md-3" th:each="product,iterStat:${productList}">
+			<a href="#">
 				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/cp.png" width="230" height="230"></div>
-				  <div class="cg-bt text-left"><span>控制台监控台监控台</span></div>
+				  <div><img th:src="@{${product.productPicPath}"  width="230" height="230"></div>
+				  <div class="cg-bt text-left"><span th:text="${product.productName}">控制台监控台监控台</span></div>
 				  <div>
-				   <h4 class="gray text-left cg-rmb">¥210.00</h4>
+				   <h4 class="gray text-left cg-rmb" th:text="${product.empName}">¥210.00</h4>
 				  </div>
 				</div>
-
-			  </a>
-			</div>
-			<div class="col-md-3">
-			  <a href="#">
-				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/cp.png" width="230" height="230"></div>
-				  <div class="cg-bt text-left"><span>控制台监控台监控台</span></div>
-				  <div>
-				   <h4 class="gray text-left cg-rmb">¥210.00</h4>
-				  </div>
-				</div>
-
-			  </a>
-			</div>
-			<div class="col-md-3">
-			  <a href="#">
-				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/cp.png" width="230" height="230"></div>
-				  <div class="cg-bt text-left"><span>控制台监控台监控台</span></div>
-				  <div>
-				   <h4 class="gray text-left cg-rmb">¥210.00</h4>
-				  </div>
-				</div>
-
-			  </a>
-			</div>
-			<div class="col-md-3">
-			  <a href="#">
-				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/cp.png" width="230" height="230"></div>
-				  <div class="cg-bt text-left"><span>控制台监控台监控台控制台监控台监控</span></div>
-				  <div>
-				   <h4 class="gray text-left cg-rmb">¥210.00</h4>
-				  </div>
-				</div>
-			  </a>
-			</div>
-		  </div> 
-				<div class="row text-center cg_list">
-			<div class="col-md-3">
-			  <a href="#">
-				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/cp.png" width="230" height="230"></div>
-				  <div class="cg-bt text-left"><span>控制台监控台监控台</span></div>
-				  <div>
-				   <h4 class="gray text-left cg-rmb">¥210.00</h4>
-				  </div>
-				</div>
-
-			  </a>
-			</div>
-			<div class="col-md-3">
-			  <a href="#">
-				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/cp.png" width="230" height="230"></div>
-				  <div class="cg-bt text-left"><span>控制台监控台监控台</span></div>
-				  <div>
-				   <h4 class="gray text-left cg-rmb">¥210.00</h4>
-				  </div>
-				</div>
-
-			  </a>
-			</div>
-			<div class="col-md-3">
-			  <a href="#">
-				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/cp.png" width="230" height="230"></div>
-				  <div class="cg-bt text-left"><span>控制台监控台监控台</span></div>
-				  <div>
-				   <h4 class="gray text-left cg-rmb">¥210.00</h4>
-				  </div>
-				</div>
-
-			  </a>
-			</div>
-			<div class="col-md-3">
-			  <a href="#">
-				<div class="img-shadow-1 caigou-box">
-				  <div><img src="images/cp.png" width="230" height="230"></div>
-				  <div class="cg-bt text-left"><span>控制台监控台监控台控制台监控台监控</span></div>
-				  <div>
-				   <h4 class="gray text-left cg-rmb">¥210.00</h4>
-				  </div>
-				</div>
-			  </a>
-			</div>
-		  </div> 
+			</a>
+		</div>
+			
 
     </div>
     <!--推荐产品结束-->

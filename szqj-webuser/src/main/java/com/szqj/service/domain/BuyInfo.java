@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -41,7 +42,8 @@ public class BuyInfo {
 	
 	private String telphone;//联系电话
 
-	
+	@Transient
+	private String empName;//企业名称
 
 	public String getBuyInfoName() {
 		return buyInfoName;
@@ -139,6 +141,14 @@ public class BuyInfo {
 
 	public void setEnterpriseId(String enterpriseId) {
 		this.enterpriseId = enterpriseId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 	
 	

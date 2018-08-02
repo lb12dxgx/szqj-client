@@ -55,6 +55,9 @@ public class Product {
 	
 	@Transient
 	private String productAddr;//产品地址
+	
+	@Transient
+	private String productPicPath;//产品图片
 
 	public String getProductId() {
 		return productId;
@@ -198,6 +201,14 @@ public class Product {
 
 	public void setProductTypeCode(String productTypeCode) {
 		this.productTypeCode = productTypeCode;
+	}
+
+	public String getProductPicPath() {
+		return productPicPath;
+	}
+
+	public void setProductPicPath(String productPicPath) {
+		this.productPicPath = productPicPath;
 	}
 	
 	
