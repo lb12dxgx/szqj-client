@@ -1,5 +1,6 @@
 package com.szqj.service.domain;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -35,5 +36,11 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, S
 	
 	@Query("select m from Product m where m.level=30 order by  createDate")
 	List<Product> findVipList();
+
+	@Query("select m from Product m.productTypeCode in ?1  order by level desc, createDate")
+	Page<Product> findPageByProductTypeCodeOne(Collection<String> productTypeCodeList, PageRequest pageable);
+
+	@Query("select m from Product m.productTypeCode = ?1  order by level desc, createDate")
+	Page<Product> findPageByProductTypeCodeTwo(String productTypeCodeTwo, PageRequest pageable);
 	
 }

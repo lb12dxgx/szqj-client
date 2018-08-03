@@ -86,10 +86,17 @@
 	padding:0;
 }
 .gb-zhaopin1{
-	width:60%;
+	width:75%;
+	margin-left: -25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .gb-zhaopin2{
-	width:30%;
+	width:15%;
+	text-algin:center;
+	
+	
 }
 .peixun h5{
 	padding:15px 0 15px 10px;

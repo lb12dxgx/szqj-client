@@ -22,7 +22,9 @@
   <div class="gb-main"> 
  
   <div class=" container">
+ 
 	  <div class="row">
+	  	   <div class="heizw"></div>
 		  <div class="col-md-3" style="padding-right: 0px;">
 		  		<div class="cg-spfl text-center" >商品分类</div>
 				  <div class="cg-mune">
@@ -40,26 +42,19 @@
 				 </div>
 				
 			  </div>
-		  </div>
+		  
 	  
 		  <div class="col-md-9" style="padding-left: 0px;">
-			  <div class="cg-flmenu">
-				  <ul class="list-inline list-unstyled">
-					  <li th:each="dic,iterStat:${dictList}">
-					 	 <a href="#" th:text="${dic.dictName}">商品分类1</a>
-					  </li>
-					  
-				  </ul>
-			  </div>
+			  
 		   <!--轮播开始-->
-			  <div id="myCarousel" class="carousel slide" style="height: 323px;">
+			  <div id="myCarousel" class="carousel slide" style="height: 360px;">
 				<ol class="carousel-indicators" style="margin-bottom:-5px">
 				  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				  <li data-target="#myCarousel" data-slide-to="1"></li>
 				</ol>
 				<div class="carousel-inner carpic">
-				   <div class="item active"><img src="/images/cg-pic1.jpg" alt="图片1"></div>
-				   <div class="item"><img src="/images/cg-pic2.jpg" alt="图片2"></div>
+				   <div class="item active"><img src="/images/cg-pic1.jpg" alt="图片1" style="height: 360px;"></div>
+				   <div class="item"><img src="/images/cg-pic2.jpg" alt="图片2" style="height: 360px;"></div>
 				</div>
 			  </div>
 			<!--轮播结束-->
@@ -120,8 +115,8 @@
 	  	   <!--推荐产品开始-->
     <div class="maintop">
        <ul class="list-inline">
-          <li class="pull-left menubt text-center"><h5>知名商家</h5></li>
-          <li class="pull-right morebt"><a href="#">more</a></li>
+          <li class="pull-left menubt text-center"><h5>知名厂家</h5></li>
+          
        </ul>
     </div>
     <div class="box-bgcl">
@@ -141,36 +136,30 @@
 		 </div> 
 
     </div>
+    
     <!--推荐产品结束-->
-	   <div class="heizw"></div>
-	   <!--推荐产品开始-->
+	<div class="heizw"></div>
+	<!--推荐产品开始-->
     <div class="maintop">
        <ul class="list-inline">
           <li class="pull-left menubt text-center"><h5>推荐产品</h5></li>
-          <li class="pull-right morebt"><a href="#">more</a></li>
+        
        </ul>
     </div>
     <div class="box-bgcl">
 		<div class="col-md-3" th:each="product,iterStat:${productList}">
 			<a href="#">
 				<div class="img-shadow-1 caigou-box">
-				  <div><img th:src="@{${product.productPicPath}"  width="230" height="230"></div>
+				  <div><img th:src="@{'/'+${product.productPicPath}}"  width="230" height="230"></div>
 				  <div class="cg-bt text-left"><span th:text="${product.productName}">控制台监控台监控台</span></div>
 				  <div>
-				   <h4 class="gray text-left cg-rmb" th:text="${product.empName}">¥210.00</h4>
+				   <div class="gray text-left" th:text="${product.empName}">¥210.00</div>
 				  </div>
 				</div>
 			</a>
 		</div>
-			
-
-    </div>
+	</div>
     <!--推荐产品结束-->
- 
-  
-
-  
-	  <div class="clearfix"></div>
     
   
   </div>

@@ -29,4 +29,12 @@ public interface ZbInfoRepository extends PagingAndSortingRepository<ZbInfo, Str
 	@Query("select m from ZbInfo m where m.url=?1 order by createDate")
 	List<ZbInfo> findListByUrl(String url);
 	
+	
+	@Query("select m from ZbInfo m where m.area like %?1%  order by createDate")
+	Page<ZbInfo> findPageByArea(String area, Pageable pageable);
+	
+	
+	@Query("select m from ZbInfo m where m.area like %?1% and  m.zbXmName like %?2% order by createDate")
+	Page<ZbInfo> findPageByZbXmNameAndArea(String area,String zbXmName, Pageable pageable);
+	
 }

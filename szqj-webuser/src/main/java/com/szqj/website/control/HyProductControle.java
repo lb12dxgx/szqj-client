@@ -1,7 +1,9 @@
 package com.szqj.website.control;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
@@ -39,9 +41,10 @@ public class HyProductControle {
 	private EnterpriseRepository enterpriseRepository;
 	@Autowired
 	private ProductRepository productRepository;
-	
 	@Autowired
 	private FileInfoRepository fileInfoRepository;
+	
+	
 	
 	
 	/**
@@ -58,8 +61,131 @@ public class HyProductControle {
 		topEnterpriseList(modelMap);
 		topProductList(modelMap);
 		
-		return "hyproduct/index"; 
+		return "/hyproduct/index"; 
 	}
+	
+	/**
+	 *  招标信息
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/hyproduct/productinfolist.html"  )
+	public String productinfolist(ModelMap modelMap,String productTypeCodeOne,String productTypeCodeTwo,String area){
+		PageRequest pageable=Tools.getPage(0, 8);
+		Page<Product> page=null;
+		if(StringUtils.isNotBlank(productTypeCodeTwo)){
+			List<Dict> dicts = dictRepository.findByParentId(productTypeCodeTwo);
+			List<String> dictList=new ArrayList<String>();
+			for(Dict dict:dicts){
+				dictList.add(dict.getDictValue());
+			}
+			page=productRepository.findPageByProductTypeCodeOne(dictList, pageable);
+			
+		}else if(StringUtils.isNotBlank(productTypeCodeOne)){
+			page=productRepository.findPageByProductTypeCodeTwo(productTypeCodeTwo, pageable);
+		}else{
+			page=productRepository.findPage(pageable);
+		}
+	
+		modelMap.put("page", page);
+		return "/hyproduct/zbinfolist"; 
+	}
+	
+	
+	/**
+	 *  招标信息查看
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/hyproduct/productview.html"  )
+	public String productview(ModelMap modelMap,String productId){
+		Product  product = productRepository.findById(productId).get();
+		modelMap.put("product", product);
+		return "/hyproduct/productview"; 
+	}
+	
+	
+	
+	/**
+	 *  招标信息
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/hyproduct/zbinfolist.html"  )
+	public String zbinfolist(ModelMap modelMap,String zbXmName,String area){
+		PageRequest pageable=Tools.getPage(0, 8);
+		Page<ZbInfo> page=null;
+		if(StringUtils.isNotBlank(zbXmName)&&StringUtils.isNotBlank(area)){
+			page=zbInfoRepository.findPageByZbXmNameAndArea(area, zbXmName, pageable);
+		}else if(StringUtils.isBlank(zbXmName)&&StringUtils.isBlank(area)){
+			page=zbInfoRepository.findPage(pageable);
+		}else if(StringUtils.isNotBlank(zbXmName)){
+			page=zbInfoRepository.findPageByZbXmName(zbXmName, pageable);
+		}else if(StringUtils.isNotBlank(area)){
+			page=zbInfoRepository.findPageByArea(area, pageable);
+		}
+		modelMap.put("page", page);
+		return "/hyproduct/zbinfolist"; 
+	}
+	
+	
+	/**
+	 *  招标信息查看
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/hyproduct/zbinfoview.html"  )
+	public String zbinfoview(ModelMap modelMap,String zbInfoId){
+		ZbInfo zbInfo = zbInfoRepository.findById(zbInfoId).get();
+		modelMap.put("zbInfo", zbInfo);
+		return "/hyproduct/zbinfoview"; 
+	}
+	
+	
+	/**
+	 *  采购信息
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/hyproduct/buyinfolist.html"  )
+	public String buyinfolist(ModelMap modelMap,String buyInfoName){
+		PageRequest pageable=Tools.getPage(0, 8);
+		Page<BuyInfo> page=null;
+		if(StringUtils.isNotBlank(buyInfoName)){
+			page=buyInfoRepository.findPageByBuyInfoName(buyInfoName, pageable);
+		}else {
+			page=buyInfoRepository.findPage(pageable);
+		}
+		modelMap.put("page", page);
+		return "/hyproduct/buyinfolist"; 
+	}
+	
+	
+	/**
+	 *  采购信息查看
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/hyproduct/buyinfoview.html"  )
+	public String buyinfoview(ModelMap modelMap,String buyInfoId){
+		BuyInfo buyInfo = buyInfoRepository.findById(buyInfoId).get();
+		modelMap.put("buyInfo", buyInfo);
+		return "/hyproduct/zbinfoview"; 
+	}
+	
+	
+	/**
+	 *  采购信息查看
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/hyproduct/enterpriseview.html"  )
+	public String enterpriseview(ModelMap modelMap,String buyInfoId){
+		BuyInfo buyInfo = buyInfoRepository.findById(buyInfoId).get();
+		modelMap.put("buyInfo", buyInfo);
+		return "/hyproduct/zbinfoview"; 
+	}
+	
 	
 	/**
 	 * 设置产品分类
@@ -95,6 +221,15 @@ public class HyProductControle {
 	private void buyInfoList(ModelMap modelMap) {
 		PageRequest pageable=Tools.getPage(0, 5);
 		Page<BuyInfo> page = buyInfoRepository.findPage(pageable);
+		
+		for(BuyInfo buyInfo:page.getContent()) {
+			
+			String enterpriseId = buyInfo.getEnterpriseId();
+			String empName = enterpriseRepository.findById(enterpriseId).get().getEnterpriseName();
+			buyInfo.setEmpName(empName);
+			
+		}
+		
 		modelMap.put("buyList",page.getContent());
 		
 	}
@@ -133,6 +268,10 @@ public class HyProductControle {
 			if(files!=null&&files.size()>0) {
 				product.setProductPicPath(files.get(0).getFileWebPath());
 			}
+			String enterpriseId = product.getEnterpriseId();
+			String empName = enterpriseRepository.findById(enterpriseId).get().getEnterpriseName();
+			product.setEmpName(empName);
+			
 		}
 		
 		modelMap.put("productList",list);
