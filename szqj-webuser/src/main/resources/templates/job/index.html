@@ -75,7 +75,7 @@
 						<a th:href="@{'/job/jobemp.html?enterpriseId='+${enterprise.enterpriseId}}">
 							<div class="img-shadow-1 caigou-box">
 								<div>
-									<img th:src="@{${fileMap[enterprise.enterprisePicId]}}"  width="130" height="130">
+									<img th:src="@{'/'+${fileMap[enterprise.enterprisePicId]}}"  width="130" height="130">
 								</div>
 								<div class="cg-bt text-center" th:text="${enterprise.enterpriseName}">格力空调有限责任公司</div>
 							</div>

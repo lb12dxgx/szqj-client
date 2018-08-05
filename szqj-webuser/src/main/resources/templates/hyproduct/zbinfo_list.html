@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+<link href="/css/gxsg.css" rel="stylesheet" type="text/css">
+<link href="/css/caigou.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+	<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+	<!--菜单开始-->
+	<header th:include="header" />
+	<!--菜单结束-->
+
+	<div class="gb-main">
+ 
+  <div class=" container">
+	 
+	 <div class="col-md-12" style="padding:10px;">
+                <form class="form-inline" action="/hyproduct/zbinfolist.html" method="post" id="form">
+                   <div class="form-group ">
+                    <label class="srarch-label">项目名称:</label>
+                    <input type="text" class="form-control" name="zbXmName" th:value="${zbXmName}">
+                  </div>
+                  <div class="form-group " style="margin-left:10px ">
+                    <label class="srarch-label">地点:</label>
+                    <input type="text" class="form-control" name="area" th:value="${area}">
+                  </div>
+                  <div class="form-group " style="margin-left:10px ">
+                    <a class="btn btn-default" id="search">
+                      <i class="fa fa-search"></i>查询
+                    </a>
+                  </div>
+                </form>
+    </div>
+	 
+	<table class="table table-striped table-hover">
+		  <tr>
+			  <th class="text-center" width="70%">项目名称</th>
+			  <th class="text-center" width="20%">地点</th>
+			  <th class="text-center" width="10%">发布日期</th>
+		  </tr>
+		  <tr th:each="zbInfo,iterStat:${page.content}">
+			  <td style="padding-left: 35px;"><a th:href="@{'/hyproduct/zbinfoview.html?zbInfoId='+${zbInfo.zbInfoId}}"   th:text="${zbInfo.zbXmName}" target="_blank">技术操作工</a></td>
+			  <td class="text-center" th:text="${zbInfo.area}">北京</td>
+			  <td class="text-center" th:text="${#dates.format(zbInfo.publishDate, 'yyyy-MM-dd')}">2018-01-09</td>
+		  </tr>
+		   
+	  </table>
+ 
+  
+   <!--分页开始-->  
+                    <div class="row">
+                     <div class="col-md-12 text-center">
+					   <div th:include="pagination"/> 
+                     </div>
+                   </div> 
+                   <!--分页结束-->
+  
+	
+    
+  
+  </div>
+  </div>
+   <!--footer开始-->
+	 <div th:include="footer"></div>
+  	<!--footer结束-->
+  	
+	<script type="text/javascript" th:inline="javascript">
+		$(function(){
+			$('#hyproduct').removeClass("manulinknone");
+			$('#hyproduct').addClass("manulink");
+			
+			$('#search').click(function(){
+				$('#form').submit();
+			});
+			
+			$('.page-link').click(function(){
+				  if(!$(this).parent().hasClass("disabled")){
+					  var pageNum=$(this).attr("pageIndex");
+					  $(window).attr('location', '/job/joblist.html?pageNum='+pageNum);
+				  }
+			});
+			
+		})
+	</script>
+</body>
+</html>

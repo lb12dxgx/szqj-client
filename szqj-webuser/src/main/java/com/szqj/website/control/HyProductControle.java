@@ -69,26 +69,26 @@ public class HyProductControle {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/hyproduct/productinfolist.html"  )
+	@RequestMapping(value = "/hyproduct/productlist.html"  )
 	public String productinfolist(ModelMap modelMap,String productTypeCodeOne,String productTypeCodeTwo,String area){
 		PageRequest pageable=Tools.getPage(0, 8);
 		Page<Product> page=null;
-		if(StringUtils.isNotBlank(productTypeCodeTwo)){
-			List<Dict> dicts = dictRepository.findByParentId(productTypeCodeTwo);
+		if(StringUtils.isNotBlank(productTypeCodeOne)){
+			List<Dict> dicts = dictRepository.findByParentId(productTypeCodeOne);
 			List<String> dictList=new ArrayList<String>();
 			for(Dict dict:dicts){
 				dictList.add(dict.getDictValue());
 			}
 			page=productRepository.findPageByProductTypeCodeOne(dictList, pageable);
 			
-		}else if(StringUtils.isNotBlank(productTypeCodeOne)){
+		}else if(StringUtils.isNotBlank(productTypeCodeTwo)){
 			page=productRepository.findPageByProductTypeCodeTwo(productTypeCodeTwo, pageable);
 		}else{
 			page=productRepository.findPage(pageable);
 		}
 	
 		modelMap.put("page", page);
-		return "/hyproduct/zbinfolist"; 
+		return "/hyproduct/product_list"; 
 	}
 	
 	
@@ -101,7 +101,7 @@ public class HyProductControle {
 	public String productview(ModelMap modelMap,String productId){
 		Product  product = productRepository.findById(productId).get();
 		modelMap.put("product", product);
-		return "/hyproduct/productview"; 
+		return "/hyproduct/product_view"; 
 	}
 	
 	
@@ -125,7 +125,7 @@ public class HyProductControle {
 			page=zbInfoRepository.findPageByArea(area, pageable);
 		}
 		modelMap.put("page", page);
-		return "/hyproduct/zbinfolist"; 
+		return "/hyproduct/zbinfo_list"; 
 	}
 	
 	
@@ -138,7 +138,7 @@ public class HyProductControle {
 	public String zbinfoview(ModelMap modelMap,String zbInfoId){
 		ZbInfo zbInfo = zbInfoRepository.findById(zbInfoId).get();
 		modelMap.put("zbInfo", zbInfo);
-		return "/hyproduct/zbinfoview"; 
+		return "/hyproduct/zbinfo_view"; 
 	}
 	
 	
@@ -148,16 +148,28 @@ public class HyProductControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/hyproduct/buyinfolist.html"  )
-	public String buyinfolist(ModelMap modelMap,String buyInfoName){
+	public String buyinfolist(ModelMap modelMap,String buyInfoName,String buyInfoTypeCode){
 		PageRequest pageable=Tools.getPage(0, 8);
 		Page<BuyInfo> page=null;
-		if(StringUtils.isNotBlank(buyInfoName)){
+		if(StringUtils.isNotBlank(buyInfoName)&&StringUtils.isNotBlank(buyInfoTypeCode)) {
+			page=buyInfoRepository.findPageByBuyInfoTypeCodeAndBuyInfoName(buyInfoTypeCode, buyInfoName, pageable);
+		}else if(StringUtils.isNotBlank(buyInfoName)){
 			page=buyInfoRepository.findPageByBuyInfoName(buyInfoName, pageable);
+		}else if(StringUtils.isNotBlank(buyInfoTypeCode)){
+			page=buyInfoRepository.findPageByBuyInfoTypeCode(buyInfoTypeCode, pageable);
 		}else {
 			page=buyInfoRepository.findPage(pageable);
 		}
+		
+		for(BuyInfo buyInfo:page.getContent()) {
+			
+			String enterpriseId = buyInfo.getEnterpriseId();
+			String empName = enterpriseRepository.findById(enterpriseId).get().getEnterpriseName();
+			buyInfo.setEmpName(empName);
+			
+		}
 		modelMap.put("page", page);
-		return "/hyproduct/buyinfolist"; 
+		return "/hyproduct/buyinfo_list"; 
 	}
 	
 	
@@ -169,8 +181,13 @@ public class HyProductControle {
 	@RequestMapping(value = "/hyproduct/buyinfoview.html"  )
 	public String buyinfoview(ModelMap modelMap,String buyInfoId){
 		BuyInfo buyInfo = buyInfoRepository.findById(buyInfoId).get();
+		
+		String enterpriseId = buyInfo.getEnterpriseId();
+		String empName = enterpriseRepository.findById(enterpriseId).get().getEnterpriseName();
+		buyInfo.setEmpName(empName);
+		
 		modelMap.put("buyInfo", buyInfo);
-		return "/hyproduct/zbinfoview"; 
+		return "/hyproduct/buyinfo_view"; 
 	}
 	
 	
@@ -183,7 +200,7 @@ public class HyProductControle {
 	public String enterpriseview(ModelMap modelMap,String buyInfoId){
 		BuyInfo buyInfo = buyInfoRepository.findById(buyInfoId).get();
 		modelMap.put("buyInfo", buyInfo);
-		return "/hyproduct/zbinfoview"; 
+		return "/hyproduct/enterprise_view"; 
 	}
 	
 	

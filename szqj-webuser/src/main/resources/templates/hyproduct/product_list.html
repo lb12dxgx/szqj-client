@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+	<link href="/css/index.css" rel="stylesheet" type="text/css">
+	<link href="/css/caigou.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+	<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+	<!--菜单开始-->
+	<header th:include="header" />
+	<!--菜单结束-->
+  <div class="gb-main"> 
+ 	<div class=" container">
+      <!--搜索框开始-->
+		 <div class="cg-ssbox">
+			 <div class="row">
+				<div class="col-md-8"> 
+					 <form class="form-inline" action="/job/joblist.html" method="post" id="form">
+	                   <div class="form-group ">
+	                    <label class="srarch-label">产品类型:</label>
+	                    <select class="form-control">
+	                      
+	                    </select>
+	                    
+	                    <select class="form-control">
+	                      
+	                    </select>
+	                    
+	                  </div>
+	                 
+	                  <div class="form-group " style="margin-left:10px ">
+	                    <a class="btn btn-success" id="search">
+	                      <i class="fa fa-search"></i>查询
+	                    </a>
+	                  </div>
+	                </form>
+				</div> 
+				
+			 </div>
+		 </div>
+		 <!--搜索框结束-->
+		 <!--商品列表开始-->
+		  <div class="cp-listbox">
+			  <div class="row">
+				  <div class="col-md-1 text-center"><a href="#" class="cp-xxlink-on">默认</a></div>
+				  <div class="col-md-1 text-center"><a href="#" class="cp-xxlink">价格</a></div>
+				  <div class="col-md-1 text-center"><a href="#" class="cp-xxlink">更新日期</a></div>
+				  <div class="col-md-1 text-center"><a href="#" class="cp-xxlink">相关度</a></div>
+				  <div class="col-md-8"></div>
+			  </div>
+		  </div>
+		  <div class="cp-zsbox">
+			  <div class="row cp-line">
+				  <div class="col-md-3">地下管线探测仪</div>
+				  <div class="col-md-2">10万</div>
+				  <div class="col-md-3">保定金迪</div>
+				  <div class="col-md-2">探测</div>
+				  <div class="col-md-1">保定</div>
+				  <div class="col-md-1"><button class="btn btn-default">查看详情</button></div>
+			  </div>
+			  <div class="gb-line"></div>
+			   <div class="row cp-line cp-line-a ">
+				  <div class="col-md-3">地下管线探测仪</div>
+				  <div class="col-md-2">10万</div>
+				  <div class="col-md-3">保定金迪</div>
+				  <div class="col-md-2">探测</div>
+				  <div class="col-md-1">保定</div>
+				  <div class="col-md-1"><button class="btn btn-default">查看详情</button></div>
+			  </div>
+			  <div class="gb-line"></div>
+			   <div class="row cp-line">
+				  <div class="col-md-3">地下管线探测仪</div>
+				  <div class="col-md-2">10万</div>
+				  <div class="col-md-3">保定金迪</div>
+				  <div class="col-md-2">探测</div>
+				  <div class="col-md-1">保定</div>
+				  <div class="col-md-1"><button class="btn btn-default">查看详情</button></div>
+			  </div>
+			  <div class="gb-line"></div>
+		  </div>
+		 <!--商品列表结束-->
+		 <!--分页开始-->  
+                    <div class="row">
+                     <div class="col-md-12 text-center">
+					   <div th:include="pagination"/> 
+                     </div>
+                   </div> 
+                   <!--分页结束-->
+	 
+	
+ 
+  
+
+  
+
+    
+  
+      </div>
+  </div>
+	 <!--footer开始-->
+	 <div th:include="footer"></div>
+  	<!--footer结束-->
+</body>
+</html>

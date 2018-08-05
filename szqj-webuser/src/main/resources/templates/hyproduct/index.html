@@ -33,7 +33,7 @@
 							  <p class="cg-flbt" th:text="${dic.dictName}">商品分类1</p>
 							   <ul class="list-unstyled list-inline cg-fllist">
 								  <li th:each="child,iterStat:${dic.children}">
-								  	<a href="#" class="cghui-link" th:text="${child.dictName}">产品分类</a>
+								  	<a th:href="@{'/hyproduct/productlist.html?productTypeCodeTwo='+${child.dictValue}}" class="cghui-link" th:text="${child.dictName}">产品分类</a>
 								  </li>
 								</ul>
 						  </div>
@@ -68,13 +68,13 @@
         <div class="maintop">
           <ul class="list-inline">
            <li class="pull-left menubt text-center"><h5>招标信息</h5></li>
-           <li class="pull-right morebt"><a href="#">more</a></li>
+           <li class="pull-right morebt"><a href="/hyproduct/zbinfolist.html">more</a></li>
           </ul>
         </div>
         <div class="box-bgcl">
          <th:block th:each="zbInfo,iterStat:${zbList}">
 	          <ul class="gb-news">
-	            <li class="xwlist pull-left gb-zhaopin1"><a href="#" th:text="${zbInfo.zbXmName}">生物识别技术加持 智能门锁将迎新时代</a></li>
+	            <li class="xwlist pull-left gb-zhaopin1"><a th:href="@{'/hyproduct/zbinfoview.html?zbInfoId='+${zbInfo.zbInfoId}}" th:text="${zbInfo.zbXmName}" target="_blank">生物识别技术加持 智能门锁将迎新时代</a></li>
 	            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#" th:text="${zbInfo.area}">地下管线协会</a></li>
 	            <li class="list-unstyled pull-right"><time datetime="2018-1-22"  th:text="${#dates.format(zbInfo.publishDate, 'yyyy-MM-dd')}" >2018-1-22</time></li>
 	          </ul>
@@ -91,13 +91,13 @@
         <div class="maintop">
           <ul class="list-inline">
            <li class="pull-left menubt text-center"><h5>采购信息</h5></li>
-           <li class="pull-right morebt"><a href="#">more</a></li>
+           <li class="pull-right morebt"><a href="/hyproduct/buyinfolist.html">more</a></li>
           </ul>
         </div>
         <div class="box-bgcl">
 	        <th:block th:each="buyInfo,iterStat:${buyList}">
 		          <ul class="gb-news">
-		            <li class="xwlist pull-left gb-zhaopin1"><a href="#" th:text="${buyInfo.buyInfoName}">生物识别技术加持 智能门锁将迎新时代</a></li>
+		            <li class="xwlist pull-left gb-zhaopin1"><a th:href="@{'/hyproduct/buyinfoview.html?buyInfoId='+${buyInfo.buyInfoId}}" th:text="${buyInfo.buyInfoName}" target="_blank">生物识别技术加持 智能门锁将迎新时代</a></li>
 		            <li class="pull-left list-unstyled gb-zhaopin2"><a href="#" th:text="${buyInfo.empName}">地下管线协会</a></li>
 		            <li class="list-unstyled pull-right"><time datetime="2018-1-22" th:text="${#dates.format(buyInfo.createDate, 'yyyy-MM-dd')}">2018-1-22</time></li>
 		          </ul>

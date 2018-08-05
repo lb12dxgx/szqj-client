@@ -37,10 +37,10 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, S
 	@Query("select m from Product m where m.level=30 order by  createDate")
 	List<Product> findVipList();
 
-	@Query("select m from Product m.productTypeCode in ?1  order by level desc, createDate")
-	Page<Product> findPageByProductTypeCodeOne(Collection<String> productTypeCodeList, PageRequest pageable);
+	@Query("select m from Product m where m.productTypeCode in ?1  order by level desc, createDate")
+	Page<Product> findPageByProductTypeCodeOne(Collection<String> productTypeCodeList, Pageable pageable);
 
-	@Query("select m from Product m.productTypeCode = ?1  order by level desc, createDate")
-	Page<Product> findPageByProductTypeCodeTwo(String productTypeCodeTwo, PageRequest pageable);
+	@Query("select m from Product m where m.productTypeCode = ?1  order by level desc, createDate")
+	Page<Product> findPageByProductTypeCodeTwo(String productTypeCodeTwo, Pageable pageable);
 	
 }

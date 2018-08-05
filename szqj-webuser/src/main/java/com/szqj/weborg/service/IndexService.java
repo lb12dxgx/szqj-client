@@ -231,7 +231,7 @@ public class IndexService {
 	
 	
 	private void createHtml() {
-		ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost:8080/index.do", String.class);
+		ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost/index.do", String.class);
 		String html=forEntity.getBody();
 		
 		try {

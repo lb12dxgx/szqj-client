@@ -57,6 +57,7 @@ public class EmpBuyInfoControle {
 		}
 		modelMap.put("page", page);
 		modelMap.put("buyInfoName", buyInfoName);
+	
 		return "emp/buyinfo"; 
 	}
 	

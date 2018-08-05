@@ -61,6 +61,11 @@
 .xwlist{
 	color:#0e57a1;
 	margin-left:-25px;
+	
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width:85%
 }
 
 .gb-news{
