@@ -148,7 +148,7 @@
     </div>
     <div class="box-bgcl">
 		<div class="col-md-3" th:each="product,iterStat:${productList}">
-			<a href="#">
+			<a th:href="@{'/hyproduct/productview.html?productId='+${product.productId}}"  >
 				<div class="img-shadow-1 caigou-box">
 				  <div><img th:src="@{'/'+${product.productPicPath}}"  width="230" height="230"></div>
 				  <div class="cg-bt text-left"><span th:text="${product.productName}">控制台监控台监控台</span></div>

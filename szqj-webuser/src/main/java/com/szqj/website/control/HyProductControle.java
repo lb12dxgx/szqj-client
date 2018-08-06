@@ -100,7 +100,12 @@ public class HyProductControle {
 	@RequestMapping(value = "/hyproduct/productview.html"  )
 	public String productview(ModelMap modelMap,String productId){
 		Product  product = productRepository.findById(productId).get();
+		Enterprise enterprise =enterpriseRepository.findById(product.getEnterpriseId()).get();
+		product.setEmpName(enterprise.getEnterpriseName());
+		product.setProductAddr(enterprise.getAddree());
+		List<FileInfo> list = fileInfoRepository.findByBussinessId(product.getProductPicId());
 		modelMap.put("product", product);
+		modelMap.put("list", list);
 		return "/hyproduct/product_view"; 
 	}
 	

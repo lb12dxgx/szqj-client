@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	<link  th:href="@{/css/gxsg.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+       <li class="active">商品详情</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row">
+     <!--左侧内容开始-->
+     <div class="col-md-10">
+		<!--商品信息开始-->
+	   <div class="row">
+		   <div class="col-md-6">
+			<!--轮播开始-->
+			  <div id="myCarousel" class="carousel slide" >
+			    <ol class="carousel-indicators">
+			      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			      <li data-target="#myCarousel" data-slide-to="1"></li>
+			    </ol>
+			    <div class="carousel-inner carpic">
+			       <div  th:each="file,iterStat:${list}" class="item" th:classappend="${iterStat.first}? 'active'">
+			       		<img th:src="@{'/file/download.do?fileInfoId='+${file.fileInfoId}}"  style="height:320px">
+			       </div>
+			       
+			    </div>
+			  </div>
+			<!--轮播结束-->
+		   </div>
+		   <div class="col-md-6">
+			  
+			   <div class="maintop" style="margin-top:-10px;">
+				  <ul class="list-inline">
+				   <li class="pull-left menubt text-center"><h5>商品信息</h5></li>
+				  
+				  </ul>
+               </div>
+			   <div class="box-bgcl">
+			   <ul class="list-unstyled list-inline spxq-list">
+				   <li>商品名称:</li>
+				   <li class="gray" th:text="${product.productName}">混凝土墙面拉毛机</li>
+			   </ul>
+			   <ul class="list-unstyled list-inline spxq-list">
+				   <li>商品价格：</li>
+				   <li class="gray" th:text="${product.productPrice}">10000元</li>
+			   </ul>
+			   <ul class="list-unstyled list-inline spxq-list">
+				   <li>生产商：</li>
+				   <li class="gray" th:text="${product.empName}">德高洁</li>
+			   </ul>
+			   <ul class="list-unstyled list-inline spxq-list ">
+				   <li>地址：</li>
+				   <li class="gray" th:text="${product.productAddr}">北京市</li>
+			   </ul>
+			    <ul class="list-unstyled list-inline spxq-list">
+				   <li>联系人：</li>
+				   <li class="gray" th:text="${product.person}">010-77778888</li>
+			   </ul>
+			   <ul class="list-unstyled list-inline spxq-list">
+				   <li>电话：</li>
+				   <li class="gray" th:text="${product.telphone}">010-77778888</li>
+			   </ul>
+			  </div>
+		   </div>
+	   </div>
+		 <!--商品信息结束-->
+		 <div class="maintop" style="margin-top: 35px;">
+              <ul class="list-inline">
+               <li class="pull-left menubt text-center"><h5>商品详情</h5></li>
+               <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
+             </ul>
+         </div>
+		 <div class="box-bgcl spxq-box" th:utext="${product.productDesc}">
+			 <p>    德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+				 德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+ 
+				 德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+ 
+				 德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+ 
+				 
+             </p>
+			 <img src="images/2411b85be3105994d70adfb69307a50c.jpg">
+			 <p>    德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+				 德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+ 
+				 德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+ 
+				 德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+ 
+				 
+             </p>
+		 </div>
+     </div>
+     <!--左侧内容结束-->
+     <div class="col-md-1"></div>
+       <!--右侧边栏开始-->
+    
+     <!--右侧边栏结束-->
+   </div>
+ </div>
+ 
+   <!--footer开始-->
+ <div th:include="footer"></div>
+ <!--footer结束-->
+ <script type="text/javascript">
+	$(function(){
+		$('#hyproduct').removeClass("manulinknone");
+		$('#hyproduct').addClass("manulink");
+		
+		$('#myCarousel').carousel({
+		    interval: 3000
+		})
+		
+	})
+ </script>
+ <!--footer结束-->
+</body>
+</html>
