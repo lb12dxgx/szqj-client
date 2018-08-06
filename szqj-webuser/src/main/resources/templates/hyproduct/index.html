@@ -116,13 +116,13 @@
     <div class="maintop">
        <ul class="list-inline">
           <li class="pull-left menubt text-center"><h5>知名厂家</h5></li>
-          
+          <li class="pull-right morebt"><a href="/hyproduct/enterpriselist.html">more</a></li>
        </ul>
     </div>
     <div class="box-bgcl">
 		<div class="row text-center cg_list">
 			<div class="col-md-3" th:each="enterprise,iterStat:${entList}">
-			  <a href="#">
+			  <a th:href="@{'/hyproduct/enterpriseview.html?enterpriseId='+${enterprise.enterpriseId}}"  >
 				<div class="img-shadow-1 caigou-box">
 				  <div><img  th:src="@{'/'+${enterprise.enterprisePicPath}}"  width="130" height="130" /></div>
 				  <div class="cg-bt text-left"><span class=" shenhui"><strong>企业名称：</strong></span><span class="gray" th:text="${enterprise.enterpriseName}">电工电气类、电子产品</span></div>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head th:include="head">
+</head>
+<head>
+	<link  th:href="@{/css/gxsg.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+	<header th:include="header"/>
+  <!--菜单结束-->
+
+ <div class="gb-main container">
+   <!--面包屑开始-->
+   <div class="row">
+     <ul class="breadcrumb col-md-12">
+       <li><a href="#">首页</a></li>
+       <li class="active">公司详情</li>
+     </ul>
+   </div>
+   <!--面包屑结束-->
+   <div class="row">
+     <!--左侧内容开始-->
+     <div class="col-md-10">
+		<!--公司信息开始-->
+	   <div class="row">
+		   <div class="gs-box">
+			   <div class="pull-left gs-logo">
+			   		<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${enterprise.enterprisePicId}}">
+			   </div>
+			   <h2 class="pull-left gs-name" th:text="${enterprise.enterpriseName}">北京德高洁清洁设备有限公司 </h2>
+		   </div>
+		   
+	   </div>
+		 <!--公司信息结束-->
+		 <div class="maintop" style="margin-top: 35px;">
+              <ul class="list-inline">
+               <li class="pull-left menubt text-center"><h5>公司介绍</h5></li>
+             </ul>
+         </div>
+		 <div class="box-bgcl spxq-box" >
+			 <table width="100%">
+				 <tr height="40px;">
+					 <td width="10%">公司名称：</td>
+					 <td width="40%" class="gray" th:text="${enterprise.enterpriseName}">北京一呼通网络科技有限责任公司</td>
+				     <td width="10%">行业：</td>
+					 <td width="40%" class="gray" th:text="${enterprise.hyType}">互联网</td>
+				 </tr>
+				 <tr height="40px;">
+					 <td width="10%">公司性质：</td>
+					 <td width="40%" class="gray" th:text="${enterprise.qyXj}">北京一呼通网络科技有限责任公司</td>
+				     <td width="10%">企业规模：</td>
+					 <td width="40%" class="gray" th:text="${enterprise.qyGm}">互联网</td>
+				 </tr>
+				 
+				 <tr height="40px;">
+					 <td>公司地址：</td>
+					 <td class="gray" colspan="3" th:text="${enterprise.addree}">北京市北三环中路甲29号 华龙大厦A座8层 801</td>
+				 </tr>
+			 </table>
+		 </div>
+		 <div class="maintop" style="margin-top: 35px;">
+              <ul class="list-inline">
+               <li class="pull-left menubt text-center"><h5>主营业务</h5></li>
+             </ul>
+         </div>
+		 <div class="box-bgcl spxq-box" th:utext="${enterprise.business}">
+			 <p>    德高洁高压水混凝土拉毛机采用先进的高压水射流技术进行建筑墙面拉毛，高压水射流通过破除水泥表层砂浆层，在混凝土墙面形成粗糙表面，使得瓷砖胶等粘结剂可以很好地渗透到墙体内部，提高粘结材料和基层的粘结力，到达可靠粘结。
+             </p>
+		 </div>
+		 <div class="maintop" style="margin-top: 35px;">
+              <ul class="list-inline">
+               <li class="pull-left menubt text-center"><h5>联系方式</h5></li>
+               <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
+             </ul>
+         </div>
+		 <div class="box-bgcl spxq-box">
+			 <p>    
+
+			   电话：<span th:text="${enterprise.telphone}"></span>
+			
+			<br>
+			地址： <span th:text="${enterprise.addree}"></span>
+
+             </p>
+		 </div>
+		 
+		 <div class="maintop" style="margin-top: 35px;">
+              <ul class="list-inline">
+               <li class="pull-left menubt text-center"><h5>产品信息</h5></li>
+               <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
+             </ul>
+         </div>
+		 <div class="box-bgcl spxq-box">
+			 <div class=" ">
+			  <table class="table table-striped table-bordered " style="margin-top:10px">
+                  <tr>
+                    
+                     <th width="5%">序号</th>
+                    <th width="20%">产品名称</th>
+                    <th width="10%">品牌</th>
+                    <th width="10%">类别</th>
+                    <th width="10%">市场价</th>
+                    <th width="15%">创建时间</th>
+                  </tr>
+                  <tr th:each="product,iterStat:${list}">
+                    <td  th:text="${iterStat.count}">1</td>
+                    <td ><a th:text="${product.productName}" th:href="@{'/hyproduct/productview.html?productId='+${product.productId}}"  target="_blank"  style="color:#3384a6">多功能地下管线探测仪</a></td>
+                    <td th:text="${product.productBrand}">徐吉</td>
+                    <td th:text="${product.productType}">地下管线探测仪</td>
+                    <td th:text="${product.productPrice}">30000</td>
+                    <td th:text=" ${#dates.format(product.createDate, 'yyyy-MM-dd')}" >2018-10-12</td>
+                   </tr>
+				</table>
+				
+				 
+		 	</div>
+		 </div>
+		 
+     </div>
+     <!--左侧内容结束-->
+     <div class="col-md-1"></div>
+       <!--右侧边栏开始-->
+    
+     <!--右侧边栏结束-->
+   </div>
+ </div>
+ 
+   <!--footer开始-->
+ <div th:include="footer"></div>
+ <!--footer结束-->
+ <script type="text/javascript">
+	$(function(){
+		$('#hyproduct').removeClass("manulinknone");
+		$('#hyproduct').addClass("manulink");
+		
+		
+	})
+ </script>
+ <!--footer结束-->
+</body>
+</html>

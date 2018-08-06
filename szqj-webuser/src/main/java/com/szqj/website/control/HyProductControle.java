@@ -191,16 +191,33 @@ public class HyProductControle {
 	}
 	
 	
+	
 	/**
-	 *  采购信息查看
+	 *  采购信息
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/hyproduct/enterpriselist.html"  )
+	public String enterpriselist(Integer pageNum, Integer size, ModelMap modelMap){
+		PageRequest pageable=Tools.getPage(pageNum, 5);
+		Page<Enterprise> page=enterpriseRepository.findPage(pageable);
+		modelMap.put("page", page);
+		return "/hyproduct/enterprise_list"; 
+	}
+	
+	
+	/**
+	 *  企业查看
 	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping(value = "/hyproduct/enterpriseview.html"  )
-	public String enterpriseview(ModelMap modelMap,String buyInfoId){
-		BuyInfo buyInfo = buyInfoRepository.findById(buyInfoId).get();
-		modelMap.put("buyInfo", buyInfo);
-		return "/hyproduct/enterprise_view"; 
+	public String enterpriseview(ModelMap modelMap,String enterpriseId){
+		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
+		List<Product> list = productRepository.findByEnterpriseId(enterprise.getEnterpriseId());
+		modelMap.put("list", list);
+		modelMap.put("enterprise", enterprise);
+		return "/hyproduct/enterprise_view";  
 	}
 	
 	
