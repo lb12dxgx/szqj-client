@@ -70,7 +70,7 @@ public class HyProductControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/hyproduct/productlist.html"  )
-	public String productinfolist(ModelMap modelMap,String productTypeCodeOne,String productTypeCodeTwo,String area){
+	public String productinfolist(ModelMap modelMap,String productTypeCodeOne ,String productTypeCodeTwo,String area){
 		PageRequest pageable=Tools.getPage(0, 8);
 		Page<Product> page=null;
 		if(StringUtils.isNotBlank(productTypeCodeOne)){
@@ -83,11 +83,17 @@ public class HyProductControle {
 			
 		}else if(StringUtils.isNotBlank(productTypeCodeTwo)){
 			page=productRepository.findPageByProductTypeCodeTwo(productTypeCodeTwo, pageable);
+			String parentId = dictRepository.findByDictValue(productTypeCodeTwo).get(0).getPdictId();
+			productTypeCodeOne=dictRepository.getOne(parentId).getDictValue();
 		}else{
 			page=productRepository.findPage(pageable);
 		}
-	
+		
 		modelMap.put("page", page);
+		modelMap.put("productTypeCodeOne", productTypeCodeOne);
+		modelMap.put("productTypeCodeTwo", productTypeCodeTwo);
+		producTypeListAndChild(modelMap,productTypeCodeOne);
+		
 		return "/hyproduct/product_list"; 
 	}
 	
@@ -223,6 +229,25 @@ public class HyProductControle {
 		modelMap.put("list", list);
 		modelMap.put("enterprise", enterprise);
 		return "/hyproduct/enterprise_view";  
+	}
+	
+	
+	/**
+	 * 设置产品分类
+	 * @param modelMap
+	 */
+	private void producTypeListAndChild(ModelMap modelMap,String productTypeCodeOne ) {
+		List<Dict> pList = dictRepository.findByDictValue("cp_type");
+		Dict parentDict=pList.get(0);
+		List<Dict> dictList = dictRepository.findByParentId(parentDict.getDictId());
+		for(Dict element:dictList) {
+			if(productTypeCodeOne.equals(element.getDictValue())){
+				List<Dict> l = dictRepository.findByParentId(element.getDictId());
+				 modelMap.put("childList",l);
+			}
+			
+		}
+		 modelMap.put("dictList",dictList);
 	}
 	
 	

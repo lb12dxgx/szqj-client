@@ -71,6 +71,20 @@ public class EnterpriseRest {
 	}
 	
 	
+	@RequestMapping(value = "changeLevel.do"  )
+	public RestJson changeLevel(String enterpriseId){
+		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
+		if(enterprise.getLevel()==10) {
+			enterprise.setLevel(30);
+		}else {
+			enterprise.setLevel(10);
+		}
+	
+		enterpriseRepository.save(enterprise);
+		return RestJson.createSucces();
+	}
+	
+	
 		
 	
 	

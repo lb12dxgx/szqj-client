@@ -73,10 +73,10 @@
 	margin: 10px 0 10px 0;
 }
 .cg-ssbox{
-	border: 1px #AEAEAE solid;
-	border-bottom: 2px #AEAEAE solid;
+	border: 1px #E3E3E3 solid;
+	border-bottom: 2px #E3E3E3 solid;
 	background: #fafafa;
-	padding: 20px 10px;
+	padding: 20px 10px 10px 10px;
 	margin-top: 15px;
 }
 .cp-listbox{
@@ -109,3 +109,18 @@ margin: 0;
 .cp-line-a{
 	background: #f8f8f8;
 }
+.box-bgcl-cp{
+	margin-left: 0px;
+	margin-top: 15px;
+}
+.cg-ss-line{
+	padding: 0 10px 5px 5px;
+}
+.cg-ss-line li{
+	padding-right: 40px;
+}
+.cg-ss-line-two{
+	padding-top: 15px;
+	padding-bottom: 0;
+}
+

@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.szqj.service.domain.JobInfo;
 import com.szqj.service.domain.Product;
 import com.szqj.service.domain.ProductRepository;
 import com.szqj.service.domain.ZbInfo;
@@ -65,6 +66,21 @@ public class  ProductRest {
 		productRepository.deleteById(productId);
 		return RestJson.createSucces();
 	}
+	
+	
+	@RequestMapping(value = "changeLevel.do"  )
+	public RestJson changeLevel(String productId){
+		Product product = productRepository.findById(productId).get();
+		if(product.getLevel()==10) {
+			product.setLevel(30);
+		}else {
+			product.setLevel(10);
+		}
+	
+		productRepository.save(product);
+		return RestJson.createSucces();
+	}
+	
 	
 	
 		
