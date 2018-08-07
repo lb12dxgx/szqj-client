@@ -39,6 +39,22 @@ public class  ProductRest {
 	}
 	
 	
+	@RequestMapping(value = "productlist.do"  )
+	public RestJson productist( String productName,Integer pageNum, Integer size){
+		Page<Product> page=null;
+		PageRequest pageable=Tools.getPage(pageNum-1, size);
+		
+		if(StringUtils.isBlank(productName)) {
+			page=productRepository.findPage(pageable);
+		}else {
+			page=productRepository.findPageByProductName(productName, pageable);
+		}
+		
+		return RestJson.createSucces(page);
+		
+	}
+	
+	
 	
 	@RequestMapping(value = "save.do"  )
 	public RestJson save( Product product){

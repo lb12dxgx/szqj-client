@@ -80,6 +80,7 @@ public class MenuService {
 		m.setMenuName(menu.getMenuName());
 		m.setMenuUrl(menu.getMenuUrl());
 		m.setParentMenuId(menu.getParentMenuId());
+		m.setCode(menu.getCode()+"");
 		return m;
 	}
 	

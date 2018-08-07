@@ -74,7 +74,8 @@ public class HyProductControle {
 		PageRequest pageable=Tools.getPage(0, 8);
 		Page<Product> page=null;
 		if(StringUtils.isNotBlank(productTypeCodeOne)){
-			List<Dict> dicts = dictRepository.findByParentId(productTypeCodeOne);
+			String pId=dictRepository.findByDictValue(productTypeCodeOne).get(0).getDictId();
+			List<Dict> dicts = dictRepository.findByParentId(pId);
 			List<String> dictList=new ArrayList<String>();
 			for(Dict dict:dicts){
 				dictList.add(dict.getDictValue());
@@ -93,6 +94,7 @@ public class HyProductControle {
 		modelMap.put("productTypeCodeOne", productTypeCodeOne);
 		modelMap.put("productTypeCodeTwo", productTypeCodeTwo);
 		producTypeListAndChild(modelMap,productTypeCodeOne);
+		
 		
 		return "/hyproduct/product_list"; 
 	}
@@ -240,6 +242,11 @@ public class HyProductControle {
 		List<Dict> pList = dictRepository.findByDictValue("cp_type");
 		Dict parentDict=pList.get(0);
 		List<Dict> dictList = dictRepository.findByParentId(parentDict.getDictId());
+		if(StringUtils.isBlank(productTypeCodeOne)) {
+			productTypeCodeOne=dictList.get(0).getDictValue();
+			 modelMap.put("productTypeCodeOne",productTypeCodeOne);
+		}
+		
 		for(Dict element:dictList) {
 			if(productTypeCodeOne.equals(element.getDictValue())){
 				List<Dict> l = dictRepository.findByParentId(element.getDictId());

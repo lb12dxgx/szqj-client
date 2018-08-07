@@ -26,11 +26,12 @@
 	  <div class="row">
 	  	   <div class="heizw"></div>
 		  <div class="col-md-3" style="padding-right: 0px;">
-		  		<div class="cg-spfl text-center" >商品分类</div>
+		  		<div class="cg-spfl text-center" >
+		  			<a th:href="@{'/hyproduct/productlist.html'}" style="color:#fff">商品分类</a></div>
 				  <div class="cg-mune">
 					   <th:block th:each="dic,iterStat:${dictList}">
 						  <div>
-							  <p class="cg-flbt" th:text="${dic.dictName}">商品分类1</p>
+							  <p class="cg-flbt" ><a th:href="@{'/hyproduct/productlist.html?productTypeCodeOne='+${dic.dictValue}}" th:text="${dic.dictName}">商品分类1</a></p>
 							   <ul class="list-unstyled list-inline cg-fllist">
 								  <li th:each="child,iterStat:${dic.children}">
 								  	<a th:href="@{'/hyproduct/productlist.html?productTypeCodeTwo='+${child.dictValue}}" class="cghui-link" th:text="${child.dictName}">产品分类</a>
@@ -121,7 +122,7 @@
     </div>
     <div class="box-bgcl">
 		<div class="row text-center cg_list">
-			<div class="col-md-3" th:each="enterprise,iterStat:${entList}">
+			<div class="col-md-3" th:each="enterprise,iterStat:${entList}" style="margin-top:10px">
 			  <a th:href="@{'/hyproduct/enterpriseview.html?enterpriseId='+${enterprise.enterpriseId}}"  >
 				<div class="img-shadow-1 caigou-box">
 				  <div><img  th:src="@{'/'+${enterprise.enterprisePicPath}}"  width="130" height="130" /></div>

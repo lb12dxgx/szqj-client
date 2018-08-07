@@ -45,7 +45,7 @@
 			 <div class="box-bgcl box-bgcl-cp">
 			   <div class="row text-center cg_list">
 					
-					<div class="col-md-3" th:each="product,iterStat:${productList}">
+					<div class="col-md-3" th:each="product,iterStat:${page.content}">
 					 <a th:href="@{'/hyproduct/productview.html?productId='+${product.productId}}"  >
 						<div class="img-shadow-1 caigou-box">
 						  <div><img th:src="@{'/'+${product.productPicPath}}"  width="230" height="230"></div>

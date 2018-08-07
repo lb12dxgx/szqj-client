@@ -13,6 +13,8 @@ public class MenuNode {
 	
 	private String parentMenuId;
 	
+	private String code;
+	
 	private List<MenuNode> children=new ArrayList<MenuNode>(); 
 
 	public String getMenuId() {
@@ -62,6 +64,14 @@ public class MenuNode {
 
 	public void setParentMenuId(String parentMenuId) {
 		this.parentMenuId = parentMenuId;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 	
