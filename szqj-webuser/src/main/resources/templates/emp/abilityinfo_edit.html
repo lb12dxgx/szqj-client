@@ -35,7 +35,7 @@
 			   <div class="panel-heading">申请资料</span></div>
 			   <div class="panel-body">
 	              <form class="form-horizontal top-20" id="form"  action="/emp/abilityinfo/save.do" method="post">
-	                <input type="hidden"  id="abilityInfoId" name="abilityInfoId" th:value="${abilityInfo.abilityInfoId}" />
+	                 <input type="hidden"  id="abilityInfoId" name="abilityInfoId" th:value="${abilityInfo.abilityInfoId}" />
 	                <input type="hidden"  id="abilityDocId" name="abilityDocId" th:value="${abilityInfo.abilityDocId}" />
                 	<input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${abilityInfo.enterpriseId}" />
 	                
@@ -174,10 +174,10 @@
     <script id="tpl-file" type="text/html">
      <ul class="list-group col-md-9 col-md-offset-1">
 		{{each  retData}}
-        <a class="list-group-item" style="height:40px;margin-bottom:10px">
-			<a href="#"  onclick="downFile('{{$value.fileInfoId}}')" style="margin-left:20px;font-size:15px" >{{$value.fileName}}</a>
+        <li class="list-group-item" style="height:40px;margin-bottom:10px">
+			<a  href="#" style="margin-left:20px;font-size:15px" onclick="downFile('{{$value.fileInfoId}}')" >{{$value.fileName}}</a>
 			<button type="button" class="close" aria-label="Close" style="opacity:1" onclick="delFile('{{$value.fileInfoId}}')"><span style="color:red">&times;</span></button>
-  		</a>
+  		</li>
 		{{/each}}	
      </ul>
    </script>
@@ -187,22 +187,22 @@
    
    var accountId=[[${session.account.token}]]; 
    
-   function downFile(fileid){
-		window.location.href='/file/download.do?fileInfoId='+fileid;
-	};
-   
    function delFile(fileid){
 	   
 	   $.get("/file/delete.do?fileInfoId="+fileid+"&ss_accountId="+accountId,function(data,status){
-		   $.get("/file/list.do?bussinessId="+$("#productPicId").val(),function(data,status){
+		   $.get("/file/list.do?bussinessId="+$("#abilityDocId").val(),function(data,status){
 			 
-			   var html = template('tpl-img',data);
+			   var html = template('tpl-file',data);
 				$('#piclist').html(html);
 		   });
 	   });
 	   
 	  
    };
+   
+   function downFile(fileid){
+		window.location.href='/file/download.do?fileInfoId='+fileid;
+	};
    
 	$(function(){
 		$('#ability').addClass("active");
@@ -241,7 +241,7 @@
 			    }
 			},
 		    dataType: 'json',
-		    url: '/file/uploadone.do',
+		    url: '/file/uploadlist.do',
 		    formData: {dirName:'content/ability/doc',accountId:accountId,bussinessId:$("#abilityDocId").val()},
 		   
 		    done: function (e, data) { //对接口返回信息的处理
@@ -261,40 +261,17 @@
 		
 		 $("#form").validate({
 	          rules: {
-	            productName: {
+	        	person: {
 	              required: true
 	            },
-	            productBrand:{
+	            telphone:{
 	              required: true
-	            },
-	            productType:{
-	           	  required: true	
-	            },
-	            productPrice:{
-	              required: true	
-	            },
-	            person:{
-		              required: true	
-		         },
-		         telphone:{
-	              required: true	
 	            }
 	           
 	            
 	          },
 	          messages: {
-	        	  productName: {
-		              required: "请输入产品名称"
-		            },
-		            productBrand:{
-		              required: "请输入产品品牌"
-		            },
-		            productType:{
-		           	  required: "请输入产品类型"	
-		            },
-		            productPrice:{
-		              required: "请输入产品价格"		
-		            },
+	        	  
 		            person:{
 			              required: "请输入联系人"		
 			         },
