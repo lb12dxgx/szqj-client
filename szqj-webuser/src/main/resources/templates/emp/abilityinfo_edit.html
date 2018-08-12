@@ -35,13 +35,14 @@
 			   <div class="panel-heading">申请资料</span></div>
 			   <div class="panel-body">
 	              <form class="form-horizontal top-20" id="form"  action="/emp/abilityinfo/save.do" method="post">
-	                <input type="hidden"  id="abilityDocId" name="abilityDocId" th:value="${abilityDocId}" />
-                	<input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
+	                <input type="hidden"  id="abilityInfoId" name="abilityInfoId" th:value="${abilityInfo.abilityInfoId}" />
+	                <input type="hidden"  id="abilityDocId" name="abilityDocId" th:value="${abilityInfo.abilityDocId}" />
+                	<input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${abilityInfo.enterpriseId}" />
 	                
 	                 <div class="form-group">
 	                  <label  class="col-md-1 control-label">企业名称</label>
 	                  <div class="col-md-7">
-	                    <input type="text" class="form-control"  placeholder="请输入企业名称名称" readonly th:value="${enterpriseName}" />
+	                    <input type="text" class="form-control"  placeholder="请输入企业名称名称" readonly th:value="${abilityInfo.enterpriseName}" />
 	                  </div>
 	               
 	                </div>
@@ -49,14 +50,14 @@
 	                <div class="form-group">
 	                  <label  class="col-md-1 control-label">类型</label>
 	                  <div class="col-md-4">
-	                    <select class="form-control" id="cpType" name="abilityInfoType">
+	                    <select class="form-control" name="abilityInfoType" id="abilityInfoType" th:attr="sel=${abilityInfo.abilityInfoType}" >
 	                        <option value="地下管线探测单位作业能力">地下管线探测单位作业能力</option>
 	                        <option value="地下管线探测工程监理作业能力">地下管线探测工程监理作业能力</option>
 	                     </select>
 	                  </div>
 	                  <label  class="col-md-1 control-label" >级别</label>
 	                    <div class="col-md-2">
-	                      <select class="form-control" name="abilityInfoLevel">
+	                      <select class="form-control" name="abilityInfoLevel"  id="abilityInfoLevel" th:attr="sel=${abilityInfo.abilityInfoLevel}">
 	                        <option value="I级">I级</option>
 	                        <option value="II级">II级</option>
 	                        <option value="Ⅲ级">Ⅲ级</option>
@@ -68,7 +69,7 @@
 	                <div class="form-group">
 	                  <label  class="col-md-1 control-label">评价类型</label>
 	                  <div class="col-md-4">
-	                    <select class="form-control" id="cpType" name="evaluateType">
+	                    <select class="form-control"  name="evaluateType" id="evaluateType" th:attr="sel=${abilityInfo.evaluateType}">
 	                        <option value="初次评价">初次评价</option>
 	                        <option value="升级评价">升级评价 </option>
 	                        <option value="延续评价">延续评价 </option>
@@ -83,11 +84,11 @@
 	                <div class="form-group">
 	                  <label  class="col-md-1 control-label">联系人</label>
 	                  <div class="col-md-4">
-	                    <input type="text"class="form-control" id="person" name="person" placeholder="请输入联系人">
+	                    <input type="text"class="form-control" id="person" name="person" th:value="${abilityInfo.person}" >
 	                  </div>
 	                  <label  class="col-md-1 control-label">联系电话</label>
 	                    <div class="col-md-4">
-	                    <input type="text" class="form-control" id="telphone" name="telphone" placeholder="请输入联系电话">
+	                    <input type="text" class="form-control" id="telphone" name="telphone"th:value="${abilityInfo.telphone}" >
 	                  </div>
 	                </div>
 	
@@ -190,7 +191,7 @@
 	   
 	   $.get("/file/delete.do?fileInfoId="+fileid+"&ss_accountId="+accountId,function(data,status){
 		   $.get("/file/list.do?bussinessId="+$("#productPicId").val(),function(data,status){
-			   console.log(data);
+			 
 			   var html = template('tpl-img',data);
 				$('#piclist').html(html);
 		   });
@@ -201,7 +202,22 @@
    
 	$(function(){
 		$('#ability').addClass("active");
-	
+		
+		var abilityDocId=[[${abilityInfo.abilityDocId}]];
+		
+		var abilityInfoType=$("#abilityInfoType").attr("sel");
+		var abilityInfoLevel=$("#abilityInfoLevel").attr("sel");
+		var evaluateType=$("#evaluateType").attr("sel");
+		
+		$("#abilityInfoType").val(abilityInfoType);
+		$("#abilityInfoLevel").val(abilityInfoLevel);
+		$("#evaluateType").val(evaluateType);
+		
+		$.get("/file/list.do?bussinessId="+abilityDocId,function(data,status){
+			var html = template('tpl-file',data);
+				$('#piclist').html(html);
+		})
+
 		
 		
 		$("#btn_upload_image").fileupload({
@@ -288,7 +304,5 @@
 </script>
     
 </body>
-
-
-
+ 
 </html>

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -215,6 +217,17 @@ public class FileInfoRest {
 	@RequestMapping(value = "/download.do"  )
 	public void download(String fileInfoId,HttpServletResponse response){
 		FileInfo f = fileInfoRepository.findById(fileInfoId).get();
+		
+		String name="";
+		try {
+			name = URLEncoder.encode(f.getFileName(), "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		response.setHeader("Content-Disposition", "attachment;filename="+name);   
+	
+		
 		FileInputStream fis = null;  
         OutputStream os = null;  
         try {  

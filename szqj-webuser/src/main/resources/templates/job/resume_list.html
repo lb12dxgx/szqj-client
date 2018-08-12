@@ -71,6 +71,13 @@
 			$('#job').removeClass("manulinknone");
 			$('#job').addClass("manulink");
 			
+			$('.page-link').click(function(){
+				  if(!$(this).parent().hasClass("disabled")){
+					  var pageNum=$(this).attr("pageIndex");
+					  $(window).attr('location', '/job/resumelist.html?pageNum='+pageNum);
+				  }
+			});
+			
 		})
 	</script>
 </body>

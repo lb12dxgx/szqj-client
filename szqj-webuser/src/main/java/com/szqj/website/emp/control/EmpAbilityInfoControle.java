@@ -1,6 +1,7 @@
 package com.szqj.website.emp.control;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -57,6 +58,9 @@ public class EmpAbilityInfoControle {
 		Enterprise enterprise = enterpriseRepository.findByAccountId(account.getAccountId()).get(0);
 		modelMap.put("abilityDocId", UUID.randomUUID().toString());
 		modelMap.put("enterpriseId", enterprise.getEnterpriseId());
+		modelMap.put("enterpriseName", enterprise.getEnterpriseName());
+		
+		
 		return "emp/abilityinfo_add"; 
 	}
 	
@@ -64,7 +68,7 @@ public class EmpAbilityInfoControle {
 	@RequestMapping(value = "/emp/abilityinfo/save.do"  )
 	public String abilityinfoSave(AbilityInfo  ability,  ModelMap modelMap){
 		ability.setCreateDate(new Date());
-		
+		ability.setState(1);
 		abilityInfoRepository.save(ability);
 		
 		return "redirect:/emp/abilityinfo.html"; 
@@ -74,11 +78,16 @@ public class EmpAbilityInfoControle {
 	@RequestMapping(value = "/emp/abilityinfo/edit.html"  )
 	public String abilityinfoEdit(String abilityId,  ModelMap modelMap){
 		AbilityInfo ability = abilityInfoRepository.findById(abilityId).get();
-		/*List<Dict> dicts = dictRepository.findByDictValue(ability.getAbilityTypeCode());
-		Dict pdict = dictRepository.findById(dicts.get(0).getPdictId()).get();
-		modelMap.put("ability", ability);
-		modelMap.put("ptypeCode", pdict.getDictValue());*/
+		modelMap.put("abilityInfo", ability);
 		return "emp/abilityinfo_edit"; 
+	}
+	
+	
+	@RequestMapping(value = "/emp/abilityinfo/view.html"  )
+	public String abilityinfoView(String abilityId,  ModelMap modelMap){
+		AbilityInfo ability = abilityInfoRepository.findById(abilityId).get();
+		modelMap.put("ability", ability);
+		return "emp/abilityinfo_view"; 
 	}
 	
 	

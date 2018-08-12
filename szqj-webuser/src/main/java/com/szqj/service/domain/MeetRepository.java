@@ -20,13 +20,13 @@ import org.springframework.stereotype.Repository;
 public interface MeetRepository extends PagingAndSortingRepository<Meet, String> {
 
 
-	@Query("select m from Meet m where m.meetName like %?1%  order by createDate")
+	@Query("select m from Meet m where m.meetName like %?1%  order by createDate desc")
 	Page<Meet> findPageByMeetName(String meetName, Pageable pageable);
 	
-	@Query("select m from Meet m  order by createDate")
+	@Query("select m from Meet m  order by createDate desc")
 	Page<Meet> findPage(Pageable pageable);
 	
 	
-	@Query("select m from Meet m where m.isSign=1 order by createDate")
+	@Query("select m from Meet m where m.isSign=1 order by createDate desc")
 	List<Meet> findByIsSign();
 }

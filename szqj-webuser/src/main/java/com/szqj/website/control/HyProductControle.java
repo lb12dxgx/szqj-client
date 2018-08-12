@@ -244,7 +244,7 @@ public class HyProductControle {
 		List<Dict> dictList = dictRepository.findByParentId(parentDict.getDictId());
 		if(StringUtils.isBlank(productTypeCodeOne)) {
 			productTypeCodeOne=dictList.get(0).getDictValue();
-			 modelMap.put("productTypeCodeOne",productTypeCodeOne);
+			// modelMap.put("productTypeCodeOne",productTypeCodeOne);
 		}
 		
 		for(Dict element:dictList) {

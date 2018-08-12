@@ -45,7 +45,7 @@
 			 <div class="box-bgcl box-bgcl-cp">
 			   <div class="row text-center cg_list">
 					
-					<div class="col-md-3" th:each="product,iterStat:${page.content}">
+					<div class="col-md-3" th:each="product,iterStat:${page.content}" style="margin-top:10px">
 					 <a th:href="@{'/hyproduct/productview.html?productId='+${product.productId}}"  >
 						<div class="img-shadow-1 caigou-box">
 						  <div><img th:src="@{'/'+${product.productPicPath}}"  width="230" height="230"></div>
@@ -85,13 +85,22 @@
   	<!--footer结束-->
   	
 	<script type="text/javascript" th:inline="javascript">
+	    var productTypeCodeOne=[[${productTypeCodeOne}]];
+	    var productTypeCodeTwo=[[${productTypeCodeTwo}]]
 		$(function(){
 			$('#hyproduct').removeClass("manulinknone");
 			$('#hyproduct').addClass("manulink");
 			$('.page-link').click(function(){
 				  if(!$(this).parent().hasClass("disabled")){
 					  var pageNum=$(this).attr("pageIndex");
-					  $(window).attr('location', '/hyproduct/productlist.html?pageNum='+pageNum);
+					  if(productTypeCodeTwo!=null){
+						  $(window).attr('location', '/hyproduct/productlist.html?pageNum='+pageNum+'&productTypeCodeTwo='+productTypeCodeTwo+'&productTypeCodeOne='+productTypeCodeOne);
+					  }else if(productTypeCodeOne!=null){
+						  $(window).attr('location', '/hyproduct/productlist.html?pageNum='+pageNum+'&productTypeCodeOne='+productTypeCodeOne);
+					  }else{
+						  $(window).attr('location', '/hyproduct/productlist.html?pageNum='+pageNum);
+					  }
+					 
 				  }
 			});
 			

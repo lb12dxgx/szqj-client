@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -33,13 +34,22 @@ public class AbilityInfo {
 	
 	private String abilityInfoLevel;//能力级别
 	
+	private String evaluateType;//评价类型
+	
 	private Date createDate;//提交时间
 	
 	private Date endDate;//通过时间
 	
 	private Integer state;//0:待审批  1:审批中  2：审批通过  3：审批失败
 	
-	private String abilityDocId;//产品图片标识
+	private String abilityDocId;//能力附件
+	
+	private String person;//申请人
+	
+	private String telphone;//联系电话
+	
+	@Transient
+	private String stateStr;//状态名称
 	
 
 	public String getAbilityInfoId() {
@@ -112,6 +122,40 @@ public class AbilityInfo {
 
 	public void setAbilityDocId(String abilityDocId) {
 		this.abilityDocId = abilityDocId;
+	}
+
+	public String getEvaluateType() {
+		return evaluateType;
+	}
+
+	public void setEvaluateType(String evaluateType) {
+		this.evaluateType = evaluateType;
+	}
+
+	public String getPerson() {
+		return person;
+	}
+
+	public void setPerson(String person) {
+		this.person = person;
+	}
+
+	public String getTelphone() {
+		return telphone;
+	}
+
+	public void setTelphone(String telphone) {
+		this.telphone = telphone;
+	}
+
+	public String getStateStr() {
+		if(state==1) {
+			return "审批中";
+		}else if(state==2) {
+			return "审批通过";
+		}else {
+			return "审批失败";
+		}
 	}
 	
 	

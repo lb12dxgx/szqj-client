@@ -31,13 +31,11 @@
               <div class="col-md-12" style="padding:10px;">
                 <form class="form-inline" id="form"  action="/emp/buyinfo.html" method="post">
                    <input type="hidden" name="pageNum" id="pageNum"/>
-                  <div class="form-group col-md-8">
+                  <div class="form-group col-md-10">
                    
                   </div>
-                  <div class="form-group col-md-4">
-                    <a class="btn btn-default" id="search" style="margin-right:10px;">
-                      <i class="fa fa-search"></i>查看申请规则
-                    </a>
+                  <div class="form-group col-md-2">
+                   
                     <a href="/emp/abilityinfo/add.html" class="btn btn-primary" >
                       <i class="fa fa-plus"></i>新增申请
                     </a>
@@ -51,23 +49,32 @@
                     <th width="5%">序号</th>
                     <th width="20%">申请类型</th>
                     <th width="10%">申请级别</th>
-                    <th width="20%">申请时间</th>
+                    <th width="10%">评价类型</th>
+                    <th width="10%">申请时间</th>
+                    <th width="10%">通过时间</th>
+                    <th width="10%">申请人</th>
                     <th width="10%">申请状态</th>
                     <th width="20%">操作</th>
                   </tr>
-                  <tr th:each="buyinfo,iterStat:${list}">
+                  <tr th:each="abilityInfo,iterStat:${list}">
                     <td th:text="${iterStat.count}">1</td>
-                    <td th:text="${buyinfo.abilityInfoType}">采购地下管线修复仪器</td>
-                    <td th:text="${buyinfo.abilityInfoType}">物资</td>
-                    <td th:text="${buyinfo.abilityInfoType}">山东</td>
-                    <td th:text="${buyinfo.abilityInfoType}">2</td>
-                    <td th:text=" ${#dates.format(buyinfo.createDate, 'yyyy-MM-dd')}" >2018-10-12</td>
+                    <td th:text="${abilityInfo.abilityInfoType}">采购地下管线修复仪器</td>
+                    <td th:text="${abilityInfo.abilityInfoLevel}">物资</td>
+                    <td th:text="${abilityInfo.evaluateType}">物资</td>
+                    <td th:text=" ${#dates.format(abilityInfo.createDate, 'yyyy-MM-dd')}" >2018-10-12</td>
+                    <td th:text=" ${#dates.format(abilityInfo.endDate, 'yyyy-MM-dd')}" >2018-10-12</td>
+                    <td th:text="${abilityInfo.person}">山东</td>
+                    <td th:text="${abilityInfo.stateStr}">2</td>
+                   
                     <td>
-                      <a href="#" class="btn btn-primary btn-sm"  th:onclick="'javascript:edit(\''+${buyinfo.buyInfoId}+'\')'" >
-                          修改
+                      <a href="#" class="btn btn-primary btn-sm"  th:onclick="'javascript:view(\''+${abilityInfo.abilityInfoId}+'\')'" th:if="${abilityInfo.state==1||abilityInfo.state==2}">
+                          	查看
                       </a>
-                      <a href="#" class="btn btn-primary btn-sm" th:onclick="'javascript:showdel(\''+${buyinfo.buyInfoId}+'\')'" >
-                          删除
+                      <a href="#" class="btn btn-primary btn-sm"  th:onclick="'javascript:edit(\''+${abilityInfo.abilityInfoId}+'\')'" th:if="${abilityInfo.state==3}">
+                          	修改
+                      </a>
+                      <a href="#" class="btn btn-primary btn-sm" th:onclick="'javascript:showdel(\''+${abilityInfo.abilityInfoId}+'\')'" th:if="${abilityInfo.state==3}" >
+                         	 删除
                       </a>
                     </td>
                   </tr>
@@ -111,9 +118,13 @@
   	<script type="text/javascript" th:inline="javascript">
   	
   	function edit(id){
- 		 window.location.href='/emp/buyinfo/edit.html?buyInfoId='+id;
+ 		 window.location.href='/emp/abilityinfo/edit.html?abilityId='+id;
 	};
  	
+	function view(id){
+		 window.location.href='/emp/abilityinfo/view.html?abilityId='+id;
+	};
+	
 	function showdel(id){
 		  $('#delModal').data("delId",id)
 		  $('#delModal').modal();  
@@ -121,7 +132,7 @@
 	
 	function del(){
 		var id=$('#delModal').data("delId");
-		 window.location.href='/emp/buyinfo/del.do?buyInfoId='+id;    
+		 window.location.href='/emp/abilityinfo/del.do?abilityId='+id;    
 	}
   	
 	$(function(){
@@ -132,12 +143,7 @@
 			 $('#form').submit();
 		})
 		
-		$('.page-link').click(function(){
-			  if(!$(this).parent().hasClass("disabled")){
-				  $('#pageNum').val($(this).attr("pageIndex"));
-				  $('#form').submit();
-			  }
-		});
+		
 	})
 </script>
   <!--footer结束-->

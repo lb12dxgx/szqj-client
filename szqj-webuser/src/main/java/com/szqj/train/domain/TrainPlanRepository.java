@@ -21,18 +21,18 @@ import com.szqj.service.domain.Meet;
 @Repository
 public interface TrainPlanRepository extends PagingAndSortingRepository<TrainPlan, String> {
 	
-	@Query("select m from TrainPlan m where m.trainName like %?1% order by m.createDate  ")
+	@Query("select m from TrainPlan m where m.trainName like %?1% order by m.createDate desc ")
 	Page<TrainPlan> findPageByTrainName(String trainName, Pageable pageable);
 
 	@Query("select m from TrainPlan m   order by m.createDate  ")
 	Page<TrainPlan> findPage(Pageable pageable);
 	
-	@Query("select m from TrainPlan m where m.showMain=1  order by m.createDate  ")
+	@Query("select m from TrainPlan m where m.showMain=1  order by m.createDate desc ")
 	List<TrainPlan> findMainTrain();
 	
-	@Query("select m from TrainPlan m where m.showMain=0  order by m.createDate  ")
+	@Query("select m from TrainPlan m where m.showMain=0  order by m.createDate desc ")
 	List<TrainPlan> findListTrain();
 	
-	@Query("select m from TrainPlan m where m.isSign=1 order by createDate")
+	@Query("select m from TrainPlan m where m.isSign=1 order by createDate desc")
 	List<TrainPlan> findByIsSign();
 }

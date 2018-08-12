@@ -165,7 +165,8 @@
 	                     <div class="media news-box" >
 	                       <div class="media-left">
 	                         <a th:href="@{'/news/detail.html?contentId='+${content.contentId}}">
-	                         	<img th:src="@{${fileMap[content.titleFileId]}}" style="width:159px;height:159px"/>
+	                         	<img th:src="@{${fileMap[content.titleFileId]}}" style="width:159px;height:159px" th:if="${content.titleFileId!=null}"/>
+	                         	<img th:src="" style="width:159px;height:159px" th:if="${content.titleFileId==null}"/>
 	                         </a>
 	                       </div>
 	                       <div class="media-body">
@@ -223,7 +224,8 @@
           <div class="row text-center sp-box">  
             <div class="col-md-6"  th:each="content,iterStat:${spNewList}">
                <a th:href="@{'/news/videodetail.html?contentId='+${content.contentId}}" >
-               	<img th:src="@{${fileMap[content.titleFileId]}}" style="width:206px;height:134px" />
+               	<img th:src="@{${fileMap[content.titleFileId]}}" style="width:206px;height:134px" th:if="${content.titleFileId!=null}"/>
+               	<img src="" style="width:206px;height:134px" th:if="${content.titleFileId==null}"/>
                </a>
                <h5><a th:href="@{'/news/videodetail.html?contentId='+${content.contentId}}"  class="bt-link" th:text="${content.contentTitle}">习近平讲故事：天下艰难际，时势造英雄</a></h5>
             </div>
@@ -328,14 +330,15 @@
         <div class="maintop">
           <ul class="list-inline">
            <li class="pull-left menubt text-center"><h5>知名产品</h5></li>
-           <li class="pull-right morebt"><a href="/service/product.html">more</a></li>
+           <li class="pull-right morebt"><a href="/hyproduct/productlist.html">more</a></li>
           </ul>
         </div>
         <div class="box-bgcl">
           <div class="row logopic">
             <div class="col-md-3" th:each="product,iterStat:${productList}" >
-            	<a  th:href="@{'/service/product/detail.html?productId='+${product.productId}}" target="_blank" >
-            		<img th:src="@{${fileMap[product.productPicId]}}" class="img-shadow-1" style="width:102px;height:102px" >
+            	<a  th:href="@{'/hyproduct/productview.html?productId='+${product.productId}}" target="_blank" >
+            		<img th:src="@{${fileMap[product.productPicId]}}" class="img-shadow-1" style="width:102px;height:102px" th:if="${product.productPicId!=null}">
+            		<img src="" class="img-shadow-1" style="width:102px;height:102px" th:if="${product.productPicId==null}">
             	</a>
             </div>
             
@@ -354,14 +357,15 @@
         <div class="maintop">
           <ul class="list-inline">
            <li class="pull-left menubt text-center"><h5>知名企业</h5></li>
-           <li class="pull-right morebt"><a href="/service/enterprise.html">more</a></li>
+           <li class="pull-right morebt"><a href="/hyproduct/enterpriselist.html">more</a></li>
           </ul>
         </div>
         <div class="box-bgcl">
           <div class="row logopic">
             <div class="col-md-3" th:each="enterprise,iterStat:${enterpriseList}">       
-            	<a th:href="@{'/service/enterprise/detail.html?enterpriseId='+${enterprise.enterpriseId}}" target="_blank" >
-            		<img th:src="@{${fileMap[enterprise.enterprisePicId]}}"   class="img-shadow-1" style="width:102px;height:102px">
+            	<a th:href="@{'/hyproduct/enterpriseview.html?enterpriseId='+${enterprise.enterpriseId}}" target="_blank" >
+            		<img th:src="@{${fileMap[enterprise.enterprisePicId]}}"   class="img-shadow-1" style="width:102px;height:102px" th:if="${enterprise.enterprisePicId!=null}"/>
+            		<img src=""   class="img-shadow-1" style="width:102px;height:102px" th:if="${enterprise.enterprisePicId==null}"/>
             	</a>                                    
             </div>
           
@@ -384,14 +388,14 @@
         <div class="maintop">
           <ul class="list-inline">
            <li class="pull-left menubt text-center"><h5>招标信息</h5></li>
-           <li class="pull-right morebt"><a href="/service/zbinfo.html">more</a></li>
+           <li class="pull-right morebt"><a href="/hyproduct/zbinfolist.html">more</a></li>
           </ul>
         </div>
         <div class="box-bgcl" style="height:255px">
         
           <div th:each="zbinfo,iterStat:${zbInfoList}" >
 	           <ul class="gb-news">
-		           <li class="xwlist pull-left"><a th:href="@{'/service/zbinfo/detail.html?zbInfoId='+${zbinfo.zbInfoId}}" target="_blank"  th:text="${zbinfo.zbXmName}" >17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+		           <li class="xwlist pull-left"><a th:href="@{'/hyproduct/zbinfoview.html?zbInfoId='+${zbinfo.zbInfoId}}" target="_blank"  th:text="${zbinfo.zbXmName}" >17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
 		            <li class="list-unstyled pull-right"><time datetime="2018-1-22" th:text=" ${#dates.format(zbinfo.publishDate, 'yyyy-MM-dd')}" >2018-1-22</time></li>
 	           </ul>
 	          <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
@@ -454,7 +458,7 @@
           </ul>
         </div>
         <div class="box-bgcl">
-          <div th:each="train,iterStat:${trainPlanList}" >
+          <div th:each="train,iterStat:${trainPlanList}" th:if="${iterStat.count<3}">
 	          <div class="row peixun">
 	            <div class="col-md-12"><a th:href="@{'/train/detail.html?trainPlanId='+${train.trainPlanId}}" class="bt-link"><h5 th:text="${train.trainName}">行业工程师培训</h5></a></div>
 	          </div>
@@ -479,19 +483,19 @@
     </div>
     <div class="cyfuwu">
       <div class="cyfw-link text-center right-m">
-        <a href="/service/enterprise.html">
+        <a href="/hyproduct/enterpriselist.html">
           <div><img src="images/qiye.png" class="img-shadow-1-gb"></div>
           <h5>企业信息</h5>
         </a>
       </div>
       <div class="cyfw-link text-center right-m">
-        <a href="/service/product.html">
+        <a href="/hyproduct/productlist.html">
           <div><img src="images/chanpin.png" class="img-shadow-1-gb"></div>
           <h5>产品信息</h5>
         </a>
       </div>
 		<div class="cyfw-link text-center right-m">
-        <a href="/service/zbinfo.html">
+        <a href="/hyproduct/zbinfolist.html">
           <div><img src="images/zhaobiao.png" class="img-shadow-1-gb"></div>
           <h5>招标信息</h5>
         </a>
