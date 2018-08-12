@@ -175,7 +175,7 @@
      <ul class="list-group col-md-9 col-md-offset-1">
 		{{each  retData}}
         <a class="list-group-item" style="height:40px;margin-bottom:10px">
-			<span style="margin-left:20px;font-size:15px" >{{$value.fileName}}</span>
+			<a href="#"  onclick="downFile('{{$value.fileInfoId}}')" style="margin-left:20px;font-size:15px" >{{$value.fileName}}</a>
 			<button type="button" class="close" aria-label="Close" style="opacity:1" onclick="delFile('{{$value.fileInfoId}}')"><span style="color:red">&times;</span></button>
   		</a>
 		{{/each}}	
@@ -186,6 +186,10 @@
   
    
    var accountId=[[${session.account.token}]]; 
+   
+   function downFile(fileid){
+		window.location.href='/file/download.do?fileInfoId='+fileid;
+	};
    
    function delFile(fileid){
 	   
