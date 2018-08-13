@@ -45,6 +45,8 @@ public class AccidentInfo {
 	
 	private Date  creatDate;//创建时间
 	
+	private Integer state=0;//0:待采用  1:已采用  2：不采用 
+	
 	
 	
 
@@ -135,6 +137,14 @@ public class AccidentInfo {
 
 	public void setTelePhone(String telePhone) {
 		this.telePhone = telePhone;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 	
 	

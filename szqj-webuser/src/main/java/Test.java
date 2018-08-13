@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import com.itextpdf.forms.PdfAcroForm;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -15,7 +17,7 @@ public class Test {
 	
 	
 	public static void main(String[] args) throws ParseException, FileNotFoundException, IOException {
-		String startDate="2007-01-01";
+		/*String startDate="2007-01-01";
 		String endDate="2007-12-31";
 		 long d = new SimpleDateFormat("yyyy-MM-dd").parse(startDate).getTime();
 		System.out.println(d/1000);
@@ -34,7 +36,11 @@ public class Test {
         
 //          pdfAcroForm.getField("hashValue").setValue(copyRightsVo.getHashValue());
           pdfAcroForm.flattenFields();
-          pdfDoc.close();
+          pdfDoc.close();*/
+          
+          
+         String str = StringEscapeUtils.escapeHtml4("<font>chen磊  xing</font>");
+         System.out.print(str);
           
           
           

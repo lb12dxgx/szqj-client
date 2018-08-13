@@ -25,7 +25,20 @@ public interface AbilityInfoRepository extends PagingAndSortingRepository<Abilit
 	
 	
 	
-	@Query("select m from AbilityInfo m where m.enterpriseId=?1 order by createDate")
+	@Query("select m from AbilityInfo m where m.enterpriseId=?1 order by createDate desc")
 	List<AbilityInfo> findByEnterpriseId(String enterpriseId);
+
+	@Query("select m from AbilityInfo m where m.enterpriseName like %?1% and m.abilityInfoType=?2  order by createDate desc")
+	Page<AbilityInfo> findAdminPageByeEnterpriseNameAndAbilityInfoType(String enterpriseName, String abilityInfoType,
+			Pageable pageable);
+
+	@Query("select m from AbilityInfo m where m.enterpriseName like %?1%   order by createDate desc")
+	Page<AbilityInfo> findAdminPageByeEnterpriseName(String enterpriseName, Pageable pageable);
+
+	@Query("select m from AbilityInfo m where  m.abilityInfoType=?1  order by createDate desc")
+	Page<AbilityInfo> findAdminPageByAbilityInfoType(String abilityInfoType, Pageable pageable);
+
+	@Query("select m from AbilityInfo m   order by createDate desc")
+	Page<AbilityInfo> findPage(Pageable pageable);
 	
 }
