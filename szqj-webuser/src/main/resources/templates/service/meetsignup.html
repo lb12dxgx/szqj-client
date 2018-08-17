@@ -30,55 +30,60 @@
    <form method="post" action="saveSignup.do" id="regForm">
    	 <input  name="meetId"  type="hidden" th:value="${meet.meetId}" />
    	 <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>
-   	 <div class="col-md-2"></div>
-     <div class="col-md-9">
+   	 <div class="col-md-1"></div>
+     <div class="col-md-10">
+         <div class="row zcsx-list">
+		  <div class="col-md-2 text-right"></div>
+		  <div class="col-md-7 text-center"><h3 th:text="${meet.meetName}"></h3></div>
+		  <div class="col-md-3 text-left"><label id="userName-error" class="errorlabel error"  for="userName"/></div>
+	   	</div>
 		 <div class="row zcsx-list">
 		  <div class="col-md-3 text-right"><label class="control-label zscx-text">姓名</label></div>
-		  <div class="col-md-5 text-center"><input class="form-control" name="userName" placeholder="请输入姓名" type="text"></div>
-		  <div class="col-md-4 text-left"><label id="userName-error" class="errorlabel error"  for="userName"/></div>
-	   </div>
+		  <div class="col-md-6 text-center"><input class="form-control" name="userName" placeholder="请输入姓名" type="text"></div>
+		  <div class="col-md-3 text-left"><label id="userName-error" class="errorlabel error"  for="userName"/></div>
+	   	</div>
 		 <div class="row zcsx-list">
 		  <div class="col-md-3 text-right"><label class="control-label zscx-text">手机</label></div>
-		  <div class="col-md-5 text-center"><input class="form-control" name="telphone" placeholder="请输入手机号" type="text"></div>
-		  <div class="col-md-4 text-left"><label id="telphone-error" class="errorlabel error"  for="telphone"/></div>
+		  <div class="col-md-6 text-center"><input class="form-control" name="telphone" placeholder="请输入手机号" type="text"></div>
+		  <div class="col-md-3 text-left"><label id="telphone-error" class="errorlabel error"  for="telphone"/></div>
 	   </div>
 		 <div class="row zcsx-list">
 		  <div class="col-md-3 text-right"><label class="control-label zscx-text">企业名称</label></div>
-		  <div class="col-md-5 text-center"><input class="form-control" name="empName" placeholder="请输入企业名称" type="text"></div>
-		  <div class="col-md-4 text-left"><label id="empName-error" class="errorlabel error"  for="empName"/></div>
+		  <div class="col-md-6 text-center"><input class="form-control" name="empName" placeholder="请输入企业名称" type="text"></div>
+		  <div class="col-md-3 text-left"><label id="empName-error" class="errorlabel error"  for="empName"/></div>
 	   </div>
        <div class="row zcsx-list">
 		  <div class="col-md-3 text-right"><label class="control-label zscx-text">职务</label></div>
-		  <div class="col-md-5 text-center"><input class="form-control" name="post" placeholder="请输入职务" type="text"></div>
-		  <div class="col-md-4 text-left"></div>
+		  <div class="col-md-6 text-center"><input class="form-control" name="post" placeholder="请输入职务" type="text"></div>
+		  <div class="col-md-3 text-left"></div>
 	   </div>
 		 <div class="row zcsx-list">
 		  <div class="col-md-3 text-right"><label class="control-label zscx-text">邮箱</label></div>
-		  <div class="col-md-5 text-center"><input class="form-control" name="email" placeholder="请输入邮箱" type="text"></div>
-		  <div class="col-md-4 text-left"><label id="email-error" class="errorlabel error"  for="email"/></div>
+		  <div class="col-md-6 text-center"><input class="form-control" name="email" placeholder="请输入邮箱" type="text"></div>
+		  <div class="col-md-3 text-left"><label id="email-error" class="errorlabel error"  for="email"/></div>
 	   </div>
 		  <div class="row zcsx-list">
 		  <div class="col-md-3 text-right"><label class="control-label zscx-text">住宿要求</label></div>
-		   <div class="col-md-5 text-center">
+		   <div class="col-md-6 text-center">
 		   		 <select name="singleRoom" class="form-control">
 		   		    <option value="单住">单住</option>
 		   		    <option value="合住">合住</option>
 		   		    <option value="不住">不住</option>
 				 </select>
 		   </div>
-		  <div class="col-md-5 text-left">
+		  <div class="col-md-6 text-left">
 			
 		  </div>
-		  <div class="col-md-4 text-left"></div>
+		  <div class="col-md-3 text-left"></div>
 	   </div>
 		
 	   <div>
 	   <div>
 			<div class="col-md-3 text-right"></div>
-			<div class="col-md-5 text-center">
+			<div class="col-md-6 text-center">
 				<a href="#" class="btn btn-success" style="width: 100%" id="reg">提交报名</a>
 		   </div>
-			<div class="col-md-4 text-left">
+			<div class="col-md-3 text-left">
 			  
 			</div>
 	   </div>

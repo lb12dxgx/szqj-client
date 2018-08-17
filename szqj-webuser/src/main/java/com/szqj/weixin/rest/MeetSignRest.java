@@ -1,9 +1,11 @@
 package com.szqj.weixin.rest;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +13,7 @@ import com.szqj.service.domain.Meet;
 import com.szqj.service.domain.MeetRepository;
 import com.szqj.service.domain.MeetSignUp;
 import com.szqj.service.domain.MeetSignUpRepository;
+import com.szqj.springmvc.Token;
 import com.szqj.util.RestJson;
 
 @RestController
@@ -52,6 +55,15 @@ public class MeetSignRest {
 			return RestJson.createError(meetSignUp.getUserName()+"已经签到,请勿重复签到!");
 		}
 		meetSignUp.setIsSign(1);
+		meetsignRepository.save(meetSignUp);
+		return RestJson.createSucces(meetSignUp);
+	}
+	
+	
+
+	@RequestMapping(value = "saveSignup.wei"  )
+	public RestJson saveSignup(MeetSignUp meetSignUp, ModelMap modelMap){
+		meetSignUp.setCreateDate(new Date());
 		meetsignRepository.save(meetSignUp);
 		return RestJson.createSucces(meetSignUp);
 	}

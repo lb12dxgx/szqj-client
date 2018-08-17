@@ -316,6 +316,22 @@ public class ServiceControle {
 	
 	
 	@Token(save = true)
+	@RequestMapping(value = "/nh.html"  )
+	public String meet_signup_nh( ModelMap modelMap){
+		Meet meet = meetRepository.findById("5d12c0d3-9854-4e91-8420-1079b208e49e").get();
+		modelMap.put("meet", meet);
+		return "service/meetsignup"; 
+	}
+	
+
+	@RequestMapping(value = "/wnh.html"  )
+	public String meet_signup_wnh( ModelMap modelMap){
+		
+		return "redirect:app/index.html#/meetSignUp"; 
+	}
+	
+	
+	@Token(save = true)
 	@RequestMapping(value = "/service/meet/signup.html"  )
 	public String meet_signup(String meetId, ModelMap modelMap){
 		Meet meet = meetRepository.findById(meetId).get();

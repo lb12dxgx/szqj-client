@@ -43,7 +43,7 @@ public interface AccidentInfoRepository extends PagingAndSortingRepository<Accid
 
 
 	@Query("select m from AccidentInfo m where m.state=1 order by m.creatDate desc")
-	Page<AccidentInfo> findPassPage(PageRequest pageable);
+	Page<AccidentInfo> findPassPage(Pageable pageable);
 
 
 	@Query("select m from AccidentInfo m where m.accidentName like %?1% and m.state=2 order by m.creatDate desc")
