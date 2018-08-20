@@ -45,7 +45,7 @@ public class ToolsMain {
 	public static void main(String[] args) throws IOException {
 		String filepath = "D:\\1";
 		ToolsMain toolsMain=new ToolsMain();
-		toolsMain.reSize(filepath, 182, 258);
+		toolsMain.reSize(filepath, 159, 159);
        
 	}
 
