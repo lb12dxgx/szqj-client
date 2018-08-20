@@ -127,6 +127,95 @@
      
     </div>
     <!--118服务结束-->
+     <div class="clearfix"></div>
+		<div class="maintop">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>118联盟</h5></li>
+          <li class="pull-right morebt"><!--<a href="#">more</a>--></li>
+       </ul>
+    </div>
+		<div class="shijie">
+			<div class="shijie-box clearfix">
+			   <div class="fuwubox text-center">
+				  <a href="http://www.118-china.com/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/118zhongguo.png"></p>
+					 </div>
+					 <h5>中国118一呼通网络平台</h5>
+				  </a>
+
+			   </div>
+			  <div class="fuwubox text-center">
+				  <a href="https://www.cbyd.com/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/meiguo.png"></p>
+					 </div>
+					 <h5>美国CBYD</h5>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center">
+				  <a href="https://linesearchbeforeudig.co.uk/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/yingguo.png"></p>
+					 </div>
+					 <h5>英国LSBUD</h5>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center" style="margin: 0;">
+				  <a href="https://www.beforeudig.com.sg/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/aierlan.png"></p>
+					 </div>
+					 <h5>新加坡beforeUdig</h5>
+				  </a>
+
+			   </div>
+			</div>
+			<div class="clearfix">
+				<div class="fuwubox text-center">
+				  <a href="http://www.clickbeforeyoudig.com/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/jianada.png"></p>
+					 </div>
+					 <h5>加拿大一呼通平台</h5>
+				  </a>
+
+			   </div>
+			  <div class="fuwubox text-center">
+				  <a href="https://www.beforeudig.co.nz/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/xinxilan.png"></p>
+					 </div>
+					 <h5>新西兰beforeUdig</h5>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center">
+				  <a href="https://www.1100.com.au/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/aozhou.png"></p>
+					 </div>
+					 <h5>澳洲DNYD</h5>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center" style="margin: 0;">
+				  <a href="http://www.beforeudig.ie/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/aierlan.png"></p>
+					 </div>
+					 <h5>爱尔兰beforeUdig</h5>
+				  </a>
+
+			   </div>
+			</div>
+     
+       </div>
+	
+    <!--世界一呼通结束-->
+	  <div class="clearfix"></div>
     <!--资讯新闻开始-->
     <div class="row">
      <!-- 资讯开始-->
@@ -537,7 +626,7 @@
     <div class="row text-center dzqk">
       <div class="col-md-3" th:each="content,iterStat:${qkNewList}">
       	<a th:href="@{'/maga/detail.html?contentId='+${content.contentId}}" >
-      		<img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="img-shadow-1" style="width:182px;height:258px">
+      		<img th:src=" @{${fileMap[content.titleFileId]}}" class="img-shadow-1" style="width:182px;height:258px">
       	</a>
       </div>
     

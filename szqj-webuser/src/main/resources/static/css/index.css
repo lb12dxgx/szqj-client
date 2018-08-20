@@ -91,17 +91,10 @@
 	padding:0;
 }
 .gb-zhaopin1{
-	width:75%;
-	margin-left: -25px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	width:60%;
 }
 .gb-zhaopin2{
-	width:15%;
-	text-algin:center;
-	
-	
+	width:30%;
 }
 .peixun h5{
 	padding:15px 0 15px 10px;
@@ -226,5 +219,12 @@ transition:all .6s ease-in-out;
 -moz-transition:all .6s ease-in-out;
 -ms-transition:all .6s ease-in-out;
 -o-transition:all .6s ease-in-out;
+}
+.shijie{
+	background: url(../images/guandao.jpg) no-repeat;
+	height: 329px;
+}
+.shijie-box{
+	padding: 50px 0 30px 0;
 }
 
