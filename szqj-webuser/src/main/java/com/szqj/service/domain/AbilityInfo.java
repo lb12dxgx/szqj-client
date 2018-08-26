@@ -40,13 +40,15 @@ public class AbilityInfo {
 	
 	private Date endDate;//通过时间
 	
-	private Integer state;//0:待审批  1:审批中  2：审批通过  3：审批失败
+	private Integer state;//0:待审批  1:审批通过 2：不通过  
 	
 	private String abilityDocId;//能力附件
 	
 	private String person;//申请人
 	
 	private String telphone;//联系电话
+	
+	private String suggestions;//审批意见
 	
 	@Transient
 	private String stateStr;//状态名称
@@ -149,13 +151,21 @@ public class AbilityInfo {
 	}
 
 	public String getStateStr() {
-		if(state==1) {
+		if(state==0) {
 			return "审批中";
-		}else if(state==2) {
+		}else if(state==1) {
 			return "审批通过";
 		}else {
 			return "审批失败";
 		}
+	}
+
+	public String getSuggestions() {
+		return suggestions;
+	}
+
+	public void setSuggestions(String suggestions) {
+		this.suggestions = suggestions;
 	}
 	
 	

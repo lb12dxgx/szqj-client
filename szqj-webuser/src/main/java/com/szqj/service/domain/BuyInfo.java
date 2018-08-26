@@ -42,7 +42,7 @@ public class BuyInfo {
 	
 	private String telphone;//联系电话
 
-	@Transient
+	
 	private String empName;//企业名称
 
 	public String getBuyInfoName() {

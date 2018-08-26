@@ -68,7 +68,7 @@ public class EmpAbilityInfoControle {
 	@RequestMapping(value = "/emp/abilityinfo/save.do"  )
 	public String abilityinfoSave(AbilityInfo  ability,  ModelMap modelMap){
 		ability.setCreateDate(new Date());
-		ability.setState(1);
+		ability.setState(0);
 		abilityInfoRepository.save(ability);
 		
 		return "redirect:/emp/abilityinfo.html"; 

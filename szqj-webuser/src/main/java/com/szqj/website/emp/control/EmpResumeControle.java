@@ -147,7 +147,7 @@ public class EmpResumeControle {
 	 * @return
 	 */
 	@RequestMapping(value = "/emp/resume/view.html")
-	public String myViewResume(@SessionAttribute Account account,String personId,ModelMap modelMap){
+	public String myViewResume(String personId,ModelMap modelMap){
 		
 		Person person = personRepository.findById(personId).get();
 		List<PerStudyInfo> studylist = perStudyInfoRepository.findList(personId);

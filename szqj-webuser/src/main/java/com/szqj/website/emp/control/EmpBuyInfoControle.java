@@ -67,6 +67,7 @@ public class EmpBuyInfoControle {
 	public String buyinfoAdd(@SessionAttribute Account account, ModelMap modelMap){
 		Enterprise enterprise = enterpriseRepository.findByAccountId(account.getAccountId()).get(0);
 		modelMap.put("enterpriseId", enterprise.getEnterpriseId());
+		modelMap.put("empName", enterprise.getEnterpriseName());
 		return "emp/buyinfo_add"; 
 	}
 	

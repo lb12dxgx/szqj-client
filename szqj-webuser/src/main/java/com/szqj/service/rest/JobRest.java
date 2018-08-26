@@ -62,5 +62,11 @@ public class JobRest {
 		return RestJson.createSucces();
 	}
 	
+	@RequestMapping(value = "delete.do"  )
+	public RestJson delete(String jobInfoId, Integer size){
+		jobInfoRepository.deleteById(jobInfoId);
+		return RestJson.createSucces();
+	}
+	
 
 }

@@ -38,9 +38,16 @@ public class  EnterpriseCertRest {
 	
 	@RequestMapping(value = "list.do"  )
 	
-	public RestJson list( String enterpriseId){
-		List<EnterpriseCert> list = enterpriseCertRepository.findByEnterpriseId(enterpriseId);
-		return RestJson.createSucces(list);
+	public RestJson list(String enterpriseName,   Integer pageNum, Integer size){
+		Page<EnterpriseCert> page=null;
+		PageRequest pageable=Tools.getPage(pageNum-1, size);
+		if(StringUtils.isNotBlank(enterpriseName)) {
+			page =  enterpriseCertRepository.findPageByEnterpriseName(enterpriseName, pageable);
+		}else {
+			page = enterpriseCertRepository.findPage(pageable);
+		}
+		
+		return RestJson.createSucces(page);
 		
 		
 	}
@@ -53,9 +60,7 @@ public class  EnterpriseCertRest {
 	
 	@RequestMapping(value = "save.do"  )
 	public RestJson save( EnterpriseCert enterpriseCert){
-		Enterprise enterprise = enterpriseRepository.findById(enterpriseCert.getEnterpriseId()).get();
 		enterpriseCert.setCreateDate(new Date());
-		enterpriseCert.setEnterpriseName(enterprise.getEnterpriseName());
 		enterpriseCertRepository.save(enterpriseCert);
 		return RestJson.createSucces(enterpriseCert);
 	}

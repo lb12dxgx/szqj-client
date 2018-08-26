@@ -42,7 +42,7 @@
 	                 <div class="form-group">
 	                  <label  class="col-md-1 control-label">企业名称</label>
 	                  <div class="col-md-7">
-	                    <input type="text" class="form-control"  placeholder="请输入企业名称名称" readonly th:value="${abilityInfo.enterpriseName}" />
+	                    <input type="text" class="form-control" name="enterpriseName"  placeholder="请输入企业名称名称" readonly th:value="${abilityInfo.enterpriseName}" />
 	                  </div>
 	               
 	                </div>
@@ -108,6 +108,15 @@
 	                 <div class="row" id="piclist" style="margin-left:20px">
 	               	   
 					 </div>
+					 
+					<div class="form-group">
+	                  <label  class="col-md-1 control-label">审批意见</label>
+	                  <div class="col-md-6">
+	                   <textarea class="form-control" rows="8" placeholder="请输入采购说明" name="buyInfoDesc" id="buyInfoDesc" readonly th:text="${abilityInfo.suggestions}"></textarea>
+	                  
+	                  </div>
+	                  
+	                </div>
 	               
 	                <div class="form-group">
 	                  <div class="col-md-2 col-md-offset-4"  >

@@ -174,13 +174,7 @@ public class HyProductControle {
 			page=buyInfoRepository.findPage(pageable);
 		}
 		
-		for(BuyInfo buyInfo:page.getContent()) {
-			
-			String enterpriseId = buyInfo.getEnterpriseId();
-			String empName = enterpriseRepository.findById(enterpriseId).get().getEnterpriseName();
-			buyInfo.setEmpName(empName);
-			
-		}
+		
 		modelMap.put("page", page);
 		return "/hyproduct/buyinfo_list"; 
 	}

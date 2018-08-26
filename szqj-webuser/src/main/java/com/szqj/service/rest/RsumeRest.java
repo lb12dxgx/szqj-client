@@ -63,5 +63,12 @@ public class RsumeRest {
 		return RestJson.createSucces();
 	}
 	
+	
+	@RequestMapping(value = "delete.do"  )
+	public RestJson delete(String personId, Integer size){
+		personRepository.deleteById(personId);
+		return RestJson.createSucces();
+	}
+	
 
 }

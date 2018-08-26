@@ -2,6 +2,8 @@ package com.szqj.weborg.rest;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -26,10 +28,11 @@ public class TokenRest {
 	private AccountService accountService;
 	
 	@RequestMapping(value = "token.do"  )
-	public RestJson token(String accountName,  String accountPassword){
+	public RestJson token(String accountName,  String accountPassword,HttpServletRequest request){
 		Account account = accountService.login(accountName, accountPassword);
 		account.setToken(account.getAccountId());
 		if(StringUtils.isBlank(account.getLoginStr())){
+			request.getSession().setAttribute("account", account);
 			return RestJson.createSucces(account);
 		}else{
 			return RestJson.createError(account);

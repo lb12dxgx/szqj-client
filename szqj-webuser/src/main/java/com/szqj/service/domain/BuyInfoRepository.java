@@ -29,6 +29,8 @@ public interface BuyInfoRepository extends PagingAndSortingRepository<BuyInfo, S
 	@Query("select m from BuyInfo m  order by m.createDate desc")
 	Page<BuyInfo> findPage(Pageable pageable);
 	
+	@Query("select m from BuyInfo m where m.empName like %?1% order by m.createDate desc")
+	Page<BuyInfo> findPageByEmpName(String empName, Pageable pageable);
 	
 	@Query("select m from BuyInfo m where m.buyInfoName like %?1% order by m.createDate desc")
 	Page<BuyInfo> findPageByBuyInfoName(String buyInfoName, Pageable pageable);

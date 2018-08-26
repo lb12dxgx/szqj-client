@@ -36,6 +36,8 @@
             <div class="col-md-10 main-content ">
               <form class="form-horizontal top-20" id="form"  action="/emp/buyinfo/save.do" method="post">
                	<input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
+               	<input type="hidden"  id="empName" name="empName" th:value="${empName}" />
+               	
                  <div class="form-group">
                   <label  class="col-md-1 control-label">采购名称</label>
                   <div class="col-md-7">

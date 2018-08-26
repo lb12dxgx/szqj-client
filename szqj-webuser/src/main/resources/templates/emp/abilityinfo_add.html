@@ -37,11 +37,10 @@
 	              <form class="form-horizontal top-20" id="form"  action="/emp/abilityinfo/save.do" method="post">
 	                <input type="hidden"  id="abilityDocId" name="abilityDocId" th:value="${abilityDocId}" />
                 	<input type="hidden"  id="enterpriseId" name="enterpriseId" th:value="${enterpriseId}" />
-	                
 	                 <div class="form-group">
 	                  <label  class="col-md-1 control-label">企业名称</label>
 	                  <div class="col-md-7">
-	                    <input type="text" class="form-control"  placeholder="请输入企业名称名称" readonly th:value="${enterpriseName}" />
+	                    <input type="text" class="form-control"  name="enterpriseName"  placeholder="请输入企业名称名称" readonly th:value="${enterpriseName}" />
 	                  </div>
 	               
 	                </div>
