@@ -10,7 +10,7 @@ public class WxLogin {
 	
 	private Integer errcode;
 
-    private String errmsg;
+    private String errmsg; 
 
 	public String getOpenid() {
 		return openid;
