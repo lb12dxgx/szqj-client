@@ -59,7 +59,7 @@ public class RegService {
 	
 	public boolean isExitByTelphone(RegInfo regInfo){
 		
-		if(regInfo.getType()==1){
+		if(1==regInfo.getType()){
 			List<Enterprise> list = enterpriseRepository.findByTelePhone(regInfo.getTelphone());
 			if(list==null||list.size()==0){
 				return true;
