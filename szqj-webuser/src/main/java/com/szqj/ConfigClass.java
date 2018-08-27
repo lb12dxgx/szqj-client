@@ -1,6 +1,8 @@
 package com.szqj;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
 
@@ -8,8 +10,10 @@ import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -55,7 +59,17 @@ public class ConfigClass {
 
 	@Bean
 	public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
-		return new RestTemplate(factory);
+		RestTemplate restTemplate = new RestTemplate(factory);
+	    restTemplate.getMessageConverters().add(new WxMappingJackson2HttpMessageConverter());
+		return restTemplate;
+	}
+	
+	public class WxMappingJackson2HttpMessageConverter extends MappingJackson2HttpMessageConverter {
+	    public WxMappingJackson2HttpMessageConverter(){
+	        List<MediaType> mediaTypes = new ArrayList<>();
+	        mediaTypes.add(MediaType.TEXT_PLAIN);
+	        setSupportedMediaTypes(mediaTypes);
+	    }
 	}
 
 	@Bean

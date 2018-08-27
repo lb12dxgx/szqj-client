@@ -37,6 +37,9 @@ public class RegInfo {
 	private String accountId;//账号ID
 	
 	@Column
+	private String openId;//微信openId
+	
+	@Column
 	private Date createDate;//创建日期
 	
 	@Transient
@@ -121,6 +124,14 @@ public class RegInfo {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	  
 	
