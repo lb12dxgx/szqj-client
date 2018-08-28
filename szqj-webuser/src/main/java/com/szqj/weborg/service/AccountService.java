@@ -88,8 +88,10 @@ public class AccountService {
 
 	public void save(Account account) {
 		String pasw = account.getAccountPassword();
-		String md5pasw = Tools.MD5(pasw);
-		account.setAccountPassword(md5pasw);
+		if(StringUtils.isNotBlank(pasw)) {
+			String md5pasw = Tools.MD5(pasw);
+			account.setAccountPassword(md5pasw);
+		}
 		account.setState(ConstantUtils.ACCOUNT_STATE_START);
 		accountRepository.save(account);
 	}

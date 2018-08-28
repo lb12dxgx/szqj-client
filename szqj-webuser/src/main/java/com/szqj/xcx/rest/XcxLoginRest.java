@@ -37,14 +37,14 @@ public class XcxLoginRest {
 	@RequestMapping(value = "getSmsCode.xcx"  )
 	public RestJson getSmsCode(RegInfo regInfo){
 		RegInfo regInfoRet = regService.genSmsCode(regInfo,4);
-		return RestJson.createSucces(regInfoRet.getSmscode());
+		return RestJson.createSucces(regInfoRet);
 	}
 	
 	
 	@RequestMapping(value = "validateSmsCode.xcx"  )
 	public RestJson validateSmsCode(RegInfo regInfo){
 		boolean flag = regService.validateSmsCode(regInfo);
-		return RestJson.createSucces(!flag);
+		return RestJson.createSucces(flag);
 	}
 	
 	

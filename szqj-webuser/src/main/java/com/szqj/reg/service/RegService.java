@@ -133,7 +133,12 @@ public class RegService {
 	 * @return
 	 */
 	public RegInfo regUser(RegInfo regInfo) {
-		RegInfo regInfoRet=regInfoRepository.findById(regInfo.getReginfoId()).get();
+		RegInfo regInfoRet=null;
+		if(regInfo.getReginfoId()!=null) {
+			regInfoRet=regInfoRepository.findById(regInfo.getReginfoId()).get();
+		}else {
+			regInfoRet=regInfoRepository.findByTelphone(regInfo.getTelphone());
+		}
 		Tools.copyBeanForUpdate(regInfo, regInfoRet);
 		Account account=saveAccount(regInfoRet);
 		regInfoRet.setAccountId(account.getAccountId());
@@ -177,6 +182,7 @@ public class RegService {
 		account.setAccountName(regInfo.getUserName());
 		account.setAccountPassword(regInfo.getPassword());
 		account.setState(ConstantUtils.ACCOUNT_STATE_START);
+		account.setOpenId(regInfo.getOpenId());
 		if(regInfo.getType()==ConstantUtils.REG_PERSON){
 			account.setAccountType(ConstantUtils.ACCOUNT_PERSON);
 		}else{
