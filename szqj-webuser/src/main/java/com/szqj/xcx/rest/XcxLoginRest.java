@@ -26,29 +26,35 @@ public class XcxLoginRest {
 	private RestTemplate restTemplate;
 	
 	
-	@ResponseBody
+	
 	@RequestMapping(value = "isExitByTelphone.xcx"  )
 	public RestJson isExitByTelphone(RegInfo regInfo){
 		boolean flag = regService.isExitByTelphone(regInfo);
 		return RestJson.createSucces(flag);
 	}
 	
-	@ResponseBody
+	
 	@RequestMapping(value = "getSmsCode.xcx"  )
 	public RestJson getSmsCode(RegInfo regInfo){
 		RegInfo regInfoRet = regService.genSmsCode(regInfo,4);
 		return RestJson.createSucces(regInfoRet.getSmscode());
 	}
 	
-	@ResponseBody
+	
 	@RequestMapping(value = "validateSmsCode.xcx"  )
 	public RestJson validateSmsCode(RegInfo regInfo){
 		boolean flag = regService.validateSmsCode(regInfo);
 		return RestJson.createSucces(!flag);
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "getOpenId.xcx"  )
+	
+	@RequestMapping(value = "regUser.xcx"  )
+	public RestJson regUser(RegInfo regInfo) {
+		RegInfo retRegInfo = regService.regUser(regInfo);
+		return RestJson.createSucces(retRegInfo);
+	}
+	
+	@RequestMapping(value = "getOpenId.xcx")
 	public RestJson getOpenId(String code){
 		
 		String url="https://api.weixin.qq.com/sns/jscode2session?appid=wx9a605545c03d6b9e&secret=5df1055596a0f04e6a36059b59311d28&js_code="+code+"&grant_type=authorization_code";

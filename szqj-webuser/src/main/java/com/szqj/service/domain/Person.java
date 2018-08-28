@@ -83,6 +83,9 @@ public class Person {
 	
 	private Integer level;//级别  10:普通级别  20:vip 
 	
+	@Column
+	private String openId;//微信openId
+	
 	@Transient
 	private Integer workYear;//工作年龄
 	@Transient
@@ -270,6 +273,12 @@ public class Person {
 	}
 	public void setPerNum(Integer perNum) {
 		this.perNum = perNum;
+	}
+	public String getOpenId() {
+		return openId;
+	}
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	
    

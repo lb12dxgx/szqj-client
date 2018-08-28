@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"> 
-<title>人员证书</title>
+<title>企业证书</title>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns:th="http://www.thymeleaf.org">
@@ -35,19 +35,17 @@
      </ul>
    </div>
    <!--面包屑结束-->
-   <div class="zhengshu-box">
-	   <div class="row">
-		   <div class="col-md-5 text-center zs-pic">
-		   		
-		   </div>
-		   <div class="col-md-7 zs-name" th:text="${enterpriseCert.enterpriseName }" >张三三三</div>
-	   </div>
-	   <ul class="list-unstyled zs-binahao">
-		   <li th:text="${enterpriseCert.certCode}"  >123456789</li>
+   
+    <div class="jcpgzs-box">
+	   <div class="gsmc-jc"><span class="text-jc" th:text="${enterpriseCert.enterpriseName }">北京一呼通网络科技有限公司</span></div>
+	   <div class="gsjb-jc"><span class="text-jc">一</span></div>
+	   <ul class="list-unstyled jczs-binahao">
+		   <li th:text="${enterpriseCert.certCode}">123456789</li>
 		   <li th:text=" ${#dates.format(enterpriseCert.startDate, 'yyyy-MM-dd')}">2015-09-08</li>
 		   <li th:text=" ${#dates.format(enterpriseCert.endDate, 'yyyy-MM-dd')}">2022-08-09</li>
 	   </ul>
    </div>
+
  </div>
 <div class="text-center"><a href="/service/cardSearchEnteg.html" class="btn btn-success zs-btn">返　　回</a></div>
  

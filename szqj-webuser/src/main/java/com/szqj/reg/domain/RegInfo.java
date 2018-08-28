@@ -32,7 +32,7 @@ public class RegInfo {
 	private String invitecode;//邀请码
 	
 	@Column
-	private Integer type;//0:个人  1：企业
+	private Integer type=0;//0:个人  1：企业
 	@Column
 	private String accountId;//账号ID
 	

@@ -200,7 +200,7 @@ public class ServiceControle {
 		List<EnterpriseCert> l = enterpriseCertRepository.findByEnterpriseNameAndCertCode(enterpriseName, certCode);
 		if(l!=null&&l.size()>0) {
 			modelMap.put("enterpriseCert", l.get(0));
-			return "service/cardResultEnteg"; 
+			return "service/cardResultEnteg_"+l.get(0).getCertTypeName(); 
 		}else {
 			modelMap.put("flag", 1);
 			modelMap.put("enterpriseName", enterpriseName);

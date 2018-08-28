@@ -455,3 +455,33 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 .guandao-binahao li{
 	padding-bottom: 25px;
 }
+ 
+.jcpgzs-box{
+	width: 729px;
+	height: 1073px;
+	background: url(../images/paishuigdpg.jpg);
+	margin: 0 auto;
+}
+.text-jc{
+	font-family:"宋体";
+	font-size: 24px;
+}
+.gsmc-jc{
+   padding: 335px 0 0 220px;
+}
+.gsjb-jc{
+	padding: 76px 0 0 250px;
+}
+.jczs-binahao{
+	font-size: 18px;
+	padding: 105px 0 0 220px;
+}
+.jczs-binahao li{
+	padding-bottom: 36px;
+}
+.kwxf-box{
+	width: 729px;
+	height: 1073px;
+	margin: 0 auto;
+ background: url(../images/feikaiwxf.jpg);
+}

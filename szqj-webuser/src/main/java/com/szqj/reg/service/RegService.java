@@ -148,6 +148,7 @@ public class RegService {
 			enterprise.setTelphone(regInfoRet.getTelphone());
 			enterprise.setCreateDate(new Date());
 			enterprise.setLevel(10);
+			enterprise.setOpenId(regInfo.getOpenId());
 			enterpriseRepository.save(enterprise);
 		}
 		
@@ -157,7 +158,8 @@ public class RegService {
 			person.setUserCode(regInfoRet.getUserCode());
 			person.setTelePhone(regInfoRet.getTelphone());
 			person.setCreateDate(new Date());
-			
+			person.setOpenId(regInfo.getOpenId());
+			person.setOpenId(regInfo.getOpenId());
 			personRepository.save(person);
 		}
 		
