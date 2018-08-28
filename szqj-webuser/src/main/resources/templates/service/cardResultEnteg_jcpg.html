@@ -38,7 +38,7 @@
    
     <div class="jcpgzs-box">
 	   <div class="gsmc-jc"><span class="text-jc" th:text="${enterpriseCert.enterpriseName }">北京一呼通网络科技有限公司</span></div>
-	   <div class="gsjb-jc"><span class="text-jc">一</span></div>
+	   <div class="gsjb-jc"><span class="text-jc" th:text="${enterpriseCert.level }">一</span></div>
 	   <ul class="list-unstyled jczs-binahao">
 		   <li th:text="${enterpriseCert.certCode}">123456789</li>
 		   <li th:text=" ${#dates.format(enterpriseCert.startDate, 'yyyy-MM-dd')}">2015-09-08</li>

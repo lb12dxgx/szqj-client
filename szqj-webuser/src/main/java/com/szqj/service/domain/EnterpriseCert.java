@@ -25,6 +25,8 @@ public class EnterpriseCert {
     
     private String certCode;//证书编码
     
+    private String level;//证书级别
+    
     private String certPicPath;//照片
    
     private Date startDate;//开始时间
@@ -105,6 +107,14 @@ public class EnterpriseCert {
 
 	public void setEnterpriseId(String enterpriseId) {
 		this.enterpriseId = enterpriseId;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
     
 
