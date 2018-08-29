@@ -25,6 +25,8 @@ public class RegInfo {
 	@Column
 	private String userName;//姓名，企业姓名
 	@Column
+	private String  realName;//真实姓名
+	@Column
 	private String userCode;//身份证号 ，信用代码证
 	@Column
 	private String smscode;//短信
@@ -132,6 +134,14 @@ public class RegInfo {
 
 	public void setOpenId(String openId) {
 		this.openId = openId;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 	  
 	

@@ -162,6 +162,7 @@ public class RegService {
 			person.setAccountId(account.getAccountId());
 			person.setUserCode(regInfoRet.getUserCode());
 			person.setTelePhone(regInfoRet.getTelphone());
+			person.setPersonName(regInfoRet.getRealName());
 			person.setCreateDate(new Date());
 			person.setOpenId(regInfo.getOpenId());
 			person.setOpenId(regInfo.getOpenId());
@@ -180,6 +181,7 @@ public class RegService {
 	private Account saveAccount(RegInfo regInfo){
 		Account account=new Account();
 		account.setAccountName(regInfo.getUserName());
+		account.setUserName(regInfo.getRealName());
 		account.setAccountPassword(regInfo.getPassword());
 		account.setState(ConstantUtils.ACCOUNT_STATE_START);
 		account.setOpenId(regInfo.getOpenId());
