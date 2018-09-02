@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.service.RegService;
+import com.szqj.service.domain.Person;
 import com.szqj.util.RestJson;
 
 @RestController
@@ -27,31 +28,46 @@ public class XcxLoginRest {
 	
 	
 	
+	
 	@RequestMapping(value = "isExitByTelphone.xcx"  )
-	public RestJson isExitByTelphone(RegInfo regInfo){
+	public RestJson isExitByTelphone(String telphone, Integer type){
+		RegInfo regInfo=new RegInfo();
+		regInfo.setTelphone(telphone);
+		regInfo.setType(type);
 		boolean flag = regService.isExitByTelphone(regInfo);
 		return RestJson.createSucces(flag);
 	}
 	
 	
 	@RequestMapping(value = "getSmsCode.xcx"  )
-	public RestJson getSmsCode(RegInfo regInfo){
+	public RestJson getSmsCode(String telphone, Integer type,String openid){
+		RegInfo regInfo=new RegInfo();
+		regInfo.setTelphone(telphone);
+		regInfo.setType(type);
+		regInfo.setOpenid(openid);
 		RegInfo regInfoRet = regService.genSmsCode(regInfo,4);
 		return RestJson.createSucces(regInfoRet);
 	}
 	
 	
 	@RequestMapping(value = "validateSmsCode.xcx"  )
-	public RestJson validateSmsCode(RegInfo regInfo){
+	public RestJson validateSmsCode(String telphone, String smscode){
+		RegInfo regInfo=new RegInfo();
+		regInfo.setTelphone(telphone);
+		regInfo.setSmscode(smscode);
 		boolean flag = regService.validateSmsCode(regInfo);
 		return RestJson.createSucces(flag);
 	}
 	
 	
 	@RequestMapping(value = "regUser.xcx"  )
-	public RestJson regUser(RegInfo regInfo) {
-		RegInfo retRegInfo = regService.regUser(regInfo);
-		return RestJson.createSucces(retRegInfo);
+	public RestJson regUser(String telphone) {
+		RegInfo regInfo = regService.getRegInfoByTel(telphone);
+		if(regInfo.getAccountId()==null) {
+			regInfo.setUserName(telphone);
+			regInfo = regService.regUser(regInfo);
+		}
+		return RestJson.createSucces(regInfo);
 	}
 	
 	@RequestMapping(value = "getOpenId.xcx")
@@ -63,6 +79,10 @@ public class XcxLoginRest {
 	    System.out.println("wxLogin.getOpenid()="+wxLogin.getOpenid());
 		return RestJson.createSucces(wxLogin);
 	}
+	
+	
+
+	
 	
 	
 	

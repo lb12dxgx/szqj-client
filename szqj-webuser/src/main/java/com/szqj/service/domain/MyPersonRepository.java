@@ -27,7 +27,12 @@ public interface MyPersonRepository extends PagingAndSortingRepository<Person, S
 	List<Person> findByAccountIdAndTelePhone(String accountId,String telePhone);
 
 	@Query("select m from Person m where  m.telePhone=?1 ")
-	List<Person> findByTelePhone(String telphone);  
+	List<Person> findByTelePhone(String telphone);
+	
+	@Query("select m from Person m where  m.userCode=?1 ")
+	List<Person> findByUserCode(String userCode);
+	@Query("select m from Person m where  m.openid=?1 ")
+	List<Person> findByOpenid(String openid);
 	
 	@Query("select m from Person m order by m.updateDate ")
 	Page<Person> findPage( Pageable pageable);
@@ -61,6 +66,12 @@ public interface MyPersonRepository extends PagingAndSortingRepository<Person, S
 	
 	@Query("select m from Person m where m.workCity like %?1% and m.jobName like %?2% and workState!=3  order by m.updateDate desc,level desc")
 	Page<Person> findEmpPageByWorkCityAndJobName(String workCity,String jobName,Pageable pageable);
+
+
+	
+
+
+	
 	
    
 	

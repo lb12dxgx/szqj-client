@@ -68,7 +68,7 @@ public class Enterprise {
 	private Integer orderNum;//顺序
 	
 	@Column
-	private String openId;//微信openId
+	private String openid;
 	
 	@Transient
 	private String enterprisePicPath;//企业图片
@@ -276,13 +276,14 @@ public class Enterprise {
 		this.enterprisePicPath = enterprisePicPath;
 	}
 
-	public String getOpenId() {
-		return openId;
+	public String getOpenid() {
+		return openid;
 	}
 
-	public void setOpenId(String openId) {
-		this.openId = openId;
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
+
 	
 	
 	

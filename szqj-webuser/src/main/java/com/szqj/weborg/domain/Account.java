@@ -39,7 +39,7 @@ public class Account {
 	private String orgName;//部门名称
 	
 	@Column
-	private String openId;//微信openId
+	private String openid;//微信openId
 	
 	@Transient
 	private String loginStr;//登录返回状态信息
@@ -118,12 +118,13 @@ public class Account {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	public String getOpenId() {
-		return openId;
+	public String getOpenid() {
+		return openid;
 	}
-	public void setOpenId(String openId) {
-		this.openId = openId;
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
+	
 	
 	
 	

@@ -37,6 +37,9 @@ public class Person {
 	private String userCode;//用户身份证
 	@Column
 	private String companyId;//所属企业
+	
+	@Column
+	private String enterpriseName;//企业名称
 	@Column
 	private String personPicId;//个人照片
 	@Column
@@ -84,7 +87,7 @@ public class Person {
 	private Integer level;//级别  10:普通级别  20:vip 
 	
 	@Column
-	private String openId;//微信openId
+	private String openid;//微信openId
 	
 	@Transient
 	private Integer workYear;//工作年龄
@@ -274,11 +277,17 @@ public class Person {
 	public void setPerNum(Integer perNum) {
 		this.perNum = perNum;
 	}
-	public String getOpenId() {
-		return openId;
+	public String getOpenid() {
+		return openid;
 	}
-	public void setOpenId(String openId) {
-		this.openId = openId;
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+	public String getEnterpriseName() {
+		return enterpriseName;
+	}
+	public void setEnterpriseName(String enterpriseName) {
+		this.enterpriseName = enterpriseName;
 	}
 	
    

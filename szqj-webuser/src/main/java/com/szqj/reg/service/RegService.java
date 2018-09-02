@@ -48,7 +48,7 @@ public class RegService {
 	    regInfoRet.setSmscode(smscode);
 		regInfoRepository.save(regInfoRet);
 		try {
-			SmsTools.alSendSms(smscode,regInfo.getTelphone());
+			//SmsTools.alSendSms(smscode,regInfo.getTelphone());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,6 +76,34 @@ public class RegService {
 		}
 	
 	}
+	
+	
+	public boolean isExitByUserCode(String userCode) {
+		List<Person> list = personRepository.findByUserCode(userCode);
+		if(list==null||list.size()==0){
+			return true;
+		}else{
+			 return false;
+		}
+	}
+	
+	public Account getAccountByOpenid(String openid) {
+		List<Account> list = accountService.findByOpenid(openid);
+		if(list==null||list.size()==0){
+			return null;
+		}
+		return list.get(0);
+	}
+	
+	public Person getPersonByOpenid(String openid) {
+		List<Person> list = personRepository.findByOpenid(openid);
+		if(list==null||list.size()==0){
+			return null;
+		}
+		return list.get(0);
+	}
+
+
 	
 	
 	public boolean isExitByUserCode(RegInfo regInfo){
@@ -128,6 +156,17 @@ public class RegService {
 	
 	
 	/**
+	 * 根据手机号返回注册信息
+	 * @param telphone
+	 * @return
+	 */
+	public RegInfo getRegInfoByTel(String telphone) {
+		RegInfo regInfo=regInfoRepository.findByTelphone(telphone);
+		return regInfo;
+	}
+	
+	
+	/**
 	 * 创建网站注册个人与企业账户信息
 	 * @param regInfo
 	 * @return
@@ -153,7 +192,7 @@ public class RegService {
 			enterprise.setTelphone(regInfoRet.getTelphone());
 			enterprise.setCreateDate(new Date());
 			enterprise.setLevel(10);
-			enterprise.setOpenId(regInfo.getOpenId());
+			enterprise.setOpenid(regInfo.getOpenid());
 			enterpriseRepository.save(enterprise);
 		}
 		
@@ -164,8 +203,7 @@ public class RegService {
 			person.setTelePhone(regInfoRet.getTelphone());
 			person.setPersonName(regInfoRet.getRealName());
 			person.setCreateDate(new Date());
-			person.setOpenId(regInfo.getOpenId());
-			person.setOpenId(regInfo.getOpenId());
+			person.setOpenid(regInfo.getOpenid());
 			personRepository.save(person);
 		}
 		
@@ -181,10 +219,9 @@ public class RegService {
 	private Account saveAccount(RegInfo regInfo){
 		Account account=new Account();
 		account.setAccountName(regInfo.getUserName());
-		account.setUserName(regInfo.getRealName());
 		account.setAccountPassword(regInfo.getPassword());
 		account.setState(ConstantUtils.ACCOUNT_STATE_START);
-		account.setOpenId(regInfo.getOpenId());
+		account.setOpenid(regInfo.getOpenid());
 		if(regInfo.getType()==ConstantUtils.REG_PERSON){
 			account.setAccountType(ConstantUtils.ACCOUNT_PERSON);
 		}else{
@@ -207,6 +244,8 @@ public class RegService {
 	    return invitecode;
 	}
 
+
+	
 
 	
 

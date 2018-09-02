@@ -39,7 +39,7 @@ public class RegInfo {
 	private String accountId;//账号ID
 	
 	@Column
-	private String openId;//微信openId
+	private String openid;//微信openid
 	
 	@Column
 	private Date createDate;//创建日期
@@ -128,20 +128,21 @@ public class RegInfo {
 		this.createDate = createDate;
 	}
 
-	public String getOpenId() {
-		return openId;
-	}
-
-	public void setOpenId(String openId) {
-		this.openId = openId;
-	}
-
+	
 	public String getRealName() {
 		return realName;
 	}
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 	  
 	

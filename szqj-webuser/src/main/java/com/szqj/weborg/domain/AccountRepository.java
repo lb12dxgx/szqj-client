@@ -32,6 +32,9 @@ public interface AccountRepository extends PagingAndSortingRepository<Account, S
 	
 	@Query("select m from Account m where  state!=2")
 	public List<Account> findAllList();
+
+	@Query("select m from Account m where m.openid=?1 and state!=2")
+	public List<Account> findByOpenid(String openid);
 	
 	
 	

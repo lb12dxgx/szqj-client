@@ -204,6 +204,12 @@ public class AccountService {
 		m.setParentMenuId(menu.getParentMenuId());
 		return m;
 	}
+
+
+	public List<Account> findByOpenid(String openid) {
+		return accountRepository.findByOpenid(openid);
+	
+	}
 	
 	
 
