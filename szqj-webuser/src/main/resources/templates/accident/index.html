@@ -22,7 +22,8 @@
    <div class="row">
      <ul class="breadcrumb col-md-12">
        <li><a href="#">首页</a></li>
-       <li class="active">管线事故</li>
+       <li class="active" th:if="${columnCode}=='1_gx_sg_info'">管线事故</li>
+          <li class="active" th:if="${columnCode}=='1_gx_sg_yb'">管线月报</li>
      </ul>
    </div>
    <!--面包屑结束-->
@@ -31,11 +32,11 @@
      <div class="col-md-3">
        <ul class="list-unstyled" th:if="${columnCode}=='1_gx_sg_info'" >
          <li><a href="/accident/index.html" class="left-manu left-manu1-on text-center" >管线事故</a></li>
-      
+          <li><a href="/accident/index.html?columnCode=1_gx_sg_yb" class="left-manu left-manu2-none text-center">管道月报</a></li>
        </ul>
-       <ul class="list-unstyled" th:if="${columnCode}=='3_gx_sg_yy'" >
+       <ul class="list-unstyled" th:if="${columnCode}=='1_gx_sg_yb'" >
          <li><a href="/accident/index.html" class="left-manu left-manu1-none text-center">管线事故</a></li>
-         <li><a href="/accident/index.html?columnCode=3_gx_sg_yy" class="left-manu left-manu2-on text-center">管道医院</a></li>
+         <li><a href="/accident/index.html?columnCode=1_gx_sg_yb" class="left-manu left-manu2-on text-center">管道月报</a></li>
        </ul>
      </div>
      <!--左侧菜单结束-->

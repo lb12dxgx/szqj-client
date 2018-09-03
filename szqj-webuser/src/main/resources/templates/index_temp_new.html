@@ -1,0 +1,485 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:include="head">
+</head>
+<head>
+<link  th:href="@{/css/index_new.css}" rel="stylesheet" type="text/css">
+</head>
+
+  
+<body>
+<!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/ 
+
+">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true 
+
+">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+  <!--菜单开始-->
+	<header th:include="header_new"/>
+  <!--菜单结束-->
+  <div class="gb-main"> 
+
+
+  <div class=" container">
+	 <div class="map-box">
+		  <!--118服务开始-->
+		  <div class="ktcs-box">
+			<div class="ktcs-top" style="width:295px; margin-left: 5px;">
+			   <ul class="list-inline">
+				  <li class="pull-left menubt text-center"><h5>118服务</h5></li>
+
+			   </ul>
+			</div>
+			<div class="ktctlist-box">
+                <ul class="list-unstyled citylist">
+					<li><a href="http://service.bjmac.gov.cn/zhxtgl/Portal.aspx?AspxAutoDetectCookieSupport=1" class="citylink">北京</a></li>
+					<li><a href="http://www.zbgxxh.com/GTPT/" class="citylink">淄博</a></li>
+					<li><a href="http://www.onecall.hk/" class="citylink">香港</a></li>
+					<li>合肥（建设中）</li>
+					<li>合肥（建设中）</li>
+					<li>合肥（建设中）</li>
+				</ul>
+				<div>
+					<a href="/118/index.html" class="zcktbnt">注册开通城市</a>
+				</div>
+			</div>
+		  </div>
+    <!--118服务结束-->
+	  	</div>
+
+	  <div class="clearfix"></div>
+	  
+	  <!--事故开始-->
+     <div class="row">
+      <!-- 管线事故开始-->
+      <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>管线事故</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+         <div  th:each="content,iterStat:${sgNewList}">
+	          <ul class="gb-news gxsg-xz list-unstyled">
+		          <li class="xwlist pull-left">
+		          	<a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" th:text="${content.contentTitle}">
+		          		17年，生态文明战略更加突出，环境产业成为国民经济支柱产业
+		          	</a>
+		          </li>
+		          <li class="list-unstyled pull-right"><time datetime="2018-1-22" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2018-1-22</time></li>
+	          </ul>
+	          <div class="gb-line clearfix" h:if="not ${iterStat.last}"></div>
+         </div>
+        </div>
+      </div>
+      <!--管线事故结束-->
+  
+     <!-- 管线事故开始-->
+      <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>事故月报</h5></li>
+           <li class="pull-right morebt"><a href="#">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl">
+	        <div  th:each="content,iterStat:${sgybNewList}">
+		         <ul class="gb-news gxsg-xz list-unstyled">
+			          <li class="xwlist pull-left">
+			          	<a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" th:text="${content.contentTitle}">
+			          		17年，生态文明战略更加突出，环境产业成为国民经济支柱产业
+			          	</a>
+			          </li>
+			          <li class="list-unstyled pull-right"><time datetime="2018-1-22" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2018-1-22</time></li>
+		          </ul>
+		          <div class="gb-line clearfix" h:if="not ${iterStat.last}"></div>
+	         </div>
+        </div>
+      </div>
+      <!--管线事故结束-->
+    </div>
+    <!--事故结束-->
+    
+    <!--直播开始--> 
+	  <div class="maintop">
+	   <ul class="list-inline">
+		  <li class="pull-left menubt text-center"><h5>会议直播</h5></li>
+		  <li class="pull-right morebt"><!--<a href="#">more</a>--></li>
+	   </ul>
+      </div>
+	  <div class="box-bgcl">
+		  <div class="row zhibo">
+			  <div class="col-md-6"><img src="images/shipin.jpg" width="500" height="300"></div>
+			  <div class="col-md-6">
+				 <div class="huiyi-box">
+					 <p class="hyrc">会议日程表</p>
+					 <div class="ricap">
+						 <ul class="list-unstyled gray">
+							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望</li>
+							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
+						 </ul>
+						 <div class="gb-line clearfix"></div>
+						 <ul class="list-unstyled gray">
+							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望警探测关键问题研究、技术总结与展望</li>
+							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
+						 </ul>
+						 <div class="gb-line clearfix"></div>
+						 <ul class="list-unstyled gray">
+							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与测关键问题研究、技术总结与展望</li>
+							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
+						 </ul>
+						 <div class="gb-line clearfix"></div>
+						  <ul class="list-unstyled gray">
+							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望</li>
+							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
+						 </ul>
+						 <div class="gb-line clearfix"></div>
+						 <ul class="list-unstyled gray">
+							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望警探测关术总结与展望</li>
+							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
+						 </ul>
+						 <div class="gb-line clearfix"></div>
+						 <ul class="list-unstyled gray">
+							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望警探测关键问题研究、技术总结与展望</li>
+							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
+						 </ul>
+					 </div>
+				 </div> 
+			  </div>
+			  
+		  </div>
+	  </div>
+	
+	 <!--直播结束-->
+	  
+	  <div class="clearfix"></div>
+	  
+	     <!--118模式开始-->
+	<div>
+	  <div class="maintop">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>118模式解读</h5></li>
+          <li class="pull-right morebt"><!--<a href="#">more</a>--></li>
+       </ul>
+      </div>
+		<div>
+			<div class="moshi-box clearfix">
+			   <div class="fuwubox text-center">
+				  <a href="#" target="_blank" class="chengshi-ms beijing-box moshilink">
+					 <h3>北京</h3>
+				  </a>
+
+			   </div>
+			  <div class="fuwubox text-center">
+				<a href="#" target="_blank" class="chengshi-ms zibo-box moshilink">
+					 <h3>淄博</h3>
+				  </a>
+
+
+			   </div>
+			   <div class="fuwubox text-center">
+				 <a href="#" target="_blank" class="chengshi-ms qita-box moshilink">
+					 <h3>其他城市</h3>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center" style="margin-right: 0;s">
+				 <a href="#" target="_blank" class="chengshi-ms guoji-box moshilink">
+					 <h3>国际城市</h3>
+				  </a>
+
+
+			   </div>
+			</div>
+			<div class="clearfix">
+			</div>
+       </div>
+	</div>
+    <!--118模式结束-->
+    
+    <!--资讯新闻开始-->
+    <div class="row">
+     <!-- 资讯开始-->
+
+       <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>行业资讯</h5></li>
+           <li class="pull-right morebt"><a href="/news/index.html">more</a></li>
+          </ul>
+        </div>
+        
+        <div class="box-bgcl" style="height:450px">
+          <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+              <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#portlet_comments_1" data-toggle="tab"> 要闻 </a>
+                </li>
+                <li>
+                    <a href="#portlet_comments_2" data-toggle="tab"> 企业新闻 </a>
+                </li>
+               
+                <li>
+                    <a href="#portlet_comments_3" data-toggle="tab"> 国际 </a>
+                </li>
+               
+            </ul>
+            
+            </div>
+            <div class="portlet-body">
+              <div class="tab-content">
+              <div class="tab-pane active" id="portlet_comments_1"  >
+                  <div class="mt-comments">
+                   	<div th:each="content,iterStat:${ywNewList}" >
+	                     <div class="media news-box" >
+	                       <div class="media-left">
+	                         <a th:href="@{'/news/detail.html?contentId='+${content.contentId}}">
+	                         	<img th:src="@{${fileMap[content.titleFileId]}}" style="width:159px;height:159px" th:if="${content.titleFileId!=null}"/>
+	                         	<img th:src="" style="width:159px;height:159px" th:if="${content.titleFileId==null}"/>
+	                         </a>
+	                       </div>
+	                       <div class="media-body">
+	                         <h5><a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" class="bt-link" th:text="${content.contentTitle}">习近平讲故事：天下艰难际，时势造英雄</a></h5>
+	                         <p><a  th:href="@{'/news/detail.html?contentId='+${content.contentId}}" class="gray-link"  th:text="${content.contentJsonMap['desc']}">天下艰难际，时势造英雄。在14年反抗日本军国主义侵略特别是8年全面抗战的艰苦岁月中，全体中华儿女万众一心、众志成城，凝聚起抵御外侮、救亡图存的共同意志，谱写山五壮士”、新四军“刘老庄连”</a></p>
+	                       </div>
+	                     </div>
+	                     <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
+                     </div>
+                     
+                     
+                  </div>
+                
+              </div>
+              <div class="tab-pane" id="portlet_comments_2">
+                  <div class="mt-comments">
+	                  <div th:each="content,iterStat:${qyNewList}" >
+	                    <ul class="gb-news">
+		                    <li class="xwlist pull-left"><a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" th:text="${content.contentTitle}" >17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+		                    <li class="list-unstyled pull-right"><time datetime="2018-1-22" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}" >2018-1-22</time></li>
+	                    </ul>
+	                    <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
+	                   </div>
+                  </div>
+              </div>
+              <div class="tab-pane" id="portlet_comments_3">
+                  <div class="mt-comments">
+                  	<div th:each="content,iterStat:${gjNewList}" >
+	                    <ul class="gb-news">
+		                    <li class="xwlist pull-left"><a th:href="@{'/news/detail.html?contentId='+${content.contentId}}" th:text="${content.contentTitle}" >17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+		                    <li class="list-unstyled pull-right"><time datetime="2018-1-22" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}" >2018-1-22</time></li>
+	                    </ul>
+	                    <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
+	                 </div>
+                  </div>
+              </div>
+              
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--资讯结束-->
+      <!--视频开始-->
+     <div class="col-md-6">
+        <div class="maintop">
+          <ul class="list-inline">
+           <li class="pull-left menubt text-center"><h5>视频新闻</h5></li>
+           <li class="pull-right morebt"><a href="/news/index.html?columnCode=6_hy_xw_sp">more</a></li>
+          </ul>
+        </div>
+        <div class="box-bgcl"  style="height:450px">
+          
+          <div class="row text-center sp-box">  
+            <div class="col-md-6"  th:each="content,iterStat:${spNewList}">
+               <a th:href="@{'/news/videodetail.html?contentId='+${content.contentId}}" >
+               	<img th:src="@{${fileMap[content.titleFileId]}}" style="width:206px;height:134px" th:if="${content.titleFileId!=null}"/>
+               	<img src="" style="width:206px;height:134px" th:if="${content.titleFileId==null}"/>
+               </a>
+               <h5><a th:href="@{'/news/videodetail.html?contentId='+${content.contentId}}"  class="bt-link" th:text="${content.contentTitle}">习近平讲故事：天下艰难际，时势造英雄</a></h5>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      <!--视频结束-->
+    </div>
+    <!--资讯新闻结束-->
+    
+    
+    <!-- 政策规范开始-->
+     <div class="row zcqybox">
+       <div class="col-md-3" style=" padding-left:0px;">
+       <a href="/knowledge/index.html">
+	        <div class="row boxblue">
+	           <div class="col-md-2"></div>
+	           <div class="col-md-3"><img src="images/wenjian.png"></div>
+	          <div class="col-md-5"><h5>政策文件</h5><h5><span th:text="${zcNum}"></span>条</h5></div>
+	          <div class="col-md-2"></div>
+	        </div>
+        </a>
+       </div>
+     
+       <div class="col-md-3">
+       <a href="/knowledge/index.html?columnCode=2_hy_zs_fl">
+	        <div class="row boxblue">
+	           <div class="col-md-2"></div>
+	           <div class="col-md-3"><img src="images/falv.png"></div>
+	          <div class="col-md-5"><h5>法律法规</h5><h5><span th:text="${flNum}"></span>条</h5></div>
+	          <div class="col-md-2"></div>
+	        </div>
+        </a>
+       </div>
+       <div class="col-md-3">
+       <a href="/knowledge/index.html?columnCode=3_hy_zs_bj">
+	        <div class="row boxblue">
+	           <div class="col-md-2"></div>
+	           <div class="col-md-3"><img src="images/guifan.png"></div>
+	          <div class="col-md-5"><h5>标准规范</h5><h5><span th:text="${bjNum}"></span>条</h5></div>
+	          <div class="col-md-2"></div>
+	        </div>
+        </a>
+       </div>
+       <div class="col-md-3" style="padding-right:0px;">
+        <a href="/knowledge/index.html?columnCode=4_hy_zs_lw">
+	        <div class="row boxblue">
+	           <div class="col-md-2"></div>
+	           <div class="col-md-3" ><img src="images/lunwen.png"></div>
+	          <div class="col-md-5"><h5>行业论文</h5><h5><span th:text="${lwNum}"></span>条</h5></div>
+	          <div class="col-md-2"></div>
+	        </div>
+	     </a>
+       </div>
+      
+    </div>
+    <!--政策规范结束-->
+    
+      <div class="clearfix"></div>
+	  <!--世界一呼通开始-->
+	<div>
+		<div class="maintop">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>118联盟</h5></li>
+          <li class="pull-right morebt"><!--<a href="#">more</a>--></li>
+       </ul>
+    </div>
+		<div class="shijie">
+			<div class="shijie-box clearfix">
+			   <div class="fuwubox text-center">
+				  <a href="http://www.118-china.com/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/118zhongguo.png"></p>
+					 </div>
+					 <h5>中国118一呼通网络平台</h5>
+				  </a>
+
+			   </div>
+			  <div class="fuwubox text-center">
+				  <a href="https://www.cbyd.com/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/meiguo.png"></p>
+					 </div>
+					 <h5>美国CBYD</h5>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center">
+				  <a href="https://linesearchbeforeudig.co.uk/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/yingguo.png"></p>
+					 </div>
+					 <h5>英国LSBUD</h5>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center" style="margin: 0;">
+				  <a href="https://www.beforeudig.com.sg/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/aierlan.png"></p>
+					 </div>
+					 <h5>新加坡beforeUdig</h5>
+				  </a>
+
+			   </div>
+			</div>
+			<div class="clearfix">
+				<div class="fuwubox text-center">
+				  <a href="http://www.clickbeforeyoudig.com/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/jianada.png"></p>
+					 </div>
+					 <h5>加拿大一呼通平台</h5>
+				  </a>
+
+			   </div>
+			  <div class="fuwubox text-center">
+				  <a href="https://www.beforeudig.co.nz/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/xinxilan.png"></p>
+					 </div>
+					 <h5>新西兰beforeUdig</h5>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center">
+				  <a href="https://www.1100.com.au/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/aozhou.png"></p>
+					 </div>
+					 <h5>澳洲DNYD</h5>
+				  </a>
+
+			   </div>
+			   <div class="fuwubox text-center" style="margin: 0;">
+				  <a href="http://www.beforeudig.ie/" target="_blank">
+					 <div class="img-shadow-1-shijie">
+					   <p><img src="images/aierlan.png"></p>
+					 </div>
+					 <h5>爱尔兰beforeUdig</h5>
+				  </a>
+
+			   </div>
+			</div>
+     
+       </div>
+	</div>
+    <!--世界一呼通结束-->
+	  
+    <div class="maintop">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>友情链接</h5></li>
+          <!--<li class="pull-right morebt"><a href="#">more</a></li>-->
+       </ul>
+    </div>
+    <div class="yqlink">
+      <ul class="list-inline">
+     
+        <li th:each="content,iterStat:${yqNewList}" >
+        	<a th:href="@{${content.contentJsonMap['url']}}" th:text="${content.contentTitle}" tartget="_blank" >地下管线协会</a>
+        </li>
+       
+      </ul>
+    </div>
+   
+    
+    <!--电子杂志结束-->
+  </div>
+  </div>
+  <!--footer开始-->
+  <div th:include="footer"></div>
+</body>
+
+<script type="text/javascript">
+$(function(){
+	$('#myCarousel').carousel({
+	    interval: 3000
+	})
+	//$('#myCarousel').carousel('cycle');
+	$('#index').removeClass("manulinknone");
+	$('#index').addClass("manulink");
+})
+</script>
+</html>

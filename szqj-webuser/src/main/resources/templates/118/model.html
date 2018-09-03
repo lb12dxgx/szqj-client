@@ -4,6 +4,7 @@
 </head>
 <head>
 <link  th:href="@{/css/cyfw.css}" rel="stylesheet" type="text/css">
+<link  th:href="@{/css/gxsg.css}"rel="stylesheet" type="text/css">
 
 </head>
 
@@ -26,7 +27,7 @@
      <ul class="breadcrumb col-md-12">
        <li><a href="#">首页</a></li>
 	   <li><a href="#">118服务</a></li>
-       <li class="active">开通城市</li>
+       <li class="active">118模式</li>
      </ul>
    </div>
    <!--面包屑结束-->
@@ -38,53 +39,26 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
        <div class="row">
-		   <div class="col-md-9" >
+		   <div class="col-md-10" >
 		   			
-		     <form>
-		             
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">城市名称</label>
-				    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入城市名称">
-				  </div>
-				   <div class="form-group">
-				    <label for="exampleInputEmail1">申请单位</label>
-				    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入申请单位">
-				  </div>
-				   <div class="form-group">
-				    <label for="exampleInputEmail1">联系人</label>
-				    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入联系人">
-				  </div>
-				   <div class="form-group">
-				    <label for="exampleInputEmail1">联系人电话</label>
-				    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入城市名称">
-				  </div>
-				  
-				   <div style="text-align:center">
-				  		<button type="submit" class="btn btn-primary" style="width:30%">提交</button>
-				  </div>
-			</form>
+		   <div th:each="content,iterStat:${list}" >
+	       <div class="media" >
+	        <a th:href="@{'/accident/detail.html?contentId='+${content.contentId}}" target="_blank" class="pull-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="media-object" style="width:174px; height:127px"></a>
+	           <div class="media-body gb-sgnews">
+	                         <h4 class="media-heading"><a th:href="@{'/accident/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></h4>
+	                         <p class="sg-text"><a href="#" th:text="${content.contentJsonMap['desc']}"> </a></p>
+	                         <ul class="list-unstyled">
+	                           <li class="pull-right gray" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2013-11-22</li>
+	                         </ul>
+	                       </div>
+	          </div>
+	          <div class="gb-line gxsg-line" th:if="not ${iterStat.last}"></div>
+        	</div>
 		   	  
 		   </div>
-		   <div class="col-md-3">
-			   <h4>已开通城市</h4>
-			   <table class="table text-center table-striped">
-				   
-			       <tr>
-					   <td><a href="http://service.bjmac.gov.cn/zhxtgl/" target="_blank">北京</a></td>
-			       </tr>
-			         <tr>
-					   <td><a href="http://www.zbgxxh.com/GTPT/" target="_blank">淄博</a></td>
-			        </tr>
-			       <tr>
-					   <td><a href="http://www.onecall.hk/" target="_blank">香港</a></td>
-			        </tr>
-			       
-			       <!-- <tr th:each="org : ${orgList}">
-					   <td><a th:href="@{'/118/login.html?applyOrgId='+${org.applyOrgId}}" th:text="${org.city}"></a></td>
-			       </tr> -->
-			       
-			   </table>
-		   </div>
+		   
+		  
+		  
 	   </div>       
 		
      </div>
@@ -114,8 +88,8 @@
 $(function(){
 	$('#118').removeClass("manulinknone");
 	$('#118').addClass("manulink");
-	$('#l_index').removeClass("fw-manu1-none");
-	$('#l_index').addClass("fw-manu1-on");
+	$('#l_model').removeClass("fw-manu2-none");
+	$('#l_model').addClass("fw-manu2-on");
 	
 	
 })

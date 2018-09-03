@@ -139,8 +139,26 @@ public class IndexService {
 	}
 	
 	
+	public List<ContentInfo> getSGNews(){
+		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("1_gx_sg_info");
+		PageRequest pageable=Tools.getPage(0, 5);
+		Page<ContentInfo> page=contentInfoRepository.findByColumnId(columnInfo.getColumnId(), pageable);
+		
+		return page.getContent();
+	}
+	
+	public List<ContentInfo> getSGYBNews(){
+		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("1_gx_sg_yb");
+		PageRequest pageable=Tools.getPage(0, 5);
+		Page<ContentInfo> page=contentInfoRepository.findByColumnId(columnInfo.getColumnId(), pageable);
+		
+		return page.getContent();
+	}
 	
 	
+	
+	
+
 	public Integer getNumByZc() {
 		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("1_hy_zs_zc");
 		Integer num=contentInfoRepository.findNumByColumnId(columnInfo.getColumnId());

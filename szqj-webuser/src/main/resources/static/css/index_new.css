@@ -1,0 +1,345 @@
+@charset "utf-8";
+/* CSS Document */
+.boxblue{
+	background:#0e57a1;
+	border:7px #fff solid;
+	margin-right:-10px;
+	margin-left:-10px;
+	padding:10px 0;
+}
+.boxblue .col-md-3{
+	padding-top:8px;
+}
+.boxblue .col-md-5{
+	color:#fff;
+}
+.zcqybox{
+	margin:10px 0;
+}
+
+.fuwubox{
+	width:20.2%;
+	float:left;
+	margin-right:6.3%;
+}
+.fuwubox-last{
+	margin-right:0px;
+}
+.fuwubo1-bg{
+	background:#f8f8f8;
+	height:106px;
+/*	width:178px;*/
+}
+.fuwubox-bg p{
+	width:76px;
+	height:76px;
+	margin:0 auto;
+	padding-top:15px;
+}
+.fuwu118{
+	padding:20px 0 30px 0;
+	margin-left:-5px;
+}
+.cyfuwu{
+	padding:20px 0 30px 0;
+}
+.right-m{
+	margin-right: 34px;
+}
+.cyfw-link{
+	float: left;
+}
+.dzqk{
+	padding:20px 0 30px 0;
+}
+.yqlink{
+	padding:20px 0 30px 0;
+}
+.yqlink li{
+	margin-right:20px;
+}
+.xwlist{
+	color:#0e57a1;
+	margin-left:-25px;
+}
+
+.gb-news{
+	height:50px;
+	line-height:50px;
+	margin-bottom:0px;
+	
+}
+.gb-news time{
+	padding-right:10px;
+	color:#9b9b9b;
+} 
+.logopic{
+	margin:0px 0 10px -5px;
+	padding:15px 0;
+}
+.logopic img{
+	display:block;
+	border:1px #9b9b9b solid;
+	margin:0 auto;
+}  
+.logopic .col-md-3{
+	padding:0;
+}
+.gb-zhaopin1{
+	width:60%;
+}
+.gb-zhaopin2{
+	width:30%;
+}
+.peixun h5{
+	padding:15px 0 15px 10px;
+}
+.pxtime .col-md-6{
+	padding:0px 0 10px 25px;
+}
+/*** effect rotate-x ***/
+
+.img-rotate-x
+{
+transition:all 1.2s ease-in-out;
+-webkit-transition:all 1.2s ease-in-out;
+-moz-transition:all 1.2s ease-in-out;
+-ms-transition:all 1.2s ease-in-out;
+-o-transition:all 1.2s ease-in-out;
+}
+
+.img-rotate-x:hover
+{
+transform:rotateX(180deg);
+-webkit-transform:rotateX(180deg);
+-moz-transform:rotateX(180deg);
+-ms-transform:rotateX(180deg);
+-o-transform:rotateX(180deg);
+}
+
+/*** effect rotate-y ***/
+.img-rotate-y
+{
+transition:all 1.2s ease-in-out;
+-webkit-transition:all 1.2s ease-in-out;
+-moz-transition:all 1.2s ease-in-out;
+-ms-transition:all 1.2s ease-in-out;
+-o-transition:all 1.2s ease-in-out;
+}
+
+.img-rotate-y:hover
+{
+transform:rotateY(180deg);
+-webkit-transform:rotateY(180deg);
+-moz-transform:rotateY(180deg);
+-ms-transform:rotateY(180deg);
+-o-transform:rotateY(180deg);
+}
+/*** effect - shadow 1 ***/
+
+
+/*.img-shadow-1
+{
+-webkit-box-shadow: 0 28px 16px -26px black;
+-moz-box-shadow: 0 28px 16px -26px black;
+box-shadow: 0 28px 16px -26px black;
+}
+
+.img-shadow-1:hover
+{
+transform:scale(1.1);
+-webkit-transform:scale(1.1);
+-moz-transform:scale(1.1);
+-ms-transform:scale(1.1);
+-o-transform:scale(1.1);
+
+-webkit-box-shadow: 0 58px 36px -56px black;
+-moz-box-shadow: 0 58px 36px -56px black;
+box-shadow: 0 58px 36px -56px black;
+}
+
+.img-shadow-1
+{
+transition:all .6s ease-in-out;
+-webkit-transition:all .6s ease-in-out;
+-moz-transition:all .6s ease-in-out;
+-ms-transition:all .6s ease-in-out;
+-o-transition:all .6s ease-in-out;
+}
+
+.img-shadow-1:hover
+{
+transition:all .6s ease-in-out;
+-webkit-transition:all .6s ease-in-out;
+-moz-transition:all .6s ease-in-out;
+-ms-transition:all .6s ease-in-out;
+-o-transition:all .6s ease-in-out;
+}*/
+
+.img-shadow-1-gb
+{
+-webkit-box-shadow: 0 28px 16px -26px black;
+-moz-box-shadow: 0 28px 16px -26px black;
+box-shadow: 0 28px 16px -26px black;
+	border-radius: 50%;
+}
+
+.img-shadow-1-gb:hover
+{
+transform:scale(1.1);
+-webkit-transform:scale(1.1);
+-moz-transform:scale(1.1);
+-ms-transform:scale(1.1);
+-o-transform:scale(1.1);
+
+-webkit-box-shadow: 0 58px 36px -56px black;
+-moz-box-shadow: 0 58px 36px -56px black;
+box-shadow: 0 58px 36px -56px black;
+}
+
+.img-shadow-1-gb
+{
+transition:all .6s ease-in-out;
+-webkit-transition:all .6s ease-in-out;
+-moz-transition:all .6s ease-in-out;
+-ms-transition:all .6s ease-in-out;
+-o-transition:all .6s ease-in-out;
+		border-radius: 50%;
+}
+
+.img-shadow-1-gb:hover
+{
+transition:all .6s ease-in-out;
+-webkit-transition:all .6s ease-in-out;
+-moz-transition:all .6s ease-in-out;
+-ms-transition:all .6s ease-in-out;
+-o-transition:all .6s ease-in-out;
+}
+.shijie{
+	background: url(../images/guandao.jpg) no-repeat;
+	height: 329px;
+}
+.shijie-box{
+	padding: 50px 0 30px 0;
+}
+.map-box{
+	width: 1145px;
+	height: 459px;
+	background: url(../images/map-bg.jpg) no-repeat center;
+	margin-left: -5px;
+}
+.ktcs-box{
+	
+	padding: 10px 0 0 30px;
+}
+.ktcs-top{
+	width: 300px;
+	height: 35px;
+	background: url(../images/map-bg1.png) repeat-x;
+}
+.ktctlist-box{
+	background:url(../images/map-bg2.png) repeat;
+	width: 300px;
+	padding-bottom: 30px;
+}
+.citylist{
+	margin: 0 auto;
+	width: 240px;
+	padding-bottom: 15px;
+	text-align: center;
+}
+.citylist li{
+	background: url(../images/line2.jpg) repeat-x bottom;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+}
+.zcktbnt{
+	width:240px;
+	height:40px;
+	background-color: #d60600;
+	display: block;
+	text-align: center;
+	line-height: 40px;
+	font-size: 14px;
+	color: #fff;
+	margin: 0 auto;
+	
+}
+.zcktbnt:hover{
+	color: #fff;
+}
+.citylink:link,
+.citylink:visited{
+	color: #0e57a1;
+	font-weight: bold;
+}
+.citylink:hover,
+.citylink:active{
+	color: #d60600;
+	font-weight: bold;
+}
+.gxsg-xz{
+	padding-left: 30px;
+}
+.chengshi-ms{
+	display: block;
+	width: 230px;
+	height: 115px;
+	line-height: 1
+}
+.beijing-box{
+	background: url(../images/beijing.jpg);
+
+}
+.zibo-box{
+	background: url(../images/zibo.jpg);
+}
+.qita-box{
+	background: url(../images/guonei.jpg);
+}
+.guoji-box{
+	background: url(../images/guoji.jpg);
+}
+.moshi-box{
+	padding: 10px 0 30px 0;
+}
+.chengshi-ms h3{
+	padding-top: 40px;
+}
+.moshilink:link,
+.moshilink:visited{
+	color: #000;
+	font-weight: bold;
+}
+.moshilink:hover,
+.moshilink:active{
+	color: #d60600;
+	font-weight: bold;
+}
+.zhibo{
+	padding: 20px 10px;
+}
+.huiyi-box{
+	background: #fff;
+	width: 500px;
+	height: 300px;
+	border: 1px #E0E0E0 solid;
+}
+.hyrc{
+	font-size: 16px;
+	text-align: center;
+	padding: 10px 0;
+	width: 496px;
+	background: #E0E0E0;
+	margin: 0 auto;
+	margin-top: 1px;
+}
+.ricap{
+	padding:0 20px;
+	overflow: auto;
+	height: 240px;
+}
+.ricap ul{
+	padding-top: 10px;
+}

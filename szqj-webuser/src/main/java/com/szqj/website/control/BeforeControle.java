@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.ResourceUtils;
@@ -24,10 +26,15 @@ import com.szqj.before.domain.ApplyOrgRepository;
 import com.szqj.before.domain.BeforeApply;
 import com.szqj.before.domain.BeforeApplyRepository;
 import com.szqj.before.service.BeforeApplyService;
+import com.szqj.cms.domain.ColumnInfo;
+import com.szqj.cms.domain.ColumnInfoRepository;
+import com.szqj.cms.domain.ContentInfo;
+import com.szqj.cms.domain.ContentInfoRepository;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.service.RegService;
 import com.szqj.springmvc.Token;
 import com.szqj.util.RestJson;
+import com.szqj.util.Tools;
 import com.szqj.weborg.service.AccountService;
 
 @Controller
@@ -51,6 +58,11 @@ public class BeforeControle {
 	@Autowired
 	private ApplyOrgRepository applyOrgRepository;
 	
+	@Autowired
+	private ColumnInfoRepository columnInfoRepository;
+	@Autowired
+	private ContentInfoRepository contentInfoRepository;
+	
 
 	
 	@Value("${web.upload-pdf}")
@@ -68,6 +80,21 @@ public class BeforeControle {
 		modelMap.put("orgList", l);
 		return "118/index"; 
 	}
+	
+	
+	/**
+	 * 118模式
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/118/model.html"  )
+	public String index_model(ModelMap modelMap){
+		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode("2_cy_fw_118");
+		List<ContentInfo> list=contentInfoRepository.findListByColumnId(columnInfo.getColumnId());
+		modelMap.put("list", list);
+		return "118/model"; 
+	}
+	
 	
 	@RequestMapping(value = "/118/login.html"  )
 	public String login(String applyOrgId,ModelMap modelMap){
