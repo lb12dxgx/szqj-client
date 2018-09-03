@@ -97,6 +97,14 @@ public class AccountService {
 	}
 
 	
+	public Account getByAccountName(String accountName) {
+		 List<Account> l=accountRepository.findByAccountName(accountName);
+		  if(l==null||l.size()==0) {
+			  return null;
+		  }
+		  return l.get(0);
+	}
+	
 	
 	public Account getAccount(String accountId) {
 		return accountRepository.findById(accountId).get();
