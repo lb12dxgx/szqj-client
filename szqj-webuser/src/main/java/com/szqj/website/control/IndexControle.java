@@ -46,13 +46,19 @@ public class IndexControle {
 	public String index(ModelMap modelMap){
 		
 		HashMap map=new HashMap();
-		List<ContentInfo> banerNewList =indexService.getBanerNews(map);
+		
+		List<ContentInfo> sgNewList =indexService.getSGNews();
+		List<ContentInfo> sgybNewList =indexService.getSGYBNews();
+		modelMap.put("sgNewList", sgNewList);
+		modelMap.put("sgybNewList", sgybNewList);
+		
+		
 		List<ContentInfo> ywNewList =indexService.getYwNews(map);
 		List<ContentInfo> qyNewList =indexService.getQyNews();
 		List<ContentInfo> gjNewList = indexService.getGjNews();
 		List<ContentInfo> yqNewList =indexService.getYqNews();
 		
-		modelMap.put("banerNewList", banerNewList);
+		
 		modelMap.put("ywNewList", ywNewList);
 		modelMap.put("qyNewList", qyNewList);
 		modelMap.put("gjNewList", gjNewList);
@@ -71,26 +77,13 @@ public class IndexControle {
 		modelMap.put("bjNum", bjNum);
 		modelMap.put("lwNum", lwNum);
 		
-		List<Product> productList = indexService.getProductList(map);
-		List<Enterprise> enterpriseList = indexService.getEnterpriseList(map);
-		modelMap.put("productList", productList);
-		modelMap.put("enterpriseList", enterpriseList);
-		
-		
-		List<ZbInfo> zbInfoList = indexService.getZbInfoList();
-		List<TrainPlan> trainPlanList = indexService.getTrainPlanList();
-		modelMap.put("zbInfoList", zbInfoList);
-		modelMap.put("trainPlanList", trainPlanList);
-		
-		List<ContentInfo> qkNewList = indexService.getQkNews(map);
-		modelMap.put("qkNewList", qkNewList);
+	
 		modelMap.put("fileMap", map);
 		
 		setMainMeet(modelMap);
 		
 		return "index_temp";
 	}
-	
 	
 	
 	/**
@@ -106,8 +99,6 @@ public class IndexControle {
 		}
 		
 	}
-	
-	
 	
 	
 

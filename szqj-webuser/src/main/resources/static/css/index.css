@@ -18,14 +18,14 @@
 }
 
 .fuwubox{
-	width:22%;
+	width:20.2%;
 	float:left;
-	margin-right:3.9%;
+	margin-right:6.3%;
 }
 .fuwubox-last{
 	margin-right:0px;
 }
-.fuwubox-bg{
+.fuwubo1-bg{
 	background:#f8f8f8;
 	height:106px;
 /*	width:178px;*/
@@ -61,11 +61,6 @@
 .xwlist{
 	color:#0e57a1;
 	margin-left:-25px;
-	
-	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width:85%
 }
 
 .gb-news{
@@ -227,4 +222,124 @@ transition:all .6s ease-in-out;
 .shijie-box{
 	padding: 50px 0 30px 0;
 }
+.map-box{
+	width: 1145px;
+	height: 459px;
+	background: url(../images/map-bg.jpg) no-repeat center;
+	margin-left: -5px;
+}
+.ktcs-box{
+	
+	padding: 10px 0 0 30px;
+}
+.ktcs-top{
+	width: 300px;
+	height: 35px;
+	background: url(../images/map-bg1.png) repeat-x;
+}
+.ktctlist-box{
+	background:url(../images/map-bg2.png) repeat;
+	width: 300px;
+	padding-bottom: 30px;
+}
+.citylist{
+	margin: 0 auto;
+	width: 240px;
+	padding-bottom: 15px;
+	text-align: center;
+}
+.citylist li{
+	background: url(../images/line2.jpg) repeat-x bottom;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+}
+.zcktbnt{
+	width:240px;
+	height:40px;
+	background-color: #d60600;
+	display: block;
+	text-align: center;
+	line-height: 40px;
+	font-size: 14px;
+	color: #fff;
+	margin: 0 auto;
+	
+}
+.zcktbnt:hover{
+	color: #fff;
+}
+.citylink:link,
+.citylink:visited{
+	color: #0e57a1;
+	font-weight: bold;
+}
+.citylink:hover,
+.citylink:active{
+	color: #d60600;
+	font-weight: bold;
+}
+.gxsg-xz{
+	padding-left: 30px;
+}
+.chengshi-ms{
+	display: block;
+	width: 230px;
+	height: 115px;
+	line-height: 1
+}
+.beijing-box{
+	background: url(../images/beijing.jpg);
 
+}
+.zibo-box{
+	background: url(../images/zibo.jpg);
+}
+.qita-box{
+	background: url(../images/guonei.jpg);
+}
+.guoji-box{
+	background: url(../images/guoji.jpg);
+}
+.moshi-box{
+	padding: 10px 0 30px 0;
+}
+.chengshi-ms h3{
+	padding-top: 40px;
+}
+.moshilink:link,
+.moshilink:visited{
+	color: #000;
+	font-weight: bold;
+}
+.moshilink:hover,
+.moshilink:active{
+	color: #d60600;
+	font-weight: bold;
+}
+.zhibo{
+	padding: 20px 10px;
+}
+.huiyi-box{
+	background: #fff;
+	width: 500px;
+	height: 300px;
+	border: 1px #E0E0E0 solid;
+}
+.hyrc{
+	font-size: 16px;
+	text-align: center;
+	padding: 10px 0;
+	width: 496px;
+	background: #E0E0E0;
+	margin: 0 auto;
+	margin-top: 1px;
+}
+.ricap{
+	padding:0 20px;
+	overflow: auto;
+	height: 240px;
+}
+.ricap ul{
+	padding-top: 10px;
+}
