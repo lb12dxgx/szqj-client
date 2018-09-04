@@ -28,6 +28,8 @@ public class Meet {
 	
 	private Integer num;//总人数
 	
+	private Integer showMain=0;//1:单独显示,0:列表显示
+	
 	private Date startDate;//开始时间
 	
 	private Date endDate;//结束时间
@@ -39,6 +41,10 @@ public class Meet {
 	private String meetPicId;//会议宣传图片
 	
 	private Date createDate;//创建时间
+	
+	private String zbUrl;//直播地址
+	
+	private Integer zbState=0;//1:开始直播,0:未直播
 	
 	private Integer isSign=0;//开启报名 0:不允许签到  1:允许签到
 	
@@ -150,6 +156,30 @@ public class Meet {
 
 	public void setSignState(Integer signState) {
 		this.signState = signState;
+	}
+
+	public Integer getShowMain() {
+		return showMain;
+	}
+
+	public void setShowMain(Integer showMain) {
+		this.showMain = showMain;
+	}
+
+	public String getZbUrl() {
+		return zbUrl;
+	}
+
+	public void setZbUrl(String zbUrl) {
+		this.zbUrl = zbUrl;
+	}
+
+	public Integer getZbState() {
+		return zbState;
+	}
+
+	public void setZbState(Integer zbState) {
+		this.zbState = zbState;
 	}
 	
 	

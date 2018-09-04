@@ -96,6 +96,19 @@ public class BeforeControle {
 	}
 	
 	
+	/**
+	 * 118模式
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/118/modeldetail.html"  )
+	public String model_detail(String contentId,ModelMap modelMap){
+		ContentInfo content = contentInfoRepository.findById(contentId).get();
+		modelMap.put("content", content);
+		return "118/modeldetail"; 
+	}
+	
+	
 	@RequestMapping(value = "/118/login.html"  )
 	public String login(String applyOrgId,ModelMap modelMap){
 		List<ApplyOrg> l = applyOrgRepository.findAllList();

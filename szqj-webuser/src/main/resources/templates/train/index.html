@@ -26,12 +26,49 @@
    <div class="row">
      <ul class="breadcrumb col-md-12">
        <li><a href="#">首页</a></li>
-       <li class="active">培训教育</li>
+       <li class="active">会议培训</li>
      </ul>
    </div>
    <!--面包屑结束-->
- <!--培训信息开始-->
+   
+  <!--会议信息开始-->
     <div class="maintop cypx_main">
+       <ul class="list-inline">
+          <li class="pull-left menubt text-center"><h5>会议信息</h5></li>
+          
+       </ul>
+    </div>
+    <div class="row">
+     <div class=" col-md-7">
+		 <div class="cypx-sp">
+			 <div class="px-sp-box text-center">
+				 <h2 th:text="${mainMeet.meetName}">某地安装技术工职业技能培训</h2>
+				 <div class="sp-time text-left">
+					 <p>上课时间：<span th:text=" ${#dates.format(mainMeet.startDate, 'yyyy-MM-dd')}">2018-01-03</span></p>
+					 <p>培训地点：<span th:text="${mainMeet.meetPlace}">武汉</span></p>
+				</div>
+				 <a th:href="@{'/service/meet/detail.html?meetId='+${mainMeet.meetId}}"   class="btn btn-primary btn-warning" style="width: 40%;">会议信息</a>
+			 </div>
+		 </div>
+		</div>
+     <div class=" col-md-5">
+      <div class="box-bgcl" style="overflow:auto;">
+        <div th:each="meet,iterStat:${meeList}">
+	        <ul class="gb-news">
+	          <li class="xwlist pull-left"><a th:href="@{'/service/meet/detail.html?meetId='+${meet.meetId}}" th:text="${meet.meetName}">17年，生态文明战略更加突出，环境产业成为国民经济支柱产业</a></li>
+	          <li class="list-unstyled pull-right"><time th:text=" ${#dates.format(meet.startDate, 'yyyy-MM-dd')} ">2018-1-22</time></li>
+	        </ul>
+	        <div class="gb-line clearfix"  th:if="not ${iterStat.last}"></div>
+        </div>
+	  </div>
+     </div>
+    </div>
+ 
+ <!--会议信息结束--> 
+   
+   
+ <!--培训信息开始-->
+    <div class="maintop cypx_main" style="margin-top:20px">
        <ul class="list-inline">
           <li class="pull-left menubt text-center"><h5>培训信息</h5></li>
           

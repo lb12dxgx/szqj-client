@@ -19,6 +19,7 @@ import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
 import com.szqj.service.domain.Meet;
+import com.szqj.service.domain.MeetRepository;
 import com.szqj.springmvc.Token;
 import com.szqj.train.domain.TrainClass;
 import com.szqj.train.domain.TrainClassRepository;
@@ -46,6 +47,9 @@ public class TrainControle {
 	
 	@Autowired
 	private TrainSignUpRepository trainSignUpRepository;
+	@Autowired
+	private MeetRepository meetRepository;
+	
 	
 	
 	/**
@@ -55,6 +59,9 @@ public class TrainControle {
 	 */
 	@RequestMapping(value = "/train/index.html")
 	public String index_train(ModelMap modelMap){
+		
+		setMainMeet(modelMap);
+		setMeetList(modelMap);
 		
 		setMainTrain(modelMap);
 		setTrainList(modelMap);
@@ -180,6 +187,29 @@ public class TrainControle {
 	}
 
 
+	/**
+     * 设置主要会议
+     * @param modelMap
+     */
+	private void setMainMeet(ModelMap modelMap) {
+		List<Meet> l = meetRepository.findMain();
+		if(l!=null&&l.size()!=0) {
+			modelMap.put("mainMeet", l.get(0));
+		}
+	}
+	
+	/**
+	 * 设置会议列表
+	 * @param modelMap
+	 */
+	private void setMeetList(ModelMap modelMap) {
+		List<Meet> l = meetRepository.findListByNoMain();
+		if(l!=null&&l.size()!=0) {
+			modelMap.put("meeList", l);
+		}
+	}
+	
+	
     /**
      * 设置主要培训
      * @param modelMap

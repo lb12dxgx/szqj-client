@@ -4,6 +4,7 @@
 </head>
 <head>
 <link  th:href="@{/css/index_new.css}" rel="stylesheet" type="text/css">
+<link href="/css/cypx.css" rel="stylesheet" type="text/css">
 </head>
 
   
@@ -111,40 +112,29 @@
       </div>
 	  <div class="box-bgcl">
 		  <div class="row zhibo">
-			  <div class="col-md-6"><img src="images/shipin.jpg" width="500" height="300"></div>
+			  <div class="col-md-6" >
+			  	<div class="cypx-sp" style="width:540px;height:300px">
+					 <div class="px-sp-box text-center" style="height:230px">
+						 <h2 th:text="${mainMeet.meetName}">某地安装技术工职业技能培训</h2>
+						 <div class="sp-time text-left">
+							 <p>会议时间：<span th:text=" ${#dates.format(mainMeet.startDate, 'yyyy-MM-dd')}">2018-01-03</span></p>
+							 <p>会议地点：<span th:text="${mainMeet.meetPlace}">武汉</span></p>
+						</div>
+						 <a th:href="@{'/service/meet/detail.html?meetId='+${mainMeet.meetId}}"   class="btn btn-primary btn-warning" style="width: 40%;">会议信息</a>
+					 </div>
+			    </div>
+			  </div>
 			  <div class="col-md-6">
 				 <div class="huiyi-box">
 					 <p class="hyrc">会议日程表</p>
 					 <div class="ricap">
-						 <ul class="list-unstyled gray">
-							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望</li>
-							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
-						 </ul>
-						 <div class="gb-line clearfix"></div>
-						 <ul class="list-unstyled gray">
-							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望警探测关键问题研究、技术总结与展望</li>
-							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
-						 </ul>
-						 <div class="gb-line clearfix"></div>
-						 <ul class="list-unstyled gray">
-							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与测关键问题研究、技术总结与展望</li>
-							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
-						 </ul>
-						 <div class="gb-line clearfix"></div>
-						  <ul class="list-unstyled gray">
-							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望</li>
-							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
-						 </ul>
-						 <div class="gb-line clearfix"></div>
-						 <ul class="list-unstyled gray">
-							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望警探测关术总结与展望</li>
-							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
-						 </ul>
-						 <div class="gb-line clearfix"></div>
-						 <ul class="list-unstyled gray">
-							 <li>城市道路塌陷灾害预警探测关键问题研究、技术总结与展望警探测关键问题研究、技术总结与展望</li>
-							 <li>李学义 教授   中规协地下管线专业委员会专家</li>
-						 </ul>
+					    <div th:each="meetpaln,iterStat:${meetlist}">
+							 <ul class="list-unstyled gray">
+								 <li th:text="${meetpaln.meetPlanName}">城市道路塌陷灾害预警探测关键问题研究、技术总结与展望</li>
+								 <li><span th:text="${meetpaln.teacherName}">李学义</span> <span th:text="${meetpaln.teacherPost}">教授</span> <span th:text="${meetpaln.teacherCompany}">中规协地下管线专业委员会专家</span></li>
+							 </ul>
+							 <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
+						 </div>
 					 </div>
 				 </div> 
 			  </div>
@@ -167,26 +157,26 @@
 		<div>
 			<div class="moshi-box clearfix">
 			   <div class="fuwubox text-center">
-				  <a href="#" target="_blank" class="chengshi-ms beijing-box moshilink">
+				  <a href="/118/modeldetail.html?contentId=ed11958c-9f2f-46cc-838e-ce04e4aa704f" target="_blank" class="chengshi-ms beijing-box moshilink">
 					 <h3>北京</h3>
 				  </a>
 
 			   </div>
 			  <div class="fuwubox text-center">
-				<a href="#" target="_blank" class="chengshi-ms zibo-box moshilink">
+				<a href="/118/modeldetail.html?contentId=c3129b9e-bf26-4f00-a7f1-4a803a8898ec" target="_blank" class="chengshi-ms zibo-box moshilink">
 					 <h3>淄博</h3>
 				  </a>
 
 
 			   </div>
 			   <div class="fuwubox text-center">
-				 <a href="#" target="_blank" class="chengshi-ms qita-box moshilink">
+				 <a href="/118/modeldetail.html?contentId=43f2b8db-197a-4551-8af5-01c72f199d90" target="_blank" class="chengshi-ms qita-box moshilink">
 					 <h3>其他城市</h3>
 				  </a>
 
 			   </div>
 			   <div class="fuwubox text-center" style="margin-right: 0;s">
-				 <a href="#" target="_blank" class="chengshi-ms guoji-box moshilink">
+				 <a href="/118/modeldetail.html?contentId=a9dbab76-7aff-4e1c-8dd8-86ca34a343a4" target="_blank" class="chengshi-ms guoji-box moshilink">
 					 <h3>国际城市</h3>
 				  </a>
 

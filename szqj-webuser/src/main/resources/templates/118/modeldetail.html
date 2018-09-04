@@ -29,25 +29,25 @@
    <!--面包屑结束-->
    <div class="row">
      <!--左侧内容开始-->
-     <div class="col-md-12">
+     <div class="col-md-11">
 
 	   <div class="row">
 		   <div class="col-md-12 text-center"><h3 th:text="${content.contentTitle}"></h3></div>
-		  
 	    </div> 
+		 <div class="row new-bt">
+		   <div class="col-md-3 text-left gray">发布时间：<time th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2018-01-02</time></div>
+		   <div class="col-md-4 text-left gray">新闻来源：<span th:text="${content.contentJsonMap['source']}">新浪</span></div>
+		  
+	   </div>
 		
 		 <div class="box-bgcl spxq-box"  th:utext="${content.content}">
 			 
 		 </div>
 		 
-		  <div class="row" style="margin-top:20px">
-		  
-		  
-	    </div>
-		 
 	
      </div>
-     
+    
+      
    </div>
  </div>
  
@@ -56,8 +56,8 @@
   	<!--footer结束-->
   	  	<script type="text/javascript" th:inline="javascript">
 	$(function(){
-		$('#maga').removeClass("manulinknone");
-		$('#maga').addClass("manulink");
+		$('#118').removeClass("manulinknone");
+		$('#118').addClass("manulink");
 		
 	})
 </script>

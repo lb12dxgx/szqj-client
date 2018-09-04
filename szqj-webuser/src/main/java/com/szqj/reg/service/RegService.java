@@ -48,7 +48,7 @@ public class RegService {
 	    regInfoRet.setSmscode(smscode);
 		regInfoRepository.save(regInfoRet);
 		try {
-			//SmsTools.alSendSms(smscode,regInfo.getTelphone());
+			SmsTools.alSendSms(smscode,regInfo.getTelphone());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

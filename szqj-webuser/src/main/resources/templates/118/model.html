@@ -43,9 +43,9 @@
 		   			
 		   <div th:each="content,iterStat:${list}" >
 	       <div class="media" >
-	        <a th:href="@{'/accident/detail.html?contentId='+${content.contentId}}" target="_blank" class="pull-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="media-object" style="width:174px; height:127px"></a>
+	        <a th:href="@{'/118/modeldetail.html?contentId='+${content.contentId}}" target="_blank" class="pull-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="media-object" style="width:174px; height:127px"></a>
 	           <div class="media-body gb-sgnews">
-	                         <h4 class="media-heading"><a th:href="@{'/accident/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></h4>
+	                         <h4 class="media-heading"><a th:href="@{'/118/modeldetail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></h4>
 	                         <p class="sg-text"><a href="#" th:text="${content.contentJsonMap['desc']}"> </a></p>
 	                         <ul class="list-unstyled">
 	                           <li class="pull-right gray" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2013-11-22</li>

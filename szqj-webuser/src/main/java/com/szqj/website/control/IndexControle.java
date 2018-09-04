@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.service.domain.Enterprise;
+import com.szqj.service.domain.Meet;
+import com.szqj.service.domain.MeetPlan;
+import com.szqj.service.domain.MeetPlanRepository;
+import com.szqj.service.domain.MeetRepository;
 import com.szqj.service.domain.Product;
 import com.szqj.service.domain.ZbInfo;
 import com.szqj.train.domain.TrainPlan;
@@ -24,6 +28,12 @@ public class IndexControle {
 	
 	@Autowired
 	private IndexService indexService;
+	
+	@Autowired
+	private MeetRepository meetRepository;
+	
+	@Autowired
+	private MeetPlanRepository meetPlanRepository;
 	
 
 	
@@ -76,7 +86,25 @@ public class IndexControle {
 		modelMap.put("qkNewList", qkNewList);
 		modelMap.put("fileMap", map);
 		
+		setMainMeet(modelMap);
+		
 		return "index_temp";
+	}
+	
+	
+	
+	/**
+     * 设置主要会议
+     * @param modelMap
+     */
+	private void setMainMeet(ModelMap modelMap) {
+		List<Meet> l = meetRepository.findMain();
+		if(l!=null&&l.size()!=0) {
+			List<MeetPlan> meetlist = meetPlanRepository.findByMeetId(l.get(0).getMeetId());
+			modelMap.put("mainMeet", l.get(0));
+			modelMap.put("meetlist", meetlist);
+		}
+		
 	}
 	
 	

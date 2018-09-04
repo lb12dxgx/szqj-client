@@ -30,13 +30,13 @@
    <div class="row">
      <!--左侧菜单开始-->
      <div class="col-md-3">
-       <ul class="list-unstyled" th:if="${columnCode}=='1_dz_zl_qk'" >
-         <li><a href="/maga/index.html" class="left-manu qk-manu-on text-center">电子期刊</a></li>
-         <li><a href="/maga/index.html?columnCode=2_dz_zl_hy" class="left-manu qk-manu-none text-center">会议资料</a></li>
-       </ul>
-       <ul class="list-unstyled" th:if="${columnCode}=='2_dz_zl_hy'" >
-         <li><a href="/maga/index.html" class="left-manu qk-manu-none text-center">电子期刊</a></li>
-         <li><a href="/maga/index.html?columnCode=2_dz_zl_hy" class="left-manu qk-manu-on text-center">会议资料</a></li>
+      
+        <ul class="list-unstyled" th:if="${columnCode}=='1_dz_zl_qk'" >
+        	<li><a href="/knowledge/index.html" class="left-manu qk-manu-none text-center" >政策法规</a></li>
+         	<li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-none text-center">法律法规</a></li>
+         	<li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-none text-center">标准规范</a></li>
+         	<li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-none text-center">行业论文</a></li>
+          	<li><a href="/maga/index.html" class="left-manu qk-manu-on text-center">电子期刊</a></li>
        </ul>
      </div>
      <!--左侧菜单结束-->
@@ -62,8 +62,8 @@
   	<!--footer结束-->
   	<script type="text/javascript">
 	$(function(){
-		$('#maga').removeClass("manulinknone");
-		$('#maga').addClass("manulink");
+		$('#knowledge').removeClass("manulinknone");
+		$('#knowledge').addClass("manulink");
 	})
 </script>
   <!--footer����-->

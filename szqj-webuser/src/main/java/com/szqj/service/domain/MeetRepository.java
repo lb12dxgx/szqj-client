@@ -29,4 +29,11 @@ public interface MeetRepository extends PagingAndSortingRepository<Meet, String>
 	
 	@Query("select m from Meet m where m.isSign=1 order by createDate desc")
 	List<Meet> findByIsSign();
+	
+	
+	@Query("select m from Meet m where m.showMain=1 order by createDate desc")
+	List<Meet> findMain();
+	
+	@Query("select m from Meet m where m.showMain=0 order by createDate desc")
+	List<Meet> findListByNoMain();
 }
