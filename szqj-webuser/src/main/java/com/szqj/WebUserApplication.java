@@ -20,7 +20,7 @@ public class WebUserApplication  extends SpringBootServletInitializer {
 	        return application.sources(WebUserApplication.class);
 	 }
 	
-	
+	  
 	
 	public static void main(String[] args) {
 		SpringApplication.run(WebUserApplication.class, args);
