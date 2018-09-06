@@ -78,7 +78,7 @@ public class BeforeControle {
 	public String index_118(ModelMap modelMap){
 		List<ApplyOrg> l = applyOrgRepository.findAllList();
 		modelMap.put("orgList", l);
-		return "118/index"; 
+		return "118/index";  
 	}
 	
 	
