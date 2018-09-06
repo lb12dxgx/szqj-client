@@ -119,7 +119,8 @@
 							 <p>会议时间：<span th:text=" ${#dates.format(mainMeet.startDate, 'yyyy-MM-dd')}">2018-01-03</span></p>
 							 <p>会议地点：<span th:text="${mainMeet.meetPlace}">武汉</span></p>
 						</div>
-						 <a th:href="@{'/service/meet/detail.html?meetId='+${mainMeet.meetId}}"   class="btn btn-primary btn-warning" style="width: 40%;">会议信息</a>
+						 <a th:href="@{'/service/meet/detail.html?meetId='+${mainMeet.meetId}}"   class="btn btn-primary btn-warning" style="width: 40%;" th:if="${mainMeet.zbState==0}">会议信息</a>
+						  <a th:href="@{${mainMeet.zbUrl}}"   class="btn btn-primary btn-warning" style="width: 40%;" th:if="${mainMeet.zbState==1}">进入直播</a>
 					 </div>
 			    </div>
 			  </div>
@@ -130,7 +131,7 @@
 					    <div th:each="meetpaln,iterStat:${meetlist}">
 							 <ul class="list-unstyled gray">
 								 <li th:text="${meetpaln.meetPlanName}">城市道路塌陷灾害预警探测关键问题研究、技术总结与展望</li>
-								 <li><span th:text="${meetpaln.teacherName}">李学义</span> <span th:text="${meetpaln.teacherPost}">教授</span> <span th:text="${meetpaln.teacherCompany}">中规协地下管线专业委员会专家</span></li>
+								 <li><span th:text="${meetpaln.startDate}">李学义</span> <span th:text="${meetpaln.teacherName}">李学义</span> <span th:text="${meetpaln.teacherPost}">教授</span> <span th:text="${meetpaln.teacherCompany}">中规协地下管线专业委员会专家</span></li>
 							 </ul>
 							 <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
 						 </div>
