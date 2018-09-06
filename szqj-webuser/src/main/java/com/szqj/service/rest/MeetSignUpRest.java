@@ -93,8 +93,8 @@ public class MeetSignUpRest {
 	
 	@ResponseBody
 	@RequestMapping(value = "delete.do"  )
-	public RestJson delete( String meetsignId){
-		meetsignRepository.deleteById(meetsignId);
+	public RestJson delete( String meetSignUpId){
+		meetsignRepository.deleteById(meetSignUpId);
 		return RestJson.createSucces();
 	}
 	
