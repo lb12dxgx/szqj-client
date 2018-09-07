@@ -1,6 +1,7 @@
 package com.szqj.website.control;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -30,6 +31,8 @@ import com.szqj.train.domain.TrainSignUpRepository;
 import com.szqj.train.domain.TrainTeacher;
 import com.szqj.train.domain.TrainTeacherRepository;
 import com.szqj.util.Tools;
+import com.szqj.weborg.domain.FileInfo;
+import com.szqj.weborg.domain.FileInfoRepository;
 
 @Controller
 @RequestMapping("/")
@@ -49,6 +52,9 @@ public class TrainControle {
 	private TrainSignUpRepository trainSignUpRepository;
 	@Autowired
 	private MeetRepository meetRepository;
+
+	@Autowired
+	private FileInfoRepository fileInfoRepository;
 	
 	
 	
@@ -195,6 +201,15 @@ public class TrainControle {
 		List<Meet> l = meetRepository.findMain();
 		if(l!=null&&l.size()!=0) {
 			modelMap.put("mainMeet", l.get(0));
+			
+			String meetPicId=l.get(0).getMeetPicId();
+			List<FileInfo> files = fileInfoRepository.findByBussinessId(meetPicId);
+			if(files!=null&&files.size()>0) {
+				HashMap map=new HashMap();
+				map.put(meetPicId, files.get(0).getFileWebPath());
+				modelMap.put("fileMap", map);
+			}
+			
 		}
 	}
 	

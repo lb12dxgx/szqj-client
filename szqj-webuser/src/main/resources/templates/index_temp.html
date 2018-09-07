@@ -112,15 +112,11 @@
 	  <div class="box-bgcl"> 
 		  <div class="row zhibo">
 			  <div class="col-md-6" >
-			  	<div class="cypx-sp" style="width:540px;height:300px">
-					 <div class="px-sp-box text-center" style="height:230px">
-						 <h2 th:text="${mainMeet.meetName}">某地安装技术工职业技能培训</h2>
-						 <div class="sp-time text-left">
-							 <p>会议时间：<span th:text=" ${#dates.format(mainMeet.startDate, 'yyyy-MM-dd')}">2018-01-03</span></p>
-							 <p>会议地点：<span th:text="${mainMeet.meetPlace}">武汉</span></p>
-						</div>
-						 <a th:href="@{'/service/meet/detail.html?meetId='+${mainMeet.meetId}}"   class="btn btn-primary btn-warning" style="width: 40%;" th:if="${mainMeet.zbState==0}">会议信息</a>
-						  <a th:href="@{${mainMeet.zbUrl}}"   class="btn btn-primary btn-warning" style="width: 40%;" th:if="${mainMeet.zbState==1}">进入直播</a>
+			  	<div  th:style="'width:540;height:300px;background:url(/'+ @{${fileMap[mainMeet.meetPicId]}}+')'" >
+					 <div style="position:absolute;left:250px;top:200px;">
+						 
+						  <a th:href="@{'/service/meet/detail.html?meetId='+${mainMeet.meetId}}"   class="btn btn-primary btn-warning" style="width: 100%;" th:if="${mainMeet.zbState==0}">会议信息</a>
+						  <a th:href="@{${mainMeet.zbUrl}}"   class="btn btn-primary btn-warning" style="width: 100%;" th:if="${mainMeet.zbState==1}">进入直播</a>
 					 </div>
 			    </div>
 			  </div>

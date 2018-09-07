@@ -18,6 +18,8 @@ import com.szqj.service.domain.MeetRepository;
 import com.szqj.service.domain.Product;
 import com.szqj.service.domain.ZbInfo;
 import com.szqj.train.domain.TrainPlan;
+import com.szqj.weborg.domain.FileInfo;
+import com.szqj.weborg.domain.FileInfoRepository;
 import com.szqj.weborg.service.IndexService;
 
 @Controller
@@ -34,6 +36,10 @@ public class IndexControle {
 	
 	@Autowired
 	private MeetPlanRepository meetPlanRepository;
+	
+	@Autowired
+	private FileInfoRepository fileInfoRepository;
+	
 	
 
 	
@@ -77,10 +83,9 @@ public class IndexControle {
 		modelMap.put("bjNum", bjNum);
 		modelMap.put("lwNum", lwNum);
 		
-	
-		modelMap.put("fileMap", map);
+		setMainMeet(modelMap,map);
 		
-		setMainMeet(modelMap);
+		modelMap.put("fileMap", map);
 		
 		return "index_temp";
 	}
@@ -90,15 +95,24 @@ public class IndexControle {
      * 设置主要会议
      * @param modelMap
      */
-	private void setMainMeet(ModelMap modelMap) {
+	private void setMainMeet(ModelMap modelMap,HashMap map) {
 		List<Meet> l = meetRepository.findMain();
 		if(l!=null&&l.size()!=0) {
 			List<MeetPlan> meetlist = meetPlanRepository.findByMeetId(l.get(0).getMeetId());
 			modelMap.put("mainMeet", l.get(0));
 			modelMap.put("meetlist", meetlist);
+			String meetPicId=l.get(0).getMeetPicId();
+			List<FileInfo> files = fileInfoRepository.findByBussinessId(meetPicId);
+			if(files!=null&&files.size()>0) {
+				map.put(meetPicId, files.get(0).getFileWebPath());
+			}
 		}
 		
+		
+		
 	}
+	
+	
 	
 	
 
