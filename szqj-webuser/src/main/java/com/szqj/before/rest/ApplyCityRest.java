@@ -31,9 +31,14 @@ public class ApplyCityRest {
 	
 	
 	@RequestMapping(value = "list.do"  )
-	public RestJson list(String orgName, Integer pageNum, Integer size){
+	public RestJson list(String cityName, Integer pageNum, Integer size){
 		PageRequest pageable=Tools.getPage(pageNum-1, size);
-		Page<ApplyCity> page = applyCityRepository.findPage(pageable);
+		Page<ApplyCity> page =null;
+		if(StringUtils.isBlank(cityName)){
+			page = applyCityRepository.findPage(pageable);
+		}else {
+			page = applyCityRepository.findPageByCityName(cityName,pageable);
+		}
 		return RestJson.createSucces(page);
 	}
 	

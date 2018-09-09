@@ -40,27 +40,79 @@
        <div class="row">
 		   <div class="col-md-9" >
 		   			
-		     <form>
-		             
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">城市名称</label>
-				    <input type="text" class="form-control" id="cityName" name="cityName" placeholder="请输入城市名称"/>
-				  </div>
-				   <div class="form-group">
-				    <label for="exampleInputEmail1">申请单位</label>
-				    <input type="text" class="form-control" id="applyCompany"  name="applyCompany" placeholder="请输入申请单位"/>
-				  </div>
-				   <div class="form-group">
-				    <label for="exampleInputEmail1">联系人</label>
-				    <input type="text" class="form-control" id="person" name="person" placeholder="请输入联系人"/>
-				  </div>
-				   <div class="form-group">
-				    <label for="exampleInputEmail1">联系人电话</label>
-				    <input type="text" class="form-control" id="telphone"  name="telphone " placeholder="请输入城市名称"/>
-				  </div>
-				  
+		     <form method="post"  action="/118/saveCity.html" id="cityForm">
+		           <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>  
+				   <div class="row zcsx-list">
+						<div class="col-md-2 text-right">
+							<label class="control-label zscx-text"><span
+								style="color: red">*</span>城市名称 </label>
+						</div>
+						<div class="col-md-6 text-center">
+							<input class="form-control" placeholder="请输入城市名称 " type="text" name="cityName"/>
+						</div>
+						<div class="col-md-3 text-left">
+						 <label id="cityName-error" class="errorlabel  error " for="cityName"/>
+                  		 </label>
+						</div>
+					</div>
+					<div class="row zcsx-list">
+						<div class="col-md-2 text-right">
+							<label class="control-label zscx-text"><span
+								style="color: red">*</span>申请单位 </label>
+						</div>
+						<div class="col-md-6 text-center">
+							<input class="form-control" placeholder="请输入申请单位 " type="text" name="applyCompany"/>
+						</div>
+						<div class="col-md-3 text-left">
+						 <label id="applyCompany-error" class="errorlabel  error " for="applyCompany"/>
+                  		 </label>
+						</div>
+					</div>
+					<div class="row zcsx-list">
+						<div class="col-md-2 text-right">
+							<label class="control-label zscx-text"><span
+								style="color: red">*</span>联系人 </label>
+						</div>
+						<div class="col-md-6 text-center">
+							<input class="form-control" placeholder="请输入联系人 " type="text" name="person"/>
+						</div>
+						<div class="col-md-3 text-left">
+						 <label id="person-error" class="errorlabel  error " for="person"/>
+                  		 </label>
+						</div>
+					</div>
+					<div class="row zcsx-list">
+						<div class="col-md-2 text-right">
+							<label class="control-label zscx-text"><span
+								style="color: red">*</span>联系人电话 </label>
+						</div>
+						<div class="col-md-6 text-center">
+							<input class="form-control" placeholder="请输入联系人电话 " type="text" name="telphone"/>
+						</div>
+						<div class="col-md-3 text-left">
+						 <label id="telphone-error" class="errorlabel  error " for="telphone"/>
+                  		 </label>
+						</div>
+					</div>
+					<div class="row zcsx-list">
+						<div class="col-md-2 text-right">
+							<label class="control-label zscx-text"><span
+								style="color: red">*</span>短信验证码 </label>
+						</div>
+						<div class="col-md-4 text-center">
+							<input class="form-control" type="text" name="smscode" id="smscode" placeholder="请输入4位短信验证码"/>
+						</div>
+						
+						<div class="col-md-3">
+		                   <a  class="btn btn-default" id="sendsms">发送验证码</a>
+                		</div>
+						<div class="col-md-2 text-left">
+							<label id="smscode-error" class="errorlabel  error " for="smscode" style="margin-left:3px;margin-top:10px"/>
+						</div>
+					</div>
+				
 				   <div style="text-align:center">
-				  		<button type="submit" class="btn btn-primary" style="width:30%">提交</button>
+				  		<a  class="btn btn-primary" style="width:30%" id="reg">提交</a>
 				  </div>
 			</form>
 		   	  
@@ -97,20 +149,39 @@
   <!--footer结束-->
 
 </body>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
 
+<link th:href="@{/css/validate.css}" rel="stylesheet" type="text/css">
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+	
 
 
 
 <script type="text/javascript">
+
+$.validator.addMethod("isMobile", function(value, element) {
+    var length = value.length;
+    var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+    return this.optional(element) || (length == 11 && mobile.test(value));
+}, "请正确填写您的手机号码");
+
+
+function getInviteCode(m,_this){
+  	var parm=$("#cityForm").serialize();
+    $.post("/118/city/getSmsCode.do",parm,function(data,status){
+      var interval=setInterval(function(){
+          m=m-1;
+          _this.html(m+"秒后再次发送");
+          if(m<=0){
+             clearInterval(interval);
+             $("#sendsms").removeClass("disabled");
+              _this.html("再次发送验证码");
+             return; 
+          }
+         },1000);
+
+      });
+ }
+
 $(function(){
 	$('#118').removeClass("manulinknone");
 	$('#118').addClass("manulink");
@@ -118,12 +189,76 @@ $(function(){
 	$('#l_index').addClass("fw-manu1-on");
 	
 	
+	$("#reg").click(function(){
+    	if($("#cityForm").valid()){
+    		var parm=$("#cityForm").serialize();
+    	    $.post("/118/city/validateSmsCode.do",parm,function(data,status){
+    	    	console.log(data);
+    	    	if(data.state==0){
+    	    		$("#smscode-error").html("验证码失败");
+    	    		$("#smscode-error").show();
+    	    	}else{
+    	    		$("#cityForm").submit();
+    	    	}
+    	    	
+    	    })
+    		
+	    }
+
+    });
+	
+	 $("#sendsms").click(function(){
+	    
+		 if($("#cityForm").valid()){
+		 	$("#sendsms").addClass("disabled");
+	     	getInviteCode(60,$(this));
+		 }
+	             
+  	});
+	 
+	 
+	 
+	
+	
+	 $("#cityForm").validate({
+         rules: {
+           cityName:{
+              required:true,
+           },
+           telphone:{
+             required:true,
+             isMobile:true 
+           },
+           applyCompany: {
+             required: true
+           },
+           person:{
+             required: true
+           }
+         },
+         messages: {
+        	cityName:{
+             required:'请输入城市名称'
+           },
+           telphone:{
+             required:'请输入联系人电话',
+             mobile:'手机格式不正确,请重新输入'
+           },
+           applyCompany:{
+             required:'请输入申请单位'
+           },
+           person:{
+             required:'请输入联系人'
+           }
+          
+         }
+    });
+	
+	
 })
 </script>
 
-<script type="text/javascript">
 
-</script>
 
 
 

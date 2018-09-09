@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -19,8 +21,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.exceptions.ServerException;
 import com.szqj.PdfTools;
+import com.szqj.before.domain.ApplyCity;
+import com.szqj.before.domain.ApplyCityRepository;
 import com.szqj.before.domain.ApplyOrg;
 import com.szqj.before.domain.ApplyOrgRepository;
 import com.szqj.before.domain.BeforeApply;
@@ -30,12 +37,14 @@ import com.szqj.cms.domain.ColumnInfo;
 import com.szqj.cms.domain.ColumnInfoRepository;
 import com.szqj.cms.domain.ContentInfo;
 import com.szqj.cms.domain.ContentInfoRepository;
+import com.szqj.redis.RedisService;
 import com.szqj.reg.domain.RegInfo;
 import com.szqj.reg.service.RegService;
 import com.szqj.springmvc.Token;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
 import com.szqj.weborg.service.AccountService;
+import com.szqj.yun.SmsTools;
 
 @Controller
 @RequestMapping("/")
@@ -62,9 +71,12 @@ public class BeforeControle {
 	private ColumnInfoRepository columnInfoRepository;
 	@Autowired
 	private ContentInfoRepository contentInfoRepository;
-	
+	@Autowired
+	private ApplyCityRepository applyCityRepository;
+	@Autowired
+	private RedisService redisService;
 
-	
+
 	@Value("${web.upload-pdf}")
 	private String pdfPath;
 	
@@ -74,12 +86,63 @@ public class BeforeControle {
 	 * @param modelMap
 	 * @return
 	 */
+	@Token(save = true)
 	@RequestMapping(value = "/118/index.html"  )
 	public String index_118(ModelMap modelMap){
 		List<ApplyOrg> l = applyOrgRepository.findAllList();
 		modelMap.put("orgList", l);
 		return "118/index";  
 	}
+	
+	
+	/**
+	 * 118服务城市保存
+	 * @param modelMap
+	 * @return
+	 */
+	@Token(remove =true)
+	@RequestMapping(value = "/118/saveCity.html"  )
+	public String save_city(ApplyCity applyCity,ModelMap modelMap){
+		applyCity.setCreateDate(new Date());
+		applyCityRepository.save(applyCity);
+		modelMap.put("applyCity", applyCity);
+		return "118/indexSucess";  
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/118/city/getSmsCode.do"  )
+	public RestJson getSmsCode(String telphone){
+		String smscode = regService.getRandomCode(4);
+		/*try {
+			SmsTools.alSendSms(smscode,telphone);
+			//redisService.putCityPhoneAndSmsCode(telphone, smscode);
+		} catch (ServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClientException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+	
+		redisService.putCityPhoneAndSmsCode(telphone, smscode);
+		
+		return RestJson.createSucces();
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/118/city/validateSmsCode.do"  )
+	public RestJson validateSmsCode(String telphone,String smscode){
+		
+		String tel=redisService.getSmsCodeByCityPhone(telphone);
+		if(StringUtils.isBlank(tel)||!tel.equals(smscode)) {
+			return RestJson.createError();
+		}
+		
+		return RestJson.createSucces();
+	}
+	
 	
 	
 	/**

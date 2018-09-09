@@ -233,7 +233,7 @@ public class RegService {
 	}
 	
 	
-	private String getRandomCode(int count) {
+	public String getRandomCode(int count) {
 		String invitecode="";
 		String str="0123456789";
 	    Random r = new Random(System.currentTimeMillis());

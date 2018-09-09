@@ -1,5 +1,7 @@
 package com.szqj.before.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +28,8 @@ public class ApplyCity {
 	private String person;//联系人
 	@Column
 	private String telphone;//联系电话 
+	@Column
+	private Date createDate;//创建时间
 	
 	
 	public String getApplyCityId() {
@@ -57,6 +61,12 @@ public class ApplyCity {
 	}
 	public void setTelphone(String telphone) {
 		this.telphone = telphone;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 	
 	
