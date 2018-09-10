@@ -39,16 +39,17 @@
        </ul>
     </div>
     <div class="row">
-     <div class=" col-md-7">
-		<div  th:style="'width:540px;height:300px;background:url(/'+ @{${fileMap[mainMeet.meetPicId]}}+')'" >
-					 <div style="position:absolute;left:250px;top:200px;">
-						 
-						  <a th:href="@{'/service/meet/detail.html?meetId='+${mainMeet.meetId}}"   class="btn btn-primary btn-warning" style="width: 100%;" th:if="${mainMeet.zbState==0}">会议信息</a>
-						  <a th:href="@{${mainMeet.zbUrl}}"   class="btn btn-primary btn-warning" style="width: 100%;" th:if="${mainMeet.zbState==1}">进入直播</a>
-					 </div>
+     <div class=" col-md-6">
+         <div class="cypx-sp" th:style="'background:url(/'+ @{${fileMap[mainMeet.meetPicId]}}+')'">
+  			 <div class="px-sp-box text-center">
+  			     <a th:href="@{'/service/meet/detail.html?meetId='+${mainMeet.meetId}}"   class="btn btn-primary btn-warning hy-zbbtn" style="width: 40%;" th:if="${mainMeet.zbState==0}">会议信息</a>
+			     <a th:href="@{${mainMeet.zbUrl}}"   class="btn btn-primary btn-warning hy-zbbtn" style="width: 40%;" th:if="${mainMeet.zbState==1}">进入直播</a>
+  			 	
+  			 </div>
+  		 </div>
+			
 		</div>
-		</div>
-     <div class=" col-md-5">
+     <div class=" col-md-6">
       <div class="box-bgcl" style="overflow:auto;">
         <div th:each="meet,iterStat:${meeList}">
 	        <ul class="gb-news">
@@ -72,8 +73,8 @@
        </ul>
     </div>
     <div class="row">
-     <div class=" col-md-7">
-		 <div class="cypx-sp">
+     <div class=" col-md-6">
+		 <div class="cypx-sp xz-peixun">
 			 <div class="px-sp-box text-center">
 				 <h2 th:text="${mainTrain.trainName}">某地安装技术工职业技能培训</h2>
 				 <div class="sp-time text-left">
@@ -84,7 +85,7 @@
 			 </div>
 		 </div>
 		</div>
-     <div class=" col-md-5">
+     <div class=" col-md-6">
       <div class="box-bgcl" style="overflow:auto;">
         <div th:each="train,iterStat:${trainList}">
 	        <ul class="gb-news">

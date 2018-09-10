@@ -101,6 +101,10 @@ transition:all .6s ease-in-out;
 .xwlist{
 	color:#0e57a1;
 	margin-left:-25px;
+	width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .gb-news{
@@ -117,13 +121,19 @@ transition:all .6s ease-in-out;
 	margin-top:-10px;
 }
 .cypx-sp{
-	margin:5px 0 0 -5px;
-	background: url(../images/peixunpic.jpg);
-	width: 640px;
-	height: 390px;
+	margin:2px 0 0 -5px;
+	background: url(../images/huiyi1.jpg);
+	width: 540px;
+	height: 300px;
 	padding-top: 60px;
 }
-.px-sp-box{
+.xz-peixun{
+	background: url(../images/peixunshouye.jpg);
+}
+.hy-zbbtn{
+	margin-top: 140px;
+}
+/*.px-sp-box{
 	background: url(../images/pxpic-bg.png) repeat;
 	width:500px;
 	height:250px;
@@ -132,7 +142,7 @@ transition:all .6s ease-in-out;
 	border-radius: 10px;
 	font-size: 14px;
 	padding-top: 15px;
-}
+}*/
 .sp-time{
   width: 210px;
 	margin: 0 auto;
@@ -161,3 +171,7 @@ transition:all .6s ease-in-out;
 
 }
 /*讲师列表结束*/
+.huiyi-zxbox{
+	height: 300px;
+	margin-left: -30px;
+}

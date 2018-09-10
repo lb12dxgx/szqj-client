@@ -47,12 +47,12 @@ public class RegService {
 	    String smscode = getRandomCode(count);
 	    regInfoRet.setSmscode(smscode);
 		regInfoRepository.save(regInfoRet);
-		try {
+		/*try {
 			SmsTools.alSendSms(smscode,regInfo.getTelphone());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return regInfoRet;
 	}
 	
