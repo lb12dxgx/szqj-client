@@ -32,6 +32,8 @@ public class Person {
 	@Column
 	private String personSex;
 	@Column
+	private String personPosition;//个人当前职位
+	@Column
 	private String telePhone;//电话
 	@Column
 	private String userCode;//用户身份证
@@ -288,6 +290,12 @@ public class Person {
 	}
 	public void setEnterpriseName(String enterpriseName) {
 		this.enterpriseName = enterpriseName;
+	}
+	public String getPersonPosition() {
+		return personPosition;
+	}
+	public void setPersonPosition(String personPosition) {
+		this.personPosition = personPosition;
 	}
 	
    

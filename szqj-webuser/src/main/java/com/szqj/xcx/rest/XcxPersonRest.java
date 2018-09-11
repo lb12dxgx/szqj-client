@@ -31,19 +31,20 @@ public class XcxPersonRest {
 	}
 	
 	@RequestMapping(value = "savePersonDesc.xcx"  )
-	public RestJson savePersonDesc(String openid,String personSex,String enterpriseName,String userCode,String personName) {
+	public RestJson savePersonDesc(String openid,String personSex,String enterpriseName,String userCode,String personName,String personPosition) {
 		Person person = regService.getPersonByOpenid(openid);
 		person.setPersonSex(personSex);
 		person.setPersonName(personName);
 		person.setEnterpriseName(enterpriseName);
 		person.setUserCode(userCode);
+		person.setPersonPosition(personPosition);
 		personRepository.save(person);
 		return RestJson.createSucces(person);
 	
 	}
 	
 	@RequestMapping(value = "getPersonByOpenid.xcx"  )
-	public RestJson savePersonDesc(String openid) {
+	public RestJson getPersonByOpenid(String openid) {
 		Person person = regService.getPersonByOpenid(openid);
 		return RestJson.createSucces(person);
 	
