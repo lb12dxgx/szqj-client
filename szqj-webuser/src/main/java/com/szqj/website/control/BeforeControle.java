@@ -114,7 +114,7 @@ public class BeforeControle {
 	@RequestMapping(value = "/118/city/getSmsCode.do"  )
 	public RestJson getSmsCode(String telphone){
 		String smscode = regService.getRandomCode(4);
-		/*try {
+		try {
 			SmsTools.alSendSms(smscode,telphone);
 			//redisService.putCityPhoneAndSmsCode(telphone, smscode);
 		} catch (ServerException e) {
@@ -123,7 +123,7 @@ public class BeforeControle {
 		} catch (ClientException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	
 		redisService.putCityPhoneAndSmsCode(telphone, smscode);
 		

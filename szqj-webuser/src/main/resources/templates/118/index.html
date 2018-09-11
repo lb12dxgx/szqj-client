@@ -38,12 +38,12 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
        <div class="row">
-		   <div class="col-md-9" >
+		   <div class="col-md-8 zcxz-box" >
 		   			
 		     <form method="post"  action="/118/saveCity.html" id="cityForm">
 		           <input  type="hidden" name="submittoken" th:value="${session.submittoken}"/>  
-				   <div class="row zcsx-list">
-						<div class="col-md-2 text-right">
+				   <div class="row zcsx-list zhucexi">
+						<div class="col-md-3 text-right">
 							<label class="control-label zscx-text"><span
 								style="color: red">*</span>城市名称 </label>
 						</div>
@@ -55,8 +55,8 @@
                   		 </label>
 						</div>
 					</div>
-					<div class="row zcsx-list">
-						<div class="col-md-2 text-right">
+					<div class="row zcsx-list zhucexi">
+						<div class="col-md-3 text-right">
 							<label class="control-label zscx-text"><span
 								style="color: red">*</span>申请单位 </label>
 						</div>
@@ -68,8 +68,8 @@
                   		 </label>
 						</div>
 					</div>
-					<div class="row zcsx-list">
-						<div class="col-md-2 text-right">
+					<div class="row zcsx-list zhucexi">
+						<div class="col-md-3 text-right">
 							<label class="control-label zscx-text"><span
 								style="color: red">*</span>联系人 </label>
 						</div>
@@ -81,8 +81,8 @@
                   		 </label>
 						</div>
 					</div>
-					<div class="row zcsx-list">
-						<div class="col-md-2 text-right">
+					<div class="row zcsx-list zhucexi">
+						<div class="col-md-3 text-right">
 							<label class="control-label zscx-text"><span
 								style="color: red">*</span>联系人电话 </label>
 						</div>
@@ -94,8 +94,8 @@
                   		 </label>
 						</div>
 					</div>
-					<div class="row zcsx-list">
-						<div class="col-md-2 text-right">
+					<div class="row zcsx-list zhucexi">
+						<div class="col-md-3 text-right">
 							<label class="control-label zscx-text"><span
 								style="color: red">*</span>短信验证码 </label>
 						</div>
@@ -104,7 +104,7 @@
 						</div>
 						
 						<div class="col-md-3">
-		                   <a  class="btn btn-default" id="sendsms">发送验证码</a>
+		                   <a  class="btn btn-default" id="sendsms" style="margin-left: -28px;">发送验证码</a>
                 		</div>
 						<div class="col-md-2 text-left">
 							<label id="smscode-error" class="errorlabel  error " for="smscode" style="margin-left:3px;margin-top:10px"/>
@@ -117,8 +117,13 @@
 			</form>
 		   	  
 		   </div>
-		   <div class="col-md-3">
-			   <h4>已开通城市</h4>
+		   <div class="col-md-4">
+			  <div class="maintop" style="margin-left:5px; margin-top: -10px;">
+				   <ul class="list-inline">
+					  <li class="pull-left menubt text-center"><h5>已开通城市</h5></li>
+					  <li class="pull-right morebt"><!--<a href="#">more</a>--></li>
+				   </ul>
+			 </div>
 			   <table class="table text-center table-striped">
 				   
 			       <tr>
