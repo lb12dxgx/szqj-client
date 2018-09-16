@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import com.szqj.xcx.filter.OpenidFilter;
 
 @Configuration
 // @ImportResource(locations={"classpath:application-test.xml"})
@@ -88,5 +91,17 @@ public class ConfigClass {
         registrationBean.addUrlPatterns("/system/*");
         return registrationBean;
     }*/
+	
+	
+	@Bean
+	public FilterRegistrationBean openFilterRegistrationBean(){
+		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+		OpenidFilter openidFilter = new OpenidFilter();
+		registrationBean.setFilter(openidFilter);
+		List<String> urlPatterns = new ArrayList<String>();
+	    urlPatterns.add("/xcx/login/*");
+	    registrationBean.setUrlPatterns(urlPatterns);
+	    return registrationBean;
+	}
 
 }
