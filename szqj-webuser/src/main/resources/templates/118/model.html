@@ -39,28 +39,33 @@
      <!--右侧内容开始-->
      <div class="col-md-9">
        <div class="row">
-		   <div class="col-md-10" >
-		   			
-		   <div th:each="content,iterStat:${list}" >
-	       <div class="media" >
-	        <a th:href="@{'/118/modeldetail.html?contentId='+${content.contentId}}" target="_blank" class="pull-left"><img th:src="@{'/file/downloadByBusi.do?bussinessId='+${content.titleFileId}}" class="media-object" style="width:174px; height:127px"></a>
-	           <div class="media-body gb-sgnews">
-	                         <h4 class="media-heading"><a th:href="@{'/118/modeldetail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></h4>
-	                         <p class="sg-text"><a href="#" th:text="${content.contentJsonMap['desc']}"> </a></p>
-	                         <ul class="list-unstyled">
-	                           <li class="pull-right gray" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2013-11-22</li>
-	                         </ul>
-	                       </div>
-	          </div>
-	          <div class="gb-line gxsg-line" th:if="not ${iterStat.last}"></div>
-        	</div>
-		   	  
+		<div class="col-md-6">
+			<a href="/118/modeldetail.html?contentId=ed11958c-9f2f-46cc-838e-ce04e4aa704f" class="moshi-box">
+				<div class="pull-left"><img src="/images/bejing1.jpg" width="" height=""></div>
+				<div class="pull-right">北京模式</div>
+			</a>
+		   </div>   
+		<div class="col-md-6">
+			<a href="/118/modeldetail.html?contentId=c3129b9e-bf26-4f00-a7f1-4a803a8898ec" class="moshi-box pull-right">
+				<div class="pull-left"><img src="/images/zibo1.jpg" width="" height=""></div>
+				<div class="pull-right">淄博模式</div>
+			</a>
 		   </div>
-		   
-		  
-		  
+	   </div>
+		 <div class="row cs-moshi">
+		<div class="col-md-6">
+			<a href="/118/modeldetail.html?contentId=43f2b8db-197a-4551-8af5-01c72f199d90" class="moshi-box">
+				<div class="pull-left"><img src="/images/guonei1.jpg" width="" height=""></div>
+				<div class="pull-right">国内城市</div>
+			</a>
+		   </div>   
+		<div class="col-md-6">
+			<a href="/118/modeldetail.html?contentId=a9dbab76-7aff-4e1c-8dd8-86ca34a343a4" class="moshi-box pull-right">
+				<div class="pull-left"><img src="/images/guoji1.jpg" width="" height=""></div>
+				<div class="pull-right">国际城市</div>
+			</a>
+		   </div>
 	   </div>       
-		
      </div>
      <!--右侧内容结束-->
    </div>

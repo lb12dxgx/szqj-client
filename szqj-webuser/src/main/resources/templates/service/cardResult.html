@@ -65,6 +65,59 @@
 	   </ul>
    </div>
    
+    
+   
+    <div class="guandaozs-box" th:if="${trainCert.certTypeName=='YQGW'}">
+	   <div class="row">
+		   <div class="col-md-5 text-center tance-pic guandaopic"><img src="/images/zhanweiren.jpg" style="height:158px"></div>
+		   <div class="col-md-7 guandao-name" th:text="${trainCert.userName }">张三三三</div>
+	   </div>
+	   <ul class="list-unstyled guandao-binahao">
+		   <li th:text="${trainCert.userCode}">210402398709090879</li>
+		   <li th:text="${trainCert.certCode}">123456789</li>
+		   <li th:text=" ${#dates.format(trainCert.startDate, 'yyyy-MM-dd')}">2018-06-15</li>
+		   <li th:text=" ${#dates.format(trainCert.endDate, 'yyyy-MM-dd')}">2021-06-15</li>
+	   </ul>
+   </div>
+   
+   <div class="tancexmjl-box" th:if="${trainCert.certTypeName=='TCXM'}">
+	   <div class="row">
+		   <div class="col-md-5 text-center paishui-pic"><img src="/images/zhanweiren.jpg" style="height:158px"></div>
+		   <div class="col-md-7 tcxmjl-name" th:text="${trainCert.userName }">张三三三</div>
+	   </div>
+	   <ul class="list-unstyled tcxmjl-bianhao">
+		   <li th:text="${trainCert.userCode}">210402398709090879</li>
+		   <li th:text="${trainCert.certCode}">123456789</li>
+		   <li th:text=" ${#dates.format(trainCert.startDate, 'yyyy-MM-dd')}">2015-09-08</li>
+		   <li th:text=" ${#dates.format(trainCert.endDate, 'yyyy-MM-dd')}">2022-08-09</li>
+	   </ul>
+   </div>
+   
+  <div class="tancegcjl-box" th:if="${trainCert.certTypeName=='TCJL'}">
+	   <div class="row">
+		   <div class="col-md-5 text-center paishui-pic"><img src="/images/zhanweiren.jpg" style="height:158px"></div>
+		   <div class="col-md-7 tcxmjl-name" th:text="${trainCert.userName }">张三三三</div>
+	   </div>
+	   <ul class="list-unstyled tancegcjl-bianhao">
+		  <li th:text="${trainCert.userCode}">210402398709090879</li>
+		   <li th:text="${trainCert.certCode}">123456789</li>
+		   <li th:text=" ${#dates.format(trainCert.startDate, 'yyyy-MM-dd')}">2015-09-08</li>
+		   <li th:text=" ${#dates.format(trainCert.endDate, 'yyyy-MM-dd')}">2022-08-09</li>
+	   </ul>
+   </div>
+   
+    <div class="paishuizs-box" th:if="${trainCert.certTypeName=='PSFKW'}">
+	   <div class="row">
+		   <div class="col-md-5 text-center paishui-pic"><img src="/images/zhanweiren.jpg" style="height:158px"></div>
+		   <div class="col-md-7 paishui-name" th:text="${trainCert.userName }">张三三三</div>
+	   </div>
+	   <ul class="list-unstyled paishui-binahao">
+		   <li th:text="${trainCert.userCode}">210402398709090879</li>
+		   <li th:text="${trainCert.certCode}">123456789</li>
+		   <li th:text=" ${#dates.format(trainCert.startDate, 'yyyy-MM-dd')}">2015-09-08</li>
+		   <li th:text=" ${#dates.format(trainCert.endDate, 'yyyy-MM-dd')}">2022-08-09</li>
+	   </ul>
+   </div>
    
  </div>
 <div class="text-center"><a href="/service/cardSearch.html" class="btn btn-success zs-btn">返　　回</a></div>

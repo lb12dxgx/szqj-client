@@ -231,12 +231,15 @@ public class ServiceControle {
 		if(l!=null&&l.size()>0) {
 			modelMap.put("trainCert", l.get(0));
 			return "service/cardResult"; 
+			
 		}else {
 			modelMap.put("flag", 1);
 			modelMap.put("userName", userName);
 			modelMap.put("certCode", certCode);
 			return "service/cardSearch"; 
 		}
+		
+		
 	}
 	
 	

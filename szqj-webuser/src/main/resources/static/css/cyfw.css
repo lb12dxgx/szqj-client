@@ -437,7 +437,7 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 .guandaozs-box{
     width: 1219px;
 	height: 861px;
-	background: url(../images/guandao.jpg) no-repeat;
+	background: url(../images/guandaoxz.jpg) no-repeat;
 	margin: 0 auto;
 }
 .guandao-name{
@@ -490,4 +490,65 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 .zcxz-box{
 	padding-top: 40px; 
 	padding-bottom: 100px;
+}
+.moshi-box{
+	display: block;
+	width: 358px;
+	height: 112px;
+	hanging-punctuation: 258px;
+	border: 1px #dadada solid;
+	background: #f5f5f5;
+}
+.moshi-box .pull-left{
+	width: 156px;
+	height: 110px;
+}
+.moshi-box .pull-right{
+	width: 200px;
+	line-height: 112px;
+	text-align: center;
+	font-size: 20px;
+}
+.moshi-box:link,
+.moshi-box:visited{
+	border: 1px #dadada solid;
+	color: #161616;
+}
+.moshi-box:hover,
+.moshi-box:active{
+	border: 1px #db3527 solid;
+	color: #db3527;
+}
+.cs-moshi{
+	padding: 90px 0 260px 0;
+}
+.tancexmjl-box{
+    width: 1028px;
+	height: 727px;
+	background: url(../images/tancexmjl.jpg) no-repeat;
+	margin: 0 auto;
+}
+.tcxmjl-name{
+	font-size: 22px;
+	padding: 306px 0 0 90px;
+}
+.tcxmjl-bianhao{
+	font-size: 14px;
+	padding: 28px 0 0 240px;
+}
+.tcxmjl-bianhao li{
+	padding-bottom: 21px;
+}
+.tancegcjl-box{
+	width: 1028px;
+	height: 727px;
+	background: url(../images/tancejl.jpg) no-repeat;
+	margin: 0 auto;
+}
+.tancegcjl-bianhao{
+	font-size: 14px;
+	padding: 21px 0 0 240px;
+}
+.tancegcjl-bianhao li{
+	padding-bottom: 20px;
 }
