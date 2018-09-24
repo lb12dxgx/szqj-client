@@ -67,6 +67,16 @@ public class ConfigClass {
 		return restTemplate;
 	}
 	
+	@Bean
+	public RestTemplate httpsRestTemplate() {
+		HttpsClientRequestFactory factory=new HttpsClientRequestFactory();
+		RestTemplate httpsRestTemplate = new RestTemplate(factory);
+		httpsRestTemplate.getMessageConverters().add(new WxMappingJackson2HttpMessageConverter());
+		return httpsRestTemplate;
+	}
+	
+	
+	
 	public class WxMappingJackson2HttpMessageConverter extends MappingJackson2HttpMessageConverter {
 	    public WxMappingJackson2HttpMessageConverter(){
 	        List<MediaType> mediaTypes = new ArrayList<>();
