@@ -23,6 +23,10 @@ public class Enterprise {
 	
 	private String enterpriseName; //企业名称
 	
+	private Integer enterpriseType=0; //企业类型  0: 其他企业 1:监管单位 2:权属企业 3:建设单位
+	
+	private String applyCityId;//所属城市
+	
 	private String enterpriseCode; //企业信用代码
 	
 	private String enterpriseSummary; //企业介绍
@@ -282,6 +286,22 @@ public class Enterprise {
 
 	public void setOpenid(String openid) {
 		this.openid = openid;
+	}
+
+	public Integer getEnterpriseType() {
+		return enterpriseType;
+	}
+
+	public void setEnterpriseType(Integer enterpriseType) {
+		this.enterpriseType = enterpriseType;
+	}
+
+	public String getApplyCityId() {
+		return applyCityId;
+	}
+
+	public void setApplyCityId(String applyCityId) {
+		this.applyCityId = applyCityId;
 	}
 
 	

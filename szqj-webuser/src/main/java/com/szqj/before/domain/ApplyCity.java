@@ -32,6 +32,8 @@ public class ApplyCity {
 	private Date createDate;//创建时间
 	
 	
+	
+	
 	public String getApplyCityId() {
 		return applyCityId;
 	}

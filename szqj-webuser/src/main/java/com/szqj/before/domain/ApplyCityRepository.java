@@ -24,6 +24,9 @@ public interface ApplyCityRepository extends JpaRepository<ApplyCity, String> {
 	@Query("select m from ApplyCity m where m.cityName like %?1%  order by m.createDate")
 	public Page<ApplyCity> findPageByCityName(String cityName, Pageable pageable);
 	
+	@Query("select m from ApplyCity m where m.cityName = ?1  order by m.createDate")
+	public List<ApplyCity> findByCityName(String cityName);
+	
 	
 	
 	

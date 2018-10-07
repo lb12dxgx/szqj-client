@@ -80,6 +80,45 @@ public class XcxFileInfoRest {
 	}
 	
 	
+	@RequestMapping(value = "/before/applayproject/uploadImg.xcx"  )
+	@ResponseBody
+	public RestJson uploadBeforeImg(@RequestParam("file") MultipartFile file,String openIdMd5,String picId){
+		String openid = redisService.getOpenId(openIdMd5);
+		Account account = accountRepository.findByOpenid(openid).get(0);
+		String dirName ="content/applayproject/img/";
+		String fileName = file.getOriginalFilename();
+		//获取文件的后缀名
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        fileName = UUID.randomUUID() + suffixName;
+        File dest = new File(uploadPath +dirName+File.separator+ fileName);
+        // 检测是否存在目录
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
+        try {
+            file.transferTo(dest);
+            FileInfo f=new FileInfo();
+    		f.setCreateDate(new Date());
+    		f.setCreateUserId(account.getAccountId());
+    		f.setDelFlag(ConstantUtils.NEW_FLAG);
+    		f.setFilePath(uploadPath +dirName+File.separator+ fileName);
+    		f.setFileWebPath(dirName+"/"+fileName);
+    		f.setFileName(file.getOriginalFilename());
+    		f.setFileType(suffixName);
+    		f.setBussinessId(picId);
+    		fileInfoRepository.save(f);
+            return RestJson.createSucces(f);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return RestJson.createError();
+		
+		
+	}
+	
+	
 	@RequestMapping(value = "/accidentinfo/uploadVideo.xcx"  )
 	@ResponseBody
 	public RestJson uploadVideo(@RequestParam("file") MultipartFile file,String openIdMd5,String accidentVideoId){

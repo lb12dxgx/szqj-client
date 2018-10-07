@@ -45,4 +45,10 @@ public interface EnterpriseRepository extends PagingAndSortingRepository<Enterpr
 	@Query("select m from Enterprise m where m.jobLevel='20'")
 	Page<Enterprise> findPageByJobLevel(Pageable pageable);
 	
+	@Query("select m from Enterprise m where m.applyCityId=?1 and m.enterpriseType=?2 ")
+	List<Enterprise> findByApplyCityIdAndEnterpriseType(String applyCityId, Integer enterpriseType);
+	
+	@Query("select m from Enterprise m where m.applyCityId=?1 and m.enterpriseType=?3 and m.enterpriseName=?2 ")
+	List<Enterprise> findByApplyCityIdAndEnterpriseTypeAndName(String applyCityId, String enterpriseName,String enterpriseType);
+	
 }
