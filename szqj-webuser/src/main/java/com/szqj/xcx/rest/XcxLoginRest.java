@@ -70,6 +70,7 @@ public class XcxLoginRest {
 		RegInfo regInfo = regService.getRegInfoByTel(telphone);
 		if(regInfo.getAccountId()==null) {
 			regInfo.setUserName(telphone);
+			regInfo.setTelphone(telphone);
 			regInfo = regService.regUser(regInfo);
 			
 		}

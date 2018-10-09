@@ -70,7 +70,7 @@ public class XcxBeforeProjectRest {
 	
 	@RequestMapping(value = "/before/applayproject/get.xcx"  )
 	public RestJson get(String beforeProjectId){
-		BeforeProject beforeProject = beforeProjectRepository.getOne(beforeProjectId);
+		BeforeProject beforeProject = beforeProjectRepository.findById(beforeProjectId).get();
 		return RestJson.createSucces(beforeProject);
 	}
 	
