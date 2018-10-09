@@ -46,7 +46,7 @@ public class XcxEnterpriseRest {
 	}
 	
 	@RequestMapping(value = "/before/enterprise/save.xcx"  )
-	public RestJson list(Enterprise enterprise){
+	public RestJson save(Enterprise enterprise){
 		enterpriseRepository.save(enterprise);
 		return RestJson.createSucces(enterprise);
 	}
