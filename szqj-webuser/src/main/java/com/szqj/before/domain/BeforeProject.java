@@ -37,6 +37,8 @@ public class BeforeProject {
 	
 	private String enterpriseName; //企业名称
 	
+	private String enttelphone; //企业电话
+	
 	private Date createDate;//创建时间
 	
 	private String personId;//用户id
@@ -188,6 +190,14 @@ public class BeforeProject {
 
 	public void setNum(String num) {
 		this.num = num;
+	}
+
+	public String getEnttelphone() {
+		return enttelphone;
+	}
+
+	public void setEnttelphone(String enttelphone) {
+		this.enttelphone = enttelphone;
 	}
 	
 	

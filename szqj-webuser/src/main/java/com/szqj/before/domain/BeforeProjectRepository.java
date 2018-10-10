@@ -19,11 +19,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BeforeProjectRepository extends JpaRepository<BeforeProject, String> {
 	
-	@Query("select m from BeforeProject m where  m.applyCityId=?1 ")
-	public List<BeforeProject> findByApplyCityId(String applyCityId);
+	@Query("select m from BeforeProject m where  m.applyCityId=?1 and not exists (select r from ProjectResult r where r.beforeProject=m and r.enterpriseId=?2)  and m.enterpriseId!=?2")
+	public List<BeforeProject> findByApplyCityIdAndEnterpriseId(String applyCityId,String enterpriseId);
 	
-	@Query("select m from BeforeProject m where  m.openid=?1 ")
+	@Query("select m from BeforeProject m   where  m.openid=?1 ")
 	public List<BeforeProject> findByApplyOpenId(String openId);
+	
+	
+	@Query("select m from BeforeProject m , ProjectResult r where (r.beforeProject=m and r.enterpriseId=?1) or m.enterpriseId=?1") 
+	public List<BeforeProject> findByFinshApplyEnterpriseId(String enterpriseId);
 	
 	
 	

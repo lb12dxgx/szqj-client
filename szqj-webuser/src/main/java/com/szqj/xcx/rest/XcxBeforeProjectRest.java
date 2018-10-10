@@ -37,12 +37,21 @@ public class XcxBeforeProjectRest {
 		return RestJson.createSucces(list);
 	}
 	
-	@RequestMapping(value = "/before/applayproject/list.xcx"  )
-	public RestJson list( @ModelAttribute("openid") String openid){
+	
+	@RequestMapping(value = "/before/applayproject/listFinshByOpenId.xcx"  )
+	public RestJson listFinshByOpenId( @ModelAttribute("openid") String openid){
+		Person person = regService.getPersonByOpenid(openid);
+		String enterpriseId = person.getCompanyId();
+		List<BeforeProject> list = beforeProjectRepository.findByFinshApplyEnterpriseId(enterpriseId);
+		return RestJson.createSucces(list);
+	}
+	
+	@RequestMapping(value = "/before/applayproject/listByCityId.xcx"  )
+	public RestJson listByCityId( @ModelAttribute("openid") String openid){
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId = person.getCompanyId();
 		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
-		List<BeforeProject> list = beforeProjectRepository.findByApplyCityId(enterprise.getApplyCityId());
+		List<BeforeProject> list = beforeProjectRepository.findByApplyCityIdAndEnterpriseId(enterprise.getApplyCityId(),enterprise.getEnterpriseId());
 		return RestJson.createSucces(list);
 	}
 	
@@ -54,6 +63,7 @@ public class XcxBeforeProjectRest {
 		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
 		
 		beforeProject.setOpenid(openid);
+		beforeProject.setEnttelphone(enterprise.getTelphone());
 		beforeProject.setEnterpriseName(enterprise.getEnterpriseName());
 		beforeProject.setEnterpriseId(enterprise.getEnterpriseId());
 		beforeProject.setApplyCityId(enterprise.getApplyCityId());

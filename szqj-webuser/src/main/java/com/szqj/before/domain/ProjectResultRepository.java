@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectResultRepository extends JpaRepository<ProjectResult, String> {
 	
-	@Query("select m from ProjectResult m where  m.beforeProjectId=?1 ")
+	@Query("select m from ProjectResult m where  m.beforeProject.beforeProjectId=?1 ")
 	public List<ProjectResult> findByBeforeProjectId(String beforeProjectId);
 	
 	@Query("select m from ProjectResult m where  m.openid=?1 ")

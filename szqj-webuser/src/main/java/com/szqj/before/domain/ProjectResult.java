@@ -6,9 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.szqj.service.domain.Enterprise;
 
 @Entity
 @Table(name = "before_project_result")
@@ -19,12 +23,16 @@ public class ProjectResult {
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
 	private String projectResultId;//反馈结果
 	
-	private String beforeProjectId;//挖掘项目ID
+	@ManyToOne
+	@JoinColumn(name = "beforeProject_id")
+	private BeforeProject beforeProject;
+	
 	
 	private String projectName;//项目名称
 	
 	private String enttelphone; //企业电话
    
+	
     private String enterpriseId;//所属企业ID
 	
 	private String enterpriseName; //企业名称
@@ -40,7 +48,7 @@ public class ProjectResult {
 	private String openid;//微信openId
 	
 	
-	private String result;//管线情况
+	private String result;//管线情况 0：无管线  1：有管线
 	
 	private String type;//管线类型
 	
@@ -58,12 +66,14 @@ public class ProjectResult {
 		this.projectResultId = projectResultId;
 	}
 
-	public String getBeforeProjectId() {
-		return beforeProjectId;
+	
+
+	public BeforeProject getBeforeProject() {
+		return beforeProject;
 	}
 
-	public void setBeforeProjectId(String beforeProjectId) {
-		this.beforeProjectId = beforeProjectId;
+	public void setBeforeProject(BeforeProject beforeProject) {
+		this.beforeProject = beforeProject;
 	}
 
 	public String getEnttelphone() {

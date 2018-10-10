@@ -63,7 +63,7 @@ public class XcxProjectResultRest {
 		projectResult.setPersonId(person.getPersonId());
 		projectResult.setPersonName(person.getPersonName());
 		
-		projectResult.setBeforeProjectId(beforeProjectId);
+		projectResult.setBeforeProject(beforeProject);
 		projectResult.setProjectName(beforeProject.getProjectName());
 		
 		projectResultRepository.save(projectResult);
