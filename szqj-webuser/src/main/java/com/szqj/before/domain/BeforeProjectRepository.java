@@ -26,7 +26,7 @@ public interface BeforeProjectRepository extends JpaRepository<BeforeProject, St
 	public List<BeforeProject> findByApplyOpenId(String openId);
 	
 	
-	@Query("select m from BeforeProject m , ProjectResult r where (r.beforeProject=m and r.enterpriseId=?1) or m.enterpriseId=?1") 
+	@Query("select m from ProjectResult r  right join r.beforeProject m  where  r.enterpriseId=?1 or m.enterpriseId=?1") 
 	public List<BeforeProject> findByFinshApplyEnterpriseId(String enterpriseId);
 	
 	

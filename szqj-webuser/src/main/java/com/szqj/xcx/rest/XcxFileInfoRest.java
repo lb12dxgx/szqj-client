@@ -3,6 +3,7 @@ package com.szqj.xcx.rest;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,6 +170,14 @@ public class XcxFileInfoRest {
 	    f.setDelUserId(account.getAccountId());
 	    f.setDelFlag(ConstantUtils.DEL_FLAG);
 	    fileInfoRepository.save(f);
-		return RestJson.createSucces();
+	    List<FileInfo> list = fileInfoRepository.findByBussinessId(f.getBussinessId());
+	    return RestJson.createSucces(list);
+	}
+	
+	@RequestMapping(value = "/accidentinfo/getFileList.xcx"  )
+	@ResponseBody
+	public RestJson getFileList(String bussinessId){
+		List<FileInfo> list = fileInfoRepository.findByBussinessId(bussinessId);
+	    return RestJson.createSucces(list);
 	}
 }

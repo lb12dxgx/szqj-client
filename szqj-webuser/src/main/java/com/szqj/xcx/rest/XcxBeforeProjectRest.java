@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.before.domain.BeforeProject;
 import com.szqj.before.domain.BeforeProjectRepository;
+import com.szqj.before.domain.ProjectResult;
+import com.szqj.before.domain.ProjectResultRepository;
 import com.szqj.reg.service.RegService;
 import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
@@ -31,9 +33,15 @@ public class XcxBeforeProjectRest {
 	@Autowired
 	private BeforeProjectRepository beforeProjectRepository;
 	
+	@Autowired
+	private ProjectResultRepository projectResultRepository;
+	
 	@RequestMapping(value = "/before/applayproject/listByOpenId.xcx"  )
 	public RestJson listByOpenId( @ModelAttribute("openid") String openid){
 		List<BeforeProject> list = beforeProjectRepository.findByApplyOpenId(openid);
+		for(BeforeProject project:list){
+			addNum(project);
+		}
 		return RestJson.createSucces(list);
 	}
 	
@@ -43,6 +51,9 @@ public class XcxBeforeProjectRest {
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId = person.getCompanyId();
 		List<BeforeProject> list = beforeProjectRepository.findByFinshApplyEnterpriseId(enterpriseId);
+		for(BeforeProject project:list){
+			addNum(project);
+		}
 		return RestJson.createSucces(list);
 	}
 	
@@ -52,6 +63,9 @@ public class XcxBeforeProjectRest {
 		String enterpriseId = person.getCompanyId();
 		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
 		List<BeforeProject> list = beforeProjectRepository.findByApplyCityIdAndEnterpriseId(enterprise.getApplyCityId(),enterprise.getEnterpriseId());
+		for(BeforeProject project:list){
+			addNum(project);
+		}
 		return RestJson.createSucces(list);
 	}
 	
@@ -89,6 +103,15 @@ public class XcxBeforeProjectRest {
 	public RestJson add( Map<String,String> map){
 		map.put("picId", UUID.randomUUID().toString());
 		return RestJson.createSucces(map);
+	}
+	
+	private void addNum(BeforeProject beforeProject){
+		List<ProjectResult> l = projectResultRepository.findByBeforeProjectId(beforeProject.getBeforeProjectId());
+		if(l==null||l.size()==0){
+			beforeProject.setNum("无反馈");
+		}else{
+			beforeProject.setNum(l.size()+"家");
+		}
 	}
 
 }

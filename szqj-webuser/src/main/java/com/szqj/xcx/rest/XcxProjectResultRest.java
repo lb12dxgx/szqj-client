@@ -62,6 +62,7 @@ public class XcxProjectResultRest {
 		projectResult.setOpenid(openid);
 		projectResult.setPersonId(person.getPersonId());
 		projectResult.setPersonName(person.getPersonName());
+		projectResult.setTelePhone(person.getTelePhone());
 		
 		projectResult.setBeforeProject(beforeProject);
 		projectResult.setProjectName(beforeProject.getProjectName());
