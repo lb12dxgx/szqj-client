@@ -22,8 +22,10 @@ public class ApplyCity {
 	
 	@Column
 	private String cityName;//城市名称
-	@Column
+	
 	private String applyCompany;//申请单位
+	@Column
+	private String enttelphone; //企业电话
 	@Column
 	private String person;//联系人
 	@Column
@@ -69,6 +71,12 @@ public class ApplyCity {
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+	public String getEnttelphone() {
+		return enttelphone;
+	}
+	public void setEnttelphone(String enttelphone) {
+		this.enttelphone = enttelphone;
 	}
 	
 	

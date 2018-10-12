@@ -25,6 +25,8 @@ public class Enterprise {
 	
 	private Integer enterpriseType=0; //企业类型  0: 其他企业 1:监管单位 2:权属企业 3:建设单位
 	
+	private String qsType;//权属类型
+	
 	private String applyCityId;//所属城市
 	
 	private String enterpriseCode; //企业信用代码
@@ -302,6 +304,14 @@ public class Enterprise {
 
 	public void setApplyCityId(String applyCityId) {
 		this.applyCityId = applyCityId;
+	}
+
+	public String getQsType() {
+		return qsType;
+	}
+
+	public void setQsType(String qsType) {
+		this.qsType = qsType;
 	}
 
 	
