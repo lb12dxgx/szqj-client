@@ -32,6 +32,8 @@ public class ApplyCity {
 	private String telphone;//联系电话 
 	@Column
 	private Date createDate;//创建时间
+	@Column
+	private Integer state;//0:申请中   1：审批通过:1  审批未通过:2
 	
 	
 	
@@ -77,6 +79,12 @@ public class ApplyCity {
 	}
 	public void setEnttelphone(String enttelphone) {
 		this.enttelphone = enttelphone;
+	}
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
 	}
 	
 	

@@ -56,17 +56,9 @@ public class XcxApplayCityRest {
 	 * @return
 	 */
 	@RequestMapping(value = "/before/applaycity/list.xcx"  )
-	public RestJson list(Integer pageNum, Integer size, String cityName){
-		
-		PageRequest pageable=Tools.getPage(pageNum, 6);
-		Page<ApplyCity> page=null;
-		if(StringUtils.isBlank(cityName)) {
-			page=applyCityRepository.findPage(pageable);
-		}else {
-			page=applyCityRepository.findPageByCityName(cityName, pageable);
-		}
-		
-		return RestJson.createSucces(page);
+	public RestJson list(){
+		List<ApplyCity> list = applyCityRepository.findByState(1);
+		return RestJson.createSucces(list);
 	}
 	
 	
