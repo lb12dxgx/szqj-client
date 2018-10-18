@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "before_city_area")
+@Table(name = "before_person_area")
 public class PersonArea {
 	
 	@Id

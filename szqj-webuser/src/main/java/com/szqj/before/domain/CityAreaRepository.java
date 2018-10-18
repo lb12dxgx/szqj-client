@@ -19,7 +19,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CityAreaRepository extends JpaRepository<CityArea, String> {
 	
-	@Query("select m from CityArea m where  m.cityDistrict.cityDistrictId=?1 ")
-	public List<CityArea> findByApplyCityIdAndEnterpriseId(String cityDistrictId);
+	@Query("select m from CityArea m where  m.cityDistrict.cityDistrictId=?1 and m.state=0")
+	public List<CityArea> findByCityDistrictId(String cityDistrictId);
+	
+	@Query("select m from CityArea m where  m.cityDistrict.cityDistrictId=?1")
+	public List<CityArea> findAllByCityDistrictId(String cityDistrictId);
 	
 }

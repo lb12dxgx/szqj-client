@@ -1,5 +1,6 @@
 package com.szqj.before.rest;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -31,15 +32,37 @@ public class ApplyCityRest {
 	
 	
 	@RequestMapping(value = "list.do"  )
-	public RestJson list(String cityName, Integer pageNum, Integer size){
-		PageRequest pageable=Tools.getPage(pageNum-1, size);
-		Page<ApplyCity> page =null;
-		if(StringUtils.isBlank(cityName)){
-			page = applyCityRepository.findPage(pageable);
-		}else {
-			page = applyCityRepository.findPageByCityName(cityName,pageable);
-		}
-		return RestJson.createSucces(page);
+	public RestJson list(){
+		List<ApplyCity> list = applyCityRepository.findAll();
+		return RestJson.createSucces(list);
+	}
+	
+	
+	
+	@RequestMapping(value = "enabled.do"  )
+	public RestJson enabled(String applyCityId){
+		ApplyCity applyCity = applyCityRepository.findById(applyCityId).get();
+		applyCity.setState(1);
+		applyCityRepository.save(applyCity);
+		return RestJson.createSucces(applyCity);
+	}
+	
+	
+	@RequestMapping(value = "disabled.do"  )
+	public RestJson disabled(String applyCityId){
+		ApplyCity applyCity = applyCityRepository.findById(applyCityId).get();
+		applyCity.setState(2);
+		applyCityRepository.save(applyCity);
+		return RestJson.createSucces();
+	}
+	
+	
+	@RequestMapping(value = "save.do")
+	public RestJson save(ApplyCity applyCity){
+		applyCity.setState(1);
+		applyCity.setCreateDate(new Date());
+		applyCityRepository.save(applyCity);
+		return RestJson.createSucces();
 	}
 	
 	

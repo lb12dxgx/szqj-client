@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PersonAreaRepository extends JpaRepository<PersonArea, String> {
 	
-	@Query("select m from PersonArea m where  m.openid=?1 and  m.enterpriseId=?1")
+	@Query("select m from PersonArea m where  m.openid=?1 and  m.enterpriseId=?2")
 	public List<PersonArea> findByEnterpriseIdAndOpenid(String openid,String enterpriseId);
 	
 }

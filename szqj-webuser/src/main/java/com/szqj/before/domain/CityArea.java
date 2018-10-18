@@ -1,5 +1,6 @@
 package com.szqj.before.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,14 @@ public class CityArea {
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
 	private String cityAreaId;//申请城市区县ID
 	
+	@Column
+	private String areaName;//地域名称
 	
-	private String areaName;//区县名称
+	@Column
+	private String areaDesc;//网格说明
+	
+	@Column
+	private Integer state;//0:启用   1:禁用
 	
 	
 	@ManyToOne
@@ -70,6 +77,26 @@ public class CityArea {
 
 	public void setCityDistrict(CityDistrict cityDistrict) {
 		this.cityDistrict = cityDistrict;
+	}
+
+
+	public Integer getState() {
+		return state;
+	}
+
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+
+	public String getAreaDesc() {
+		return areaDesc;
+	}
+
+
+	public void setAreaDesc(String areaDesc) {
+		this.areaDesc = areaDesc;
 	}
 	
 	

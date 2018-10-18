@@ -33,7 +33,7 @@ public class ApplyCity {
 	@Column
 	private Date createDate;//创建时间
 	@Column
-	private Integer state;//0:申请中   1：审批通过:1  审批未通过:2
+	private Integer state;//0:申请中   1：审批通过:  2:删除
 	
 	
 	
