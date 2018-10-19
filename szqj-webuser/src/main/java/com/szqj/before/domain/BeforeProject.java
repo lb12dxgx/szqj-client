@@ -53,6 +53,10 @@ public class BeforeProject {
 	
 	private String picId;//现场照片ID
 	
+	private String cityDistrictId;//申请城市区县ID
+	
+	private String cityAreaId;//申请城市地域ID
+	
 	@Transient
 	private String num;//回复数
 
@@ -198,6 +202,22 @@ public class BeforeProject {
 
 	public void setEnttelphone(String enttelphone) {
 		this.enttelphone = enttelphone;
+	}
+
+	public String getCityDistrictId() {
+		return cityDistrictId;
+	}
+
+	public void setCityDistrictId(String cityDistrictId) {
+		this.cityDistrictId = cityDistrictId;
+	}
+
+	public String getCityAreaId() {
+		return cityAreaId;
+	}
+
+	public void setCityAreaId(String cityAreaId) {
+		this.cityAreaId = cityAreaId;
 	}
 	
 	

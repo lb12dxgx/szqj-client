@@ -18,7 +18,7 @@ public class CityArea {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
-	private String cityAreaId;//申请城市区县ID
+	private String cityAreaId;//申请城市地域ID
 	
 	@Column
 	private String areaName;//地域名称

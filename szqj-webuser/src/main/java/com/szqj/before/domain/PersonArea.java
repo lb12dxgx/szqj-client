@@ -17,7 +17,7 @@ public class PersonArea {
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  
 	private String personAreaId;//个人关注区域表
 	
-	private Integer type;//0:城市  1:区县  2:地域
+	private Integer type;//1:区县  2:地域
 	
 	private String content;//内容
 	

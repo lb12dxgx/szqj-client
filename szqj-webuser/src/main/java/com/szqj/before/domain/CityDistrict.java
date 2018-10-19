@@ -1,5 +1,8 @@
 package com.szqj.before.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -38,6 +42,9 @@ public class CityDistrict {
 	@ManyToOne
 	@JoinColumn(name = "applyCity_ID")
 	private ApplyCity applyCity;
+	
+	@Transient
+	private List<CityArea> list=new ArrayList<CityArea>();
 
 	public String getCityDistrictId() {
 		return cityDistrictId;
@@ -119,6 +126,21 @@ public class CityDistrict {
 	}
 
 
+	public List<CityArea> getList() {
+		return list;
+	}
+
+
+	public void addCityArea(CityArea cityArea) {
+		this.list.add(cityArea);
+	}
+
+
+	public void setList(List<CityArea> list) {
+		this.list = list;
+	}
+
+	
 	
 	
 	
