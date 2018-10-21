@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "before_city_area")
 public class CityArea {
@@ -29,12 +31,12 @@ public class CityArea {
 	@Column
 	private Integer state;//0:启用   1:禁用
 	
-	
+	@JsonIgnore 
 	@ManyToOne
 	@JoinColumn(name = "applyCity_ID")
 	private ApplyCity applyCity;
 	
-	
+	@JsonIgnore 
 	@ManyToOne
 	@JoinColumn(name = "cityDistrict_ID")
 	private CityDistrict cityDistrict;

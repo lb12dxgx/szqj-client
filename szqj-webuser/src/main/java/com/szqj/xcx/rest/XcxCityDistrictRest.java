@@ -15,6 +15,8 @@ import com.szqj.before.domain.CityDistrictRepository;
 import com.szqj.before.domain.PersonArea;
 import com.szqj.before.domain.PersonAreaRepository;
 import com.szqj.reg.service.RegService;
+import com.szqj.service.domain.Enterprise;
+import com.szqj.service.domain.EnterpriseRepository;
 import com.szqj.service.domain.Person;
 import com.szqj.util.RestJson;
 
@@ -30,11 +32,14 @@ public class XcxCityDistrictRest {
 	private PersonAreaRepository personAreaRepository;
 	
 	@Autowired
+	private EnterpriseRepository enterpriseRepository;
+	
+	@Autowired
 	private RegService regService;
 	
 
 	@RequestMapping(value = "/before/citydistrict/save.xcx"  )
-	public RestJson save( @ModelAttribute("openid") String openid,List<String> cityDistrictIdList){
+	public RestJson save( @ModelAttribute("openid") String openid,String[] cityDistrictIdList){
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId=person.getCompanyId();
 		PersonArea personArea=new PersonArea();
@@ -56,9 +61,12 @@ public class XcxCityDistrictRest {
 		return RestJson.createSucces();
 	}
 	
-	@RequestMapping(value = "/before/citydistrict/listByCityId.xcx"  )
-	public RestJson listByCityId(String applyCityId){
-		List<CityDistrict> list = cityDistrictRepository.findByApplyCityId(applyCityId);
+	@RequestMapping(value = "/before/citydistrict/getDistrictByOpenId.xcx"  )
+	public RestJson getDistrictByOpenId( @ModelAttribute("openid") String openid){
+		Person person = regService.getPersonByOpenid(openid);
+		String enterpriseId=person.getCompanyId();
+		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
+		List<CityDistrict> list = cityDistrictRepository.findByApplyCityId(enterprise.getApplyCityId());
 		return RestJson.createSucces(list);
 	}
 	
