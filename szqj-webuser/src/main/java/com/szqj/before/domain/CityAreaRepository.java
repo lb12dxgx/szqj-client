@@ -25,4 +25,5 @@ public interface CityAreaRepository extends JpaRepository<CityArea, String> {
 	@Query("select m from CityArea m where  m.cityDistrict.cityDistrictId=?1")
 	public List<CityArea> findAllByCityDistrictId(String cityDistrictId);
 	
+	
 }

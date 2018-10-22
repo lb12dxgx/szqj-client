@@ -48,13 +48,18 @@ public class XcxCityAreaRest {
 	public RestJson save( @ModelAttribute("openid") String openid,String[] cityAreaIdList){
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId=person.getCompanyId();
-		PersonArea personArea=new PersonArea();
+		 List<PersonArea> personAreas = personAreaRepository.findByOpenidAndEnterpriseId(openid,enterpriseId);
+		 PersonArea personArea=new PersonArea();
+		if(personAreas!=null&&personAreas.size()>0){
+			personArea=personAreas.get(0);
+		}
 		personArea.setEnterpriseId(enterpriseId);
 		personArea.setOpenid(openid);
+		personArea.setPersonId(person.getPersonId());
 		personArea.setType(2);
 		String content="";
 		for(String cityAreaId:cityAreaIdList ){
-			if(StringUtils.isBlank(cityAreaId)){
+			if(StringUtils.isBlank(content)){
 				content="1,"+cityAreaId;
 			}else{
 				content=content+","+cityAreaId;
@@ -74,13 +79,31 @@ public class XcxCityAreaRest {
 		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
 		String applyCityId=enterprise.getApplyCityId();
 		List<CityDistrict> list = cityDistrictRepository.findByApplyCityId(applyCityId);
+		String personAreaStr="";
+		List<PersonArea> personAreaList = personAreaRepository.findByOpenidAndEnterpriseId(openid,enterpriseId);
+		if(personAreaList!=null&&personAreaList.size()>0){
+			personAreaStr=personAreaList.get(0).getContent();
+		}
+		
 		for(CityDistrict cityDistrict:list){
 			String cityDistrictId=cityDistrict.getCityDistrictId();
 			List<CityArea> areaList = cityAreaRepository.findByCityDistrictId(cityDistrictId);
+			for(CityArea cityArea:areaList){
+				String cityAreaId = cityArea.getCityAreaId();
+				if(personAreaStr.indexOf(cityAreaId)>0){
+					cityArea.setChecked(true);
+				}
+			}
 			cityDistrict.setList(areaList);
 		}
+		
 		return RestJson.createSucces(list);
 	}
+	
+	
+	
+
+	
 	
 	
 	

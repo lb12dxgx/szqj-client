@@ -45,6 +45,9 @@ public class CityDistrict {
 	
 	@Transient
 	private List<CityArea> list=new ArrayList<CityArea>();
+	
+	@Transient
+	private boolean checked=false;
 
 	public String getCityDistrictId() {
 		return cityDistrictId;
@@ -138,6 +141,16 @@ public class CityDistrict {
 
 	public void setList(List<CityArea> list) {
 		this.list = list;
+	}
+
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 
 	

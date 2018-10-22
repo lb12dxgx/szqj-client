@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -40,6 +41,9 @@ public class CityArea {
 	@ManyToOne
 	@JoinColumn(name = "cityDistrict_ID")
 	private CityDistrict cityDistrict;
+	
+	@Transient
+	private boolean checked=false;
 
 
 	public String getCityAreaId() {
@@ -99,6 +103,16 @@ public class CityArea {
 
 	public void setAreaDesc(String areaDesc) {
 		this.areaDesc = areaDesc;
+	}
+
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 	
 	
