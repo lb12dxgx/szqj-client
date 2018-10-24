@@ -22,6 +22,13 @@ public interface BeforeProjectRepository extends JpaRepository<BeforeProject, St
 	@Query("select m from BeforeProject m where  m.applyCityId=?1 and not exists (select r from ProjectResult r where r.beforeProject=m and r.enterpriseId=?2)  and m.enterpriseId!=?2")
 	public List<BeforeProject> findByApplyCityIdAndEnterpriseId(String applyCityId,String enterpriseId);
 	
+	@Query("select m from BeforeProject m where  m.applyCityId=?1 and not exists (select r from ProjectResult r where r.beforeProject=m and r.enterpriseId=?2)  and m.enterpriseId!=?2 and m.cityAreaId in ?3")
+	public List<BeforeProject> findByApplyCityIdAndEnterpriseIdAndCityAreaIds(String applyCityId,String enterpriseId,String[] cityAreaIdList);
+	
+	
+	@Query("select m from BeforeProject m where  m.applyCityId=?1 and not exists (select r from ProjectResult r where r.beforeProject=m and r.enterpriseId=?2)  and m.enterpriseId!=?2 and m.cityDistrictId in ?3")
+	public List<BeforeProject> findByApplyCityIdAndEnterpriseIdAndCityDistrictIds(String applyCityId,String enterpriseId,String[] cityDistrictIdList);
+	
 	@Query("select m from BeforeProject m   where  m.openid=?1 ")
 	public List<BeforeProject> findByApplyOpenId(String openId);
 	

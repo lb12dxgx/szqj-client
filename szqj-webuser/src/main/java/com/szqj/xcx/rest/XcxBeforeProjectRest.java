@@ -1,10 +1,12 @@
 package com.szqj.xcx.rest;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.before.domain.BeforeProject;
 import com.szqj.before.domain.BeforeProjectRepository;
+import com.szqj.before.domain.PersonArea;
+import com.szqj.before.domain.PersonAreaRepository;
 import com.szqj.before.domain.ProjectResult;
 import com.szqj.before.domain.ProjectResultRepository;
 import com.szqj.reg.service.RegService;
@@ -35,6 +39,9 @@ public class XcxBeforeProjectRest {
 	
 	@Autowired
 	private ProjectResultRepository projectResultRepository;
+	
+	@Autowired
+	private PersonAreaRepository personAreaRepository;
 	
 	@RequestMapping(value = "/before/applayproject/listByOpenId.xcx"  )
 	public RestJson listByOpenId( @ModelAttribute("openid") String openid){
@@ -62,7 +69,23 @@ public class XcxBeforeProjectRest {
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId = person.getCompanyId();
 		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
-		List<BeforeProject> list = beforeProjectRepository.findByApplyCityIdAndEnterpriseId(enterprise.getApplyCityId(),enterprise.getEnterpriseId());
+		
+		List<PersonArea> l = personAreaRepository.findByOpenidAndEnterpriseId(openid, enterpriseId);
+		List<BeforeProject> list=new ArrayList<BeforeProject>();
+		if(l==null||l.size()==0) {
+			list = beforeProjectRepository.findByApplyCityIdAndEnterpriseId(enterprise.getApplyCityId(),enterprise.getEnterpriseId());
+		}else {
+			PersonArea personArea=l.get(0);
+			String[] content=StringUtils.split(personArea.getContent(), ",");
+			if(personArea.getType()==1) {
+				list = beforeProjectRepository.findByApplyCityIdAndEnterpriseIdAndCityDistrictIds(enterprise.getApplyCityId(),enterprise.getEnterpriseId(), content);
+			}else {
+				list = beforeProjectRepository.findByApplyCityIdAndEnterpriseIdAndCityAreaIds(enterprise.getApplyCityId(),enterprise.getEnterpriseId(), content);
+			}
+		}
+		
+		
+		
 		for(BeforeProject project:list){
 			addNum(project);
 		}
