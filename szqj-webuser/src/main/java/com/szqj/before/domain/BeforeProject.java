@@ -26,6 +26,10 @@ public class BeforeProject {
 	private String projectName;//项目名称
 	
 	private String projectType;//项目类型
+
+	private String projectDistrict;//项目所属区县
+	
+	private String projectArea;//项目所属地区
 	
 	private Date projectStartDate;//施工时间
 	
@@ -218,6 +222,22 @@ public class BeforeProject {
 
 	public void setCityAreaId(String cityAreaId) {
 		this.cityAreaId = cityAreaId;
+	}
+
+	public String getProjectDistrict() {
+		return projectDistrict;
+	}
+
+	public void setProjectDistrict(String projectDistrict) {
+		this.projectDistrict = projectDistrict;
+	}
+
+	public String getProjectArea() {
+		return projectArea;
+	}
+
+	public void setProjectArea(String projectArea) {
+		this.projectArea = projectArea;
 	}
 	
 	
