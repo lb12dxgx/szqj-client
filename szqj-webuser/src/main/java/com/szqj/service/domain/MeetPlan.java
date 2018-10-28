@@ -34,6 +34,10 @@ public class MeetPlan {
     
     private String meetId;//会议ID
     
+    private String videoUrl;//视频地址
+    
+    private String picUrl;//视频图片地址
+    
     
     private Date createDate;//创建时间
 
@@ -101,6 +105,22 @@ public class MeetPlan {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
+
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
 
 	

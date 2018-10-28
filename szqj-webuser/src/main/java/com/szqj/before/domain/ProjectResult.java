@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.szqj.service.domain.Enterprise;
 
 @Entity
@@ -51,7 +52,7 @@ public class ProjectResult {
 	private String result;//管线情况 0：无管线  1：有管线
 	
 	private String type;//管线类型
-	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private String resultDate;//标注时间
 	
 	private String resultSumary;//标注说明

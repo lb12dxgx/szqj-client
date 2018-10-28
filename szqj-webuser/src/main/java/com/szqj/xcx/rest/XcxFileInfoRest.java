@@ -69,7 +69,8 @@ public class XcxFileInfoRest {
     		f.setFileType(suffixName);
     		f.setBussinessId(accidentPicId);
     		fileInfoRepository.save(f);
-            return RestJson.createSucces(f);
+    		List<FileInfo> list = fileInfoRepository.findByBussinessId(f.getBussinessId());
+            return RestJson.createSucces(list);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -147,7 +148,8 @@ public class XcxFileInfoRest {
     		f.setFileType(suffixName);
     		f.setBussinessId(accidentVideoId);
     		fileInfoRepository.save(f);
-            return RestJson.createSucces(f);
+    		List<FileInfo> list = fileInfoRepository.findByBussinessId(f.getBussinessId());
+            return RestJson.createSucces(list);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {

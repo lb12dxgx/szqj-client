@@ -61,10 +61,8 @@ public class XcxAccidentInfoRest {
 	public RestJson accidentinfo(@ModelAttribute("openid") String openid,Integer pageNum, Integer size, String buyInfoName){
 		List<Account> accounts = accountRepository.findByOpenid(openid);
 		Account account = accounts.get(0);
-		PageRequest pageable=Tools.getPage(pageNum, 6);
-		Page<AccidentInfo> page=null;
-		page=accidentInfoRepository.findPageByAccountId(account.getAccountId(), pageable);
-		return RestJson.createSucces(page);
+		List<AccidentInfo> list = accidentInfoRepository.findPageByAccountId(account.getAccountId());
+		return RestJson.createSucces(list);
 	}
 	
 	

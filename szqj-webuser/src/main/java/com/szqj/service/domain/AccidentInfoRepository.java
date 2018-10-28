@@ -22,10 +22,11 @@ public interface AccidentInfoRepository extends PagingAndSortingRepository<Accid
 
 
 	@Query("select m from AccidentInfo m where m.accountId=?1  order by m.creatDate desc")
-	Page<AccidentInfo> findPageByAccountId(String accountId,Pageable pageable);
+	List<AccidentInfo> findPageByAccountId(String accountId);
 	
-
-
+	@Query("select m from AccidentInfo m where m.accountId=?1  order by m.creatDate desc")
+	Page<AccidentInfo> findPageByAccountId(String accountId, Pageable pageable);
+	
 	@Query("select m from AccidentInfo m  order by m.creatDate desc")
 	Page<AccidentInfo> findAllPage(Pageable pageable);
 
@@ -52,5 +53,8 @@ public interface AccidentInfoRepository extends PagingAndSortingRepository<Accid
 
 	@Query("select m from AccidentInfo m where  m.state=2 order by m.creatDate desc")
 	Page<AccidentInfo> findNoPassPage(Pageable pageable);
+
+
+	
 	
 }

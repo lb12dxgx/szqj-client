@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 管线事故
  * @author libingbing
@@ -33,6 +35,7 @@ public class AccidentInfo {
 	
 	private String accidentPlace;//事故地点
 	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date accidentDate;//事故时间
 	
 	private String personName;//姓名

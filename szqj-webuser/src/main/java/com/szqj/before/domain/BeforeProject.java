@@ -12,6 +12,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "before_project")
 public class BeforeProject {
@@ -30,7 +32,7 @@ public class BeforeProject {
 	private String projectDistrict;//项目所属区县
 	
 	private String projectArea;//项目所属地区
-	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date projectStartDate;//施工时间
 	
 	private String projectAddren;//工程地点

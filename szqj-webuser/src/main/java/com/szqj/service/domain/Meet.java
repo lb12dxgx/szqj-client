@@ -11,6 +11,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "service_meet")
 public class Meet {
@@ -30,6 +32,7 @@ public class Meet {
 	
 	private Integer showMain=0;//1:单独显示,0:列表显示
 	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;//开始时间
 	
 	private Date endDate;//结束时间
