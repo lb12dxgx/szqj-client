@@ -1,8 +1,14 @@
 package com.szqj.mail.service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.szqj.mail.domain.Exchange;
 import com.szqj.sns.domain.Problem;
 
+
+@Service
+@Transactional
 public class MoneyEventService {
 
 	

@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.mail.domain.Exchange;
-import com.szqj.mail.domain.ExchangeRepository;
 import com.szqj.mail.domain.Gift;
 import com.szqj.mail.domain.GiftRepository;
-import com.szqj.mail.domain.MoneyRecordRepository;
 import com.szqj.mail.service.MailService;
-import com.szqj.sns.domain.Problem;
 import com.szqj.util.RestJson;
 
 @RestController

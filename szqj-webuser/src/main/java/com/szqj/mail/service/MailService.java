@@ -3,6 +3,8 @@ package com.szqj.mail.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.szqj.mail.domain.Exchange;
 import com.szqj.mail.domain.ExchangeRepository;
@@ -12,7 +14,10 @@ import com.szqj.mail.domain.MoneyRecordRepository;
 import com.szqj.reg.service.RegService;
 import com.szqj.service.domain.Person;
 
-public class MailService {
+
+@Service
+@Transactional
+public class MailService { 
 	
 	@Autowired
 	private ExchangeRepository exchangeRepository;
