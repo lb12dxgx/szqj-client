@@ -10,7 +10,6 @@ import com.szqj.mail.domain.Exchange;
 import com.szqj.mail.domain.ExchangeRepository;
 import com.szqj.mail.domain.Gift;
 import com.szqj.mail.domain.GiftRepository;
-import com.szqj.mail.domain.MoneyRecordRepository;
 import com.szqj.reg.service.RegService;
 import com.szqj.service.domain.Person;
 
@@ -26,9 +25,7 @@ public class MailService {
 	private GiftRepository giftRepository;
 	
 	
-	@Autowired
-	private MoneyRecordRepository moneyRecordRepository;
-	
+		
 	
 	@Autowired
 	private RegService regService;

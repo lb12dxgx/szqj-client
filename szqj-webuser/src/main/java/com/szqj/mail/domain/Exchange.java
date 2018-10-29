@@ -35,6 +35,8 @@ public class Exchange {
 	
 	private String personId;//用户id
 	
+	private String personName;//用户名
+	
 	private String openid;//微信openId
 	
 	private Date createDate;//创建时间
@@ -46,6 +48,9 @@ public class Exchange {
 	private Date  postDate;//快递时间
 	
 	private String postCode;//快递单号
+	
+	
+	private Integer state;//0:未处理 1:已处理 
 
 	public String getExchangeId() {
 		return exchangeId;
@@ -141,6 +146,22 @@ public class Exchange {
 
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 	
 	

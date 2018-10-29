@@ -17,13 +17,13 @@ import org.hibernate.annotations.GenericGenerator;
  */
 
 @Entity
-@Table(name = "mail_money_record")
-public class MoneyRecord {
+@Table(name = "mail_score_record")
+public class ScoreRecord {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-	private String moneyRecordId;//礼物id
+	private String scoreRecordId;//礼物id
 	
 	private String businessName;//业务名称
 	
@@ -35,16 +35,18 @@ public class MoneyRecord {
 	
 	private String personId;//用户id
 	
+	private String personName;//用户名
+	
 	private String openid;//微信openId
 	
 	
 
-	public String getMoneyRecordId() {
-		return moneyRecordId;
+	public String getScoreRecordId() {
+		return scoreRecordId;
 	}
 
-	public void setMoneyRecordId(String moneyRecordId) {
-		this.moneyRecordId = moneyRecordId;
+	public void setScoreRecordId(String scoreRecordId) {
+		this.scoreRecordId = scoreRecordId;
 	}
 
 	public String getBusinessName() {
@@ -93,6 +95,14 @@ public class MoneyRecord {
 
 	public void setOpenid(String openid) {
 		this.openid = openid;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
 	}
 	
 	
