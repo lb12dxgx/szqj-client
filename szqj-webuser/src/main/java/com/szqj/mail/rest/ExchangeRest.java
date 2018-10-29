@@ -4,9 +4,11 @@ import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.mail.domain.Exchange;
 import com.szqj.mail.domain.ExchangeRepository;
@@ -14,6 +16,16 @@ import com.szqj.mail.domain.Gift;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
 
+
+
+/**
+ * 兑换记录
+ * @author libingbing
+ *
+ */
+@RestController
+@RequestMapping("/system/mail/exchange/")
+@EnableAutoConfiguration
 public class ExchangeRest {
 	
 	@Autowired

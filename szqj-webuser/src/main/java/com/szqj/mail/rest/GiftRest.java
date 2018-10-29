@@ -2,6 +2,7 @@ package com.szqj.mail.rest;
 
 import java.util.Date;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,12 @@ import com.szqj.mail.domain.GiftRepository;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
 
+
+/**
+ * 礼物
+ * @author libingbing
+ *
+ */
 @RestController
 @RequestMapping("/system/mail/gift/")
 @EnableAutoConfiguration

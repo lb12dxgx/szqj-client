@@ -2,15 +2,28 @@ package com.szqj.mail.rest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.mail.domain.ScoreRecord;
 import com.szqj.mail.domain.ScoreRecordRepository;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
 
+
+
+/**
+ * 积分记录
+ * @author libingbing
+ *
+ */
+
+@RestController
+@RequestMapping("/system/mail/score/")
+@EnableAutoConfiguration
 public class ScoreRecordRest {
 	
 	@Autowired
