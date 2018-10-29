@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 public interface RechargeRecordRepository extends PagingAndSortingRepository<RechargeRecord, String> {
 
 	@Query("select m from RechargeRecord m  where m.personName like %?1%  order by m.createDate ")
-	Page<RechargeRecord> findByPersonName(String personName, PageRequest pageable);
+	Page<RechargeRecord> findByPersonName(String personName, Pageable pageable);
 
 	
 

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 public interface ScoreRecordRepository extends PagingAndSortingRepository<ScoreRecord, String> {
 
 	@Query("select m from ScoreRecord m  where m.personName like %?1%  order by m.createDate ")
-	Page<ScoreRecord> findByPersonName(String personName, PageRequest pageable);
+	Page<ScoreRecord> findByPersonName(String personName, Pageable pageable);
 
 
 
