@@ -27,6 +27,8 @@ public class ScoreRecord {
 	
 	private String businessName;//业务名称
 	
+	private String businessId;//业务名称
+	
 	private Integer businessType;//记录类型 0:添加积分  1：扣除积分
 	
 	private Integer num;//积分数量 扣除为负 添加为正
@@ -103,6 +105,14 @@ public class ScoreRecord {
 
 	public void setPersonName(String personName) {
 		this.personName = personName;
+	}
+
+	public String getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(String businessId) {
+		this.businessId = businessId;
 	}
 	
 	

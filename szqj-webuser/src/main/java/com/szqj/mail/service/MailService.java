@@ -104,11 +104,34 @@ public class MailService {
         int month = calendar.get(Calendar.MONTH)+1;//得到月份
         int day = calendar.get(Calendar.DATE);//得到月份中今天的号数
 		 java.util.List<Exchange> exchangeList = exchangeRepository.findBYYearAndMonthAndDay(year,month,day);
+		 exchange.setDaynum(day);
+		 exchange.setYearnum(year);
+		 exchange.setMonthnum(month);
 		if(exchangeList==null||exchangeList.size()==0){
-			
+			exchange.setCodeNum(1);
+		}else {
+			exchange.setCodeNum(exchangeList.get(0).getCodeNum()+1);
 		}
 		
+		exchange.setExchangeCode(getCode(exchange));
 		
+		
+	}
+	
+	
+	private String getCode(Exchange exchange) {
+		int l=(exchange.getCodeNum()+"").length();
+		String str="";
+		if(l==1) {
+			str=str+"000"+exchange.getCodeNum();
+		}else if(l==2) {
+			str=str+"00"+exchange.getCodeNum();
+		}else if(l==3) {
+			str=str+"0"+exchange.getCodeNum();
+		}else if(l==4) {
+			str=""+exchange.getCodeNum();
+		}
+		return str;
 	}
 
 	/**
@@ -122,6 +145,11 @@ public class MailService {
 		Gift gift = giftRepository.findById(giftId).get();
 		return num*gift.getPrice();
 	}
+	
+	
+	
+	
+	
 	
 
 }

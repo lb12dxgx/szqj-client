@@ -39,6 +39,9 @@ public interface ExchangeRepository extends PagingAndSortingRepository<Exchange,
 	@Query("select m from Exchange m  where m.yearnum=?1 and  m.monthnum=?2 and daynum=?3 order by m.createDate ")
 	List<Exchange> findBYYearAndMonthAndDay(int year, int month, int date);
 
+	@Query("select m from Exchange m  where m.openid=?1 order by m.createDate ")
+	List<Exchange> findByOpenId(String openid);
+
 
 
 

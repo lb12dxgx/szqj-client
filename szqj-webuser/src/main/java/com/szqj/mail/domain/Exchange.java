@@ -31,6 +31,8 @@ public class Exchange {
 	
 	private String giftId;//礼物id
 	
+	private String giftName;//礼物id
+	
 	private Integer num;//兑换数量
 	
 	private Integer money;//积分
@@ -51,7 +53,7 @@ public class Exchange {
 	
 	private String telphone;//用户电话
 	
-	private String addren;//用户地址
+	private String postAddren;//用户地址
 	
 	private Date  postDate;//快递时间
 	
@@ -131,13 +133,13 @@ public class Exchange {
 	public void setTelphone(String telphone) {
 		this.telphone = telphone;
 	}
-
-	public String getAddren() {
-		return addren;
+	
+	public String getPostAddren() {
+		return postAddren;
 	}
 
-	public void setAddren(String addren) {
-		this.addren = addren;
+	public void setPostAddren(String postAddren) {
+		this.postAddren = postAddren;
 	}
 
 	public Date getPostDate() {
@@ -202,6 +204,14 @@ public class Exchange {
 
 	public void setDaynum(Integer daynum) {
 		this.daynum = daynum;
+	}
+
+	public String getGiftName() {
+		return giftName;
+	}
+
+	public void setGiftName(String giftName) {
+		this.giftName = giftName;
 	}
 	
 	

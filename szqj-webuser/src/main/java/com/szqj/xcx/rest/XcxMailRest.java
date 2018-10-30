@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.mail.domain.Exchange;
+import com.szqj.mail.domain.ExchangeRepository;
 import com.szqj.mail.domain.Gift;
 import com.szqj.mail.domain.GiftRepository;
 import com.szqj.mail.service.MailService;
@@ -23,6 +24,9 @@ public class XcxMailRest {
 	
 	@Autowired
 	private GiftRepository giftRepository;
+	
+	@Autowired
+	private ExchangeRepository exchangeRepository;
 	
 	@Autowired
 	private RegService regService;
@@ -54,13 +58,12 @@ public class XcxMailRest {
 		return RestJson.createSucces(retexchange);
 	}
 	
-	
-	@RequestMapping(value = "/getPerson.xcx"  )
-	public RestJson getPerson(@ModelAttribute("openid") String openid){
-		Person person = regService.getPersonByOpenid(openid);
-		return RestJson.createSucces(person);
+
+	@RequestMapping(value = "/exchangeList.xcx"  )
+	public RestJson exchangeList(@ModelAttribute("openid") String openid ){
+		List<Exchange> list = exchangeRepository.findByOpenId(openid);
+		return RestJson.createSucces(list);
 	}
-	
 	
 
 }

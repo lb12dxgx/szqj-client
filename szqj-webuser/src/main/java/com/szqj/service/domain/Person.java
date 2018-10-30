@@ -95,7 +95,7 @@ public class Person {
 	private Integer score;//个人积分
 	
 	@Column
-	private Integer postAddren;//个人积分
+	private String postAddren;//个人积分
 	
 	@Transient
 	private Integer workYear;//工作年龄
@@ -308,6 +308,12 @@ public class Person {
 	}
 	public void setScore(Integer score) {
 		this.score = score;
+	}
+	public String getPostAddren() {
+		return postAddren;
+	}
+	public void setPostAddren(String postAddren) {
+		this.postAddren = postAddren;
 	}
 	
    
