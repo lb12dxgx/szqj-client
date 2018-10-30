@@ -12,6 +12,8 @@ import com.szqj.mail.domain.Exchange;
 import com.szqj.mail.domain.Gift;
 import com.szqj.mail.domain.GiftRepository;
 import com.szqj.mail.service.MailService;
+import com.szqj.reg.service.RegService;
+import com.szqj.service.domain.Person;
 import com.szqj.util.RestJson;
 
 @RestController
@@ -22,14 +24,15 @@ public class XcxMailRest {
 	@Autowired
 	private GiftRepository giftRepository;
 	
-
+	@Autowired
+	private RegService regService;
 	
 	@Autowired
 	private MailService mailService;
 	
 	
-	@RequestMapping(value = "/sellGift.xcx"  )
-	public RestJson sellGift(){
+	@RequestMapping(value = "/giftList.xcx"  )
+	public RestJson giftList(){
 		List<Gift> list = giftRepository.findSellGift();
 		return RestJson.createSucces(list);
 	}
@@ -44,8 +47,20 @@ public class XcxMailRest {
 	
 	@RequestMapping(value = "/exchangeGift.xcx"  )
 	public RestJson exchangeGift( @ModelAttribute("openid") String openid ,Exchange exchange){
-	    mailService.exchangeGift(openid,exchange); 
-		return RestJson.createSucces(exchange);
+		Exchange retexchange= mailService.exchangeGift(openid,exchange); 
+		if(retexchange==null){
+			return RestJson.createError();
+		}
+		return RestJson.createSucces(retexchange);
 	}
+	
+	
+	@RequestMapping(value = "/getPerson.xcx"  )
+	public RestJson getPerson(@ModelAttribute("openid") String openid){
+		Person person = regService.getPersonByOpenid(openid);
+		return RestJson.createSucces(person);
+	}
+	
+	
 
 }

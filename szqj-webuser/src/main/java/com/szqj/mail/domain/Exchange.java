@@ -27,6 +27,8 @@ public class Exchange {
 	
 	private String exchangeCode;//兑换记录code
 	
+	private Integer codeNum;//编号数
+	
 	private String giftId;//礼物id
 	
 	private Integer num;//兑换数量
@@ -40,6 +42,12 @@ public class Exchange {
 	private String openid;//微信openId
 	
 	private Date createDate;//创建时间
+	
+	private Integer yearnum;//年
+	
+	private Integer monthnum;//月
+	
+	private Integer daynum;//日
 	
 	private String telphone;//用户电话
 	
@@ -162,6 +170,38 @@ public class Exchange {
 
 	public void setState(Integer state) {
 		this.state = state;
+	}
+
+	public Integer getCodeNum() {
+		return codeNum;
+	}
+
+	public void setCodeNum(Integer codeNum) {
+		this.codeNum = codeNum;
+	}
+
+	public Integer getYearnum() {
+		return yearnum;
+	}
+
+	public void setYearnum(Integer yearnum) {
+		this.yearnum = yearnum;
+	}
+
+	public Integer getMonthnum() {
+		return monthnum;
+	}
+
+	public void setMonthnum(Integer monthnum) {
+		this.monthnum = monthnum;
+	}
+
+	public Integer getDaynum() {
+		return daynum;
+	}
+
+	public void setDaynum(Integer daynum) {
+		this.daynum = daynum;
 	}
 	
 	

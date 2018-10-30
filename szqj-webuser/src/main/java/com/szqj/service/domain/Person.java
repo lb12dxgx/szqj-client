@@ -91,6 +91,12 @@ public class Person {
 	@Column
 	private String openid;//微信openId
 	
+	@Column
+	private Integer score;//个人积分
+	
+	@Column
+	private Integer postAddren;//个人积分
+	
 	@Transient
 	private Integer workYear;//工作年龄
 	@Transient
@@ -296,6 +302,12 @@ public class Person {
 	}
 	public void setPersonPosition(String personPosition) {
 		this.personPosition = personPosition;
+	}
+	public Integer getScore() {
+		return score;
+	}
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 	
    
