@@ -35,12 +35,16 @@ public class Gift {
 	
 	private Integer num;//礼物库存数量
 	
-	private String picId;//礼物说明图片
-	
 	private Date createDate;//创建时间
 	
-	private Integer state=0;// 0:启用 1:下架
+	private Integer state=0;// 0:上架 1:下架
 	
+	private String picUrl;//礼物大图片地址
+	
+	private String smailPicUrl;//礼物小图片地址
+	
+	
+	private  String descUrl;//礼物介绍地址
 
 	public String getGiftId() {
 		return giftId;
@@ -82,13 +86,7 @@ public class Gift {
 		this.num = num;
 	}
 
-	public String getPicId() {
-		return picId;
-	}
-
-	public void setPicId(String picId) {
-		this.picId = picId;
-	}
+	
 
 	public Date getCreateDate() {
 		return createDate;
@@ -112,6 +110,30 @@ public class Gift {
 
 	public void setState(Integer state) {
 		this.state = state;
+	}
+
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
+
+	public String getSmailPicUrl() {
+		return smailPicUrl;
+	}
+
+	public void setSmailPicUrl(String smailPicUrl) {
+		this.smailPicUrl = smailPicUrl;
+	}
+
+	public String getDescUrl() {
+		return descUrl;
+	}
+
+	public void setDescUrl(String descUrl) {
+		this.descUrl = descUrl;
 	}
 	
 	
