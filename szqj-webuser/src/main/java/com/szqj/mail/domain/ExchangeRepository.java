@@ -19,27 +19,27 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExchangeRepository extends PagingAndSortingRepository<Exchange, String> {
 
-	@Query("select m from Exchange m  where m.exchangeCode like %?1% and m.personName like %?2%  and m.state=?3 order by m.createDate ")
+	@Query("select m from Exchange m  where m.exchangeCode like %?1% and m.personName like %?2%  and m.state=?3 order by m.createDate desc  ")
 	Page<Exchange> findByExchangeCodeAndPersonName(String exchangeCode, String personName, int state, Pageable pageable);
 
-	@Query("select m from Exchange m  where m.exchangeCode like %?1%   and m.state=?2 order by m.createDate ")
+	@Query("select m from Exchange m  where m.exchangeCode like %?1%   and m.state=?2 order by m.createDate desc  ")
 	Page<Exchange> findByExchangeCode(String exchangeCode, int state, Pageable pageable);
 
-	@Query("select m from Exchange m  where  m.personName like %?1%  and m.state=?2 order by m.createDate ")
+	@Query("select m from Exchange m  where  m.personName like %?1%  and m.state=?2 order by m.createDate desc  ")
 	Page<Exchange> findByPersonName(String personName, int state, Pageable pageable);
 	
 	
-	@Query("select m from Exchange m  where m.state=1 order by m.createDate ")
+	@Query("select m from Exchange m  where m.state=1 order by m.createDate desc")
 	Page<Exchange> findFinsh( Pageable pageable);
 	
 	
-	@Query("select m from Exchange m  where m.state=0 order by m.createDate ")
+	@Query("select m from Exchange m  where m.state=0 order by m.createDate desc")
 	Page<Exchange> findUnFinsh( Pageable pageable);
 
-	@Query("select m from Exchange m  where m.yearnum=?1 and  m.monthnum=?2 and daynum=?3 order by m.createDate ")
+	@Query("select m from Exchange m  where m.yearnum=?1 and  m.monthnum=?2 and daynum=?3 order by m.createDate desc ")
 	List<Exchange> findBYYearAndMonthAndDay(int year, int month, int date);
 
-	@Query("select m from Exchange m  where m.openid=?1 order by m.createDate ")
+	@Query("select m from Exchange m  where m.openid=?1 order by m.createDate desc ")
 	List<Exchange> findByOpenId(String openid);
 
 

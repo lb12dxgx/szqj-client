@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 兑换记录
  * @author libingbing
@@ -31,7 +33,9 @@ public class Exchange {
 	
 	private String giftId;//礼物id
 	
-	private String giftName;//礼物id
+	private String giftName;//礼物名称
+	
+	private String smailPicUrl;//礼物 图片地址
 	
 	private Integer num;//兑换数量
 	
@@ -43,6 +47,7 @@ public class Exchange {
 	
 	private String openid;//微信openId
 	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date createDate;//创建时间
 	
 	private Integer yearnum;//年
@@ -55,6 +60,7 @@ public class Exchange {
 	
 	private String postAddren;//用户地址
 	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date  postDate;//快递时间
 	
 	private String postCode;//快递单号
@@ -212,6 +218,14 @@ public class Exchange {
 
 	public void setGiftName(String giftName) {
 		this.giftName = giftName;
+	}
+
+	public String getSmailPicUrl() {
+		return smailPicUrl;
+	}
+
+	public void setSmailPicUrl(String smailPicUrl) {
+		this.smailPicUrl = smailPicUrl;
 	}
 	
 	

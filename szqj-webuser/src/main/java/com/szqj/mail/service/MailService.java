@@ -83,7 +83,12 @@ public class MailService {
 			exchange.setCreateDate(new Date());
 			exchange.setOpenid(openid);
 			exchange.setPersonId(person.getPersonId());
-			exchange.setMoney(getMoney(exchange));
+			exchange.setPersonName(person.getPersonName());
+			exchange.setPersonId(person.getPersonId());
+			exchange.setPersonName(person.getPersonName());
+			exchange.setTelphone(person.getTelePhone());
+			exchange.setState(0);
+			getMoney(exchange);
 			genExchangeCode(exchange);
 			exchangeRepository.save(exchange);
 			moneyEventService.send(openid,exchange);
@@ -130,7 +135,22 @@ public class MailService {
 			str=str+"0"+exchange.getCodeNum();
 		}else if(l==4) {
 			str=""+exchange.getCodeNum();
+			
 		}
+		String monthStr="";
+		if(String.valueOf(exchange.getMonthnum()).length()==1){
+			monthStr="0"+exchange.getMonthnum();
+		}else{
+			monthStr=""+exchange.getMonthnum();
+		}
+		
+		String dayStr="";
+		if(String.valueOf(exchange.getDaynum()).length()==1){
+			dayStr="0"+exchange.getDaynum();
+		}else{
+			dayStr=""+exchange.getDaynum();
+		}
+		str=String.valueOf(exchange.getYearnum())+monthStr+dayStr+str;
 		return str;
 	}
 
@@ -139,11 +159,15 @@ public class MailService {
 	 * @param exchange
 	 * @return
 	 */
-	private Integer getMoney(Exchange exchange) {
+	private void getMoney(Exchange exchange) {
 		String giftId = exchange.getGiftId();
 		Integer num=exchange.getNum();
 		Gift gift = giftRepository.findById(giftId).get();
-		return num*gift.getPrice();
+		exchange.setNum(num);
+		exchange.setMoney(num*gift.getPrice());
+		exchange.setGiftName(gift.getName());
+		exchange.setSmailPicUrl(gift.getSmailPicUrl());
+		return ;
 	}
 	
 	

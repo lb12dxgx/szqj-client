@@ -66,6 +66,7 @@ public class MoneyEventService {
 		scoreRecord.setPersonId(person.getPersonId());
 		scoreRecord.setPersonName(person.getPersonName());
 		scoreRecord.setCreateDate(new Date());
+		scoreRecord.setBusinessId(exchange.getExchangeId());
 		scoreRecordRepository.save(scoreRecord);
 	}
 	
