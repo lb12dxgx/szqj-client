@@ -68,11 +68,20 @@ public class ExchangeRest {
 	}
 	
 	
+	@RequestMapping(value = "get.do")
+	public RestJson get(String exchangeId){
+		Exchange exchange = exchangeRepository.findById(exchangeId).get();
+		return RestJson.createSucces(exchange);
+	}
+	
+	
+	
 	@RequestMapping(value = "addPost.do")
 	public RestJson addPost(String exchangeId,String postCode,Date postDate){
 		Exchange exchange = exchangeRepository.findById(exchangeId).get();
 		exchange.setPostCode(postCode);
 		exchange.setPostDate(postDate);
+		exchange.setState(1);
 		exchangeRepository.save(exchange);
 		return RestJson.createSucces(exchange);
 	}

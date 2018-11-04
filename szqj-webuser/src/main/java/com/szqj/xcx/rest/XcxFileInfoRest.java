@@ -82,6 +82,47 @@ public class XcxFileInfoRest {
 	}
 	
 	
+	
+	@RequestMapping(value = "/sns/uploadImg.xcx"  )
+	@ResponseBody
+	public RestJson uploadSnsImg(@RequestParam("file") MultipartFile file,String openIdMd5,String picId){
+		String openid = redisService.getOpenId(openIdMd5);
+		Account account = accountRepository.findByOpenid(openid).get(0);
+		String dirName ="content/sns/img/";
+		String fileName = file.getOriginalFilename();
+		//获取文件的后缀名
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        fileName = UUID.randomUUID() + suffixName;
+        File dest = new File(uploadPath +dirName+File.separator+ fileName);
+        // 检测是否存在目录
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
+        try {
+            file.transferTo(dest);
+            FileInfo f=new FileInfo();
+    		f.setCreateDate(new Date());
+    		f.setCreateUserId(account.getAccountId());
+    		f.setDelFlag(ConstantUtils.NEW_FLAG);
+    		f.setFilePath(uploadPath +dirName+File.separator+ fileName);
+    		f.setFileWebPath(dirName+"/"+fileName);
+    		f.setFileName(file.getOriginalFilename());
+    		f.setFileType(suffixName);
+    		f.setBussinessId(picId);
+    		fileInfoRepository.save(f);
+    		List<FileInfo> list = fileInfoRepository.findByBussinessId(f.getBussinessId());
+            return RestJson.createSucces(list);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return RestJson.createError();
+		
+		
+	}
+	
+	
 	@RequestMapping(value = "/before/applayproject/uploadImg.xcx"  )
 	@ResponseBody
 	public RestJson uploadBeforeImg(@RequestParam("file") MultipartFile file,String openIdMd5,String picId){
@@ -109,7 +150,8 @@ public class XcxFileInfoRest {
     		f.setFileType(suffixName);
     		f.setBussinessId(picId);
     		fileInfoRepository.save(f);
-            return RestJson.createSucces(f);
+    		List<FileInfo> list = fileInfoRepository.findByBussinessId(f.getBussinessId());
+            return RestJson.createSucces(list);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {

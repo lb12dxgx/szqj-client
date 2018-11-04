@@ -27,6 +27,7 @@ public class Card {
 	private String personId;//用户id
 	@Column
 	private String openid;//微信openId
+	
 	@Column
 	private String enterpriseName;//企业名称
 	@Column

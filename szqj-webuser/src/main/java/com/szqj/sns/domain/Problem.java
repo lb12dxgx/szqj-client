@@ -31,6 +31,8 @@ public class Problem {
 	
 	private String giftId;//礼物ID
 	
+	private String giftName;//礼物名称
+	
 	private Integer giftNum;//礼物数量
 	
 	private Integer money;//问题积分
@@ -39,9 +41,13 @@ public class Problem {
 	
 	private String picId;//问题图片
 	
+	private String videoId;//问题视频
+	
 	private Integer viewNum;//查看数量
 	
 	private Date createDate;//创建时间
+	
+	private String personName;//用户名
 	
 	private String personId;//用户id
 	
@@ -145,6 +151,30 @@ public class Problem {
 
 	public void setMoney(Integer money) {
 		this.money = money;
+	}
+
+	public String getVideoId() {
+		return videoId;
+	}
+
+	public void setVideoId(String videoId) {
+		this.videoId = videoId;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+	public String getGiftName() {
+		return giftName;
+	}
+
+	public void setGiftName(String giftName) {
+		this.giftName = giftName;
 	}
 
 	

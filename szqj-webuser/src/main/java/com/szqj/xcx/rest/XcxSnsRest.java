@@ -1,6 +1,9 @@
 package com.szqj.xcx.rest;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -11,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.mail.domain.GiftRepository;
+import com.szqj.reg.service.RegService;
 import com.szqj.service.domain.AccidentInfo;
+import com.szqj.service.domain.Person;
 import com.szqj.sns.domain.Answer;
 import com.szqj.sns.domain.AnswerRepository;
 import com.szqj.sns.domain.Card;
@@ -51,6 +56,10 @@ public class XcxSnsRest {
 	@Autowired
 	private GiftRepository giftRepository;
 	
+	@Autowired
+	private RegService regService;
+	
+	
 	/**
 	 * 
 	 * @param pageNum
@@ -88,8 +97,22 @@ public class XcxSnsRest {
 		return RestJson.createSucces(page);
 	}
 	
+	
+	@RequestMapping(value = "/addProblem.xcx"  )
+	public RestJson addProblem( Map<String,String> map){
+		map.put("picId", UUID.randomUUID().toString());
+		return RestJson.createSucces(map);
+	}
+	
 	@RequestMapping(value = "/saveProblem.xcx"  )
 	public RestJson saveProblem(@ModelAttribute("openid") String openid,Problem problem){
+		Person person = regService.getPersonByOpenid(openid);
+		problem.setCreateDate(new Date());
+		problem.setOpenid(openid);
+		problem.setPersonId(person.getPersonId());
+		problem.setPersonName(person.getPersonName());
+		problem.setViewNum(1);
+		
 		String giftId=problem.getGiftId();
 		Integer price = giftRepository.findById(giftId).get().getPrice();
 		Integer giftNum = problem.getGiftNum();
