@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.dom4j.Document;
@@ -182,5 +183,16 @@ public class PayUtil {
 	            e.printStackTrace();
 	        }
 	        return map;
+	}
+	
+	public static String radomStr(Integer num){
+		String str="";
+		for(int i = 0; i < num; i++)  
+        {  
+			Random random = new Random();  
+            int r = random.nextInt(9); 
+            str=str+r+"";
+        }
+		return str; 
 	}
 }

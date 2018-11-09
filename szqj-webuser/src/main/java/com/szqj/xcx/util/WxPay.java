@@ -10,7 +10,7 @@ public class WxPay {
 	public static String APPID="wx9a605545c03d6b9e";
 	public static String MCHID="1518303601";
 	public static String PAYKEY="f9044d88c9fa47978d39173230f02bad";
-	public static String NOTIFY_URL="https://www.118.com";
+	public static String NOTIFY_URL="https://xcx.118-china.com/xcx/pay/wxNotify.xcx";
 	
 	
 	
@@ -22,10 +22,11 @@ public class WxPay {
 		//金额元=paymentPo.getTotal_fee()*100
 		String total_fee = String.valueOf(new BigDecimal(paymentPo.getTotal_fee()).multiply(new BigDecimal(100)).intValue());
 		//组装参数，用户生成统一下单接口的签名
+		String nonce_str=PayUtil.radomStr(4);
 		Map<String, String> packageParams = new HashMap<String, String>();
 		packageParams.put("appid", APPID);
 		packageParams.put("mch_id", MCHID);
-		packageParams.put("nonce_str", paymentPo.getNonce_str());
+		packageParams.put("nonce_str", nonce_str);
 		packageParams.put("body", paymentPo.getBody());
 		packageParams.put("out_trade_no", paymentPo.getOut_trade_no());//商户订单号
 		packageParams.put("total_fee", total_fee);//支付金额，这边需要转成字符串类型，否则后面的签名会失败
@@ -42,7 +43,7 @@ public class WxPay {
 		String xml = "<xml>" + "<appid>" + APPID+ "</appid>" 
 		        + "<body><![CDATA[" + paymentPo.getBody() + "]]></body>" 
 		        + "<mch_id>" + MCHID + "</mch_id>" 
-		        + "<nonce_str>" + paymentPo.getNonce_str() + "</nonce_str>" 
+		        + "<nonce_str>" + nonce_str + "</nonce_str>" 
 		        + "<notify_url>" +NOTIFY_URL + "</notify_url>" 
 		        + "<openid>" + paymentPo.getOpenid() + "</openid>" 
 		        + "<out_trade_no>" + paymentPo.getOut_trade_no() + "</out_trade_no>" 
@@ -72,12 +73,12 @@ public class WxPay {
 		if(return_code=="SUCCESS"||return_code.equals(return_code)){  
 			prepay_id = (String) map.get("prepay_id");//返回的预付单信息   
  
-		    result.put("nonceStr", paymentPo.getNonce_str());
+		    result.put("nonceStr", nonce_str);
 		    result.put("package", "prepay_id=" + prepay_id);
 		    Long timeStamp = System.currentTimeMillis() / 1000;   
 		    result.put("timeStamp", timeStamp + "");//这边要将返回的时间戳转化成字符串，不然小程序端调用wx.requestPayment方法会报签名错误
 		    //拼接签名需要的参数
-		    String stringSignTemp = "appId=" + APPID + "&nonceStr=" + paymentPo.getNonce_str() + "&package=prepay_id=" + prepay_id+ "&signType=MD5&timeStamp=" + timeStamp;   
+		    String stringSignTemp = "appId=" + APPID + "&nonceStr=" + nonce_str + "&package=prepay_id=" + prepay_id+ "&signType=MD5&timeStamp=" + timeStamp;   
 		    //再次签名，这个签名用于小程序端调用wx.requesetPayment方法
 		    String paySign = PayUtil.sign(stringSignTemp, PAYKEY, "utf-8").toUpperCase();
 		    
@@ -93,7 +94,6 @@ public class WxPay {
 		WxPay pay=new WxPay();
 		PayModel paymentPo=new PayModel();
 		paymentPo.setBody("地下管线-培训费用");
-		paymentPo.setNonce_str("124344");
 		paymentPo.setOpenid("oopM65P0UPIeXQIJmMGlYrrQ4h8E");
 		paymentPo.setOut_trade_no("12233");
 		paymentPo.setTotal_fee("0.01");

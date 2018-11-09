@@ -2,7 +2,7 @@ package com.szqj.xcx.util;
 
 public class PayModel {
 	
-    private String nonce_str;//随机字符串 
+
     private String body;//商品描述  
     private String out_trade_no;//商户订单号 
     private String spbill_create_ip;//终端IP 
@@ -13,16 +13,6 @@ public class PayModel {
     private String openid;//用户标识 
 
 	
-	
-
-	public String getNonce_str() {
-		return nonce_str;
-	}
-
-	public void setNonce_str(String nonce_str) {
-		this.nonce_str = nonce_str;
-	}
-
 	
 
 	public String getBody() {

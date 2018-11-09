@@ -26,9 +26,9 @@ public class RechargeRecord {
 	
 	private String businessType;//业务类型
 	
-	private String businessConteng;//业务内容
+	private String businessContent;//业务内容
 	
-	private Integer money;//充值金额
+	private Double money;//充值金额(元)
 	
 	private Date createDate;//创建时间
 	
@@ -39,6 +39,14 @@ public class RechargeRecord {
 	private String openid;//微信openId
 	
 	private Integer state;//0:未到账  1:已到账
+	
+	private String tradeNo;//订单号32
+	
+	private String finshDate;//订单号完成时间
+	
+	private Integer finshMoney;//实际金额
+	
+	private String transactionId;//微信交易id
 	
 	
 
@@ -58,19 +66,21 @@ public class RechargeRecord {
 		this.businessType = businessType;
 	}
 
-	public String getBusinessConteng() {
-		return businessConteng;
+	
+
+	public String getBusinessContent() {
+		return businessContent;
 	}
 
-	public void setBusinessConteng(String businessConteng) {
-		this.businessConteng = businessConteng;
+	public void setBusinessContent(String businessContent) {
+		this.businessContent = businessContent;
 	}
 
-	public Integer getMoney() {
+	public Double getMoney() {
 		return money;
 	}
 
-	public void setMoney(Integer money) {
+	public void setMoney(Double money) {
 		this.money = money;
 	}
 
@@ -113,6 +123,40 @@ public class RechargeRecord {
 	public void setState(Integer state) {
 		this.state = state;
 	}
+
+	public String getTradeNo() {
+		return tradeNo;
+	}
+
+	public void setTradeNo(String tradeNo) {
+		this.tradeNo = tradeNo;
+	}
+
+	public String getFinshDate() {
+		return finshDate;
+	}
+
+	public void setFinshDate(String finshDate) {
+		this.finshDate = finshDate;
+	}
+
+	public Integer getFinshMoney() {
+		return finshMoney;
+	}
+
+	public void setFinshMoney(Integer finshMoney) {
+		this.finshMoney = finshMoney;
+	}
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	
 	
 	
 	

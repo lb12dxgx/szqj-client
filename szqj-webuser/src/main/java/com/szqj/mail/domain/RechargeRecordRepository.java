@@ -22,6 +22,10 @@ public interface RechargeRecordRepository extends PagingAndSortingRepository<Rec
 
 	@Query("select m from RechargeRecord m  where m.personName like %?1%  order by m.createDate ")
 	Page<RechargeRecord> findByPersonName(String personName, Pageable pageable);
+	
+	
+	@Query("select m from RechargeRecord m  where m.tradeNo =?1   ")
+     RechargeRecord findByTradeNo(String tradeNo);
 
 	
 
