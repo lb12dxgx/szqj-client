@@ -1,6 +1,8 @@
 package com.szqj.mail.service;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.szqj.mail.domain.RechargeRecord;
 import com.szqj.mail.domain.RechargeRecordRepository;
+import com.szqj.mail.domain.RefundRecord;
+import com.szqj.mail.domain.RefundRecordRepository;
 import com.szqj.xcx.util.PayModel;
 import com.szqj.xcx.util.PayUtil;
 import com.szqj.xcx.util.WxPay;
@@ -20,11 +24,72 @@ public class PayService {
 	@Autowired
 	private  RechargeRecordRepository rechargeRecordRepository;
 	
+	@Autowired
+	private  RefundRecordRepository refundRecordRepository;
+	
+	
+	
+	
+	public void refundWxPay(String payTradeNo,Double refundMoney,String desc) {
+		RechargeRecord rechargeRecord = rechargeRecordRepository.findByTradeNo(payTradeNo);
+		
+		 RefundRecord  refundRecord=new  RefundRecord();
+		 refundRecord.setCreateDate(new Date());
+		 refundRecord.setPayMoney(rechargeRecord.getMoney());
+		 refundRecord.setRefundMoney(refundMoney);
+		 refundRecord.setRechargeRecordId(rechargeRecord.getRechargeRecordId());
+		 refundRecord.setState(0);
+		 refundRecordRepository.save(refundRecord);
+		 
+		 String rechargeRecordId = refundRecord.getRechargeRecordId();
+		 String refundTradeNo=rechargeRecordId.replaceAll("-", "");
+		 refundRecord.setRefundTradeNo(refundTradeNo);
+		 refundRecord.setPayTradeNo(payTradeNo);
+		 refundRecordRepository.save(refundRecord);
+		 
+		Map<String, String> map=new HashMap<String,String>();
+		try {
+			WxPay wxPay=new WxPay();
+			map = wxPay.refundByRefundRecord(refundRecord);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String finshMoney = map.get("finshMoney");
+		String refundId = map.get("refund_id");
+		refundRecord.setFinshMoney(Integer.parseInt(finshMoney));
+		refundRecord.setRefundId(refundId);
+		refundRecordRepository.save(refundRecord);
+		
+		
+		
+	}
+	
+	public void updateWxPay() {
+		List<RechargeRecord> list = rechargeRecordRepository.findByState(0);
+		Map<String, String> map=new HashMap<String,String>();
+		for(RechargeRecord rechargeRecord:list) {
+			try {
+				WxPay wxPay=new WxPay();
+				map = wxPay.searchByPayTradeNo(rechargeRecord.getTradeNo());
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			rechargeRecord.setFinshDate(map.get("finshDate"));
+			rechargeRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
+			rechargeRecord.setState(1);
+			rechargeRecordRepository.save(rechargeRecord);
+		}
+	}
+	
 	public Map<String,String> wxPay(RechargeRecord rechargeRecord) {
 		rechargeRecordRepository.save(rechargeRecord);
 		String rechargeRecordId = rechargeRecord.getRechargeRecordId();
 		String tradeNo=rechargeRecordId.replaceAll("-", "");
 		rechargeRecord.setTradeNo(tradeNo);
+		rechargeRecord.setState(0);
 		rechargeRecordRepository.save(rechargeRecord);
 		PayModel paymentPo=new PayModel();
 		paymentPo.setBody(rechargeRecord.getBusinessContent());

@@ -242,13 +242,10 @@ public class IndexService {
 	
 	
 	
-	@Scheduled(cron = "0 */5 *  * * * ")
-    public void genHtml() { 
-		createHtml();
-    }
+
 	
 	
-	private void createHtml() {
+	public void createHtml() {
 		ResponseEntity<String> forEntity = restTemplate.getForEntity("http://localhost/index.do", String.class);
 		String html=forEntity.getBody();
 		
