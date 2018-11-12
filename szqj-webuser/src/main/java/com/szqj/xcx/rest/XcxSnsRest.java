@@ -111,6 +111,8 @@ public class XcxSnsRest {
 		problem.setOpenid(openid);
 		problem.setPersonId(person.getPersonId());
 		problem.setPersonName(person.getPersonName());
+		problem.setEnterpriseName(person.getEnterpriseName());
+		problem.setPersonPosition(person.getPersonPosition());
 		problem.setViewNum(1);
 		
 		String giftId=problem.getGiftId();
@@ -124,7 +126,23 @@ public class XcxSnsRest {
 	@RequestMapping(value = "/getProblem.xcx"  )
 	public RestJson getProblem(String problemId){
 		Problem problem = problemRepository.findById(problemId).get();
+		setEndTime(problem);
 		return RestJson.createSucces(problem);
+	}
+
+
+	private void setEndTime(Problem problem) {
+		long date  = new Date().getTime()-problem.getCreateDate().getTime();
+	    int day = (int)date / (1000 * 60 * 60 * 24);  
+	    long hour = (date / (1000 * 60 * 60) - day * 24);  
+	    long min = ((date / (60 * 1000)) - day * 24 * 60 - hour * 60);
+	    long s = (date/1000 - day*24*60*60 - hour*60*60 - min*60);
+	    String endTime=""+day+"天"+hour+"小时"+min+"分"+s+"秒"; 
+        if(day>problem.getDayNum()){
+           problem.setEndTime("已结束!");
+        }else{
+          problem.setEndTime(endTime);
+        }
 	}
 	
 	

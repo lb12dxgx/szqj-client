@@ -77,10 +77,12 @@ public class PayService {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			rechargeRecord.setFinshDate(map.get("finshDate"));
-			rechargeRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
-			rechargeRecord.setState(1);
-			rechargeRecordRepository.save(rechargeRecord);
+			if(map.get("finshDate")!=null){
+				rechargeRecord.setFinshDate(map.get("finshDate"));
+				rechargeRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
+				rechargeRecord.setState(1);
+				rechargeRecordRepository.save(rechargeRecord);
+			}
 		}
 	}
 	

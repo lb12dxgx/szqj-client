@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -43,17 +44,25 @@ public class Problem {
 	
 	private String videoId;//问题视频
 	
-	private Integer viewNum;//查看数量
+	private Integer viewNum=0;//查看数量
+	
+	private Integer answerNum=0;//回答数量
 	
 	private Date createDate;//创建时间
 	
 	private String personName;//用户名
 	
+	private String personPosition;//用户名
+	
+	
+	private String enterpriseName;//用户名
+	
 	private String personId;//用户id
 	
 	private String openid;//微信openId
 	
-	
+	@Transient
+	private String endTime;//剩余时间
 	
 	
 
@@ -175,6 +184,38 @@ public class Problem {
 
 	public void setGiftName(String giftName) {
 		this.giftName = giftName;
+	}
+
+	public String getPersonPosition() {
+		return personPosition;
+	}
+
+	public void setPersonPosition(String personPosition) {
+		this.personPosition = personPosition;
+	}
+
+	public String getEnterpriseName() {
+		return enterpriseName;
+	}
+
+	public void setEnterpriseName(String enterpriseName) {
+		this.enterpriseName = enterpriseName;
+	}
+
+	public Integer getAnswerNum() {
+		return answerNum;
+	}
+
+	public void setAnswerNum(Integer answerNum) {
+		this.answerNum = answerNum;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
 	

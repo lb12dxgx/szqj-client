@@ -14,7 +14,7 @@ public class WxPay {
 	public static String APPID="wx9a605545c03d6b9e";
 	public static String MCHID="1518303601";
 	public static String PAYKEY="f9044d88c9fa47978d39173230f02bad";
-	public static String NOTIFY_URL="https://xcx.118-china.com/xcx/pay/wxNotify.xcx";
+	public static String NOTIFY_URL="https://xcx.118-china.com/xcx/login/pay/wxNotify.xcx";
 	
 	
 	
