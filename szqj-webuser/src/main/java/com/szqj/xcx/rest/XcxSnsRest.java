@@ -1,5 +1,6 @@
 package com.szqj.xcx.rest;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -132,17 +133,23 @@ public class XcxSnsRest {
 
 
 	private void setEndTime(Problem problem) {
-		long date  = new Date().getTime()-problem.getCreateDate().getTime();
-	    int day = (int)date / (1000 * 60 * 60 * 24);  
-	    long hour = (date / (1000 * 60 * 60) - day * 24);  
-	    long min = ((date / (60 * 1000)) - day * 24 * 60 - hour * 60);
-	    long s = (date/1000 - day*24*60*60 - hour*60*60 - min*60);
-	    String endTime=""+day+"天"+hour+"小时"+min+"分"+s+"秒"; 
-        if(day>problem.getDayNum()){
-           problem.setEndTime("已结束!");
-        }else{
-          problem.setEndTime(endTime);
-        }
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(problem.getCreateDate());
+		cal.add(Calendar.DATE,problem.getDayNum());
+		
+		long date  = cal.getTime().getTime()-new Date().getTime();
+		if(date>0) {
+			int day = (int)date / (1000 * 60 * 60 * 24);  
+		    long hour = (date / (1000 * 60 * 60) - day * 24);  
+		    long min = ((date / (60 * 1000)) - day * 24 * 60 - hour * 60);
+		    long s = (date/1000 - day*24*60*60 - hour*60*60 - min*60);
+		    String endTime=""+day+"天"+hour+"小时"+min+"分"+s+"秒"; 	
+		    problem.setEndTime("距结束时间: "+endTime);
+		}else {
+			 problem.setEndTime("已结束!");
+		}
+	    
+        
 	}
 	
 	

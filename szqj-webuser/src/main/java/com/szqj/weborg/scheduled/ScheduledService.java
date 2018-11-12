@@ -22,7 +22,7 @@ public class ScheduledService {
 	 * 每5分钟生产一次首页面
 	 * 
 	 */
-	@Scheduled(cron = "0 */5 *  * * * ")
+	//@Scheduled(cron = "0 */5 *  * * * ")
     public void genIndexHtml() { 
 		indexService.createHtml();
     }
@@ -33,7 +33,7 @@ public class ScheduledService {
 	 * 每5分钟修改支付订单状态
 	 * 
 	 */
-	@Scheduled(cron = "0 */1 *  * * * ")
+	//@Scheduled(cron = "0 */1 *  * * * ")
 	public void updateRechargeRecord() {
 		payService.updateWxPay();
 	}
