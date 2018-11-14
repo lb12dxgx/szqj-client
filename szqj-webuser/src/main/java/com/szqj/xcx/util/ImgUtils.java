@@ -7,10 +7,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
@@ -23,7 +26,7 @@ public class ImgUtils {
 	
 	
 	
-	public void createImage(String fileLocation) {
+	private void createImage(String fileLocation) {
         BufferedOutputStream bos = null;
         if(image != null){
             try {
@@ -181,6 +184,22 @@ public class ImgUtils {
 			 }
 		}
 		return list;
+	}
+	
+	
+	public String createShareImg(String fileDir,XcxShareImgModel xcxShareImgModel){
+		CodeUtils codeUtils=new CodeUtils();
+		String access_token =codeUtils.getToken();
+		
+		Map<String, String> parmMap=new HashMap<String,String>();
+		parmMap.put("openId", xcxShareImgModel.getOpenId());
+		parmMap.put("problemId", xcxShareImgModel.getProblemId());
+		String codeFilePath=fileDir+File.separator+"shareImg"+File.separator+xcxShareImgModel.getOpenId()+"code.jpg";
+		codeUtils.createBCode(access_token, xcxShareImgModel.getSharePath(), parmMap,codeFilePath);
+		
+		DrawBgImg(File.separator+"sharetemplet"+File.separator+"bg.jpg", 987);
+		DrawMainContent();
+		DrawUserName("张国勇", 100,35);
 	}
 	
 	

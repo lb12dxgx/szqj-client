@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -59,6 +60,9 @@ public class XcxSnsRest {
 	
 	@Autowired
 	private RegService regService;
+	
+	@Value("${web.upload-path}")
+	private String uploadPath;
 	
 	
 	/**
@@ -152,6 +156,12 @@ public class XcxSnsRest {
         
 	}
 	
+	
+	public String createShareImg(String problemId,@ModelAttribute("openid")String openid){
+		
+		return "";
+		
+	}
 	
 	@RequestMapping(value = "/getShareByProblemId.xcx"  )
 	public RestJson getShareByProblemId(String problemId){

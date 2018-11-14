@@ -76,8 +76,20 @@ public class CodeUtils {
 	 * @param page
 	 * @param scene
 	 */
-	public String createBCode(String access_token,String page,String scene){
+	public String createBCode(String access_token,String page,Map<String,String> sceneMap,String filePath ){
 	    String url = WX_B_CODE_URL.replace("ACCESS_TOKEN", access_token);
+	    String scene="";
+	    Iterator<String> it = sceneMap.keySet().iterator(); 
+		  
+		while(it.hasNext()) { 
+		  String key = it.next(); 
+		  if("".equals(scene)){
+			  scene = key + "=" + sceneMap.get(key); 
+		  }else{
+			  scene =scene+"&"+ key + "=" + sceneMap.get(key); 
+		  }
+		} 
+	    
 	    Map<String,Object> param = new HashMap<>();
 	    param.put("page", page);
 	    param.put("scene", scene);
@@ -92,7 +104,7 @@ public class CodeUtils {
 	    JSONObject json = JSONObject.parseObject(JSON.toJSONString(param));
 	  
 	    try {
-	        String imageUrl = httpPostWithJSON2(url, json.toString(), "d://xxx.png");
+	        String imageUrl = httpPostWithJSON2(url, json.toString(), filePath);
 	        return imageUrl;
 	    } catch (Exception e) {
 	        e.printStackTrace();
