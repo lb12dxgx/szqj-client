@@ -64,6 +64,9 @@ public class Problem {
 	@Transient
 	private String endTime;//剩余时间
 	
+	@Transient
+	private String shareCode;//分享编码
+	
 	
 
 	public String getProblemId() {
@@ -216,6 +219,14 @@ public class Problem {
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getShareCode() {
+		return shareCode;
+	}
+
+	public void setShareCode(String shareCode) {
+		this.shareCode = shareCode;
 	}
 
 	

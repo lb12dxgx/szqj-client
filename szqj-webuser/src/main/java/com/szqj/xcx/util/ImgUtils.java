@@ -8,15 +8,16 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import javax.imageio.ImageIO;
+
+
 
 public class ImgUtils {
 	
@@ -30,12 +31,8 @@ public class ImgUtils {
         BufferedOutputStream bos = null;
         if(image != null){
             try {
-                FileOutputStream fos = new FileOutputStream(fileLocation);
-                bos = new BufferedOutputStream(fos);
-                 
-                JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(bos);
-                encoder.encode(image);
-                bos.close();
+            	ImageIO.write(image, "jpg", new File(fileLocation));
+               
             } catch (Exception e) {
                 e.printStackTrace();
             }finally{
@@ -50,9 +47,9 @@ public class ImgUtils {
         }
     }
 	
-	private void DrawBgImg(String imgPath,Integer height){
+	private void drawBgImg(String imgPath,Integer height){
 		
-		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+	    image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics mainPic = image.getGraphics();
 	    BufferedImage bimg = null;
 	    try {
@@ -68,7 +65,7 @@ public class ImgUtils {
 	}
 	
 	
-	private void DrawMainContent(){
+	private void drawMainContent(){
 		Graphics2D userNamePic = image.createGraphics();
 		userNamePic.setColor(Color.WHITE);
 		userNamePic.fillRect(20, 60, width-40, height-100);
@@ -76,7 +73,7 @@ public class ImgUtils {
 	}
 	
 	
-	private void  DrawUserName(String userName,Integer height,Integer FontSize){
+	private void  drawUserName(String userName,Integer height,Integer FontSize){
         Graphics2D userNamePic = image.createGraphics();
 		userNamePic.setColor(Color.BLACK);
 	    Font titleFont = new Font("宋体", Font.BOLD, FontSize);
@@ -86,7 +83,7 @@ public class ImgUtils {
 	}
 	
 	
-	private void  DrawCompany(String postName,String companyName,Integer height,Integer FontSize){
+	private void  drawCompany(String postName,String companyName,Integer height,Integer FontSize){
         Graphics2D userNamePic = image.createGraphics();
 		userNamePic.setColor(Color.BLACK);
 	    Font titleFont = new Font("宋体", Font.BOLD, FontSize);
@@ -96,7 +93,7 @@ public class ImgUtils {
 	
 	
 
-	private void  DrawMoney(String money,Integer height,Integer FontSize){
+	private void  drawMoney(String money,Integer height,Integer FontSize){
 		
 		 Graphics2D moneyPic = image.createGraphics();
 	     moneyPic.setColor(Color.RED);
@@ -117,7 +114,7 @@ public class ImgUtils {
    }
 	
 	
-	private void  DrawProblem(String title,String content,Integer height,Integer FontSize){
+	private void  drawProblem(String title,String content,Integer height,Integer FontSize){
 		 Graphics2D titlePic = image.createGraphics();
 		 titlePic.setColor(Color.BLACK);
 	     Font titleFont = new Font("宋体", Font.BOLD, FontSize+5);
@@ -141,7 +138,7 @@ public class ImgUtils {
 	}
 	
 	
-	private void  DrawShare(String name,Integer height,Integer FontSize){
+	private void  drawShare(String name,Integer height,Integer FontSize){
 		Graphics2D linePic = image.createGraphics();
 		BasicStroke stokeLine   = new BasicStroke(   2.0f   ); 
 		linePic.setStroke(stokeLine);
@@ -160,6 +157,25 @@ public class ImgUtils {
 	     Font khFont = new Font("宋体", Font.PLAIN, FontSize);
 	     khPic.setFont(khFont);
 	     khPic.drawString("帮朋友传播  大家来帮忙",60, height+80);
+	}
+	
+	
+	private void drawShareImg(String imgPath,Integer height){
+		
+		Graphics mainPic = image.getGraphics();
+	    BufferedImage bimg = null;
+	    try {
+	           bimg = javax.imageio.ImageIO.read(new java.io.File(imgPath));
+	        } catch (Exception e) {
+	        	e.getMessage();
+	        }
+	     
+	        if(bimg!=null){
+	            mainPic.drawImage(bimg, 500, height+10, 140, 140, null);
+	            mainPic.dispose();
+	        }
+	        
+		
 	}
 	
 	
@@ -191,30 +207,37 @@ public class ImgUtils {
 		CodeUtils codeUtils=new CodeUtils();
 		String access_token =codeUtils.getToken();
 		
-		Map<String, String> parmMap=new HashMap<String,String>();
-		parmMap.put("openId", xcxShareImgModel.getOpenId());
-		parmMap.put("problemId", xcxShareImgModel.getProblemId());
-		String codeFilePath=fileDir+File.separator+"shareImg"+File.separator+xcxShareImgModel.getOpenId()+"code.jpg";
-		codeUtils.createBCode(access_token, xcxShareImgModel.getSharePath(), parmMap,codeFilePath);
+		drawBgImg(fileDir+File.separator+"sharetemplet"+File.separator+"bg.jpg", 987);
+		drawMainContent();
+		drawUserName(xcxShareImgModel.getCreateUserName(), 100,35);
+		drawCompany(xcxShareImgModel.getPostName(),xcxShareImgModel.getCompanyName(), 140,25);
+		drawMoney(xcxShareImgModel.getMoney(),180,25);
+		drawProblem(xcxShareImgModel.getTitle(),xcxShareImgModel.getContent(),300,25);
+		drawShare(xcxShareImgModel.getShareUserName(),500, 25);
+		String codeFilePath=fileDir+File.separator+"shareImg"+File.separator+xcxShareImgModel.getShareCode()+"code.jpg";
 		
-		DrawBgImg(File.separator+"sharetemplet"+File.separator+"bg.jpg", 987);
-		DrawMainContent();
-		DrawUserName("张国勇", 100,35);
+		codeUtils.createBCode(access_token, xcxShareImgModel.getSharePath(), xcxShareImgModel.getShareCode(),codeFilePath);
+		drawShareImg(codeFilePath,500);
+		
+		String imgFilePath=fileDir+File.separator+"shareImg"+File.separator+xcxShareImgModel.getShareCode()+".jpg";
+		createImage(imgFilePath);
+		
+		return "/shareImg/"+xcxShareImgModel.getShareCode()+".jpg";
 	}
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		String content="科技日报广东珠海11月6日消息，11月6日，世界最大军事技术展会之一，为期6天的2018珠海航展正式拉开序幕。云洲作为广东省军民融合企业优秀代表受邀参展，此次多款最新重磅无人艇产品参展，向外界展示云洲全球领先的技术实力及最新的军民融合成果。值得注意的是，展会上云洲首次公开展示了刚刚成功进行导弹飞行试验的察打一体导弹无人艇——“瞭望者Ⅱ”，这是中国第一艘导弹无人艇，也是全球第二个成功发射导弹的无人艇，填补了国内导弹无人艇这一技术空白，具有重要的战略意义，成为本届航展新亮点。";
 		
 		ImgUtils cg = new ImgUtils();
 		 try {
-        	cg.DrawBgImg("E:\\test\\timg.jpg", 987);
-        	cg.DrawMainContent();
-        	cg.DrawUserName("张国勇", 100,35);
-        	cg.DrawCompany("经理","北京微昂科技有限公司", 140,25);
-        	cg.DrawMoney("1000",180,25);
-        	cg.DrawProblem("中国首艘导弹无人艇公开亮相 可精确打击海上目标",content,300,25);
-        	cg.DrawShare("张上",500, 25);
+        	cg.drawBgImg("E:\\test\\timg.jpg", 987);
+        	cg.drawMainContent();
+        	cg.drawUserName("张国勇", 100,35);
+        	cg.drawCompany("经理","北京微昂科技有限公司", 140,25);
+        	cg.drawMoney("1000",180,25);
+        	cg.drawProblem("中国首艘导弹无人艇公开亮相 可精确打击海上目标",content,300,25);
+        	cg.drawShare("张上",500, 25);
         	
         	
         	cg.createImage("E:\\test\\create.jpg");
@@ -226,7 +249,7 @@ public class ImgUtils {
 		
 		//cg.spliteByLength(content, 20);
 		
-    }
+    }*/
 	
 
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.mail.domain.GiftRepository;
+import com.szqj.redis.RedisService;
 import com.szqj.reg.service.RegService;
 import com.szqj.service.domain.AccidentInfo;
 import com.szqj.service.domain.Person;
@@ -31,6 +32,8 @@ import com.szqj.sns.domain.Share;
 import com.szqj.sns.domain.ShareRepository;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
+import com.szqj.xcx.util.ImgUtils;
+import com.szqj.xcx.util.XcxShareImgModel;
 
 
 @RestController
@@ -61,8 +64,13 @@ public class XcxSnsRest {
 	@Autowired
 	private RegService regService;
 	
+	@Autowired
+	private RedisService redisService;
+	
 	@Value("${web.upload-path}")
 	private String uploadPath;
+
+	
 	
 	
 	/**
@@ -132,7 +140,14 @@ public class XcxSnsRest {
 	public RestJson getProblem(String problemId){
 		Problem problem = problemRepository.findById(problemId).get();
 		setEndTime(problem);
+		setShareCode(problem);
 		return RestJson.createSucces(problem);
+	}
+
+
+	private void setShareCode(Problem problem) {
+		String shareCode=redisService.putOpenIdAndProblemId(problem.getOpenid(), problem.getProblemId(), problem.getDayNum());
+		problem.setShareCode(shareCode);
 	}
 
 
@@ -157,10 +172,27 @@ public class XcxSnsRest {
 	}
 	
 	
-	public String createShareImg(String problemId,@ModelAttribute("openid")String openid){
+	
+	
+	@RequestMapping(value = "/createShareImg.xcx"  )
+	public RestJson createShareImg(String problemId,@ModelAttribute("openid")String openid,String sharePath,String shareCode){
+		Problem problem = problemRepository.findById(problemId).get();
+		Person sharePerson = regService.getPersonByOpenid(openid);
+		Person createPerson =regService.getPersonByOpenid(problem.getOpenid());
+		ImgUtils imgUtils=new ImgUtils();
+		XcxShareImgModel xcxShareImgModel=new XcxShareImgModel();
 		
-		return "";
-		
+		xcxShareImgModel.setCompanyName(createPerson.getEnterpriseName());
+		xcxShareImgModel.setCreateUserName(createPerson.getPersonName());
+		xcxShareImgModel.setMoney(problem.getMoney()+"");
+		xcxShareImgModel.setShareCode(shareCode);
+		xcxShareImgModel.setPostName(createPerson.getPersonPosition());
+		xcxShareImgModel.setSharePath(sharePath);
+		xcxShareImgModel.setTitle(problem.getTitle());
+		xcxShareImgModel.setShareUserName(sharePerson.getPersonName());
+		xcxShareImgModel.setContent(problem.getContent());
+		String webImgPath=imgUtils.createShareImg(uploadPath, xcxShareImgModel);
+		return RestJson.createSucces(webImgPath);
 	}
 	
 	@RequestMapping(value = "/getShareByProblemId.xcx"  )

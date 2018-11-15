@@ -2,9 +2,7 @@ package com.szqj.xcx.util;
 
 public class XcxShareImgModel {
 	
-	private String openId;
-	
-	private String problemId;
+	private String shareCode;
 	
 	private String sharePath;
 	
@@ -86,22 +84,15 @@ public class XcxShareImgModel {
 		this.shareUserName = shareUserName;
 	}
 
-	public String getOpenId() {
-		return openId;
+	public String getShareCode() {
+		return shareCode;
 	}
 
-	public void setOpenId(String openId) {
-		this.openId = openId;
+	public void setShareCode(String shareCode) {
+		this.shareCode = shareCode;
 	}
 
-	public String getProblemId() {
-		return problemId;
-	}
-
-	public void setProblemId(String problemId) {
-		this.problemId = problemId;
-	};
-	
+    
 	
 
 }

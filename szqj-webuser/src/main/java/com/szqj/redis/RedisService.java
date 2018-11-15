@@ -1,7 +1,10 @@
 package com.szqj.redis;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -42,6 +45,39 @@ public class RedisService {
 	    }
 	    
 	    return "";
+	}
+
+	
+	public  String getOpenIdAndProblemId(String key){
+		return stringRedisTemplate.opsForValue().get(key);
+		
+	}
+	
+	public synchronized String putOpenIdAndProblemId(String openId,String problemId,Integer dayNum){
+		String key=getIdByDay();
+		stringRedisTemplate.opsForValue().set(key,openId+"|"+problemId,dayNum+2, TimeUnit.DAYS);
+		return key;
+	}
+	
+	private String getIdByDay(){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		String yearStr = calendar.get(Calendar.YEAR)+"";//获取年份
+        int month = calendar.get(Calendar.MONTH) + 1;//获取月份
+        String monthStr = month < 10 ? "0" + month : month + "";
+        int day = calendar.get(Calendar.DATE);//获取日
+        String dayStr = day < 10 ? "0" + day : day + "";
+		String key="idday"+yearStr+monthStr+ dayStr;
+		String numStr = stringRedisTemplate.opsForValue().get(key);
+		String value="1";
+		if(StringUtils.isBlank(numStr)){
+			stringRedisTemplate.opsForValue().set(key,value,2, TimeUnit.DAYS);
+		}else{
+			value=Integer.parseInt(numStr)+1+"";
+			stringRedisTemplate.opsForValue().set(key,value,2, TimeUnit.DAYS);
+		}
+		
+		  return key+value;
 	}
 
 }

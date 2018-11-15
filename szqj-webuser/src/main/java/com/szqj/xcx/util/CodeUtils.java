@@ -76,23 +76,12 @@ public class CodeUtils {
 	 * @param page
 	 * @param scene
 	 */
-	public String createBCode(String access_token,String page,Map<String,String> sceneMap,String filePath ){
+	public String createBCode(String access_token,String page,String shareCode,String filePath ){
 	    String url = WX_B_CODE_URL.replace("ACCESS_TOKEN", access_token);
-	    String scene="";
-	    Iterator<String> it = sceneMap.keySet().iterator(); 
-		  
-		while(it.hasNext()) { 
-		  String key = it.next(); 
-		  if("".equals(scene)){
-			  scene = key + "=" + sceneMap.get(key); 
-		  }else{
-			  scene =scene+"&"+ key + "=" + sceneMap.get(key); 
-		  }
-		} 
-	    
+	   
 	    Map<String,Object> param = new HashMap<>();
 	    param.put("page", page);
-	    param.put("scene", scene);
+	    param.put("scene", shareCode);
 	    param.put("width", "280");
 	    param.put("auto_color", false);
 	    Map<String,Object> line_color = new HashMap<>();
@@ -186,6 +175,7 @@ public class CodeUtils {
 	    se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"UTF-8"));
 	    httpPost.setEntity(se);
 	    HttpResponse response = httpClient.execute(httpPost);
+	    
 	    if (response != null) {
 	        HttpEntity resEntity = response.getEntity();
 	      

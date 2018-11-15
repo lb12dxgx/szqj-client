@@ -58,12 +58,12 @@ public class ToolsControle {
 		return RestJson.createSucces();
 	}
 	
-	/*@RequestMapping(value = "/tools/index.html"  )
+	@RequestMapping(value = "/tools/index.html"  )
 	@ResponseBody
 	public RestJson index() throws IOException{
-		indexService.genHtml();
+		indexService.createHtml();
 		return RestJson.createSucces();
-	}*/
+	}
 	
 	@RequestMapping(value = "/tools/ztb.html"  )
 	@ResponseBody
