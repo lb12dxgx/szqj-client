@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -143,10 +144,26 @@ public class XcxSnsRest {
 		setShareCode(problem);
 		return RestJson.createSucces(problem);
 	}
+	
+	@RequestMapping(value = "/getProblemByShareCode.xcx"  )
+	public RestJson getProblemByShareCode(String shareCode){
+		Problem problem =new Problem();
+		String openIdAndproblemId=redisService.getOpenIdAndProblemId(shareCode);
+		if(StringUtils.isNotBlank(openIdAndproblemId)) {
+			String str[]=StringUtils.split(openIdAndproblemId, "|");
+			String preOpenId=str[0];
+			String problemId=str[1];
+			problem = problemRepository.findById(problemId).get();
+			problem.setPreOpenId(preOpenId);
+			setEndTime(problem);
+			setShareCode(problem);
+		}
+		return RestJson.createSucces(problem); 
+	}
 
 
 	private void setShareCode(Problem problem) {
-		String shareCode=redisService.putOpenIdAndProblemId(problem.getOpenid(), problem.getProblemId(), problem.getDayNum());
+		String shareCode=redisService.putOpenIdAndProblemId(problem.getOpenid(), problem.getProblemId());
 		problem.setShareCode(shareCode);
 	}
 
@@ -225,6 +242,22 @@ public class XcxSnsRest {
 	
 	@RequestMapping(value = "/saveAnswer.xcx"  )
 	public RestJson saveAnswer(@ModelAttribute("openid") String openid,Answer answer){
+		String openIdAndproblemId=redisService.getOpenIdAndProblemId(answer.getShareCode());
+		if(StringUtils.isNotBlank(openIdAndproblemId)) {
+			String str[]=StringUtils.split(openIdAndproblemId, "|");
+			String preOpenId=str[0];
+			String problemId=str[1];
+			Problem problem = problemRepository.findById(problemId).get();
+			Person prePerson = regService.getPersonByOpenid(preOpenId);
+			Person person = regService.getPersonByOpenid(openid);
+			answer.setCreateDate(new Date());
+			answer.setOpenid(openid);
+			answer.setPersonId(person.getPersonId());
+			answer.setPreOpenid(preOpenId);
+			answer.setProblem(problem);
+			answer.setPrePersonId(prePerson.getPersonId());
+			
+		}
 		answerRepository.save(answer);
 		return RestJson.createSucces(answer);
 	}

@@ -42,7 +42,7 @@ public class ContentRest {
 		if(StringUtils.isBlank(contentTitle)){
 			page = contentInfoRepository.findByColumnId(columnId, pageable);
 		}else{
-			contentInfoRepository.findByColumnId(columnId, contentTitle, pageable);
+			page =contentInfoRepository.findByColumnId(columnId, contentTitle, pageable);
 		}
 		return RestJson.createSucces(page);
 	}

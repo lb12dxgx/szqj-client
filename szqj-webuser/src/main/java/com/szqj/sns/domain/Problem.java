@@ -11,6 +11,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 问题
  * @author libingbing
@@ -48,6 +50,7 @@ public class Problem {
 	
 	private Integer answerNum=0;//回答数量
 	
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date createDate;//创建时间
 	
 	private String personName;//用户名
@@ -55,7 +58,9 @@ public class Problem {
 	private String personPosition;//用户名
 	
 	
-	private String enterpriseName;//用户名
+	private String enterpriseName;//企业名
+	
+	private Integer state=0;//问题状态：0:进行中 1:已解决 2:超时
 	
 	private String personId;//用户id
 	
@@ -66,6 +71,9 @@ public class Problem {
 	
 	@Transient
 	private String shareCode;//分享编码
+	
+	@Transient
+	private String preOpenId;//上一个传播人
 	
 	
 
@@ -227,6 +235,22 @@ public class Problem {
 
 	public void setShareCode(String shareCode) {
 		this.shareCode = shareCode;
+	}
+
+	public String getPreOpenId() {
+		return preOpenId;
+	}
+
+	public void setPreOpenId(String preOpenId) {
+		this.preOpenId = preOpenId;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 	

@@ -39,6 +39,12 @@ public class Answer {
 	
 	private String openid;//微信openId
 	
+	private String shareCode;//微信openId
+	
+	private String prePersonId;//用户id
+	
+	private String preOpenid;//微信openId
+	
 	private Date createDate;//创建时间
 
 	public String getAnswerId() {
@@ -88,6 +94,30 @@ public class Answer {
 
 	public void setProblem(Problem problem) {
 		this.problem = problem;
+	}
+
+	public String getShareCode() {
+		return shareCode;
+	}
+
+	public void setShareCode(String shareCode) {
+		this.shareCode = shareCode;
+	}
+
+	public String getPrePersonId() {
+		return prePersonId;
+	}
+
+	public void setPrePersonId(String prePersonId) {
+		this.prePersonId = prePersonId;
+	}
+
+	public String getPreOpenid() {
+		return preOpenid;
+	}
+
+	public void setPreOpenid(String preOpenid) {
+		this.preOpenid = preOpenid;
 	}
 	
 	

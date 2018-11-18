@@ -32,7 +32,7 @@ public class BeforeProject {
 	private String projectDistrict;//项目所属区县
 	
 	private String projectArea;//项目所属地区
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date projectStartDate;//施工时间
 	
 	private String projectAddren;//工程地点

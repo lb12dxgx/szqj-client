@@ -52,7 +52,7 @@ public class ProjectResult {
 	private String result;//管线情况 0：无管线  1：有管线
 	
 	private String type;//管线类型
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private String resultDate;//标注时间
 	
 	private String resultSumary;//标注说明

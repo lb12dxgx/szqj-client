@@ -47,7 +47,7 @@ public class Exchange {
 	
 	private String openid;//微信openId
 	
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date createDate;//创建时间
 	
 	private Integer yearnum;//年
@@ -60,7 +60,7 @@ public class Exchange {
 	
 	private String postAddren;//用户地址
 	
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date  postDate;//快递时间
 	
 	private String postCode;//快递单号

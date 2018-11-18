@@ -32,7 +32,7 @@ public class Meet {
 	
 	private Integer showMain=0;//1:单独显示,0:列表显示
 	
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date startDate;//开始时间
 	
 	private Date endDate;//结束时间
