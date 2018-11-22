@@ -20,8 +20,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProblemViewRecordRepository extends PagingAndSortingRepository<ProblemViewRecord, String> {
 
-	@Query("select m from Problem m  where m.problemId=?1 order by m.createDate ")
-	List<ProblemViewRecord> findPageByOpenid(String problemId);
+	@Query("select m from ProblemViewRecord m  where m.problemId=?1 order by m.createDate ")
+	List<ProblemViewRecord> findPageByProblemId(String problemId);
+	
+	
+	@Query("select m from ProblemViewRecord m  where m.problemId=?1 and m.personId=?2 order by m.createDate ")
+	List<ProblemViewRecord> findPageByProblemIdAndPersonId(String problemId,String personId);
 
 	
 

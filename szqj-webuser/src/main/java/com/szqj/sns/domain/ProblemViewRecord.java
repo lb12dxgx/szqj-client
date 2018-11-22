@@ -34,6 +34,13 @@ public class ProblemViewRecord {
 	private String personId;//用户id
 	
 	private String openid;//微信openId
+	
+	private String prePersonName;//传播用户名
+	
+	private String prePersonId;//传播用户id
+	
+	private String preOpenid;//传播微信openId
+
 
 	public String getProblemViewRecordId() {
 		return problemViewRecordId;
@@ -82,11 +89,30 @@ public class ProblemViewRecord {
 	public void setOpenid(String openid) {
 		this.openid = openid;
 	}
-	
-	
-	
-	
 
-	
+	public String getPrePersonName() {
+		return prePersonName;
+	}
 
+	public void setPrePersonName(String prePersonName) {
+		this.prePersonName = prePersonName;
+	}
+
+	public String getPrePersonId() {
+		return prePersonId;
+	}
+
+	public void setPrePersonId(String prePersonId) {
+		this.prePersonId = prePersonId;
+	}
+
+	public String getPreOpenid() {
+		return preOpenid;
+	}
+
+	public void setPreOpenid(String preOpenid) {
+		this.preOpenid = preOpenid;
+	}
+	
+	
 }
