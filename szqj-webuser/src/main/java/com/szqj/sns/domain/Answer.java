@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 回答
  * @author libingbing
@@ -37,6 +39,12 @@ public class Answer {
 	
 	private String personId;//用户id
 	
+	private String personName;//用户名
+	
+	private String personPosition;//用户名
+	
+	private String enterpriseName;//企业名
+	
 	private String openid;//微信openId
 	
 	private String shareCode;//微信openId
@@ -45,6 +53,7 @@ public class Answer {
 	
 	private String preOpenid;//微信openId
 	
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date createDate;//创建时间
 
 	public String getAnswerId() {
@@ -118,6 +127,30 @@ public class Answer {
 
 	public void setPreOpenid(String preOpenid) {
 		this.preOpenid = preOpenid;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+	public String getPersonPosition() {
+		return personPosition;
+	}
+
+	public void setPersonPosition(String personPosition) {
+		this.personPosition = personPosition;
+	}
+
+	public String getEnterpriseName() {
+		return enterpriseName;
+	}
+
+	public void setEnterpriseName(String enterpriseName) {
+		this.enterpriseName = enterpriseName;
 	}
 	
 	

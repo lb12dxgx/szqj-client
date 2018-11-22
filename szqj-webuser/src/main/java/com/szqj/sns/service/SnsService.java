@@ -116,6 +116,9 @@ public class SnsService {
 			answer.setPreOpenid(preOpenId);
 			answer.setProblem(problem);
 			answer.setPrePersonId(prePerson.getPersonId());
+			answer.setPersonName(person.getPersonName());
+			answer.setEnterpriseName(person.getEnterpriseName());
+			answer.setPersonPosition(person.getPersonPosition());
 			answerRepository.save(answer);
 			
 			problem.setAnswerNum(problem.getAnswerNum()+1);
