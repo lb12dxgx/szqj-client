@@ -22,6 +22,11 @@ public interface ScoreRecordRepository extends PagingAndSortingRepository<ScoreR
 	
 	@Query("select sum(m.num) from ScoreRecord m  where m.openid = ?1 ")
 	Integer findSumByOpenid(String openid);
+	
+	
+	@Query("select sum(m.num) from ScoreRecord m  where m.personId = ?1 ")
+	Integer findSumByPersonId(String personId);
+
 
 
 

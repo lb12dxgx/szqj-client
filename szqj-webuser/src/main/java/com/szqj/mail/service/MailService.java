@@ -32,6 +32,34 @@ public class MailService {
 	@Autowired
 	private MoneyEventService moneyEventService;
 	
+	
+	
+	
+	 /**
+     * 兑换奖品
+     * @param openid
+     * @param exchange
+     * @return
+     */
+	public Exchange exchangeGift(String openid, Exchange exchange) {
+		if(validateNum(exchange)&&validateMoney(openid,exchange)){
+			Person person = regService.getPersonByOpenid(openid);
+			exchange.setCreateDate(new Date());
+			exchange.setOpenid(openid);
+			exchange.setPersonId(person.getPersonId());
+			exchange.setPersonName(person.getPersonName());
+			exchange.setPersonId(person.getPersonId());
+			exchange.setPersonName(person.getPersonName());
+			exchange.setTelphone(person.getTelePhone());
+			exchange.setState(0);
+			getMoney(exchange);
+			genExchangeCode(exchange);
+			exchangeRepository.save(exchange);
+			moneyEventService.send(openid,exchange);
+			return exchange;
+		}
+		return null;
+	}
 
 	/**
 	 * 判断数量
@@ -71,31 +99,7 @@ public class MailService {
 	
 	
 	
-    /**
-     * 兑换奖品
-     * @param openid
-     * @param exchange
-     * @return
-     */
-	public Exchange exchangeGift(String openid, Exchange exchange) {
-		if(validateNum(exchange)&&validateMoney(openid,exchange)){
-			Person person = regService.getPersonByOpenid(openid);
-			exchange.setCreateDate(new Date());
-			exchange.setOpenid(openid);
-			exchange.setPersonId(person.getPersonId());
-			exchange.setPersonName(person.getPersonName());
-			exchange.setPersonId(person.getPersonId());
-			exchange.setPersonName(person.getPersonName());
-			exchange.setTelphone(person.getTelePhone());
-			exchange.setState(0);
-			getMoney(exchange);
-			genExchangeCode(exchange);
-			exchangeRepository.save(exchange);
-			moneyEventService.send(openid,exchange);
-			return exchange;
-		}
-		return null;
-	}
+   
 	
 	/**
 	 * 按照年月日产生兑换码

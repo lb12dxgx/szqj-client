@@ -53,9 +53,9 @@ public class RedisService {
 		
 	}
 	
-	public synchronized String putOpenIdAndProblemId(String openId,String problemId){
+	public synchronized String putOpenIdAndProblemId(String openId,String problemId,String preShareCode){
 		String key=getIdByDay();
-		stringRedisTemplate.opsForValue().set(key,openId+"|"+problemId);
+		stringRedisTemplate.opsForValue().set(key,openId+"|"+problemId+"|"+preShareCode);
 		return key;
 	}
 	

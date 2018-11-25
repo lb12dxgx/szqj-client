@@ -47,11 +47,18 @@ public class Answer {
 	
 	private String openid;//微信openId
 	
-	private String shareCode;//微信openId
+	private String preShareCode;//分享code
 	
 	private String prePersonId;//用户id
 	
 	private String preOpenid;//微信openId
+	
+	private String prprePersonId;//用户id
+	
+	private String prepreOpenid;//微信openId
+	
+	private String prepreShareCode;//分享code
+	
 	
 	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date createDate;//创建时间
@@ -105,14 +112,7 @@ public class Answer {
 		this.problem = problem;
 	}
 
-	public String getShareCode() {
-		return shareCode;
-	}
-
-	public void setShareCode(String shareCode) {
-		this.shareCode = shareCode;
-	}
-
+	
 	public String getPrePersonId() {
 		return prePersonId;
 	}
@@ -151,6 +151,38 @@ public class Answer {
 
 	public void setEnterpriseName(String enterpriseName) {
 		this.enterpriseName = enterpriseName;
+	}
+
+	public String getPreShareCode() {
+		return preShareCode;
+	}
+
+	public void setPreShareCode(String preShareCode) {
+		this.preShareCode = preShareCode;
+	}
+
+	public String getPrprePersonId() {
+		return prprePersonId;
+	}
+
+	public void setPrprePersonId(String prprePersonId) {
+		this.prprePersonId = prprePersonId;
+	}
+
+	public String getPrepreOpenid() {
+		return prepreOpenid;
+	}
+
+	public void setPrepreOpenid(String prepreOpenid) {
+		this.prepreOpenid = prepreOpenid;
+	}
+
+	public String getPrepreShareCode() {
+		return prepreShareCode;
+	}
+
+	public void setPrepreShareCode(String prepreShareCode) {
+		this.prepreShareCode = prepreShareCode;
 	}
 	
 	

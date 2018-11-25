@@ -21,7 +21,15 @@ public interface ResultRepository extends PagingAndSortingRepository<Result, Str
 
 	@Query("select m from Result m  where m.problem.problemId=?1 order by m.createDate ")
 	List<Result> findByProblemId(String problemId);
+	
+	@Query("select m from Result m  where m.problem.problemId=?1 and m.type=1 order by m.createDate ")
+	List<Result>  findOneByProblemId(String problemId);
+	
+	@Query("select m from Result m  where m.answerId=?1 and m.type=2 order by m.createDate ")
+	Result  findTwoByAnswerId(String answerId);
 
+	@Query("select m from Result m  where m.answerId=?1 and m.type=3 order by m.createDate ")
+	Result  findThreeByAnswerId(String answerId);
 	
 
 }

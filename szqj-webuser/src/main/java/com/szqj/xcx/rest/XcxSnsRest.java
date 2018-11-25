@@ -191,14 +191,20 @@ public class XcxSnsRest {
 	
 	@RequestMapping(value = "/getResultByProblemId.xcx"  )
 	public RestJson getResultByProblemId(String problemId){
-		List<Result> list = resultRepository.findByProblemId(problemId);
+		List<Result> list = resultRepository.findOneByProblemId(problemId);
+		for(Result oneResult:list) {
+			Result twoResult = resultRepository.findTwoByAnswerId(oneResult.getAnswerId());
+			Result threeResult = resultRepository.findThreeByAnswerId(oneResult.getAnswerId());
+			oneResult.setTwoResult(twoResult);
+			oneResult.setThreeResult(threeResult);
+		}
 		return RestJson.createSucces(list);
 	}
 	
 	@RequestMapping(value = "/saveResult.xcx"  )
-	public RestJson saveResult(@ModelAttribute("openid") String openid,Result result){
-		resultRepository.save(result);
-		return RestJson.createSucces(result);
+	public RestJson saveResult(String problemId,String[] answerIdList){
+		snsService.saveResult(problemId, answerIdList);
+		return RestJson.createSucces();
 	}
 	
 	
