@@ -13,6 +13,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "sns_result")
 public class Result {
@@ -43,7 +45,7 @@ public class Result {
 	
 	private Integer scoreNum;//获得的积分数量 
 	
-	
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date createDate;//创建时间
 	
 	@Transient

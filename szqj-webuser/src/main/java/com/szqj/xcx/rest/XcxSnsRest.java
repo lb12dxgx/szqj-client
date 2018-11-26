@@ -14,22 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.szqj.reg.service.RegService;
-import com.szqj.service.domain.Person;
 import com.szqj.sns.domain.Answer;
 import com.szqj.sns.domain.AnswerRepository;
-import com.szqj.sns.domain.Card;
-import com.szqj.sns.domain.CardRepository;
 import com.szqj.sns.domain.Problem;
 import com.szqj.sns.domain.ProblemRepository;
 import com.szqj.sns.domain.Result;
 import com.szqj.sns.domain.ResultRepository;
-import com.szqj.sns.domain.Share;
-import com.szqj.sns.domain.ShareRepository;
 import com.szqj.sns.service.SnsService;
 import com.szqj.util.RestJson;
 import com.szqj.util.Tools;
-import com.szqj.xcx.util.ImgUtils;
-import com.szqj.xcx.util.XcxShareImgModel;
 
 
 @RestController
@@ -37,9 +30,7 @@ import com.szqj.xcx.util.XcxShareImgModel;
 @EnableAutoConfiguration
 public class XcxSnsRest {
 	
-	@Autowired
-	private CardRepository cardRepository;
-	
+
 	@Autowired
 	private ProblemRepository problemRepository;
 	
@@ -50,14 +41,6 @@ public class XcxSnsRest {
 	
 	@Autowired
 	private ResultRepository resultRepository;
-	
-	
-	@Autowired
-	private ShareRepository shareRepository;
-
-	
-	@Autowired
-	private RegService regService;
 	
 
 	
@@ -70,34 +53,21 @@ public class XcxSnsRest {
 	
 	
 	
-	/**
-	 * 
-	 * @param pageNum
-	 * @param size
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value = "/isCard.xcx"  )
-	public RestJson isCard(@ModelAttribute("openid") String openid){
-		List<Card> cards = cardRepository.findByOpenid(openid);
-		if(cards==null||cards.size()>0) {
-			RestJson.createSucces(0);
-		}
-		return RestJson.createSucces(1);
+	@RequestMapping(value = "/listProblem.xcx"  )
+	public RestJson listProblem(@ModelAttribute("openid") String openid,Integer pageNum){
+		PageRequest pageable=Tools.getPage(pageNum,5);
+		Page<Problem> page = problemRepository.listProblem(openid,pageable);
+		return RestJson.createSucces(page);
+	}
+	
+	@RequestMapping(value = "/otherProblem.xcx"  )
+	public RestJson otherProblem(@ModelAttribute("openid") String openid,Integer pageNum){
+		PageRequest pageable=Tools.getPage(pageNum,5);
+		Page<Problem> page = problemRepository.otherProblem(openid,pageable);
+		return RestJson.createSucces(page);
 	}
 	
 	
-	@RequestMapping(value = "/saveCard.xcx"  )
-	public RestJson saveCard(@ModelAttribute("openid") String openid,Card card){
-		cardRepository.save(card);
-		return RestJson.createSucces(card);
-	}
-	
-	@RequestMapping(value = "/getCard.xcx"  )
-	public RestJson getCard(String cardId){
-		Card card=cardRepository.findById(cardId).get();
-		return RestJson.createSucces(card);
-	}
 	
 	
 	@RequestMapping(value = "/myProblem.xcx"  )
@@ -135,52 +105,26 @@ public class XcxSnsRest {
 
 	@RequestMapping(value = "/createShareImg.xcx"  )
 	public RestJson createShareImg(String problemId,@ModelAttribute("openid")String openid,String sharePath,String shareCode){
-		Problem problem = problemRepository.findById(problemId).get();
-		Person sharePerson = regService.getPersonByOpenid(openid);
-		Person createPerson =regService.getPersonByOpenid(problem.getOpenid());
-		ImgUtils imgUtils=new ImgUtils();
-		XcxShareImgModel xcxShareImgModel=new XcxShareImgModel();
-		
-		xcxShareImgModel.setCompanyName(createPerson.getEnterpriseName());
-		xcxShareImgModel.setCreateUserName(createPerson.getPersonName());
-		xcxShareImgModel.setMoney(problem.getMoney()+"");
-		xcxShareImgModel.setShareCode(shareCode);
-		xcxShareImgModel.setPostName(createPerson.getPersonPosition());
-		xcxShareImgModel.setSharePath(sharePath);
-		xcxShareImgModel.setTitle(problem.getTitle());
-		xcxShareImgModel.setShareUserName(sharePerson.getPersonName());
-		xcxShareImgModel.setContent(problem.getContent());
-		String webImgPath=imgUtils.createShareImg(uploadPath, xcxShareImgModel);
+		String webImgPath = snsService.createShareImg(problemId, openid, sharePath, shareCode,uploadPath);
 		return RestJson.createSucces(webImgPath);
 	}
-	
-	@RequestMapping(value = "/getShareByProblemId.xcx"  )
-	public RestJson getShareByProblemId(String problemId){
-		List<Share> list = shareRepository.findByProblemId(problemId);
-		return RestJson.createSucces(list);
-	}
+
+
 	
 	
-	@RequestMapping(value = "/myShare.xcx"  )
-	public RestJson myShare(@ModelAttribute("openid")String openid ,Integer pageNum){
-		PageRequest pageable=Tools.getPage(pageNum,5);
-		Page<Problem> page = shareRepository.findByOpenid(openid,pageable);
-		return RestJson.createSucces(page);
-	}
-	
-	
-	@RequestMapping(value = "/saveShare.xcx"  )
-	public RestJson saveShare(@ModelAttribute("openid") String openid,Share share){
-		shareRepository.save(share);
-		return RestJson.createSucces(share);
-	}
-	
+
 	@RequestMapping(value = "/getAnswerByProblemId.xcx"  )
 	public RestJson getAnswerByProblemId(String problemId){
 		List<Answer> list = answerRepository.findByProblemId(problemId);
 		return RestJson.createSucces(list);
 	}
 	
+	
+	@RequestMapping(value = "/getAnswerByProblemIdAndOpenId.xcx"  )
+	public RestJson getAnswerByProblemIdAndOpenId(@ModelAttribute("openid") String openid,String problemId){
+		Answer  answer = answerRepository.findByProblemIdAndOpenId(problemId,openid);
+		return RestJson.createSucces(answer);
+	}
 	
 	@RequestMapping(value = "/saveAnswer.xcx"  )
 	public RestJson saveAnswer(@ModelAttribute("openid") String openid,Answer answer){

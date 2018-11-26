@@ -21,6 +21,9 @@ public interface AnswerRepository extends PagingAndSortingRepository<Answer, Str
 
 	@Query("select m from Answer m  where m.problem.problemId=?1 order by m.createDate ")
 	List<Answer> findByProblemId(String problemId);
+	
+	@Query("select m from Answer m  where m.problem.problemId=?1 and  m.openid=?2 order by m.createDate ")
+	Answer findByProblemIdAndOpenId(String problemId,String openid);
 
 
 }

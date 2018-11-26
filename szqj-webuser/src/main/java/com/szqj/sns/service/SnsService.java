@@ -24,8 +24,8 @@ import com.szqj.sns.domain.ProblemViewRecord;
 import com.szqj.sns.domain.ProblemViewRecordRepository;
 import com.szqj.sns.domain.Result;
 import com.szqj.sns.domain.ResultRepository;
-import com.szqj.sns.domain.ShareRepository;
-import com.szqj.util.RestJson;
+import com.szqj.xcx.util.ImgUtils;
+import com.szqj.xcx.util.XcxShareImgModel;
 
 @Service
 @Transactional
@@ -40,8 +40,7 @@ public class SnsService {
 	@Autowired
 	private ResultRepository resultRepository;
 
-	@Autowired
-	private ShareRepository shareRepository;
+
 	@Autowired
 	private GiftRepository giftRepository;
 
@@ -106,6 +105,27 @@ public class SnsService {
 		problemRepository.save(problem);
 		
 		return problem;
+	}
+	
+	
+	public String createShareImg(String problemId, String openid, String sharePath, String shareCode,String  uploadPath) {
+		Problem problem = problemRepository.findById(problemId).get();
+		Person sharePerson = regService.getPersonByOpenid(openid);
+		Person createPerson =regService.getPersonByOpenid(problem.getOpenid());
+		ImgUtils imgUtils=new ImgUtils();
+		XcxShareImgModel xcxShareImgModel=new XcxShareImgModel(); 
+		
+		xcxShareImgModel.setCompanyName(createPerson.getEnterpriseName());
+		xcxShareImgModel.setCreateUserName(createPerson.getPersonName());
+		xcxShareImgModel.setMoney(problem.getMoney()+"");
+		xcxShareImgModel.setShareCode(shareCode);
+		xcxShareImgModel.setPostName(createPerson.getPersonPosition());
+		xcxShareImgModel.setSharePath(sharePath);
+		xcxShareImgModel.setTitle(problem.getTitle());
+		xcxShareImgModel.setShareUserName(sharePerson.getPersonName());
+		xcxShareImgModel.setContent(problem.getContent());
+		String webImgPath=imgUtils.createShareImg(uploadPath, xcxShareImgModel);
+		return webImgPath;
 	}
 	
 	
@@ -176,6 +196,7 @@ public class SnsService {
 				result.setPersonName(person.getPersonName());
 				result.setPersonPosition(person.getPersonPosition());
 				result.setEnterpriseName(person.getEnterpriseName());
+				result.setCreateDate(new Date());
 				resultRepository.save(result);
 				
 				
@@ -260,6 +281,7 @@ public class SnsService {
 			towResult.setPersonName(person.getPersonName());
 			towResult.setPersonPosition(person.getPersonPosition());
 			towResult.setEnterpriseName(person.getEnterpriseName());
+			towResult.setCreateDate(new Date());
 			resultRepository.save(towResult);
 		}
 		return towResult;
@@ -284,6 +306,7 @@ public class SnsService {
 			threeResult.setPersonName(person.getPersonName());
 			threeResult.setPersonPosition(person.getPersonPosition());
 			threeResult.setEnterpriseName(person.getEnterpriseName());
+			threeResult.setCreateDate(new Date());
 			resultRepository.save(threeResult);
 		}
 		return threeResult;

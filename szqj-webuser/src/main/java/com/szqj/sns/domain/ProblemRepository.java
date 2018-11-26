@@ -22,6 +22,13 @@ public interface ProblemRepository extends PagingAndSortingRepository<Problem, S
 
 	@Query("select m from Problem m  where m.openid=?1 order by m.createDate ")
 	Page<Problem> findPageByOpenid(String openid, Pageable pageable);
+	
+	@Query("select m from  Problem m where m.openid!=?1 and m.problemId not in ( select a.problem.problemId from Answer a where a.openid=?1)  order by m.createDate ")
+	Page<Problem> listProblem(String openid, Pageable pageable);
+	
+	
+	@Query("select m from  Problem m where m.openid!=?1 and m.problemId  in ( select a.problem.problemId from Answer a where a.openid=?1)  order by m.createDate ")
+	Page<Problem> otherProblem(String openid, Pageable pageable);
 
 	
 
