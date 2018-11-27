@@ -20,6 +20,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RefundRecordRepository extends PagingAndSortingRepository<RefundRecord, String> {
 
+	@Query("select m from RefundRecord m  where m.state =?1   ")
+	List<RefundRecord> findByState(int i);
+
 
 
 	

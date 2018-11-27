@@ -33,7 +33,7 @@ public class ScheduledService {
 	 * 每5分钟修改支付订单状态
 	 * 
 	 */
-	//@Scheduled(cron = "0 */1 *  * * * ")
+	@Scheduled(cron = "0 */1 *  * * * ")
 	public void updateRechargeRecord() {
 		payService.updateWxPay();
 	}

@@ -57,10 +57,11 @@ public class Problem {
 	
 	private String personPosition;//用户名
 	
-	
 	private String enterpriseName;//企业名
 	
 	private Integer state=0;//问题状态：0:进行中 1:已解决 2:超时
+	
+	private Integer refundState=0;//退款状态：0:未退款  1:已退款 3:退款失败
 	
 	private String personId;//用户id
 	
@@ -253,6 +254,13 @@ public class Problem {
 		this.state = state;
 	}
 
+	public Integer getRefundState() {
+		return refundState;
+	}
+
+	public void setRefundState(Integer refundState) {
+		this.refundState = refundState;
+	}
 	
 
 }

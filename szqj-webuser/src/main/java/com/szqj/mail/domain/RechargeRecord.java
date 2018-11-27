@@ -38,7 +38,7 @@ public class RechargeRecord {
 	
 	private String openid;//微信openId
 	
-	private Integer state;//0:未到账  1:已到账
+	private Integer state;//0:未到账  1:已到账 2:已退款
 	
 	private String tradeNo;//订单号32
 	

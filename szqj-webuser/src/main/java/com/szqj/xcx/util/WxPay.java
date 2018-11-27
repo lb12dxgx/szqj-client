@@ -84,14 +84,17 @@ public class WxPay {
 	}
 	
 	
-	public Map<String, String> searchByPayTradeNo(String tradeNo ) throws Exception {
-		
+	
+	
+	
+
+	public Map<String, String> searchByRefundTradeNo(String refundTradeNo) {
 		String nonce_str=PayUtil.radomStr(4);
 		Map<String, String> packageParams = new HashMap<String, String>();
 		packageParams.put("appid", APPID);
 		packageParams.put("mch_id", MCHID);
 		packageParams.put("nonce_str", nonce_str);
-		packageParams.put("out_trade_no", tradeNo);//商户订单号
+		packageParams.put("out_refund_no", refundTradeNo);//商户订单号
 		String prestr = PayUtil.createLinkString(packageParams); // 把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串 
 		
 		//MD5运算生成签名，这里是第一次签名，用于调用统一下单接口
@@ -101,7 +104,7 @@ public class WxPay {
 		String xml = "<xml>" + "<appid>" + APPID+ "</appid>" 
 		        + "<mch_id>" + MCHID + "</mch_id>" 
 		        + "<nonce_str>" + nonce_str + "</nonce_str>" 
-		        + "<out_trade_no>" + tradeNo + "</out_trade_no>" 
+		        + "<out_trade_no>" + refundTradeNo + "</out_trade_no>" 
 		        + "<sign>" + mysign + "</sign>"
 		        + "</xml>";
 		System.out.println("调试模式_统一查询接口 请求XML数据：" + xml);
@@ -120,11 +123,11 @@ public class WxPay {
 		if("SUCCESS".equals(return_code)){  
 			
 			String trade_state = (String) map.get("trade_state");//返回的预付单信息  
-			if(trade_state.equals("SUCCESS")) {
+			if(trade_state.equals("SUCCESS")||"REFUND".equals(trade_state)) {
 				String time_end = (String) map.get("time_end");//返回的预付单信息  
 				String total_fee = (String) map.get("total_fee");//返回的预付单信息  
 				String transactionId=map.get("transaction_id");
-				
+				result.put("tradeState'", trade_state);
 				result.put("finshDate", time_end);
 				result.put("finshMoney", total_fee);
 				result.put("transactionId", transactionId);
@@ -132,8 +135,6 @@ public class WxPay {
 		}
 		
 		return result;
-		
-		
 	}
 	
 	
@@ -215,6 +216,58 @@ public class WxPay {
 
 	}
 	
+	public Map<String, String> searchByPayTradeNo(String tradeNo ) throws Exception {
+		
+		String nonce_str=PayUtil.radomStr(4);
+		Map<String, String> packageParams = new HashMap<String, String>();
+		packageParams.put("appid", APPID);
+		packageParams.put("mch_id", MCHID);
+		packageParams.put("nonce_str", nonce_str);
+		packageParams.put("out_trade_no", tradeNo);//商户订单号
+		String prestr = PayUtil.createLinkString(packageParams); // 把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串 
+		
+		//MD5运算生成签名，这里是第一次签名，用于调用统一下单接口
+		String mysign = PayUtil.sign(prestr, PAYKEY, "utf-8").toUpperCase();
+		
+		//拼接统一下单接口使用的xml数据，要将上一步生成的签名一起拼接进去
+		String xml = "<xml>" + "<appid>" + APPID+ "</appid>" 
+		        + "<mch_id>" + MCHID + "</mch_id>" 
+		        + "<nonce_str>" + nonce_str + "</nonce_str>" 
+		        + "<out_trade_no>" + tradeNo + "</out_trade_no>" 
+		        + "<sign>" + mysign + "</sign>"
+		        + "</xml>";
+		System.out.println("调试模式_统一查询接口 请求XML数据：" + xml);
+		 
+		//调用统一下单接口，并接受返回的结果
+		String res = PayUtil.httpRequest(SEARCH_URL, "POST", xml);
+		
+		System.out.println("调试模式_统一查询接口 返回XML数据：" + res);
+		
+		// 将解析结果存储在HashMap中   
+     	Map<String,String> map = PayUtil.doXMLParse(res);
+		
+		String return_code = (String) map.get("return_code");//返回状态码
+		
+		Map<String, String> result = new HashMap<String, String>();//返回给小程序端需要的参数
+		if("SUCCESS".equals(return_code)){  
+			
+			String trade_state = (String) map.get("trade_state");//返回的预付单信息  
+			if(trade_state.equals("SUCCESS")||"REFUND".equals(trade_state)) {
+				String time_end = (String) map.get("time_end");//返回的预付单信息  
+				String total_fee = (String) map.get("total_fee");//返回的预付单信息  
+				String transactionId=map.get("transaction_id");
+				result.put("tradeState'", trade_state);
+				result.put("finshDate", time_end);
+				result.put("finshMoney", total_fee);
+				result.put("transactionId", transactionId);
+			}
+		}
+		
+		return result;
+		
+		
+	}
+	
 	
 	public static void main(String[] args) throws Exception {
 		WxPay pay=new WxPay();
@@ -226,6 +279,8 @@ public class WxPay {
 	
 		pay.goPay(paymentPo);
 	}
+
+
 
 
 	

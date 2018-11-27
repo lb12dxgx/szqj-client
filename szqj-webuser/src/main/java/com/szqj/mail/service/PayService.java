@@ -30,7 +30,7 @@ public class PayService {
 	
 	
 	
-	public void refundWxPay(String payTradeNo,Double refundMoney,String desc) {
+	public RefundRecord refundWxPay(String payTradeNo,Double refundMoney) {
 		RechargeRecord rechargeRecord = rechargeRecordRepository.findByTradeNo(payTradeNo);
 		
 		 RefundRecord  refundRecord=new  RefundRecord();
@@ -61,6 +61,37 @@ public class PayService {
 		refundRecord.setFinshMoney(Integer.parseInt(finshMoney));
 		refundRecord.setRefundId(refundId);
 		refundRecordRepository.save(refundRecord);
+		return refundRecord;
+		
+	}
+	
+	
+	public void updateRefundWxPay(String payTradeNo,Double refundMoney,String desc) {
+		List<RefundRecord> list = refundRecordRepository.findByState(0);
+		
+		Map<String, String> map=new HashMap<String,String>();
+		for(RefundRecord refundRecord:list) {
+			try {
+				WxPay wxPay=new WxPay();
+				map = wxPay.searchByRefundTradeNo(refundRecord.getRefundTradeNo());
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if("SUCCESS".equals(map.get("tradeState"))){
+				refundRecord.setFinshDate(map.get("finshDate"));
+				refundRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
+				refundRecord.setState(1);
+				refundRecordRepository.save(refundRecord);
+			}
+			
+			if("REFUND".equals(map.get("tradeState"))){
+				refundRecord.setFinshDate(map.get("finshDate"));
+				refundRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
+				refundRecord.setState(2);
+				refundRecordRepository.save(refundRecord);
+			}
+		}
 		
 		
 		
@@ -77,10 +108,17 @@ public class PayService {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if(map.get("finshDate")!=null){
+			if("SUCCESS".equals(map.get("tradeState"))){
 				rechargeRecord.setFinshDate(map.get("finshDate"));
 				rechargeRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
 				rechargeRecord.setState(1);
+				rechargeRecordRepository.save(rechargeRecord);
+			}
+			
+			if("REFUND".equals(map.get("tradeState"))){
+				rechargeRecord.setFinshDate(map.get("finshDate"));
+				rechargeRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
+				rechargeRecord.setState(2);
 				rechargeRecordRepository.save(rechargeRecord);
 			}
 		}

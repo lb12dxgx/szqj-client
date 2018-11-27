@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.szqj.mail.domain.GiftRepository;
+import com.szqj.mail.domain.RechargeRecord;
+import com.szqj.mail.domain.RechargeRecordRepository;
+import com.szqj.mail.domain.RefundRecord;
+import com.szqj.mail.service.PayService;
 import com.szqj.mail.service.ScoreRecordEventService;
 import com.szqj.redis.RedisService;
 import com.szqj.reg.service.RegService;
@@ -55,6 +59,12 @@ public class SnsService {
 
 	@Autowired
 	private RedisService redisService;
+	
+	@Autowired
+	private PayService payService;
+	@Autowired
+	private RechargeRecordRepository rechargeRecordRepository;
+	
 
 	public Problem getProblemByShareCode(String shareCode, String openid) {
 
@@ -221,6 +231,26 @@ public class SnsService {
 	}
 	
 	
+	public RefundRecord refund(String problemId) {
+		RechargeRecord rechargeRecord = rechargeRecordRepository.findByBusinessContent(problemId);
+		RefundRecord refundRecord=payService.refundWxPay(rechargeRecord.getTradeNo(), rechargeRecord.getMoney());
+		return refundRecord;
+	}
+	
+	
+	public void updateRefundProblem(){
+		List<Problem> list = problemRepository.findHandleList();
+		for(Problem problem:list){
+			refund(problem.getProblemId());
+		}
+	}
+	
+	public void updateProblemOver(){
+		List<Problem> list = problemRepository.findHandleList();
+		for(Problem problem:list){
+			setEndState(problem);
+		}
+	}
 	
 
 	private void updateScore(List<Result> resultList, List<Result> towResultList, List<Result> threeResultList,Integer score) {
@@ -364,5 +394,21 @@ public class SnsService {
 		}
 
 	}
+	
+	
+	private void setEndState(Problem problem) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(problem.getCreateDate());
+		cal.add(Calendar.DATE, problem.getDayNum());
+
+		long date = cal.getTime().getTime() - new Date().getTime();
+		if(date<=0){
+			problem.setState(2);
+		}
+		
+	}
+
+
+	
 
 }

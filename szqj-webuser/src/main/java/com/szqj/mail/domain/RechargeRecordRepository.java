@@ -29,6 +29,9 @@ public interface RechargeRecordRepository extends PagingAndSortingRepository<Rec
 	
 	@Query("select m from RechargeRecord m  where m.state =?1   ")
 	List<RechargeRecord> findByState(Integer state);
+	
+	@Query("select m from RechargeRecord m  where m.businessContent =?1   ")
+	RechargeRecord findByBusinessContent(String businessContent);
 
 	
 
