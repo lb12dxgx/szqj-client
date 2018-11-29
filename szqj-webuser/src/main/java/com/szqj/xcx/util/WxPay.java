@@ -18,7 +18,7 @@ public class WxPay {
 	
 	
 	
-	public Map<String, String> refundByRefundRecord(RefundRecord refundRecord ) throws Exception {
+	public Map<String, String> refundByRefundRecord(RefundRecord refundRecord,String certPath ) throws Exception {
 		
 		String total_fee = String.valueOf(new BigDecimal(refundRecord.getPayMoney()).multiply(new BigDecimal(100)).intValue());
 		String refund_fee = String.valueOf(new BigDecimal(refundRecord.getRefundMoney()).multiply(new BigDecimal(100)).intValue());
@@ -56,7 +56,7 @@ public class WxPay {
 		System.out.println("调试模式_统一退款接口 请求XML数据：" + xml);
 		 
 		//调用统一下单接口，并接受返回的结果
-		String res = PayUtil.httpRequest(REFUND_URL, "POST", xml);
+		String res = PayUtil.httpSSLRequest(REFUND_URL, "POST", xml, certPath, MCHID);
 		
 		System.out.println("调试模式_统一退款接口 返回XML数据：" + res);
 		

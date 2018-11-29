@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,8 @@ public class PayService {
 	
 	@Autowired
 	private  RefundRecordRepository refundRecordRepository;
+	@Value("${web.cert}")
+	private String certPath;
 	
 	
 	
@@ -50,7 +53,7 @@ public class PayService {
 		Map<String, String> map=new HashMap<String,String>();
 		try {
 			WxPay wxPay=new WxPay();
-			map = wxPay.refundByRefundRecord(refundRecord);
+			map = wxPay.refundByRefundRecord(refundRecord,certPath);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

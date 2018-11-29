@@ -2,12 +2,16 @@ package com.szqj.xcx.util;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.SignatureException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +20,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.net.ssl.SSLContext;
+
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -114,7 +124,72 @@ public class PayUtil {
             }   
         }   
         return prestr;   
+    } 
+    
+    
+    /**  
+     *  
+     * @param requestUrl请求地址  
+     * @param requestMethod请求方法  
+     * @param outputStr参数  
+     * @throws Exception 
+     */   
+    public static String httpSSLRequest(String requestUrl,String requestMethod,String outputStr,String certPath,String certPassword) throws Exception{   
+
+    	  KeyStore keyStore  = KeyStore.getInstance("PKCS12");
+          FileInputStream instream = new FileInputStream(new File("D:/10016225.p12"));
+          try {
+              keyStore.load(instream, "10016225".toCharArray());
+          } finally {
+              instream.close();
+          }
+
+          // Trust own CA and all self-signed certs
+          SSLContext sslcontext = SSLContexts.custom()
+                  .loadKeyMaterial(keyStore, "10016225".toCharArray())
+                  .build();
+          // Allow TLSv1 protocol only
+          SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
+                  sslcontext,
+                  new String[] { "TLSv1" },
+                  null,
+                  SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+          CloseableHttpClient httpclient = HttpClients.custom()
+                  .setSSLSocketFactory(sslsf)
+                  .build();
+    	
+    	
+        StringBuffer buffer = null;   
+        try{   
+	        URL url = new URL(requestUrl);   
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();   
+	        conn.setRequestMethod(requestMethod);   
+	        conn.setDoOutput(true);   
+	        conn.setDoInput(true);   
+	        conn.connect();   
+	        //往服务器端写内容   
+	        if(null !=outputStr){   
+	            OutputStream os=conn.getOutputStream();   
+	            os.write(outputStr.getBytes("utf-8"));   
+	            os.close();   
+	        }   
+	        // 读取服务器端返回的内容   
+	        InputStream is = conn.getInputStream();   
+	        InputStreamReader isr = new InputStreamReader(is, "utf-8");   
+	        BufferedReader br = new BufferedReader(isr);   
+	        buffer = new StringBuffer();   
+	        String line = null;   
+	        while ((line = br.readLine()) != null) {   
+	        	buffer.append(line);   
+	        }   
+	        br.close();
+        }catch(Exception e){   
+            e.printStackTrace();   
+        }
+        return buffer.toString();
     }   
+    
+    
     /**  
      *  
      * @param requestUrl请求地址  
