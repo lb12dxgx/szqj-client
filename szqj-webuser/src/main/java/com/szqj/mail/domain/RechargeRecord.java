@@ -22,9 +22,9 @@ public class RechargeRecord {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="uuid")
 	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-	private String rechargeRecordId;//充值记录ID
+	private String rechargeRecordId;//充值记录 
 	
-	private String businessType;//业务类型
+	private String businessType;//业务类型 1:问题
 	
 	private String businessContent;//业务内容
 	
@@ -44,7 +44,7 @@ public class RechargeRecord {
 	
 	private String finshDate;//订单号完成时间
 	
-	private Integer finshMoney;//实际金额
+	private Double finshMoney;//实际金额(元)
 	
 	private String transactionId;//微信交易id
 	
@@ -139,12 +139,15 @@ public class RechargeRecord {
 	public void setFinshDate(String finshDate) {
 		this.finshDate = finshDate;
 	}
+	
+	
 
-	public Integer getFinshMoney() {
+	
+	public Double getFinshMoney() {
 		return finshMoney;
 	}
 
-	public void setFinshMoney(Integer finshMoney) {
+	public void setFinshMoney(Double finshMoney) {
 		this.finshMoney = finshMoney;
 	}
 

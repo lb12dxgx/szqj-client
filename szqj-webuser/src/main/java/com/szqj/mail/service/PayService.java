@@ -14,6 +14,8 @@ import com.szqj.mail.domain.RechargeRecord;
 import com.szqj.mail.domain.RechargeRecordRepository;
 import com.szqj.mail.domain.RefundRecord;
 import com.szqj.mail.domain.RefundRecordRepository;
+import com.szqj.sns.domain.Problem;
+import com.szqj.sns.domain.ProblemRepository;
 import com.szqj.xcx.util.PayModel;
 import com.szqj.xcx.util.PayUtil;
 import com.szqj.xcx.util.WxPay;
@@ -30,18 +32,25 @@ public class PayService {
 	@Value("${web.cert}")
 	private String certPath;
 	
+	@Autowired
+	private ProblemRepository problemRepository;
+	
 	
 	
 	
 	public RefundRecord refundWxPay(String payTradeNo,Double refundMoney) {
 		RechargeRecord rechargeRecord = rechargeRecordRepository.findByTradeNo(payTradeNo);
-		
+
 		 RefundRecord  refundRecord=new  RefundRecord();
 		 refundRecord.setCreateDate(new Date());
 		 refundRecord.setPayMoney(rechargeRecord.getMoney());
 		 refundRecord.setRefundMoney(refundMoney);
 		 refundRecord.setRechargeRecordId(rechargeRecord.getRechargeRecordId());
 		 refundRecord.setState(0);
+		 refundRecord.setBusinessContent(rechargeRecord.getBusinessContent());
+		 refundRecord.setBusinessType(rechargeRecord.getBusinessType());
+		 
+		 
 		 refundRecordRepository.save(refundRecord);
 		 
 		 String rechargeRecordId = refundRecord.getRechargeRecordId();
@@ -57,6 +66,11 @@ public class PayService {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
+			problem.setRefundDate(new Date());
+			problem.setRefundState(3);
+			problemRepository.save(problem);
 		}
 		
 		String finshMoney = map.get("finshMoney");
@@ -64,6 +78,15 @@ public class PayService {
 		refundRecord.setFinshMoney(Integer.parseInt(finshMoney));
 		refundRecord.setRefundId(refundId);
 		refundRecordRepository.save(refundRecord);
+		
+		if(refundRecord.getBusinessType().equals("1")){
+			Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
+			problem.setRefundDate(new Date());
+			problem.setRefundState(2);
+			problemRepository.save(problem);
+		}
+		
+		
 		return refundRecord;
 		
 	}
@@ -91,7 +114,7 @@ public class PayService {
 			if("REFUND".equals(map.get("tradeState"))){
 				refundRecord.setFinshDate(map.get("finshDate"));
 				refundRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
-				refundRecord.setState(2);
+				refundRecord.setState(3);
 				refundRecordRepository.save(refundRecord);
 			}
 		}
@@ -113,14 +136,14 @@ public class PayService {
 			}
 			if("SUCCESS".equals(map.get("tradeState"))){
 				rechargeRecord.setFinshDate(map.get("finshDate"));
-				rechargeRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
+				rechargeRecord.setFinshMoney(Double.parseDouble(map.get("finshMoney")));
 				rechargeRecord.setState(1);
 				rechargeRecordRepository.save(rechargeRecord);
 			}
 			
 			if("REFUND".equals(map.get("tradeState"))){
 				rechargeRecord.setFinshDate(map.get("finshDate"));
-				rechargeRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
+				rechargeRecord.setFinshMoney(Double.parseDouble(map.get("finshMoney")));
 				rechargeRecord.setState(2);
 				rechargeRecordRepository.save(rechargeRecord);
 			}
@@ -172,7 +195,7 @@ public class PayService {
             	rechargeRecord.setState(1);
             	rechargeRecord.setFinshDate(finshDate);
             	rechargeRecord.setTransactionId(transactionId);
-            	rechargeRecord.setFinshMoney(Integer.parseInt(finshMoney));
+            	rechargeRecord.setFinshMoney(Double.parseDouble(finshMoney));
             	
             	rechargeRecordRepository.save(rechargeRecord);
             	

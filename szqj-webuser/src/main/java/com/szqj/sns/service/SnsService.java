@@ -399,11 +399,15 @@ public class SnsService {
 	private void setEndState(Problem problem) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(problem.getCreateDate());
+		int day = cal.get(Calendar.DATE);//获取日
+		System.out.println("day1==="+day);
 		cal.add(Calendar.DATE, problem.getDayNum());
-
+	    day = cal.get(Calendar.DATE);//获取日
+		System.out.println("day2==="+day);
 		long date = cal.getTime().getTime() - new Date().getTime();
 		if(date<=0){
 			problem.setState(2);
+			problem.setRefundState(0);
 		}
 		
 	}

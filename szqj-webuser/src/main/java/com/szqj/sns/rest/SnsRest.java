@@ -59,6 +59,21 @@ public class SnsRest {
 		return RestJson.createSucces(page);
 	}
 	
+	
+	/**
+	 *  正在处理的问题列表
+	 * @param title
+	 * @param pageNum
+	 * @param size
+	 * @return
+	 */
+	@RequestMapping(value = "/problem/get.do"  )
+	public RestJson getProblem(String problemId){
+		Problem problem = problemRepository.findById(problemId).get();
+		
+		return RestJson.createSucces(problem);
+	}
+	
 	/**
 	 * 已经超时的项目列表
 	 * @param title
@@ -74,6 +89,27 @@ public class SnsRest {
 			page=problemRepository.findOverByTitle(title,pageable);
 		}else{
 			page=problemRepository.findOverAll(pageable);
+		}
+		
+		return RestJson.createSucces(page);
+	}
+	
+	
+	/**
+	 * 已经超时的项目列表
+	 * @param title
+	 * @param pageNum
+	 * @param size
+	 * @return
+	 */
+	@RequestMapping(value = "/problem/overrefundlist.do"  )
+	public RestJson overRefundlist(String title, Integer pageNum, Integer size){
+		PageRequest pageable=Tools.getPage(pageNum-1, size);
+		Page<Problem> page=null;
+		if(StringUtils.isNotBlank(title)){
+			page=problemRepository.findOverAndRefundByTitle(title,pageable);
+		}else{
+			page=problemRepository.findOverAndRefundAll(pageable);
 		}
 		
 		return RestJson.createSucces(page);
@@ -101,7 +137,7 @@ public class SnsRest {
 	
 	
 	@RequestMapping(value = "/problem/refund.do"  )
-	public RestJson Refund(String problemId){
+	public RestJson refund(String problemId){
 		RefundRecord refundRecord=snsService.refund(problemId);
 		return RestJson.createSucces(refundRecord);
 	}
