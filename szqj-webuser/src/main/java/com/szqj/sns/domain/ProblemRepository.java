@@ -47,11 +47,17 @@ public interface ProblemRepository extends PagingAndSortingRepository<Problem, S
 	@Query("select m from Problem m  where  m.state=1 order by m.createDate ")
 	Page<Problem> findEndAll(Pageable pageable);
 
-	@Query("select m from Problem m  where m.title like %?1% and m.state=2 order by m.createDate ")
+	@Query("select m from Problem m  where m.title like %?1% and m.state=2 and m.refundState!=1 order by m.createDate ")
 	Page<Problem> findOverByTitle(String title, Pageable pageable);
 
-	@Query("select m from Problem m  where  m.state=2 order by m.createDate ")
+	@Query("select m from Problem m  where  m.state=2  and m.refundState!=1 order by m.createDate ")
 	Page<Problem> findOverAll(Pageable pageable);
+
+	@Query("select m from Problem m  where m.title like %?1% and m.state=2 and m.refundState=1 order by m.createDate ")
+	Page<Problem> findOverAndRefundByTitle(String title, Pageable pageable);
+
+	@Query("select m from Problem m  where  m.state=2  and m.refundState=1 order by m.createDate ")
+	Page<Problem> findOverAndRefundAll(Pageable pageable);
 
 	
 }

@@ -61,7 +61,10 @@ public class Problem {
 	
 	private Integer state=0;//问题状态：0:进行中 1:已解决 2:超时
 	
-	private Integer refundState=0;//退款状态：0:未退款  1:已退款 3:退款失败
+	private Integer refundState=0;//退款状态：0:未退款  1:已退款 ,2:退款中 3:退款失败
+	
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+	private Date refundDate;//退款时间
 	
 	private String personId;//用户id
 	
@@ -260,6 +263,14 @@ public class Problem {
 
 	public void setRefundState(Integer refundState) {
 		this.refundState = refundState;
+	}
+
+	public Date getRefundDate() {
+		return refundDate;
+	}
+
+	public void setRefundDate(Date refundDate) {
+		this.refundDate = refundDate;
 	}
 	
 

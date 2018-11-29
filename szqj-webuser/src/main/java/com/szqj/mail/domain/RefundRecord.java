@@ -43,6 +43,10 @@ public class RefundRecord {
 	private Integer finshMoney;//实际金额
 	
 	private String refundId;//微信交易id
+	
+	private String businessType;//业务类型 1:问题
+	
+	private String businessContent;//业务内容
 
 	public String getRefundRecordId() {
 		return refundRecordId;
@@ -135,14 +139,21 @@ public class RefundRecord {
 	public void setRefundMoney(Double refundMoney) {
 		this.refundMoney = refundMoney;
 	}
-	
-	
-	
-	
 
-	
-	
-	
-	
+	public String getBusinessType() {
+		return businessType;
+	}
+
+	public void setBusinessType(String businessType) {
+		this.businessType = businessType;
+	}
+
+	public String getBusinessContent() {
+		return businessContent;
+	}
+
+	public void setBusinessContent(String businessContent) {
+		this.businessContent = businessContent;
+	}
 	
 }
