@@ -71,20 +71,34 @@ public class PayService {
 			problem.setRefundDate(new Date());
 			problem.setRefundState(3);
 			problemRepository.save(problem);
+			refundRecord.setState(3);
+			refundRecordRepository.save(refundRecord);
+			
 		}
+		 String result_code = map.get("result_code");
+		 if("FAIL".equals(result_code)) {
+			 Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
+				problem.setRefundDate(new Date());
+				problem.setRefundState(3);
+				problem.setRefundDesc(map.get("err_code_des"));
+				problemRepository.save(problem);
+				refundRecord.setState(3);
+				refundRecordRepository.save(refundRecord);
+		 }else {
 		
-		String finshMoney = map.get("finshMoney");
-		String refundId = map.get("refund_id");
-		refundRecord.setFinshMoney(Integer.parseInt(finshMoney));
-		refundRecord.setRefundId(refundId);
-		refundRecordRepository.save(refundRecord);
-		
-		if(refundRecord.getBusinessType().equals("1")){
-			Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
-			problem.setRefundDate(new Date());
-			problem.setRefundState(2);
-			problemRepository.save(problem);
-		}
+			String finshMoney = map.get("finshMoney");
+			String refundId = map.get("refund_id");
+			refundRecord.setFinshMoney(Integer.parseInt(finshMoney));
+			refundRecord.setRefundId(refundId);
+			refundRecordRepository.save(refundRecord);
+			
+			if(refundRecord.getBusinessType().equals("1")){
+				Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
+				problem.setRefundDate(new Date());
+				problem.setRefundState(2);
+				problemRepository.save(problem);
+			}
+		 }
 		
 		
 		return refundRecord;

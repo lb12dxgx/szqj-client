@@ -63,6 +63,8 @@ public class Problem {
 	
 	private Integer refundState=0;//退款状态：0:未退款  1:已退款 ,2:退款中 3:退款失败
 	
+	private String refundDesc;//退款失败原因
+	
 	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
 	private Date refundDate;//退款时间
 	
@@ -271,6 +273,14 @@ public class Problem {
 
 	public void setRefundDate(Date refundDate) {
 		this.refundDate = refundDate;
+	}
+
+	public String getRefundDesc() {
+		return refundDesc;
+	}
+
+	public void setRefundDesc(String refundDesc) {
+		this.refundDesc = refundDesc;
 	}
 	
 

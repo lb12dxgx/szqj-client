@@ -11,7 +11,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.SignatureException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,10 +22,15 @@ import java.util.Random;
 import javax.net.ssl.SSLContext;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
+import org.apache.http.util.EntityUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -137,16 +141,16 @@ public class PayUtil {
     public static String httpSSLRequest(String requestUrl,String requestMethod,String outputStr,String certPath,String certPassword) throws Exception{   
 
     	  KeyStore keyStore  = KeyStore.getInstance("PKCS12");
-          FileInputStream instream = new FileInputStream(new File("D:/10016225.p12"));
+          FileInputStream instream = new FileInputStream(new File(certPath));
           try {
-              keyStore.load(instream, "10016225".toCharArray());
+              keyStore.load(instream, certPassword.toCharArray());
           } finally {
               instream.close();
           }
 
           // Trust own CA and all self-signed certs
           SSLContext sslcontext = SSLContexts.custom()
-                  .loadKeyMaterial(keyStore, "10016225".toCharArray())
+                  .loadKeyMaterial(keyStore, certPassword.toCharArray())
                   .build();
           // Allow TLSv1 protocol only
           SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
@@ -159,34 +163,30 @@ public class PayUtil {
                   .build();
     	
     	
-        StringBuffer buffer = null;   
-        try{   
-	        URL url = new URL(requestUrl);   
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();   
-	        conn.setRequestMethod(requestMethod);   
-	        conn.setDoOutput(true);   
-	        conn.setDoInput(true);   
-	        conn.connect();   
-	        //往服务器端写内容   
-	        if(null !=outputStr){   
-	            OutputStream os=conn.getOutputStream();   
-	            os.write(outputStr.getBytes("utf-8"));   
-	            os.close();   
-	        }   
-	        // 读取服务器端返回的内容   
-	        InputStream is = conn.getInputStream();   
-	        InputStreamReader isr = new InputStreamReader(is, "utf-8");   
-	        BufferedReader br = new BufferedReader(isr);   
-	        buffer = new StringBuffer();   
-	        String line = null;   
-	        while ((line = br.readLine()) != null) {   
-	        	buffer.append(line);   
-	        }   
-	        br.close();
-        }catch(Exception e){   
-            e.printStackTrace();   
-        }
-        return buffer.toString();
+          try {
+              HttpPost httpost = new HttpPost(requestUrl); // 设置响应头信息
+              httpost.addHeader("Connection", "keep-alive");
+              httpost.addHeader("Accept", "*/*");
+              httpost.addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+              httpost.addHeader("Host", "api.mch.weixin.qq.com");
+              httpost.addHeader("X-Requested-With", "XMLHttpRequest");
+              httpost.addHeader("Cache-Control", "max-age=0");
+              httpost.addHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) ");
+              httpost.setEntity(new StringEntity(outputStr, "UTF-8"));
+              CloseableHttpResponse response = httpclient.execute(httpost);
+              try {
+                  HttpEntity entity = response.getEntity();
+   
+                  String jsonStr = EntityUtils.toString(response.getEntity(), "UTF-8");
+                  EntityUtils.consume(entity);
+                 return jsonStr;
+              } finally {
+                  response.close();
+              }
+          } finally {
+              httpclient.close();
+          }
+     
     }   
     
     

@@ -1,5 +1,6 @@
 package com.szqj.xcx.util;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class WxPay {
 		System.out.println("调试模式_统一退款接口 请求XML数据：" + xml);
 		 
 		//调用统一下单接口，并接受返回的结果
-		String res = PayUtil.httpSSLRequest(REFUND_URL, "POST", xml, certPath, MCHID);
+		String res = PayUtil.httpSSLRequest(REFUND_URL, "POST", xml, certPath+File.separator+"apiclient_cert.p12", MCHID);
 		
 		System.out.println("调试模式_统一退款接口 返回XML数据：" + res);
 		
@@ -66,15 +67,20 @@ public class WxPay {
 		String return_code = (String) map.get("return_code");//返回状态码
 		
 		Map<String, String> result = new HashMap<String, String>();//返回给小程序端需要的参数
+		
 		if("SUCCESS".equals(return_code)){  
 			
 			String result_code = (String) map.get("result_code");//返回的预付单信息  
+			result.put("result_code", result_code);
 			if(result_code.equals("SUCCESS")) {
 				String finshMoney = (String) map.get("refund_fee");//返回的预付单信息  
 				String refund_id=map.get("refund_id");
 				
 				result.put("finshMoney", finshMoney);
 				result.put("refund_id", refund_id);
+			
+			}else {
+				result.put("err_code_des", (String) map.get("err_code_des"));
 			}
 		}
 		

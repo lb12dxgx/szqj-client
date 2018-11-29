@@ -34,7 +34,7 @@ public class RefundRecord {
 	
 	private String refundTradeNo;//退款订单号32
 	
-	private Integer state;//0:未到账  1:已到账
+	private Integer state;//0:未到账  1:已到账 2:退款失败
 	
 	private Date createDate;//创建时间
 	
