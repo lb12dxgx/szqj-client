@@ -43,27 +43,33 @@ public class XcxCityDistrictRest {
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId=person.getCompanyId();
 		List<PersonArea> personAreas = personAreaRepository.findByOpenidAndEnterpriseId(openid,enterpriseId);
-		 PersonArea personArea=new PersonArea();
-		if(personAreas!=null&&personAreas.size()>0){
-			personArea=personAreas.get(0);
+		 for(PersonArea personArea:personAreas){
+			 personAreaRepository.delete(personArea);
+		 }
+		 
+		if(cityDistrictIdList!=null){
+			PersonArea personArea=new PersonArea();
+			personArea.setEnterpriseId(enterpriseId);
+			personArea.setOpenid(openid);
+			personArea.setPersonId(person.getPersonId());
+			personArea.setType(1);
+			String content="";
+			
+				for(String cityDistrictId:cityDistrictIdList ){
+					if(StringUtils.isBlank(content)){
+						content="1,"+cityDistrictId;
+					}else{
+						content=content+","+cityDistrictId;
+					}
+				}
+			
+			personArea.setContent(content);
+			
+			personAreaRepository.save(personArea);
 		}
-		personArea.setEnterpriseId(enterpriseId);
-		personArea.setOpenid(openid);
-		personArea.setPersonId(person.getPersonId());
-		personArea.setType(1);
-		String content="";
-		for(String cityDistrictId:cityDistrictIdList ){
-			if(StringUtils.isBlank(content)){
-				content="1,"+cityDistrictId;
-			}else{
-				content=content+","+cityDistrictId;
-			}
-		}
-		personArea.setContent(content);
-		
-		personAreaRepository.save(personArea);
 		
 		return RestJson.createSucces();
+		
 	}
 	
 	@RequestMapping(value = "/before/citydistrict/getDistrictByOpenId.xcx"  )

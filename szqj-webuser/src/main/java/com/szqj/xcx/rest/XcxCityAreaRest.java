@@ -49,25 +49,29 @@ public class XcxCityAreaRest {
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId=person.getCompanyId();
 		 List<PersonArea> personAreas = personAreaRepository.findByOpenidAndEnterpriseId(openid,enterpriseId);
-		 PersonArea personArea=new PersonArea();
-		if(personAreas!=null&&personAreas.size()>0){
-			personArea=personAreas.get(0);
-		}
-		personArea.setEnterpriseId(enterpriseId);
-		personArea.setOpenid(openid);
-		personArea.setPersonId(person.getPersonId());
-		personArea.setType(2);
-		String content="";
-		for(String cityAreaId:cityAreaIdList ){
-			if(StringUtils.isBlank(content)){
-				content="1,"+cityAreaId;
-			}else{
-				content=content+","+cityAreaId;
-			}
-		}
-		personArea.setContent(content);
+		 for(PersonArea personArea:personAreas){
+			 personAreaRepository.delete(personArea);
+		 }
 		
-		personAreaRepository.save(personArea);
+		if(cityAreaIdList!=null){
+			PersonArea personArea=new PersonArea();
+			personArea.setEnterpriseId(enterpriseId);
+			personArea.setOpenid(openid);
+			personArea.setPersonId(person.getPersonId());
+			personArea.setType(2);
+			String content="";
+			for(String cityAreaId:cityAreaIdList ){
+					if(StringUtils.isBlank(content)){
+						content="1,"+cityAreaId;
+					}else{
+						content=content+","+cityAreaId;
+					}
+				}
+			
+			personArea.setContent(content);
+			
+			personAreaRepository.save(personArea);
+		}
 		
 		return RestJson.createSucces();
 	}

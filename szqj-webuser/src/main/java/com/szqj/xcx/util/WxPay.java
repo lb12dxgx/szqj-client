@@ -12,6 +12,7 @@ public class WxPay {
 	public static String PAYURL="https://api.mch.weixin.qq.com/pay/unifiedorder";
 	public static String SEARCH_URL="https://api.mch.weixin.qq.com/pay/orderquery";
 	public static String REFUND_URL="https://api.mch.weixin.qq.com/secapi/pay/refund";
+	public static String REFUND_SEARCH_URL="https://api.mch.weixin.qq.com/pay/refundquery";
 	public static String APPID="wx9a605545c03d6b9e";
 	public static String MCHID="1518303601";
 	public static String PAYKEY="f9044d88c9fa47978d39173230f02bad";
@@ -110,15 +111,15 @@ public class WxPay {
 		String xml = "<xml>" + "<appid>" + APPID+ "</appid>" 
 		        + "<mch_id>" + MCHID + "</mch_id>" 
 		        + "<nonce_str>" + nonce_str + "</nonce_str>" 
-		        + "<out_trade_no>" + refundTradeNo + "</out_trade_no>" 
+		        + "<out_refund_no>" + refundTradeNo + "</out_refund_no>" 
 		        + "<sign>" + mysign + "</sign>"
 		        + "</xml>";
-		System.out.println("调试模式_统一查询接口 请求XML数据：" + xml);
+		System.out.println("调试模式_统一退款查询接口 请求XML数据：" + xml);
 		 
 		//调用统一下单接口，并接受返回的结果
-		String res = PayUtil.httpRequest(SEARCH_URL, "POST", xml);
+		String res = PayUtil.httpRequest(REFUND_SEARCH_URL, "POST", xml);
 		
-		System.out.println("调试模式_统一查询接口 返回XML数据：" + res);
+		System.out.println("调试模式_统一退款查询接口  返回XML数据：" + res);
 		
 		// 将解析结果存储在HashMap中   
      	Map<String,String> map = PayUtil.doXMLParse(res);
@@ -128,13 +129,13 @@ public class WxPay {
 		Map<String, String> result = new HashMap<String, String>();//返回给小程序端需要的参数
 		if("SUCCESS".equals(return_code)){  
 			
-			String trade_state = (String) map.get("trade_state");//返回的预付单信息  
-			if(trade_state.equals("SUCCESS")||"REFUND".equals(trade_state)) {
-				String time_end = (String) map.get("time_end");//返回的预付单信息  
-				String total_fee = (String) map.get("total_fee");//返回的预付单信息  
+			String refund_status_0 = (String) map.get("refund_status_0");//返回的预付单信息  
+			result.put("refund_status_0", refund_status_0);
+			if(refund_status_0 .equals("SUCCESS")) {
+				String time_end = (String) map.get("refund_success_time_0");//返回的预付单信息  
+				String total_fee = (String) map.get("refund_fee_0");//返回的预付单信息  
 				String transactionId=map.get("transaction_id");
-				result.put("tradeState'", trade_state);
-				result.put("finshDate", time_end);
+				result.put("finshDate",time_end );
 				result.put("finshMoney", total_fee);
 				result.put("transactionId", transactionId);
 			}

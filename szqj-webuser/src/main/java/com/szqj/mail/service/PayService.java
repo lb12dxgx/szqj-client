@@ -77,7 +77,7 @@ public class PayService {
 		}
 		 String result_code = map.get("result_code");
 		 if("FAIL".equals(result_code)) {
-			 Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
+			 	Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
 				problem.setRefundDate(new Date());
 				problem.setRefundState(3);
 				problem.setRefundDesc(map.get("err_code_des"));
@@ -106,7 +106,7 @@ public class PayService {
 	}
 	
 	
-	public void updateRefundWxPay(String payTradeNo,Double refundMoney,String desc) {
+	public void updateRefundWxPay() {
 		List<RefundRecord> list = refundRecordRepository.findByState(0);
 		
 		Map<String, String> map=new HashMap<String,String>();
@@ -118,19 +118,29 @@ public class PayService {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if("SUCCESS".equals(map.get("tradeState"))){
+			if("SUCCESS".equals(map.get("refund_status_0"))){
 				refundRecord.setFinshDate(map.get("finshDate"));
 				refundRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
 				refundRecord.setState(1);
 				refundRecordRepository.save(refundRecord);
-			}
-			
-			if("REFUND".equals(map.get("tradeState"))){
+				
+				Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
+				problem.setRefundDate(new Date());
+				problem.setRefundState(1);
+				problemRepository.save(problem);
+			}else{
 				refundRecord.setFinshDate(map.get("finshDate"));
 				refundRecord.setFinshMoney(Integer.parseInt(map.get("finshMoney")));
 				refundRecord.setState(3);
 				refundRecordRepository.save(refundRecord);
+				
+				Problem problem = problemRepository.findById(refundRecord.getBusinessContent()).get();
+				problem.setRefundDate(new Date());
+				problem.setRefundState(3);
+				problem.setRefundDesc("退款异常");
+				problemRepository.save(problem);
 			}
+			
 		}
 		
 		
@@ -172,7 +182,7 @@ public class PayService {
 		rechargeRecord.setState(0);
 		rechargeRecordRepository.save(rechargeRecord);
 		PayModel paymentPo=new PayModel();
-		paymentPo.setBody(rechargeRecord.getBusinessContent());
+		paymentPo.setBody("地下管线-管线帮帮问题");
 		paymentPo.setOpenid(rechargeRecord.getOpenid());
 		paymentPo.setOut_trade_no(tradeNo);
 		paymentPo.setTotal_fee(rechargeRecord.getMoney()+"");
