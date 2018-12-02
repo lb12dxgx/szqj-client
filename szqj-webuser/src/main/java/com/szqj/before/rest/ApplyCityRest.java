@@ -66,6 +66,13 @@ public class ApplyCityRest {
 	}
 	
 	
+	@RequestMapping(value = "delete.do")
+	public RestJson delete(String applyCityId){
+		applyCityRepository.deleteById(applyCityId);
+		return RestJson.createSucces();
+	}
+	
+	
 	
 	
 	

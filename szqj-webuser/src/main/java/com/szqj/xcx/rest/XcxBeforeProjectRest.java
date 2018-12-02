@@ -52,7 +52,7 @@ public class XcxBeforeProjectRest {
 		return RestJson.createSucces(list);
 	}
 	
-	
+	修改按照分页
 	@RequestMapping(value = "/before/applayproject/listFinshByOpenId.xcx"  )
 	public RestJson listFinshByOpenId( @ModelAttribute("openid") String openid){
 		Person person = regService.getPersonByOpenid(openid);

@@ -67,6 +67,7 @@ public class XcxApplayCityRest {
 	@RequestMapping(value = "/before/applaycity/save.xcx"  )
 	public RestJson save(@ModelAttribute("openid") String openid,ApplyCity applyCity){
 		applyCity.setCreateDate(new Date());
+		applyCity.setState(0);
 		applyCityRepository.save(applyCity);
 		return RestJson.createSucces(applyCity);
 		
@@ -76,10 +77,11 @@ public class XcxApplayCityRest {
 	@RequestMapping(value = "/before/applaycity/exit.xcx"  )
 	public RestJson isExit(String cityName){
 		List<ApplyCity> l = applyCityRepository.findByCityName(cityName);
-		if(l==null||l.size()==0) {
-			return RestJson.createSucces(false);
+		if(l!=null&&l.size()>0) {
+			return RestJson.createSucces(true);
+		
 		}
-		return RestJson.createSucces(true);
+		return RestJson.createSucces(false);
 	}
 	
 	@RequestMapping(value = "/before/applaycity/get.xcx"  )
