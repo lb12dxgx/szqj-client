@@ -20,21 +20,21 @@ import org.springframework.stereotype.Repository;
 public interface BeforeProjectRepository extends JpaRepository<BeforeProject, String> {
 	
 	@Query("select m from BeforeProject m where  m.applyCityId=?1 and not exists (select r from ProjectResult r where r.beforeProject=m and r.enterpriseId=?2)  and m.enterpriseId!=?2")
-	public List<BeforeProject> findByApplyCityIdAndEnterpriseId(String applyCityId,String enterpriseId);
+	public Page<BeforeProject> findByApplyCityIdAndEnterpriseId(String applyCityId,String enterpriseId,Pageable pageable);
 	
 	@Query("select m from BeforeProject m where  m.applyCityId=?1 and not exists (select r from ProjectResult r where r.beforeProject=m and r.enterpriseId=?2)  and m.enterpriseId!=?2 and m.cityAreaId in ?3")
-	public List<BeforeProject> findByApplyCityIdAndEnterpriseIdAndCityAreaIds(String applyCityId,String enterpriseId,String[] cityAreaIdList);
+	public Page<BeforeProject> findByApplyCityIdAndEnterpriseIdAndCityAreaIds(String applyCityId,String enterpriseId,String[] cityAreaIdList,Pageable pageable);
 	
 	
 	@Query("select m from BeforeProject m where  m.applyCityId=?1 and not exists (select r from ProjectResult r where r.beforeProject=m and r.enterpriseId=?2)  and m.enterpriseId!=?2 and m.cityDistrictId in ?3")
-	public List<BeforeProject> findByApplyCityIdAndEnterpriseIdAndCityDistrictIds(String applyCityId,String enterpriseId,String[] cityDistrictIdList);
+	public Page<BeforeProject> findByApplyCityIdAndEnterpriseIdAndCityDistrictIds(String applyCityId,String enterpriseId,String[] cityDistrictIdList,Pageable pageable);
 	
 	@Query("select m from BeforeProject m   where  m.openid=?1 ")
-	public List<BeforeProject> findByApplyOpenId(String openId);
+	public Page<BeforeProject> findByApplyOpenId(String openId,Pageable pageable);
 	
 	
 	@Query("select m from ProjectResult r  right join r.beforeProject m  where  r.enterpriseId=?1 or m.enterpriseId=?1") 
-	public List<BeforeProject> findByFinshApplyEnterpriseId(String enterpriseId);
+	public Page<BeforeProject> findByFinshApplyEnterpriseId(String enterpriseId,Pageable pageable);
 	
 	
 	

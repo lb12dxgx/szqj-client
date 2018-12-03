@@ -9,6 +9,8 @@ import java.util.UUID;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +24,10 @@ import com.szqj.before.domain.ProjectResultRepository;
 import com.szqj.reg.service.RegService;
 import com.szqj.service.domain.Enterprise;
 import com.szqj.service.domain.EnterpriseRepository;
+import com.szqj.service.domain.Meet;
 import com.szqj.service.domain.Person;
 import com.szqj.util.RestJson;
+import com.szqj.util.Tools;
 
 @RestController
 @RequestMapping("/xcx/login/")
@@ -44,52 +48,53 @@ public class XcxBeforeProjectRest {
 	private PersonAreaRepository personAreaRepository;
 	
 	@RequestMapping(value = "/before/applayproject/listByOpenId.xcx"  )
-	public RestJson listByOpenId( @ModelAttribute("openid") String openid){
-		List<BeforeProject> list = beforeProjectRepository.findByApplyOpenId(openid);
-		for(BeforeProject project:list){
+	public RestJson listByOpenId( @ModelAttribute("openid") String openid,Integer pageNum, Integer size){
+		PageRequest pageable=Tools.getPage(pageNum,3);
+		Page<BeforeProject> page= beforeProjectRepository.findByApplyOpenId(openid,pageable);
+		for(BeforeProject project:page.getContent()){
 			addNum(project);
 		}
-		return RestJson.createSucces(list);
+		return RestJson.createSucces(page);
 	}
 	
-	修改按照分页
 	@RequestMapping(value = "/before/applayproject/listFinshByOpenId.xcx"  )
-	public RestJson listFinshByOpenId( @ModelAttribute("openid") String openid){
+	public RestJson listFinshByOpenId( @ModelAttribute("openid") String openid,Integer pageNum, Integer size){
+		PageRequest pageable=Tools.getPage(pageNum,3);
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId = person.getCompanyId();
-		List<BeforeProject> list = beforeProjectRepository.findByFinshApplyEnterpriseId(enterpriseId);
-		for(BeforeProject project:list){
+		Page<BeforeProject> page=beforeProjectRepository.findByFinshApplyEnterpriseId(enterpriseId,pageable);
+		for(BeforeProject project:page.getContent()){
 			addNum(project);
 		}
-		return RestJson.createSucces(list);
+		return RestJson.createSucces(page);
 	}
 	
 	@RequestMapping(value = "/before/applayproject/listByCityId.xcx"  )
-	public RestJson listByCityId( @ModelAttribute("openid") String openid){
+	public RestJson listByCityId( @ModelAttribute("openid") String openid,Integer pageNum, Integer size){
 		Person person = regService.getPersonByOpenid(openid);
 		String enterpriseId = person.getCompanyId();
 		Enterprise enterprise = enterpriseRepository.findById(enterpriseId).get();
 		
 		List<PersonArea> l = personAreaRepository.findByOpenidAndEnterpriseId(openid, enterpriseId);
-		List<BeforeProject> list=new ArrayList<BeforeProject>();
+		PageRequest pageable=Tools.getPage(pageNum,3);
+		Page<BeforeProject> page=null;
 		if(l==null||l.size()==0) {
-			list = beforeProjectRepository.findByApplyCityIdAndEnterpriseId(enterprise.getApplyCityId(),enterprise.getEnterpriseId());
+			 page=  beforeProjectRepository.findByApplyCityIdAndEnterpriseId(enterprise.getApplyCityId(),enterprise.getEnterpriseId(),pageable);
 		}else {
 			PersonArea personArea=l.get(0);
 			String[] content=StringUtils.split(personArea.getContent(), ",");
 			if(personArea.getType()==1) {
-				list = beforeProjectRepository.findByApplyCityIdAndEnterpriseIdAndCityDistrictIds(enterprise.getApplyCityId(),enterprise.getEnterpriseId(), content);
+				page=  beforeProjectRepository.findByApplyCityIdAndEnterpriseIdAndCityDistrictIds(enterprise.getApplyCityId(),enterprise.getEnterpriseId(), content,pageable);
 			}else {
-				list = beforeProjectRepository.findByApplyCityIdAndEnterpriseIdAndCityAreaIds(enterprise.getApplyCityId(),enterprise.getEnterpriseId(), content);
+			   page=  beforeProjectRepository.findByApplyCityIdAndEnterpriseIdAndCityAreaIds(enterprise.getApplyCityId(),enterprise.getEnterpriseId(), content,pageable);
 			}
 		}
 		
-		
-		
-		for(BeforeProject project:list){
+		for(BeforeProject project:page.getContent()){
 			addNum(project);
 		}
-		return RestJson.createSucces(list);
+		
+		return RestJson.createSucces(page);
 	}
 	
 	
