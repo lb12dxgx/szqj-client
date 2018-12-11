@@ -3,6 +3,7 @@ package com.szqj.service.domain;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -37,6 +38,9 @@ public interface MyPersonRepository extends PagingAndSortingRepository<Person, S
 	@Query("select m from Person m order by m.updateDate ")
 	Page<Person> findPage( Pageable pageable);
 	
+	@Query("select m from Person m  where m.personName like %?1% order by m.updateDate ")
+	Page<Person> findPageByPersonName(String personName, Pageable pageable);
+	
 	
 	@Query("select m from Person m where m.level=20 order by m.updateDate desc,level desc")
 	List<Person> findTopList();
@@ -66,6 +70,12 @@ public interface MyPersonRepository extends PagingAndSortingRepository<Person, S
 	
 	@Query("select m from Person m where m.workCity like %?1% and m.jobName like %?2% and workState!=3  order by m.updateDate desc,level desc")
 	Page<Person> findEmpPageByWorkCityAndJobName(String workCity,String jobName,Pageable pageable);
+
+	@Query("select m from Person m where m.companyId = ?1 and m.personName like %?2%  order by m.updateDate desc,level desc")
+	Page<Person> findPageByCompanyIdAndPersonName(String companyId, String personName, Pageable pageable);
+
+	@Query("select m from Person m where m.companyId = ?1  order by m.updateDate desc,level desc")
+	Page<Person> findPageByCompanyId(String companyId, Pageable pageable);
 
 
 	

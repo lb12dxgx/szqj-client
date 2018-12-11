@@ -86,7 +86,11 @@ public class Person {
 	@Column
 	private Date updateDate=new Date();//简历更新时间
 	
+	@Column
 	private Integer level;//级别  10:普通级别  20:vip 
+	
+	@Column
+	private Integer state=0;//(0:启用,1:禁用,2:删除)
 	
 	@Column
 	private String openid;//微信openId
@@ -314,6 +318,12 @@ public class Person {
 	}
 	public void setPostAddren(String postAddren) {
 		this.postAddren = postAddren;
+	}
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
 	}
 	
    
