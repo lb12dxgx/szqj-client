@@ -44,7 +44,7 @@ public interface MyPersonRepository extends PagingAndSortingRepository<Person, S
 	
 	@Query("select m from Person m where m.level=20 order by m.updateDate desc,level desc")
 	List<Person> findTopList();
-	
+	  
 	
 	
 	
