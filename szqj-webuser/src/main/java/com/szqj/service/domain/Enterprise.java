@@ -61,6 +61,9 @@ public class Enterprise {
 	
 	private Integer level;//级别  10:普通级别  20:vip  30:超级VIP
 	
+	
+	private Integer state=0;//(0:启用,1:禁用,2:删除)
+	
 	private Integer jobLevel;//级别  10:普通招聘  20:名企招聘
 	
 	private String qyXjCode;//企业性质编码
@@ -312,6 +315,14 @@ public class Enterprise {
 
 	public void setQsType(String qsType) {
 		this.qsType = qsType;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 	
