@@ -39,7 +39,7 @@ public class KnowledgeControle {
 	public String index_news(String columnCode,Integer pageNum, Integer size, ModelMap modelMap){
 		
 		if(StringUtils.isBlank(columnCode)) {
-			columnCode="1_hy_zs_zc";
+			columnCode="4_hy_zs_lw";
 		}
 		
 		ColumnInfo columnInfo=columnInfoRepository.findByColumnCode(columnCode);
