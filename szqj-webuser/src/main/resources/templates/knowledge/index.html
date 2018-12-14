@@ -32,7 +32,7 @@
      <div class="col-md-3">
        <ul class="list-unstyled" th:if="${columnCode}=='1_hy_zs_zc'" >
          <li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-none text-center">行业论文</a></li>
-         <li><a href="/knowledge/index.html" class="left-manu qk-manu-on text-center" >政策法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=1_hy_zs_zc" class="left-manu qk-manu-on text-center" >政策法规</a></li>
          <li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-none text-center">法律法规</a></li>
          <li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-none text-center">标准规范</a></li>
          <li><a href="/maga/index.html" class="left-manu qk-manu-none text-center">电子期刊</a></li>
@@ -40,7 +40,7 @@
        
        <ul class="list-unstyled" th:if="${columnCode}=='2_hy_zs_fl'" >
           <li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-none text-center">行业论文</a></li> 
-         <li><a href="/knowledge/index.html" class="left-manu qk-manu-none text-center" >政策法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=1_hy_zs_zc" class="left-manu qk-manu-none text-center" >政策法规</a></li>
          <li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-on text-center">法律法规</a></li>
          <li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-none text-center">标准规范</a></li>
         
@@ -49,7 +49,7 @@
        
        <ul class="list-unstyled" th:if="${columnCode}=='3_hy_zs_bj'" >
        	 <li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-none text-center">行业论文</a></li>
-       	 <li><a href="/knowledge/index.html" class="left-manu qk-manu-none text-center" >政策法规</a></li>
+       	 <li><a href="/knowledge/index.html?columnCode=1_hy_zs_zc" class="left-manu qk-manu-none text-center" >政策法规</a></li>
          <li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-none text-center">法律法规</a></li>
          <li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-on text-center">标准规范</a></li>
         
@@ -58,7 +58,7 @@
        
        <ul class="list-unstyled" th:if="${columnCode}=='4_hy_zs_lw'" >
          <li><a href="/knowledge/index.html?columnCode=4_hy_zs_lw" class="left-manu qk-manu-on text-center">行业论文</a></li>
-         <li><a href="/knowledge/index.html" class="left-manu qk-manu-none text-center" >政策法规</a></li>
+         <li><a href="/knowledge/index.html?columnCode=1_hy_zs_zc" class="left-manu qk-manu-none text-center" >政策法规</a></li>
          <li><a href="/knowledge/index.html?columnCode=2_hy_zs_fl" class="left-manu qk-manu-none text-center">法律法规</a></li>
          <li><a href="/knowledge/index.html?columnCode=3_hy_zs_bj" class="left-manu qk-manu-none text-center">标准规范</a></li>
          
@@ -75,7 +75,13 @@
         <div th:each="content,iterStat:${page.content}" >
 	       <div class="mt-comments">
                  <ul class="gbzx-news">
-	                 <li class="xwlist pull-left"><a th:href="@{'/knowledge/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a></li>
+	                 <li class="xwlist pull-left" th:if="${columnCode}=='4_hy_zs_lw'">
+	                 	 <a   href="/login.html" target="_blank"  th:text="${content.contentTitle}"></a>
+	                	 <span style="color:red">需要登录后付费阅读</span>
+	                 </li>
+	                  <li class="xwlist pull-left" th:if="${columnCode}!='4_hy_zs_lw'">
+	                 	 <a  th:href="@{'/knowledge/detail.html?contentId='+${content.contentId}}" target="_blank"  th:text="${content.contentTitle}"></a>
+	                 </li>
 	                 <li class="list-unstyled pull-right gray"><time datetime="2018-1-22" th:text="${#strings.substring(content.contentJsonMap['pdate'],0,10)}">2018-1-22</time></li>
 	             </ul>
 	           <div class="gb-line clearfix" th:if="not ${iterStat.last}"></div>
